@@ -20,3 +20,17 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+        
+class Resource(db.Model):
+        __tablename__ = "Resource"
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(256), unique=False, nullable=False)
+        address = db.Column(db.String(256), unique=False, nullable=False)
+        phone = db.Column(db.String(256), unique=True, nullable=True)
+        category = db.Column(db.String(256), unique=False, nullable=False)
+        website = db.Column(db.String(256), unique=False, nullable=True)
+        days = db.Column(db.String(256), unique=False, nullable=False)
+        opening_time = db.Column(db.Time, unique=False, nullable=False)
+        closing_time = db.Column(db.Time, unique=False, nullable=False)
+        
+        

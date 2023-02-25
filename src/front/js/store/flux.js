@@ -54,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "https://3001-lalafontaine-alive-1aqqlme72zf.ws-eu88.gitpod.io/api/createUser",
             opts
           );
-          if (Response.status !== 200) {
+          if (Response.status >= 400) {
             alert("There has been an error");
             return false;
           }

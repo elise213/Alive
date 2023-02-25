@@ -12,7 +12,6 @@ import datetime
 
 api = Blueprint('api', __name__)
 
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -23,22 +22,21 @@ def handle_hello():
 
 @api.route("/login", methods = ["POST"])
 def create_token(): 
-    if request.method == "POST": 
         email = request.json.get("email", None)
         password = request.json.get("password", None)
         if not email: 
             return jsonify({"message": "Email is required"}), 400
         if not password: 
             return jsonify({"message": "Password is required"}), 400
-        user = User.query.filter_by(email=email).first(), 
+        user = User.query.filter_by(email=email).first()
+        print(user.password)
         if not user: 
-            return jsonify({"message": "email/password are incorrect"}), 401
+            return jsonify({"message": "email are incorrect"}), 401
         if not check_password_hash(user.password, password):
-            return jsonify({"message": "email/password is incorrect"}), 401
+            return jsonify({"message": "password is incorrect"}), 401
         expiration = datetime.timedelta(days=3)
-        access_token = create_access_token(identity = user.id, exipires_delta=expiration)
+        access_token = create_access_token(identity = user.id, expires_delta=expiration)
         return jsonify(access_token=access_token)
-    return jsonify({"message": "wrong user"})
 
 @api.route("/createUser", methods = ["POST"])
 def create_user():
@@ -56,7 +54,7 @@ def create_user():
         user = User(
             name = request_body["name"],
             email = request_body["email"],
-            password = generate_password_hash(request_body["name"])       
+            password = generate_password_hash(request_body["password"])       
             )
         db.session.add(user)
         db.session.commit()
