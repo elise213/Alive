@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <div>
       <form>
-        <h1>Login</h1>
+        <h1>User Login</h1>
         <input
           type="text"
           placeholder="email"

@@ -6,6 +6,9 @@ export const Navbar = () => {
     <nav className="navbar navbar-light bg-light">
       <div className="container">
         <div className="ml-auto">
+          <Link to="/">
+            <button className="btn btn-primary">Home</button>
+          </Link>
           <Link to="/login">
             <button className="btn btn-primary">User Login</button>
           </Link>

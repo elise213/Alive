@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Organization
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -62,23 +62,22 @@ def create_user():
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
 
 @api.route("/loginOrganization", methods = ["POST"])
-def create_token(): 
+def create_token2(): 
         email = request.json.get("email", None)
         password = request.json.get("password", None)
         if not email: 
             return jsonify({"message": "Email is required"}), 400
         if not password: 
             return jsonify({"message": "Password is required"}), 400
-        organization = Organization.query.filter_by(email=email).first()
-        print(organization.password)
-        if not organization: 
-            return jsonify({"message": "email are incorrect"}), 401
+        user = Organization.query.filter_by(email=email).first()
+        print(user.password)
+        if not user: 
+            return jsonify({"message": "email is incorrect"}), 401
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
         return jsonify(access_token=access_token)
-    
 
 @api.route("/createOrganization", methods = ["POST"])
 def create_organization():

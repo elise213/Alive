@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const respose = await fetch(
-            "https://3001-lalafontaine-alive-1aqqlme72zf.ws-eu88.gitpod.io/api/login",
+            "https://3001-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/api/login",
             opts
           );
           if (Response.status !== 200) {
@@ -51,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const respose = await fetch(
-            "https://3001-lalafontaine-alive-1aqqlme72zf.ws-eu88.gitpod.io/api/createUser",
+            "https://3001-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/registration",
             opts
           );
           if (Response.status >= 400) {
@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           if (data.status == "true") {
             window.location.href =
-              "https://3000-lalafontaine-alive-1aqqlme72zf.ws-eu88.gitpod.io/login";
+              "https://3000-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/login";
           }
           return true;
         } catch (error) {
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const token = sessionStorage.removeItem("token");
         setStore({ token: null });
         window.location.href =
-          "https://3000-lalafontaine-alive-1aqqlme72zf.ws-eu88.gitpod.io/";
+          "https://3000-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/";
       },
       loginOrganization: async (email, password) => {
         const opts = {
@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const respose = await fetch(
-            "https://3001-lalafontaine-alive-1aqqlme72zf.ws-eu88.gitpod.io/api/loginOrganization",
+            "https://3001-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/loginOrganization",
             opts
           );
           if (Response.status !== 200) {

@@ -15,7 +15,7 @@ const LoginOrganization = () => {
   return (
     <div>
       <form>
-        <h1>Login</h1>
+        <h1>Organization Login</h1>
         <input
           type="text"
           placeholder="email"

@@ -1,3 +1,141 @@
 /* 
-    General Styles used on every website (Don't Repeat Yourself)
+    General Styles used on every page (Don't Repeat Yourself)
 */
+
+.grand-container {
+  margin: 25px;
+}
+
+.search-results-resources {
+  max-width: 600px;
+  min-height: 600px;
+  border: none;
+}
+
+.carousel-inner {
+  max-height: 450px;
+}
+
+.res-profile-title {
+  font-size: xx-large;
+  /* font-weight: bold; */
+  padding: 0.2em;
+  color: navy;
+  /* border: 1px solid navy; */
+}
+
+.white-space {
+  background-color: white;
+  width: 200px;
+  padding: 50px;
+  border: 25px solid white;
+  margin: auto;
+}
+
+.report-problem {
+  background-color: lightgreen;
+  color: black;
+}
+
+.translate-button {
+  font-size: small;
+}
+
+.avatar {
+  height: 90px;
+  width: 100px;
+  margin-inline-start: 20px;
+}
+
+.navbar-container {
+  max-width: 100%;
+  min-height: 100%;
+  border: 1px;
+  color: black;
+}
+
+.navbar-brand {
+  color: navy;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+.login-button {
+  background-color: lightgreen;
+  color: black;
+}
+
+.resImage {
+  width: 50%;
+}
+
+.res-profile-logo {
+  height: 80px;
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.review {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.res-profile-content {
+  margin: 25px;
+}
+
+.emergency-button {
+  width: 100px;
+  height: 50px;
+  font-size: small;
+  color: black;
+  background-color: pink;
+}
+
+.resThumbnail {
+  height: 50p;
+  width: 50px;
+}
+
+a {
+  font-size: x-small;
+}
+
+h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+  /* font-weight: bold; */
+}
+
+p {
+  font-size: medium;
+}
+
+.search-results-resources {
+  justify-content: center;
+}
+
+.card {
+  max-width: 18rem;
+  max-height: 25rem;
+  padding: 10px;
+}
+
+.card-title {
+  color: black;
+  text-decoration: none;
+}
+
+.card-text {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover circle {
+  fill: #00b2ff;
+}
+
+h2 {
+  color: black;
+  text-decoration: none;
+}
