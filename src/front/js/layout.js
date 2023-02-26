@@ -2,8 +2,10 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import Login from "./pages/Login";
+import LoginOrganization from "./pages/LoginOrganization";
 import About from "./pages/About";
 import Registration from "./pages/Registration";
+import RegistrationOrganization from "./pages/RegistrationOrganization";
 import UserProfile from "./pages/UserProfile";
 
 import { Home } from "./pages/home";
@@ -29,9 +31,14 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<Login />} path="/login" />
+            <Route element={<LoginOrganization />} path="/loginOrganization" />
             <Route element={<About />} path="/about" />
             <Route element={<UserProfile />} path="/userProfile" />
             <Route element={<Registration />} path="/registration" />
+            <Route
+              element={<RegistrationOrganization />}
+              path="/registrationOrganization"
+            />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>

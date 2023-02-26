@@ -9,6 +9,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
+# import Organization
 
 api = Blueprint('api', __name__)
 
@@ -31,7 +32,7 @@ def create_token():
         user = User.query.filter_by(email=email).first()
         print(user.password)
         if not user: 
-            return jsonify({"message": "email are incorrect"}), 401
+            return jsonify({"message": "email is incorrect"}), 401
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
         expiration = datetime.timedelta(days=3)
@@ -60,4 +61,39 @@ def create_user():
         db.session.commit()
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
 
-        
+@api.route("/loginOrganization", methods = ["POST"])
+def create_token(): 
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
+        if not email: 
+            return jsonify({"message": "Email is required"}), 400
+        if not password: 
+            return jsonify({"message": "Password is required"}), 400
+        organization = Organization.query.filter_by(email=email).first()
+        print(organization.password)
+        if not organization: 
+            return jsonify({"message": "email are incorrect"}), 401
+        if not check_password_hash(user.password, password):
+            return jsonify({"message": "password is incorrect"}), 401
+        expiration = datetime.timedelta(days=3)
+        access_token = create_access_token(identity = user.id, expires_delta=expiration)
+        return jsonify(access_token=access_token)
+    
+
+@api.route("/createOrganization", methods = ["POST"])
+def create_organization():
+        request_body = request.get_json()
+        if not request_body["email"]:
+            return jsonify({"message": "Email is required"}), 400
+        if not request_body["password"]:
+            return jsonify({"message": "Password is required"}), 400
+        user = Organization.query.filter_by(email=request_body["email"]).first()
+        if user: 
+            return jsonify({"message": "email already exists"}), 400
+        user = Organization(
+            email = request_body["email"],
+            password = generate_password_hash(request_body["password"])       
+            )
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"created": "Thank you for registering", "status": "true"}), 200
