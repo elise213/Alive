@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Login from "../store/login";
 export const Navbar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -67,19 +67,9 @@ export const Navbar = () => {
               <a class="nav-link disabled">Disabled</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
+      <Login />
     </nav>
   );
 };
