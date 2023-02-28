@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import SimpleMap from "../component/SimpleMap";
+import { SimpleMap } from "../component/SimpleMap";
 import { Link } from "react-router-dom";
 import { Searchbar } from "../component/Searchbar";
 import { ResourceCard } from "../component/ResourceCard";
@@ -45,7 +45,9 @@ export const Home = () => {
             rating="1.5"
           />
         </div>
-        <div className="col-9">{/* <SimpleMap /> */}</div>
+        <div className="col-9">
+          <SimpleMap />
+        </div>
       </div>
     </div>
   );

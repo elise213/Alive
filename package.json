@@ -73,6 +73,7 @@
 		]
 	},
 	"dependencies": {
+		"google-map-react": "^2.2.0",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",
