@@ -12,6 +12,9 @@ const Login = () => {
     actions.login(email, password);
   }
 
+  const navigate = useNavigate();
+  if (store.token) navigate("/");
+
   return (
     <div>
       <form>

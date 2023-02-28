@@ -22,7 +22,7 @@ def handle_hello():
     return jsonify(response_body), 200
 
 @api.route("/login", methods = ["POST"])
-def create_token(): 
+def create_token():
         email = request.json.get("email", None)
         password = request.json.get("password", None)
         if not email: 
@@ -70,7 +70,6 @@ def create_token2():
         if not password: 
             return jsonify({"message": "Password is required"}), 400
         user = Organization.query.filter_by(email=email).first()
-        print(user.password)
         if not user: 
             return jsonify({"message": "email is incorrect"}), 401
         if not check_password_hash(user.password, password):
@@ -81,7 +80,10 @@ def create_token2():
 
 @api.route("/createOrganization", methods = ["POST"])
 def create_organization():
+    if request.method == "POST":
         request_body = request.get_json()
+        if not request_body["name"]:
+            return jsonify({"message": "Name is required"}), 400
         if not request_body["email"]:
             return jsonify({"message": "Email is required"}), 400
         if not request_body["password"]:
@@ -90,6 +92,7 @@ def create_organization():
         if user: 
             return jsonify({"message": "email already exists"}), 400
         user = Organization(
+            name = request_body["name"],
             email = request_body["email"],
             password = generate_password_hash(request_body["password"])       
             )

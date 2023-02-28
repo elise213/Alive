@@ -19,11 +19,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const respose = await fetch(
-            "https://3001-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/api/login",
+          const response = await fetch(
+            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/login",
             opts
           );
-          if (Response.status !== 200) {
+          if (response.status !== 200) {
             alert("There has been an error");
             return false;
           }
@@ -50,18 +50,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const respose = await fetch(
-            "https://3001-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/registration",
+          const response = await fetch(
+            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/createUser",
             opts
           );
-          if (Response.status >= 400) {
+          if (response.status >= 400) {
             alert("There has been an error");
             return false;
           }
           const data = await response.json();
           if (data.status == "true") {
             window.location.href =
-              "https://3000-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/login";
+              "https://3000-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/login";
           }
           return true;
         } catch (error) {
@@ -71,8 +71,42 @@ const getState = ({ getStore, getActions, setStore }) => {
       logout: () => {
         const token = sessionStorage.removeItem("token");
         setStore({ token: null });
+        console.log(token);
         window.location.href =
-          "https://3000-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/";
+          "https://3000-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/";
+      },
+      createOrganization: async (name, email, password) => {
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
+        };
+        try {
+          const response = await fetch(
+            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/createOrganization",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          if (data.status == "true") {
+            window.location.href =
+              "https://3000-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/loginOrganization";
+          }
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
       },
       loginOrganization: async (email, password) => {
         const opts = {
@@ -88,11 +122,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const respose = await fetch(
-            "https://3001-lalafontaine-alive-7gan2gxv2c5.ws-eu88.gitpod.io/loginOrganization",
+          const response = await fetch(
+            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/loginOrganization",
             opts
           );
-          if (Response.status !== 200) {
+          if (response.status !== 200) {
             alert("There has been an error");
             return false;
           }

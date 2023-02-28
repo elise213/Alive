@@ -5,17 +5,24 @@ import { Link, useNavigate } from "react-router-dom";
 const registrationOrganization = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const { store, actions } = useContext(Context);
 
   function handleClick(e) {
     e.preventDefault();
-    actions.createOrganization(email, password);
+    actions.createOrganization(name, email, password);
   }
 
   return (
     <div>
       <form>
         <h1>Organization Registration</h1>
+        <input
+          type="text"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <input
           type="text"
           placeholder="email"

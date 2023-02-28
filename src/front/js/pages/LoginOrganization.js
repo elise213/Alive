@@ -9,8 +9,11 @@ const LoginOrganization = () => {
 
   function handleClick(e) {
     e.preventDefault();
-    actions.login(email, password);
+    actions.loginOrganization(email, password);
   }
+
+  const navigate = useNavigate();
+  if (store.token) navigate("/");
 
   return (
     <div>
