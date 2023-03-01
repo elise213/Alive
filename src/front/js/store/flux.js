@@ -5,10 +5,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment,check to make sure this is the same URL
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-gl27i8lpyl1.ws-eu89.gitpod.io",
+        "https://3000-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-gl27i8lpyl1.ws-eu89.gitpod.io",
+        "https://3001-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
     },
     actions: {
       // Use getActions to call a function within a fuction
