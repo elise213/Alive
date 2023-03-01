@@ -5,9 +5,11 @@ export const Navbar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
+        <Link to="/">
+          <a class="navbar-brand" href="#">
+            Home
+          </a>
+        </Link>
         <button
           class="navbar-toggler"
           type="button"
