@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import Login from "./pages/Login";
-import LoginOrganization from "./pages/LoginOrganization";
-import About from "./pages/About";
+import LoginOrg from "./pages/LoginOrg";
+import Resource from "./pages/Resource";
 import Registration from "./pages/Registration";
-import RegistrationOrganization from "./pages/RegistrationOrganization";
+import RegistrationOrg from "./pages/RegistrationOrg";
 import UserProfile from "./pages/UserProfile";
-
+import CreateResource from "./pages/CreateResource";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
@@ -29,18 +29,21 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<Demo />} path="/demo" />
+            <Route element={<Resource />} path="/resource" />
+
+            {/* User Pages */}
             <Route element={<Login />} path="/login" />
-            <Route element={<LoginOrganization />} path="/loginOrganization" />
-            <Route element={<About />} path="/about" />
             <Route element={<UserProfile />} path="/userProfile" />
             <Route element={<Registration />} path="/registration" />
-            <Route
-              element={<RegistrationOrganization />}
-              path="/registrationOrganization"
-            />
+
+            {/* Organization Pages */}
+            <Route element={<LoginOrg />} path="/loginOrg" />
+            <Route element={<RegistrationOrg />} path="/registrationOrg" />
+            <Route element={<CreateResource />} path="/createResource" />
+
+            {/* Can we delete these? */}
             <Route element={<Single />} path="/single/:theid" />
-            <Route element={<h1>Not found!</h1>} />
+            <Route element={<Demo />} path="/demo" />
           </Routes>
           <Footer />
         </ScrollToTop>

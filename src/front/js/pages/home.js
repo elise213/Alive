@@ -5,14 +5,11 @@ import { SimpleMap } from "../component/SimpleMap";
 import { Link } from "react-router-dom";
 import { Searchbar } from "../component/Searchbar";
 import { ResourceCard } from "../component/ResourceCard";
-import { WhiteSpace } from "../component/WhiteSpace";
 import { Selection } from "../component/Selection";
 
 export const Home = () => {
   return (
     <div className="grand-container py-4">
-      <WhiteSpace />
-
       <Searchbar />
 
       <Selection />

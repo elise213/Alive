@@ -8,7 +8,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container">
-        <div className="ml-auto">
+        <div className="m-auto">
           <Link to="/">
             <button className="btn btn-primary">Home</button>
           </Link>

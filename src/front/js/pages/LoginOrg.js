@@ -32,7 +32,7 @@ const LoginOrganization = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div>
-          <Link to="/registrationOrganization">
+          <Link to="/registrationOrg">
             <button>Register</button>
           </Link>
           <button onClick={(e) => handleClick(e)}>Login</button>

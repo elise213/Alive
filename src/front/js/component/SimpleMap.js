@@ -28,7 +28,7 @@ export const SimpleMap = () => {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyDOhqYOYIXvrk8lt2HQQLI8cS1O8FnZt9I" }}
+        bootstrapURLKeys={{ key: process.env.MAP_KEY }}
         defaultCenter={initialPosition.center}
         defaultZoom={initialPosition.zoom}
       >
