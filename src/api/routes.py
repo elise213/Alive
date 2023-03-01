@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Organization
+from api.models import db, User, Organization, Resource
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -99,3 +99,23 @@ def create_organization():
         db.session.add(user)
         db.session.commit()
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
+    
+@api.route("/createResource", methods = ["POST"])
+def create_resource():
+    if request.method == "POST":
+        request_body = request.get_json()
+        if not request_body["name"]:
+            return jsonify({"message": "Name is required"}), 400
+        resource = Resource.query.filter_by(name=request_body["name"]).first()
+        if resource: 
+            return jsonify({"message": "Resource already exists"}), 400
+        resource = Resource(
+            name = request_body["name"],
+            address = request_body["address"],
+            phone = request_body["phone"],
+            website = request_body["website"],
+            schedule = request_body["schedule"],       
+            )
+        db.session.add(resource)
+        db.session.commit()
+        return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200

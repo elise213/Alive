@@ -2,10 +2,19 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
+      // each time you open a new environment,check to make sure this is the same URL
+      // front URL is port 3000
+      current_front_url:
+        "https://3000-lalafontaine-alive-gl27i8lpyl1.ws-eu89.gitpod.io",
+      // back URL is port 3001
+      current_back_url:
+        "https://3001-lalafontaine-alive-gl27i8lpyl1.ws-eu89.gitpod.io",
     },
     actions: {
       // Use getActions to call a function within a fuction
       login: async (email, password) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -19,10 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const response = await fetch(
-            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/login",
-            opts
-          );
+          const response = await fetch(current_back_url + "/api/login", opts);
           if (response.status !== 200) {
             alert("There has been an error");
             return false;
@@ -36,6 +42,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       createUser: async (name, email, password) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -51,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/createUser",
+            current_back_url + "/api/createUser",
             opts
           );
           if (response.status >= 400) {
@@ -60,8 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            window.location.href =
-              "https://3000-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/login";
+            window.location.href = current_front_url + "/login";
           }
           return true;
         } catch (error) {
@@ -69,13 +76,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       logout: () => {
+        const current_front_url = getStore().current_front_url;
         const token = sessionStorage.removeItem("token");
         setStore({ token: null });
         console.log(token);
-        window.location.href =
-          "https://3000-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/";
+        window.location.href = current_front_url + "/";
       },
       createOrganization: async (name, email, password) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -91,7 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/createOrganization",
+            current_back_url + "/api/createOrganization",
             opts
           );
           if (response.status >= 400) {
@@ -100,8 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            window.location.href =
-              "https://3000-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/loginOrganization";
+            window.location.href = current_front_url + "/loginOrganization";
           }
           return true;
         } catch (error) {
@@ -109,6 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       loginOrganization: async (email, password) => {
+        const current_back_url = getStore().current_back_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -123,7 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            "https://3001-lalafontaine-alive-30sx54cqryn.ws-eu88.gitpod.io/api/loginOrganization",
+            current_back_url + "/api/loginOrganization",
             opts
           );
           if (response.status !== 200) {
@@ -133,6 +142,42 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json();
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      createResource: async (name, schedule, website, phone, address) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            name: name,
+            schedule: schedule,
+            website: website,
+            phone: phone,
+            address: address,
+          }),
+        };
+        try {
+          const response = await fetch(
+            current_back_url + "/api/createResource",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          if (data.status == "true") {
+            window.location.href = current_front_url + "/";
+          }
           return true;
         } catch (error) {
           console.error(error);
