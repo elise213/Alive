@@ -25,13 +25,11 @@ export const Navbar = () => {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">
-                Home
+                AliveInL.A
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Link
-              </a>
+              <a class="nav-link" href="#"></a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -42,7 +40,7 @@ export const Navbar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                All resources
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
