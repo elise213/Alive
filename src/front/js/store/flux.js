@@ -189,8 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 export default getState;
 
-
 // A betterrrrrrrrrrr commment ;)
 
 // Testing for github - Mara
-
+//Testing for github - Mara
