@@ -21,6 +21,9 @@ export const Navbar = () => {
           <Link to="/CreateResource">
             <button className="btn btn-primary">Create a Resource</button>
           </Link>
+          <Link to="/UserProfile">
+            <button className="btn btn-primary">User Profile</button>
+          </Link>
           <button className="btn btn-primary" onClick={() => actions.logout()}>
             Logout
           </button>

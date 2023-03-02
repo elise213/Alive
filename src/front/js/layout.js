@@ -9,6 +9,7 @@ import RegistrationOrg from "./pages/RegistrationOrg";
 import UserProfile from "./pages/UserProfile";
 import CreateResource from "./pages/CreateResource";
 import { Home } from "./pages/home";
+import { Search } from "./pages/Search";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -29,6 +30,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
+            <Route element={<Search />} path="/search" />
             <Route element={<Resource />} path="/resource" />
 
             {/* User Pages */}
