@@ -16,9 +16,11 @@
   box-sizing: border-box;
   font-size: 80px;
   text-align: center;
+  margin: auto;
+  text-decoration: none;
 }
 
-.shelter {
+.purple {
   color: #b100cd;
 }
 

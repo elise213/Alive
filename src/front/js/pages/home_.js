@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+
 // import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
@@ -29,6 +31,11 @@ export const Home = () => {
           </a>
         </h3>
         <h3>
+          <Link to={"/search/" + store.zipcode + "/all"}>
+            <i className="fa-solid fa-magnifying-glass-location text-warning right"></i>
+          </Link>
+        </h3>
+        <h3>
           <i className="fa-solid fa-circle-user p-2 text-info"></i>
         </h3>
       </nav>
@@ -42,11 +49,16 @@ export const Home = () => {
       </div>
       <div className="row">
         <div className="col-sm-4">
-          <div className="card border-0">
+          <div className="card border-0 text-decoration-none">
             <div className="card-body text-center center">
-              <div className="circle rounded-circle bg-warning text-white text-center">
-                <i className="fa-solid fa-bowl-rice"></i>
-              </div>
+              <Link
+                to={"/search/" + store.zipcode + "/food"}
+                className="text-decoration-none"
+              >
+                <div className="circle rounded-circle bg-warning text-white text-center ">
+                  <i className="fa-solid fa-bowl-rice "></i>
+                </div>
+              </Link>
               <h5 className="card-title">Food</h5>
               <p className="card-text">Find food resources in your area</p>
             </div>
@@ -56,9 +68,14 @@ export const Home = () => {
         <div className="col-sm-4">
           <div className="card border-0">
             <div className="card-body text-center center">
-              <div className="circle rounded-circle bg-shelter text-white text-center">
-                <i className="fa-solid fa-person-shelter"></i>
-              </div>
+              <Link
+                to={"/search/" + store.zipcode + "/shelter"}
+                className="text-decoration-none"
+              >
+                <div className="circle rounded-circle bg-shelter text-white text-center">
+                  <i className="fa-solid fa-person-shelter"></i>
+                </div>
+              </Link>
               <div>
                 <h5 className="card-title">Shelter</h5>
                 <p className="card-text">Find shelter resources in your area</p>
@@ -70,9 +87,14 @@ export const Home = () => {
         <div className="col-sm-4">
           <div className="card border-0">
             <div className="card-body text-center center">
-              <div className="circle rounded-circle bg-info text-white text-center">
-                <i className="fa-solid fa-stethoscope"></i>
-              </div>
+              <Link
+                to={"/search/" + store.zipcode + "/health"}
+                className="text-decoration-none"
+              >
+                <div className="circle rounded-circle bg-info text-white text-center">
+                  <i className="fa-solid fa-stethoscope"></i>
+                </div>
+              </Link>
               <h5 className="card-title">Health care</h5>
               <p className="card-text">
                 Find Health care resources in your area
@@ -95,7 +117,12 @@ export const Home = () => {
               </p>
               <p className="card-text">
                 <small className="text-muted">
-                  <a href="https://www.fcc.gov/acp">Affordable Care Program</a>
+                  <a
+                    href="https://www.fcc.gov/acp"
+                    className="text-decoration-none text-white"
+                  >
+                    Affordable Care Program
+                  </a>
                 </small>
               </p>
             </div>
@@ -105,12 +132,27 @@ export const Home = () => {
         <div className="col-6 mt-3">
           <div className="card bg-secondary text-white border-0">
             <div className="card-body text-center center">
-              <div className="circle rounded-circle bg-secondary text-white text-center">
-                <i class="fa-solid fa-circle-info"></i>
+              <div className="circle rounded-circle text-white text-center">
+                <i className="fa-solid fa-circle-info"></i>
               </div>
+
               <h5 className="card-title">Other resources</h5>
-              <p className="card-text">Additional info</p>
-              <p className="card-text">Additional info</p>
+              <p className="card-text">
+                <i className="fa-solid fa-scale-balanced m-1"></i>
+                <a
+                  href="https://www.americanbar.org/groups/legal_services/flh-home/flh-free-legal-help/"
+                  className="text-decoration-none text-white"
+                >
+                  Free legal help
+                </a>
+              </p>
+              <p className="card-text">
+                <i class="fa-solid fa-head-side-heart m-1"></i> Free Mental
+                health
+                {/*<a ref="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm" className="text-decoration-none text-white">
+                  Free Mental health
+                </a>*/}
+              </p>
             </div>
           </div>
         </div>
@@ -118,7 +160,7 @@ export const Home = () => {
 
       {/* <div className="card mt-3 limeGreen2 text-white">
         <div className="row g-0">
-          <div className="col-md-4 phoneIcon">
+          <div className="col-md-4 phoneIcon m-1">
             <i className="fa-solid fa-mobile-screen-button"></i>
           </div>
           <div className="col-md-8">
