@@ -1,10 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 import "../../styles/home.css";
+
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  let latitude = "";
+  let longitude = "";
+
+  function geoFindMe() {
+    // const status = document.querySelector("#status");
+    // const mapLink = document.querySelector("#map-link");
+
+    // mapLink.href = "";
+    // mapLink.textContent = "";
+
+    function success(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      actions.updateLocation(latitude, longitude);
+
+      console.log("Aquí: " + latitude + " Long: " + longitude);
+      console.log("Allá: " + store.latitude + " Long: " + store.longitude);
+    }
+
+    function error() {
+      alert("Unable to retrieve your location");
+    }
+
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+    } else {
+      // status.textContent = "Locating…";
+      console.log("Locating…");
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  }
+
+  useEffect(() => {
+    geoFindMe();
+  }, []);
+
   return (
     <div className="text-center mt-5">
       {/* <nav className="navbar fixed-top navbar-light bg-secondary">
@@ -14,7 +51,7 @@ export const Home = () => {
           </a>
         </h3>
         <h3>
-          <Link to={"/search/" + store.zipcode + "/all"}>
+          <Link to={"/search/" + store.location + "/all"}>
             <i className="fa-solid fa-magnifying-glass-location text-warning right"></i>
           </Link>
         </h3>
@@ -34,10 +71,7 @@ export const Home = () => {
         <div className="col-sm-4">
           <div className="card border-0 text-decoration-none">
             <div className="card-body text-center center">
-              <Link
-                to={"/search/" + store.zipcode + "/food"}
-                className="text-decoration-none"
-              >
+              <Link to={"/search/food"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-warning text-white text-center ">
                   <i className="fa-solid fa-bowl-rice "></i>
                 </div>
@@ -51,7 +85,7 @@ export const Home = () => {
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link
-                to={"/search/" + store.zipcode + "/shelter"}
+                to={"/search/" + store.location + "/shelter"}
                 className="text-decoration-none"
               >
                 <div className="circle rounded-circle bg-shelter text-white text-center">
@@ -69,7 +103,7 @@ export const Home = () => {
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link
-                to={"/search/" + store.zipcode + "/health"}
+                to={"/search/" + store.location + "/health"}
                 className="text-decoration-none"
               >
                 <div className="circle rounded-circle bg-info text-white text-center">
@@ -87,12 +121,12 @@ export const Home = () => {
       <div className="row">
         <div className="col-6 mt-3 mr-3">
           <div className="card limeGreen2 text-white border-0">
-            <div className="card-body text-center center">
-              <div className="circle rounded-circle limeGreen2 text-white text-center">
+            <div className="card-body text-center center ">
+              <div className="circle rounded-circle text-white text-center">
                 <i className="fa-solid fa-mobile-screen-button"></i>
               </div>
-              <h5 className="card-title">Affordable Care Program</h5>
-              <p className="card-text">
+              <h5 className="card-title text-white">Affordable Care Program</h5>
+              <p className="card-text text-white">
                 You can receive help to get a mobile device
               </p>
               <p className="card-text">
@@ -114,20 +148,21 @@ export const Home = () => {
               <div className="circle rounded-circle text-white text-center">
                 <i className="fa-solid fa-circle-info"></i>
               </div>
-              <h5 className="card-title">Other resources</h5>
-              <p className="card-text">
+              <h5 className="card-title text-white">Other resources</h5>
+              <p className="card-text text-white">
                 <i className="fa-solid fa-scale-balanced m-1"></i>
                 <a
                   href="https://www.americanbar.org/groups/legal_services/flh-home/flh-free-legal-help/"
                   className="text-decoration-none text-white"
+                  target="_blank"
                 >
                   Free legal help
                 </a>
               </p>
-              <p className="card-text">
+              <p className="card-text text-white">
                 <i class="fa-solid fa-head-side-heart m-1"></i> Free Mental
                 health
-                {/*<a ref="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm" className="text-decoration-none text-white">
+                {/*<a ref="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm" className="text-decoration-none text-white" target="_blank">
                   Free Mental health
                 </a>*/}
               </p>

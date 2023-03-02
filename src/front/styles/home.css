@@ -5,7 +5,6 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
-
 .circle {
   width: 150px;
   height: 150px;
@@ -20,27 +19,35 @@
   margin: auto;
   text-decoration: none;
 }
-​ .purple {
+
+.purple {
   color: #b100cd;
 }
-​ .bg-shelter {
+
+.bg-shelter {
   background-color: #ca5cdd;
 }
-​ .bg-food {
+
+.bg-food {
   background-color: #fbbc34;
 }
-​ .bg-fucsia {
+
+.bg-fucsia {
   background-color: #ff3399;
 }
-​ .phoneIcon {
+
+.phoneIcon {
   font-size: 40px;
 }
-​ .orange {
+
+.orange {
   background-color: #ff9933;
 }
-​ .limeGreen {
+
+.limeGreen {
   background-color: #99ff33;
 }
-​ .limeGreen2 {
+
+.limeGreen2 {
   background-color: #86df2d;
 }

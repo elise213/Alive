@@ -9,6 +9,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       // back URL is port 3001
       current_back_url:
         "https://3001-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
+
+      latitude: null, //to store user location
+      longitude: null, //to store user location
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -182,6 +185,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           console.error(error);
         }
+      },
+
+      updateLocation: (latitude, longitude) => {
+        setStore({ latitude: latitude, longitude: longitude });
       },
     },
   };
