@@ -13,7 +13,7 @@ export const Search = () => {
 
   return (
     <div className="card-dark bg-dark mb-3 text-white">
-      Hello world Searching for {resourceType} in zipcode: {zipcode}
+      Searching for {resourceType} in zipcode: {zipcode}
     </div>
   );
 };
