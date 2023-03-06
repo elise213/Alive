@@ -3,12 +3,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       // each time you open a new environment,check to make sure this is the same URL
+      // No front slash at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-put6jgqricm.ws-us89.gitpod.io",
+        "https://3000-lalafontaine-alive-p2qxd0fhub9.ws-eu89.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-put6jgqricm.ws-us89.gitpod.io",
+        "https://3001-lalafontaine-alive-p2qxd0fhub9.ws-eu89.gitpod.io",
       google_resources_list: [],
     },
     actions: {

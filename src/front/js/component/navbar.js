@@ -33,7 +33,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid" id="navbar">
         <Link to="/">
-          <a className="navbar-brand" href="#">
+          <a style={{ color: "white" }} className="navbar-brand" href="#">
             AliveInLA.
           </a>
         </Link>
@@ -45,19 +45,12 @@ export const Navbar = () => {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={{ color: "white" }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#"></a>
-            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -66,6 +59,7 @@ export const Navbar = () => {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style={{ color: "white" }}
               >
                 All resources
               </a>
@@ -77,7 +71,7 @@ export const Navbar = () => {
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Water
+                    Shelter
                   </a>
                 </li>
                 <li>
@@ -86,28 +80,14 @@ export const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
+                  <a class="dropdown-item" href="#">
+                    Hygiene
                   </a>
                 </li>
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
               </ul>
-            </li>
-            <li className="nav-item">
-              <Link to="/login">
-                <span className="btn" style={{ color: "white" }}>
-                  User Login
-                </span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/loginOrg">
-                <span className="btn" style={{ color: "white" }}>
-                  Organization Login
-                </span>
-              </Link>
             </li>
             <li className="nav-item">
               <Link to="/CreateResource">
@@ -123,6 +103,13 @@ export const Navbar = () => {
                 </span>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/Search">
+                <span className="btn" style={{ color: "white" }}>
+                  Search
+                </span>
+              </Link>
+            </li>
             {token ? (
               <li className="nav-item">
                 <span
@@ -134,7 +121,22 @@ export const Navbar = () => {
                 </span>
               </li>
             ) : (
-              ""
+              <React.Fragment>
+                <li className="nav-item">
+                  <Link to="/login">
+                    <span className="btn" style={{ color: "white" }}>
+                      User Login
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/loginOrg">
+                    <span className="btn" style={{ color: "white" }}>
+                      Organization Login
+                    </span>
+                  </Link>
+                </li>
+              </React.Fragment>
             )}
           </ul>
         </div>
