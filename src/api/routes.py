@@ -133,7 +133,7 @@ def create_resource():
 @api.route("/filter/<string:category>", methods=["GET"])
 def filter_category(category):
     resources = Resource.query.filter_by(category=category).all()
-    if resources is not None: 
+    if resources: 
         all_serialized_resources = list(map(lambda r: r.serialize(), resources))
         return jsonify(all_serialized_resources), 200
     return jsonify("category not found"), 400

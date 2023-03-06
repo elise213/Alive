@@ -9,9 +9,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       // back URL is port 3001
       current_back_url:
         "https://3001-lalafontaine-alive-put6jgqricm.ws-us89.gitpod.io",
+      google_resources_list: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
+
       login: async (email, password) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -187,6 +189,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             window.location.href = current_front_url + "/";
           }
           return true;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      searchGoogleResources: async (radius, query, coordinates) => {
+        try {
+          data = await fetch(
+            `https://maps.googleapis.com/maps/api/place/textsearch/json?location=${coordinates.lat}%2C${coordinates.long}&query=${query}&radius=${radius}&key=` +
+              process.env.MAP_KEY
+          );
         } catch (error) {
           console.error(error);
         }
