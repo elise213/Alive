@@ -12,6 +12,11 @@
   border: none;
 }
 
+#navbar {
+  background-color: blueviolet;
+  color: white !important;
+}
+
 /* .report-problem {
   background-color: lightgreen;
   color: black;
