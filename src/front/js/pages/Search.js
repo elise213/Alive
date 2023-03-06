@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { SimpleMap } from "../component/SimpleMap";
@@ -8,11 +8,12 @@ import { ResourceCard } from "../component/ResourceCard";
 import { Selection } from "../component/Selection";
 
 export const Search = () => {
+  const [query, setQuery] = useState("");
+
   return (
     <div className="grand-container py-4">
-      <Searchbar />
-
-      <Selection />
+      <Searchbar query={query} setQuery={setQuery} />
+      <Selection query={query} setQuery={setQuery} />
 
       {/* <!-- Search Results --> */}
       <div className="search-results-full row">

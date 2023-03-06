@@ -194,11 +194,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       searchGoogleResources: async (radius, query, coordinates) => {
+        let newQuery = query.replace(/ /g, "%20");
         try {
           data = await fetch(
-            `https://maps.googleapis.com/maps/api/place/textsearch/json?location=${coordinates.lat}%2C${coordinates.long}&query=${query}&radius=${radius}&key=` +
+            `https://maps.googleapis.com/maps/api/place/textsearch/json?location=${coordinates.lat}%2C${coordinates.long}&query=${newQuery}&radius=${radius}&key=` +
               process.env.MAP_KEY
-          );
+          )
+            .then((response) => response.json())
+            .catch((err) => console.log(err));
+          setStore({ google_resources_list: data.results });
         } catch (error) {
           console.error(error);
         }
