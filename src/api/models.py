@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
@@ -64,3 +65,25 @@ class Organization(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+    
+    class Comment(db.Model):
+        __tablename__ = "Comment"
+        id = db.Column(db.Integer, primary_key=True, index=True)
+        user_id = db.Column(db.Integer, ForeignKey("user.id"))         
+        resource_id = db.Column(db.Integer, ForeignKey("resource.id"), index=True) 
+        comment_cont = db.Column(db.String(250), nullable=False)
+        created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+        parentId = db.Column(db.Integer, ForeignKey("comment.id"), nullable=True)
+        
+    def __repr__(self):
+        return f'<Comment {self.id}>'
+    
+    def serialize_Comment(self):
+        return {
+            id: self.id,
+            user_id: self.user_id,
+            resource_id: self.resource_id,
+            comment_cont: self.body,
+            parentId: self.parentId
+        }
+    

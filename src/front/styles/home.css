@@ -5,6 +5,11 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
+.resourcesRow {
+  margin: auto !important;
+}
+
 .circle {
   width: 150px;
   height: 150px;
@@ -51,3 +56,7 @@
 .limeGreen2 {
   background-color: #86df2d;
 }
+
+/* * {
+  border: 1px solid black;
+} */

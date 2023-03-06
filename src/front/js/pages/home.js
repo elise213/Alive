@@ -10,12 +10,6 @@ export const Home = () => {
   let longitude = "";
 
   function geoFindMe() {
-    // const status = document.querySelector("#status");
-    // const mapLink = document.querySelector("#map-link");
-
-    // mapLink.href = "";
-    // mapLink.textContent = "";
-
     function success(position) {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
@@ -67,8 +61,8 @@ export const Home = () => {
         <p>more text</p>
         <p>more text...</p>
       </div>
-      <div className="row">
-        <div className="col-sm-4">
+      <div className="row resourcesRow">
+        <div className="col-sm-4 mx-auto">
           <div className="card border-0 text-decoration-none">
             <div className="card-body text-center center">
               <Link to={"/search/food"} className="text-decoration-none">
@@ -81,13 +75,10 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-4 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
-              <Link
-                to={"/search/" + store.location + "/shelter"}
-                className="text-decoration-none"
-              >
+              <Link to={"/search/shelter"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-shelter text-white text-center">
                   <i className="fa-solid fa-person-shelter"></i>
                 </div>
@@ -99,13 +90,10 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-4 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
-              <Link
-                to={"/search/" + store.location + "/health"}
-                className="text-decoration-none"
-              >
+              <Link to={"/search/health"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-info text-white text-center">
                   <i className="fa-solid fa-stethoscope"></i>
                 </div>
@@ -118,30 +106,36 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row resourcesRow">
         <div className="col-6 mt-3 mr-3">
-          <div className="card limeGreen2 text-white border-0">
-            <div className="card-body text-center center ">
-              <div className="circle rounded-circle text-white text-center">
-                <i className="fa-solid fa-mobile-screen-button"></i>
-              </div>
-              <h5 className="card-title text-white">Affordable Care Program</h5>
-              <p className="card-text text-white">
-                You can receive help to get a mobile device
-              </p>
-              <p className="card-text">
-                <small className="text-muted">
-                  <a
-                    href="https://www.fcc.gov/acp"
-                    className="text-decoration-none text-white"
-                  >
+          <a
+            href="https://www.fcc.gov/acp"
+            className="text-decoration-none text-white"
+            target="_blank"
+          >
+            <div className="card limeGreen2 text-white border-0">
+              <div className="card-body text-center center ">
+                <div className="circle rounded-circle text-white text-center">
+                  <i className="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h5 className="card-title text-white">
+                  Affordable Care Program
+                </h5>
+                <p className="card-text text-white">
+                  You can receive help to get a mobile device
+                </p>
+                <p className="card-text">
+                  {/* <small className="text-muted">
+                  
                     Affordable Care Program
-                  </a>
-                </small>
-              </p>
+                  
+                </small> */}
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
+
         <div className="col-6 mt-3">
           <div className="card bg-secondary text-white border-0">
             <div className="card-body text-center center">

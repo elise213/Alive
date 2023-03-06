@@ -119,3 +119,36 @@ def create_resource():
         db.session.add(resource)
         db.session.commit()
         return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
+    
+    # Create comments
+@api.route('/createComment', methods=['POST'])
+def create_comment(id, user_id, resource_id, body, user, parentId):
+    comment = Comment.query.get(id)
+    if request.method == 'POST':
+        request_body = request.get_json()
+
+        if not request_body["comment_cont"]:
+            return jsonify({"message": "Please include a message"}), 400
+        parentId = Comment.query.filter_by(parentId=request_body["parentId"]).first()
+        resource = Comment(
+            id = request_body[id],
+            user_id = request_body[user_id],
+            resource_id = request_body[resource_id],
+            comment_cont = request_body[comment_cont],
+            # created_at = 
+            parentId = request_body[parentId]
+        )
+            
+        return jsonify(data=commentList.serialize())
+        db.session.add(comment)
+        db.session.commit()
+        return jsonify({"created": "Thank you for your feedback", "status": "true"}), 200
+
+    # get comments
+@api.route('/getComments/<int:userId>', methods=['GET'])
+def getComments(id):
+  commentList = Comment.query.get(id)
+  if commentList is None:
+    return jsonify(msg="There are no comments yet")
+  else:
+    return jsonify(data=commentList.serialize())

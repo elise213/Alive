@@ -30,7 +30,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<Search />} path="/search" />
+            <Route element={<Search />} path="/search/:resourceType" />
             <Route element={<Resource />} path="/resource" />
 
             {/* User Pages */}
