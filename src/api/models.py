@@ -42,7 +42,8 @@ class Resource(db.Model):
                 "address": self.address,
                 "phone": self.phone,
                 "website": self.website,
-                "schedule": self.schedule                            
+                "schedule": self.schedule,     
+                "category": self.category,                       
                 # do not serialize the password, its a security breach
             }
             

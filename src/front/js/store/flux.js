@@ -5,10 +5,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment,check to make sure this is the same URL
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
+        "https://3000-lalafontaine-alive-put6jgqricm.ws-us89.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
+        "https://3001-lalafontaine-alive-put6jgqricm.ws-us89.gitpod.io",
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -147,7 +147,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
-      createResource: async (name, schedule, website, phone, address) => {
+      createResource: async (
+        name,
+        schedule,
+        website,
+        phone,
+        address,
+        category
+      ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
         const opts = {
@@ -163,6 +170,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             website: website,
             phone: phone,
             address: address,
+            category: category,
           }),
         };
         try {
@@ -189,8 +197,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 export default getState;
 
-
 // A betterrrrrrrrrrr commment ;)
 
 // Testing for github - Mara
-

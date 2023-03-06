@@ -7,13 +7,14 @@ const CreateResource = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [schedule, setSchedule] = useState("");
+  const [category, setCategory] = useState("");
   const { store, actions } = useContext(Context);
 
   function handleClick(e) {
     e.preventDefault();
-    actions.createResource(name, schedule, website, phone, address);
+    actions.createResource(name, schedule, website, phone, address, category);
   }
-
+  console.log(category);
   return (
     <div>
       <div className="m-4">
@@ -21,11 +22,14 @@ const CreateResource = () => {
           <p> What kind of Resource are you offering? </p>
           <div className="form-check">
             <input
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
               className="form-check-input"
               type="radio"
               name="exampleRadios"
               id="exampleRadios1"
-              value="option1"
+              value="food"
             />
             <label className="form-check-label" for="exampleRadios1">
               Food
@@ -33,11 +37,14 @@ const CreateResource = () => {
           </div>
           <div className="form-check">
             <input
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
               className="form-check-input"
               type="radio"
               name="exampleRadios"
               id="exampleRadios2"
-              value="option2"
+              value="shelter"
             />
             <label className="form-check-label" for="exampleRadios2">
               {" "}
@@ -46,11 +53,14 @@ const CreateResource = () => {
           </div>
           <div className="form-check">
             <input
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
               className="form-check-input"
               type="radio"
               name="exampleRadios"
               id="exampleRadios2"
-              value="option2"
+              value="health"
             />
             <label className="form-check-label" for="exampleRadios2">
               {" "}
@@ -59,11 +69,14 @@ const CreateResource = () => {
           </div>
           <div className="form-check">
             <input
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
               className="form-check-input"
               type="radio"
               name="exampleRadios"
               id="exampleRadios2"
-              value="option2"
+              value="hygiene"
             />
             <label className="form-check-label" for="exampleRadios2">
               {" "}
