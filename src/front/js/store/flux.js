@@ -5,10 +5,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment,check to make sure this is the same URL
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
+        "https://3000-lalafontaine-alive-bwtkmh0rghv.ws-eu89.gitpod.io/",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-2dcqfbmtwo3.ws-eu89.gitpod.io",
+        "https://3001-lalafontaine-alive-bwtkmh0rghv.ws-eu89.gitpod.io/",
+
+      latitude: null, //to store user location
+      longitude: null, //to store user location
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -183,14 +186,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
+
+      updateLocation: (latitude, longitude) => {
+        setStore({ latitude: latitude, longitude: longitude });
+      },
     },
   };
 };
 
 export default getState;
 
-
 // A betterrrrrrrrrrr commment ;)
 
 // Testing for github - Mara
-
+//Testing for github - Mara
