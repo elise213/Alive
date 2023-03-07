@@ -21,6 +21,7 @@ const CommentForm = ({
         className="comment-form-textarea"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        placeholder="add a comment"
       />
       <button className="comment-form-button" disabled={isTextareaDisabled}>
         {submitLabel}

@@ -95,3 +95,15 @@
 .replies {
   margin-top: 20px;
 }
+
+.comment-date {
+  font-size: 10px;
+}
+
+/* * {
+  border: 1px solid black;
+} */
+
+.resourceCard {
+  margin: auto;
+}

@@ -15,8 +15,8 @@ export const Home = () => {
       let longitude = position.coords.longitude;
       actions.updateLocation(latitude, longitude);
 
-      console.log("Aquí: " + latitude + " Long: " + longitude);
-      console.log("Allá: " + store.latitude + " Long: " + store.longitude);
+      // console.log("Aquí: " + latitude + " Long: " + longitude);
+      // console.log("Allá: " + store.latitude + " Long: " + store.longitude);
     }
 
     function error() {
@@ -107,7 +107,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="row resourcesRow">
-        <div className="col-6 mt-3 mr-3">
+        <div className="col mt-3 mr-3">
           <a
             href="https://www.fcc.gov/acp"
             className="text-decoration-none text-white"
@@ -136,7 +136,7 @@ export const Home = () => {
           </a>
         </div>
 
-        <div className="col-6 mt-3">
+        <div className="col mt-3">
           <div className="card bg-secondary text-white border-0">
             <div className="card-body text-center center">
               <div className="circle rounded-circle text-white text-center">
@@ -154,11 +154,24 @@ export const Home = () => {
                 </a>
               </p>
               <p className="card-text text-white">
-                <i class="fa-solid fa-head-side-heart m-1"></i> Free Mental
-                health
-                {/*<a ref="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm" className="text-decoration-none text-white" target="_blank">
+                <i class="fa-solid fa-file-certificate"></i>
+                <a
+                  href="https://www.axishelps.org/individuals/job-training-employment-support"
+                  className="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  Job Training & Employment Support
+                </a>
+              </p>
+              <p className="card-text text-white">
+                <i className="fa-solid fa-head-side-heart m-1"></i>
+                <a
+                  href="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm"
+                  className="text-decoration-none text-white"
+                  target="_blank"
+                >
                   Free Mental health
-                </a>*/}
+                </a>
               </p>
             </div>
           </div>
