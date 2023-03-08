@@ -38,21 +38,6 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5">
-      {/* <nav className="navbar fixed-top navbar-light bg-secondary">
-        <h3>
-          <a className="navbar-brand p-2" href="#">
-            AliveLogo
-          </a>
-        </h3>
-        <h3>
-          <Link to={"/search/" + store.location + "/all"}>
-            <i className="fa-solid fa-magnifying-glass-location text-warning right"></i>
-          </Link>
-        </h3>
-        <h3>
-          <i className="fa-solid fa-circle-user p-2 text-info"></i>
-        </h3>
-      </nav> */}
       <div className=" bg-light">
         <h1>Welcome to Alive!</h1>
         <h3>

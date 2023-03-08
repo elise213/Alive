@@ -30,19 +30,22 @@ def create_token():
         if not password: 
             return jsonify({"message": "Password is required"}), 400
         user = User.query.filter_by(email=email).first()
-        print(user.password)
+        # print(user.password)
         if not user: 
             return jsonify({"message": "email is incorrect"}), 401
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
+        
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token)
+        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar)
 
 @api.route("/createUser", methods = ["POST"])
 def create_user():
     if request.method == "POST":
         request_body = request.get_json()
+        if not request_body['is_org']:
+            return jsonify({"message": 'Must enter yes or no'})
         if not request_body["name"]:
             return jsonify({"message": "Name is required"}), 400
         if not request_body["email"]:
@@ -53,33 +56,16 @@ def create_user():
         if user: 
             return jsonify({"message": "email already exists"}), 400
         user = User(
+            is_org = request_body['is_org'],
             name = request_body["name"],
             email = request_body["email"],
-            password = generate_password_hash(request_body["password"])       
+            password = generate_password_hash(request_body["password"]),
+            avatar = request_body['userAvatar']
             )
         db.session.add(user)
         db.session.commit()
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
 
-@api.route("/loginOrganization", methods = ["POST"])
-def create_token2(): 
-        email = request.json.get("email", None)
-        password = request.json.get("password", None)
-        if not email: 
-            return jsonify({"message": "Email is required"}), 400
-        if not password: 
-            return jsonify({"message": "Password is required"}), 400
-        user = Organization.query.filter_by(email=email).first()
-        if not user: 
-            return jsonify({"message": "email is incorrect"}), 401
-        if not check_password_hash(user.password, password):
-            return jsonify({"message": "password is incorrect"}), 401
-        expiration = datetime.timedelta(days=3)
-        access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token)
-
-@api.route("/createOrganization", methods = ["POST"])
-def create_organization():
     if request.method == "POST":
         request_body = request.get_json()
         if not request_body["name"]:

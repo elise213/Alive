@@ -11,7 +11,6 @@ export const ResourceCard = (props) => {
           <h1 className="card-title col-9">{props.resName}</h1>
           <img className="res-thumbnail col-3" src={logo} alt="resource logo" />
         </div>
-
         <img
           className="card-img"
           src={profilePic}

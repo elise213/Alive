@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { SimpleMap } from "../component/SimpleMap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Searchbar } from "../component/Searchbar";
 import { ResourceCard } from "../component/ResourceCard";
 import { Selection } from "../component/Selection";
 
 export const Search = () => {
+  let params = useParams();
+  console.log(params);
   return (
     <div className="grand-container py-4">
       <Searchbar />

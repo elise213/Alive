@@ -2,44 +2,6 @@
     General Styles used on every page (Don't Repeat Yourself)
 */
 
-.grand-container {
-  margin: 25px;
-}
-
-.search-results-resources {
-  max-width: 600px;
-  min-height: 600px;
-  border: none;
-}
-
-/* .report-problem {
-  background-color: lightgreen;
-  color: black;
-} */
-
-/* .avatar {
-  height: 90px;
-  width: 100px;
-  margin-inline-start: 20px;
-}
-
-.emergency-button {
-  width: 100px;
-  height: 50px;
-  font-size: small;
-  color: black;
-  background-color: pink;
-} */
-
-/* .resThumbnail {
-  height: 50p;
-  width: 50px;
-} */
-
-.search-results-resources {
-  justify-content: center;
-}
-
 .card {
   max-width: 18rem;
   max-height: 25rem;
@@ -56,6 +18,51 @@
   text-decoration: none;
 }
 
-/* a:hover circle {
-  fill: #00b2ff;
-} */
+.navbar {
+  background-color: blueviolet;
+}
+
+.nav-item {
+  justify-content: right;
+}
+
+/* logRegBTNs============================================================================== */
+.logRegBtnModalCont {
+  display: flex;
+  justify-content: center;
+}
+.logRegBtnModalCont button {
+  width: 100%;
+}
+.logReggobackbtn {
+  color: darkslategray;
+  text-decoration: none;
+}
+.logReggobackbtn:hover {
+  cursor: pointer;
+  color: black;
+}
+/* ===== avatar css ======= */
+.avatarImages {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  transition: 0.5;
+}
+.avatarImages:hover {
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+}
+.avatarImageSelected {
+  width: 55px;
+  height: 55px;
+  border: 2px solid blue;
+}
+/* user Profile =========================================================================*/
+.userProfileCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

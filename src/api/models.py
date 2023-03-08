@@ -10,6 +10,8 @@ class User(db.Model):
     name = db.Column(db.String(256))
     email = db.Column(db.String(256), unique=True, nullable=False)
     password = db.Column(db.String(256), unique=False, nullable=False)
+    is_org = db.Column(db.String(80), nullable=False)
+    avatar = db.Column(db.String(80))
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -19,6 +21,8 @@ class User(db.Model):
             "id": self.id,
             "name": self.name,
             "email": self.email,
+            "is_org": self.is_org,
+            "avatar": self.avatar,
             # do not serialize the password, its a security breach
         }
         
@@ -66,24 +70,24 @@ class Organization(db.Model):
             # do not serialize the password, its a security breach
         }
     
-    class Comment(db.Model):
-        __tablename__ = "Comment"
-        id = db.Column(db.Integer, primary_key=True, index=True)
-        user_id = db.Column(db.Integer, ForeignKey("user.id"))         
-        resource_id = db.Column(db.Integer, ForeignKey("resource.id"), index=True) 
-        comment_cont = db.Column(db.String(250), nullable=False)
-        created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
-        parentId = db.Column(db.Integer, ForeignKey("comment.id"), nullable=True)
-        
+class Comment(db.Model):
+    __tablename__ = "Comment"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey("User.id"))
+    resource_id = db.Column(db.Integer, ForeignKey("Resource.id"))
+    comment_cont = db.Column(db.String(250), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    parentId = db.Column(db.Integer, ForeignKey("Comment.id"), nullable=True)
+    
     def __repr__(self):
         return f'<Comment {self.id}>'
     
-    def serialize_Comment(self):
+    def serialize(self):
         return {
             id: self.id,
             user_id: self.user_id,
             resource_id: self.resource_id,
             comment_cont: self.body,
             parentId: self.parentId
-        }
+        }   
     
