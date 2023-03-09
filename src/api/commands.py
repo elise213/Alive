@@ -1,6 +1,6 @@
 
 import click
-from api.models import db, User
+from api.models import db, User, Resource
 
 """
 In this file, you can add as many commands as you want using the @app.cli.command decorator
@@ -14,19 +14,51 @@ def setup_commands(app):
     by typing: $ flask insert-test-users 5
     Note: 5 is the number of users to add
     """
-    @app.cli.command("insert-test-users") # name of our command
-    @click.argument("count") # argument of out command
-    def insert_test_data(count):
-        print("Creating test users")
-        for x in range(1, int(count) + 1):
-            user = User()
-            user.email = "test_user" + str(x) + "@test.com"
-            user.password = "123456"
-            user.is_active = True
-            db.session.add(user)
-            db.session.commit()
-            print("User: ", user.email, " created.")
+    # @app.cli.command("insert-test-users") # name of our command
+    # @click.argument("count") # argument of out command
+    # def insert_test_data(count):
+    #     print("Creating test users")
+    #     for x in range(1, int(count) + 1):
+    #         user = User()
+    #         user.email = "test_user" + str(x) + "@test.com"
+    #         user.password = "123456"
+    #         user.is_active = True
+    #         db.session.add(user)
+    #         db.session.commit()
+    #         print("User: ", user.email, " created.")
 
-        print("All test users created")
+    #     print("All test users created")
 
-        ### Insert the code to populate others tables if needed
+    #     ### Insert the code to populate others tables if needed
+           
+    #     def setup_commands(app):
+    
+
+    @app.cli.command("populate-resources") # name of our command
+    def populate_resources():
+       print("populating resources")
+       resources = [
+           {
+                "name" : "Urban Partners",
+                "address" : "2936 W. 8th Street, Los Angeles, CA 90005",
+                "phone" : "213-401-1191",
+                "category" : "food",
+                "website" : "", 
+                "schedule" : "",
+                "descrition" : "",
+                # "organization_id" : "" 
+           }
+       ]
+       for resource in resources : 
+           new_resource = Resource(
+               name = resource["name"],
+               address = resource["address"],
+               phone = resource["phone"],
+               category = resource["category"],
+               website = resource["website"],
+               schedule = resource["schedule"],
+               description = resource["description"],
+            #    organization_id = resource["organization_id"]
+           )
+           db.session.add(new_resource)
+           db.session.commit()

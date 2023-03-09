@@ -22,9 +22,14 @@
   background-color: blueviolet;
 }
 
-.btn {
+.nav-btn {
   color: white;
   font-weight: bold;
+}
+
+.nav-btn:hover {
+  cursor: pointer;
+  color: lightgreen;
 }
 
 /* logRegBTNs============================================================================== */
@@ -41,7 +46,7 @@
 }
 .logReggobackbtn:hover {
   cursor: pointer;
-  color: black;
+  color: greenyellow;
 }
 /* ===== avatar css ======= */
 .avatarImages {

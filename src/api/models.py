@@ -35,6 +35,7 @@ class Resource(db.Model):
         category = db.Column(db.String(256), unique=False, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
         schedule = db.Column(db.String(500), unique=False, nullable=True)
+        description = db.Column(db.String(500), unique-False, nullable=True)
         organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
       
         def __repr__(self):
@@ -47,7 +48,8 @@ class Resource(db.Model):
                 "address": self.address,
                 "phone": self.phone,
                 "website": self.website,
-                "schedule": self.schedule                            
+                "schedule": self.schedule,
+                "description" : self.description,                            
                 # do not serialize the password, its a security breach
             }
             

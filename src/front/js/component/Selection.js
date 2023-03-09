@@ -79,6 +79,34 @@ export const Selection = () => {
               For children
             </label>
           </div>
+          {/* Radius? */}
+          <div class="btn-group d-inline-flex">
+            <button
+              type="button"
+              class="btn btn-success dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Radius
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">
+                  1 Mile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  5 Miles
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  20 Miles
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* <!-- When ? --> */}
