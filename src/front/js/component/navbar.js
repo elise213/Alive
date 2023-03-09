@@ -6,6 +6,7 @@ import LogRegBtn from "./LogRegBtn";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const token = sessionStorage.getItem("token");
+  let is_org = store.is_org;
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="navbar">
       <div className="container-fluid">
@@ -22,8 +23,8 @@ export const Navbar = () => {
         </Link>
         <span className="nav-item">
           <Link to="/search/all">
-            <span className="btn" style={{ color: "white" }}>
-              Search
+            <span className="btn nav-btn">
+              Search <i class="fa-solid fa-magnifying-glass-location"></i>
             </span>
           </Link>
         </span>
@@ -44,27 +45,30 @@ export const Navbar = () => {
           style={{ flexGrow: "0" }}
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {token ? (
-              <li className="nav-item">
-                <Link to="/userProfile">
-                  <span className="btn" style={{ color: "white" }}>
-                    Profile
-                  </span>
-                </Link>
-              </li>
-            ) : (
-              ""
-            )}
-            {token ? (
-              <li className="nav-item">
-                <span
-                  className="btn "
-                  style={{ color: "white" }}
-                  onClick={() => actions.logout()}
-                >
-                  Logout
+            {token && is_org ? (
+              <div>
+                <span className="nav-item">
+                  <Link to="/createResource">
+                    <span className="btn nav-btn">Create Resource</span>
+                  </Link>
                 </span>
-              </li>
+
+                <span className="nav-item">
+                  <span
+                    className="btn nav-btn"
+                    onClick={() => actions.logout()}
+                  >
+                    Logout
+                  </span>
+                </span>
+                <span className="nav-item">
+                  <Link to="/userProfile">
+                    <span className="btn nav-btn">
+                      <i className="fa-solid fa-circle-user p-2 text-info"></i>
+                    </span>
+                  </Link>
+                </span>
+              </div>
             ) : (
               <li className="nav-item">
                 <LogRegBtn />

@@ -8,7 +8,7 @@ export const ResourceCard = (props) => {
     <div className="card mx-auto mb-3">
       <Link to="/resource">
         <div className="card-header d-flex">
-          <h1 className="card-title col-9">{props.resName}</h1>
+          <h4 className="card-title col-9">{props.resName}</h4>
           <img className="res-thumbnail col-3" src={logo} alt="resource logo" />
         </div>
         <img
@@ -17,7 +17,7 @@ export const ResourceCard = (props) => {
           alt="resource profile picture"
         />
         <div className="card-body">
-          <h1 className="card-text">{props.resDescription}</h1>
+          <h5 className="card-text">{props.resDescription}</h5>
         </div>
       </Link>
     </div>

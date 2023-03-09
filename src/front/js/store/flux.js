@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-c7n4e2oqtjc.ws-eu89.gitpod.io",
+        "https://3000-lalafontaine-alive-c7n4e2oqtjc.ws-eu89b.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-c7n4e2oqtjc.ws-eu89.gitpod.io",
+        "https://3001-lalafontaine-alive-c7n4e2oqtjc.ws-eu89b.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -92,7 +92,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            // window.location.href = current_front_url + "/login";
           }
           return true;
         } catch (error) {

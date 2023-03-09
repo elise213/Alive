@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import DatePickerComp from "../component/DatePickerComp";
 
 const CreateResource = () => {
   const [address, setAddress] = useState("");
@@ -13,7 +14,6 @@ const CreateResource = () => {
     e.preventDefault();
     actions.createResource(name, schedule, website, phone, address);
   }
-
   return (
     <div>
       <div className="m-4">
@@ -70,6 +70,8 @@ const CreateResource = () => {
               Hygiene
             </label>
           </div>
+
+          <DatePickerComp />
 
           <label for="type"> When is this being offered? </label>
           <input

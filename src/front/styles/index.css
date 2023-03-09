@@ -22,8 +22,9 @@
   background-color: blueviolet;
 }
 
-.nav-item {
-  justify-content: right;
+.btn {
+  color: white;
+  font-weight: bold;
 }
 
 /* logRegBTNs============================================================================== */
