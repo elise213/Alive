@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const Selection = () => {
+export const Selection = (props) => {
   return (
     <div className="row mx-4 my-3">
       <div className="col-2"></div>
@@ -79,8 +79,9 @@ export const Selection = () => {
               For children
             </label>
           </div>
+
           {/* Radius? */}
-          <div class="btn-group d-inline-flex">
+          {/* <div class="btn-group d-inline-flex">
             <button
               type="button"
               class="btn btn-success dropdown-toggle"
@@ -106,7 +107,17 @@ export const Selection = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
+
+          <select
+            className="btn btn-success"
+            defaultValue={props.radius}
+            onChange={(e) => props.setRadius(e.target.value)}
+          >
+            <option value={1}>1 miles</option>
+            <option value={5}>5 miles</option>
+            <option value={25}>25 miles</option>
+          </select>
         </div>
 
         {/* <!-- When ? --> */}

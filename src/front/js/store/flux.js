@@ -6,15 +6,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-2s3x9zjuks0.ws-eu89b.gitpod.io",
+        "https://3000-lalafontaine-alive-2s3x9zjuks0.ws-eu90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-2s3x9zjuks0.ws-eu89b.gitpod.io",
+        "https://3001-lalafontaine-alive-2s3x9zjuks0.ws-eu90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
       token: null,
       is_org: null,
+
+      // name: null,
       avatarID: null,
       avatarImages: [
         "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
@@ -52,9 +54,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(data);
           sessionStorage.setItem("token", data.access_token);
           sessionStorage.setItem("is_org", data.is_org);
+          // mara's test
+          // sessionStorage.setItem("name", data.name);
+
           setStore({
             token: data.access_token,
             is_org: data.is_org,
+            // // mara's test
+            // name: data.name,
             avatarID: data.avatar,
           });
           console.log(getStore().avatarID);
@@ -103,6 +110,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         const token = sessionStorage.removeItem("token");
         const is_org = sessionStorage.removeItem("is_org");
         setStore({ token: null, is_org: null });
+        // mara's test
+        // const name = sessionStorage.removeItem("name");
+        // setStore({ name: null });
+
         window.location.href = current_front_url + "/";
       },
       createResource: async (name, schedule, website, phone, address) => {

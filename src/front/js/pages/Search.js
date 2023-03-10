@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { SimpleMap } from "../component/SimpleMap";
@@ -10,11 +10,12 @@ import { Selection } from "../component/Selection";
 export const Search = () => {
   let params = useParams();
   console.log(params);
+  const [radius, setRadius] = useState(1);
   return (
     <div className="grand-container py-4">
-      <Searchbar />
+      <Searchbar radius={radius} />
 
-      <Selection />
+      <Selection radius={radius} setRadius={setRadius} />
 
       {/* <!-- Search Results --> */}
       <div className="search-results-full row">

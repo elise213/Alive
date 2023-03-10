@@ -31,11 +31,11 @@ class Resource(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(256), unique=False, nullable=False)
         address = db.Column(db.String(256), unique=False, nullable=True)
-        phone = db.Column(db.String(256), unique=True, nullable=True)
+        phone = db.Column(db.String(256), unique=False, nullable=True)
         category = db.Column(db.String(256), unique=False, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
         schedule = db.Column(db.String(500), unique=False, nullable=True)
-        description = db.Column(db.String(500), unique-False, nullable=True)
+        description = db.Column(db.String(250), unique=False, nullable=True)
         organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
       
         def __repr__(self):

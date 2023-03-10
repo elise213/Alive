@@ -16,6 +16,7 @@ export const Home = () => {
       actions.updateLocation(latitude, longitude);
       sessionStorage.setItem("latitude", latitude);
       sessionStorage.setItem("longitude", longitude);
+
       console.log("Aquí: " + latitude + " Long: " + longitude);
       console.log("Allá: " + store.latitude + " Long: " + store.longitude);
     }

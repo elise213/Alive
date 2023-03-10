@@ -34,31 +34,61 @@ def setup_commands(app):
     #     def setup_commands(app):
     
 
-    @app.cli.command("populate-resources") # name of our command
-    def populate_resources():
-       print("populating resources")
-       resources = [
-           {
-                "name" : "Urban Partners",
-                "address" : "2936 W. 8th Street, Los Angeles, CA 90005",
-                "phone" : "213-401-1191",
-                "category" : "food",
-                "website" : "", 
-                "schedule" : "",
-                "descrition" : "",
-                # "organization_id" : "" 
-           }
-       ]
-       for resource in resources : 
-           new_resource = Resource(
-               name = resource["name"],
-               address = resource["address"],
-               phone = resource["phone"],
-               category = resource["category"],
-               website = resource["website"],
-               schedule = resource["schedule"],
-               description = resource["description"],
-            #    organization_id = resource["organization_id"]
-           )
-           db.session.add(new_resource)
-           db.session.commit()
+    # @app.cli.command("populate-resources") # name of our command
+    # def populate_resources():
+    #    print("populating resources")
+    #    resources = [
+    #        {
+    #             "name" : "Urban Partners",
+    #             "address" : "2936 W. 8th Street, Los Angeles, CA 90005",
+    #             "phone" : "213-401-1191",
+    #             "category" : "food",
+    #             "website" : "", 
+    #             "schedule" : "",
+    #             "descrition" : "",
+    #             # "organization_id" : "" 
+    #        },
+    #         {
+    #             "name" : "Glendale Public Health Center",
+    #             "address" : "501 N. Glendale Avenue Glendale CA 91206",
+    #             "phone" : "",
+    #             "category" : "health",
+    #             "website" : "www.com", 
+    #             "schedule" : "",
+    #             "descrition" : "bla bla bla",
+    #             # "organization_id" : "" 
+    #        },
+    #         {
+    #             "name" : "LAHSA Hand Washing Station - Hollywood",
+    #             "address" : "Hollywood Blvd and North Gower, Los Angeles, CA 90028",
+    #             "phone" : "",
+    #             "category" : "hygiene",
+    #             "website" : "www.com", 
+    #             "schedule" : "",
+    #             "descrition" : "bla bla bla",
+    #             # "organization_id" : "" 
+    #        },
+    #         {
+    #             "name" : "The Source: Free Health & Emergency Shelter Services",
+    #             "address" : "7140 W. Sunset Boulevard Los Angeles, CA 90046",
+    #             "phone" : "",
+    #             "category" : "shelter",
+    #             "website" : "www.com", 
+    #             "schedule" : "",
+    #             "descrition" : "bla bla",
+    #             # "organization_id" : "" 
+    #        }
+    #    ]
+    #    for resource in resources : 
+    #        new_resource = Resource(
+    #            name = resource["name"],
+    #            address = resource["address"],
+    #            phone = resource["phone"],
+    #            category = resource["category"],
+    #            website = resource["website"],
+    #            schedule = resource["schedule"],
+    #            description = resource["description"],
+    #         #    organization_id = resource["organization_id"]
+    #        )
+    #        db.session.add(new_resource)
+    #        db.session.commit()

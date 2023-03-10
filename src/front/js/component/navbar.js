@@ -62,6 +62,7 @@ export const Navbar = () => {
               ""
             )}
             {/* Logout- Only visible when logged in */}
+            {/* Login/ Register- Only visible when NOT logged in */}
             {token ? (
               <span className="nav-item">
                 <span className="btn nav-btn" onClick={() => actions.logout()}>
@@ -69,7 +70,6 @@ export const Navbar = () => {
                 </span>
               </span>
             ) : (
-              // {/* Login/ Register- Only visible when NOT logged in*/}
               <li className="nav-item">
                 <LogRegBtn />
               </li>
