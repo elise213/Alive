@@ -114,13 +114,14 @@ def create_resource():
             address = request_body["address"],
             phone = request_body["phone"],
             website = request_body["website"],
-            schedule = request_body["schedule"],       
+            schedule = request_body["schedule"],
+            resourceType = request_body["resourceType"]      
             )
         db.session.add(resource)
         db.session.commit()
         return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
     
-    # Create comments
+######## Create comments #############
 @api.route('/createComment', methods=['POST'])
 def create_comment(id, user_id, resource_id, body, user, parentId):
     comment = Comment.query.get(id)
@@ -128,10 +129,9 @@ def create_comment(id, user_id, resource_id, body, user, parentId):
         request_body = request.get_json()
 
         if not request_body["comment_cont"]:
-            return jsonify({"message": "Please include a message"}), 400
-        parentId = Comment.query.filter_by(parentId=request_body["parentId"]).first()
-        resource = Comment(
-            id = request_body[id],
+            return jsonify({"message": "Please include a message"}), 400        
+        comment = Comment(
+            # id = request_body[id],
             user_id = request_body[user_id],
             resource_id = request_body[resource_id],
             comment_cont = request_body[comment_cont],
@@ -144,11 +144,25 @@ def create_comment(id, user_id, resource_id, body, user, parentId):
         db.session.commit()
         return jsonify({"created": "Thank you for your feedback", "status": "true"}), 200
 
-    # get comments
-@api.route('/getComments/<int:userId>', methods=['GET'])
-def getComments(id):
-  commentList = Comment.query.get(id)
-  if commentList is None:
-    return jsonify(msg="There are no comments yet")
-  else:
-    return jsonify(data=commentList.serialize())
+
+####### get comments  ###########
+
+@api.route('/getcomments', methods=['GET'])
+@jwt_required()
+def get_main_comments():
+  uid = get_jwt_identity()  
+  comments = comments.query.filter_by(user_id=uid)
+  comments = [comment.serialize() for comment in comments]
+  #print(comments)
+  return jsonify(comments=commentList)
+
+@api.route('/getreplies', methods=['GET'])
+@jwt_required()
+def get_replies():
+  uid = get_jwt_identity()  
+  comments = comments.query.filter_by(parentId=uid)
+  comments = [comment.serialize() for comment in comments]
+  #print(comments)
+  return jsonify(comments=replyList)
+  
+

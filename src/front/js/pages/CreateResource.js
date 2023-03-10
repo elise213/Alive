@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import DatePickerCal from "../component/datePickerCal.js";
+import { Calendar } from "react-multi-date-picker";
+import "../../styles/custom.css";
 
 const CreateResource = () => {
   const [address, setAddress] = useState("");
@@ -7,27 +10,44 @@ const CreateResource = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [schedule, setSchedule] = useState("");
+  const [resourceType, setResourceType] = useState("");
+  const [urlPic, setUrlPic] = useState("");
   const { store, actions } = useContext(Context);
+
+  const [dateValues, setDateValues] = useState();
 
   function handleClick(e) {
     e.preventDefault();
-    actions.createResource(name, schedule, website, phone, address);
+    actions.createResource(
+      name,
+      schedule,
+      website,
+      phone,
+      address,
+      resourceType
+    );
   }
 
   return (
-    <div>
+    <div className="row center mx-auto col-4 text-secondary mb-3">
       <div className="m-4">
         <form className="d-flex flex-column">
-          <p> What kind of Resource are you offering? </p>
+          <label className="form-check-label" htmlFor="resourceType">
+            What kind of Resource are you offering?
+          </label>
           <div className="form-check">
             <input
               className="form-check-input"
               type="radio"
-              name="exampleRadios"
-              id="exampleRadios1"
-              value="option1"
+              name="resourceType"
+              id="resourceF"
+              value="food"
+              checked={resourceType === "food"}
+              onChange={() => (
+                setResourceType("food"), console.log(resourceType)
+              )}
             />
-            <label className="form-check-label" for="exampleRadios1">
+            <label className="form-check-label" htmlFor="resourceF">
               Food
             </label>
           </div>
@@ -35,12 +55,15 @@ const CreateResource = () => {
             <input
               className="form-check-input"
               type="radio"
-              name="exampleRadios"
-              id="exampleRadios2"
-              value="option2"
+              name="resourceType"
+              id="resourceS"
+              value="shelter"
+              checked={resourceType === "shelter"}
+              onChange={(e) => (
+                setResourceType(e.target.value), console.log(resourceType)
+              )}
             />
-            <label className="form-check-label" for="exampleRadios2">
-              {" "}
+            <label className="form-check-label" htmlFor="resourceS">
               Shelter
             </label>
           </div>
@@ -48,71 +71,194 @@ const CreateResource = () => {
             <input
               className="form-check-input"
               type="radio"
-              name="exampleRadios"
-              id="exampleRadios2"
-              value="option2"
+              name="resourceType"
+              id="resourceH"
+              value="health"
+              checked={resourceType === "health"}
+              onChange={(e) => (
+                setResourceType(e.target.value), console.log(resourceType)
+              )}
             />
-            <label className="form-check-label" for="exampleRadios2">
-              {" "}
+            <label className="form-check-label" htmlFor="resourceH">
               Health
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check mb-3">
             <input
               className="form-check-input"
               type="radio"
-              name="exampleRadios"
-              id="exampleRadios2"
-              value="option2"
+              name="resourceType"
+              id="resourceHy"
+              value="hygiene"
+              checked={resourceType === "hygiene"}
+              onChange={
+                (e) =>
+                  setResourceType(
+                    e.target.value
+                  ) /*, console.log(resourceType)*/
+              }
             />
-            <label className="form-check-label" for="exampleRadios2">
-              {" "}
+            <label className="form-check-label" htmlFor="resourceHy">
               Hygiene
             </label>
           </div>
 
-          <label for="type"> When is this being offered? </label>
-          <input
-            name="type"
-            type="text"
-            value={schedule}
-            onChange={(e) => setSchedule(e.target.value)}
-          ></input>
-          <label for="type">
+          {/*<DatePickerCal />
+           <Calendar fullYear /> */}
+          <label htmlFor="type"> When is this being offered? </label>
+
+          <div className="input-group mb-3">
+            {/* <input
+              className="form-control"
+              name="schedule"
+              type="text"
+              value={schedule}
+              onChange={(e) => setSchedule(e.target.value)}
+            ></input> */}
+            <DatePickerCal />
+            <div className="input-group-append">
+              <span className="input-group-text h-100" id="basic-addon2">
+                <i className="fa-solid fa-calendar-days text-secondary"> </i>
+              </span>
+            </div>
+          </div>
+
+          <label htmlFor="address">
             {" "}
             What is the address where this being offered?{" "}
           </label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text h-100" id="address">
+                <i className="fa-solid fa-map-location-dot text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="type"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            ></input>
+          </div>
+          {/* <div className="form-row">
+            <div className="col">
+              <input type="text" className="form-control" placeholder="City" />
+            </div>
+            <div className="col">
+              <input type="text" className="form-control" placeholder="State" />
+            </div>
+            <div className="col">
+              <input type="text" className="form-control" placeholder="Zip" />
+            </div>
+          </div> */}
+
+          <label htmlFor="website"> Is there a website? </label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="address">
+                {/* <i className="fa-regular fa-globe"></i> */}
+                <i className="fa-solid fa-globe text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="type"
+              type="text"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            ></input>
+          </div>
+          <label htmlFor="phone"> Is there a phone number? </label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="address">
+                <i className="fa-solid fa-phone text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="phone"
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            ></input>
+          </div>
+          <label htmlFor="name"> Name of the place</label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text h-100" id="address">
+                {/* <i className="fa-solid fa-billboard text-secondary"></i> 
+                <i className="fa-solid fa-buildings text-secondary"></i>*/}
+                <i className="fa-solid fa-building text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+          </div>
+          {/* <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">
+                <i className="fa-solid fa-image text-secondary"></i>
+              </span>
+            </div>
+            <div className="custom-file">
+              <input
+                type="file"
+                className="custom-file-input"
+                value={urlPic}
+                id="urlPic"
+              />
+              <label className="custom-file-label" htmlFor="urlPic">
+                Choose file
+              </label>
+            </div>
+          </div> */}
+
+          <label htmlFor="file">
+            Picture
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <span className="input-group-text h-100">
+                  <i className="fa-solid fa-image text-secondary"></i>
+                </span>
+              </div>
+              <input
+                className="form-control"
+                name="picture"
+                type="text"
+                placeholder="Choose file"
+              ></input>
+            </div>
+          </label>
           <input
-            name="type"
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          ></input>
-          <label for="type"> Is there a website? </label>
-          <input
-            name="type"
-            type="text"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-          ></input>
-          <label for="type"> Is there a phone number? </label>
-          <input
-            name="type"
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          ></input>
-          <label for="type"> Name </label>
-          <input
-            name="type"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            className="form-control d-none"
+            name="name"
+            type="file"
+            value={urlPic}
+            id="file"
+            style={{ visibility: "hidden" }}
+            onChange={(e) => setUrlPic(e.target.value)}
           ></input>
         </form>
-        <button type="submit" onClick={(e) => handleClick(e)}>
-          Submit
-        </button>
+        <div className="float-end">
+          <button
+            type="submit"
+            className="btn custom-btn text-white"
+            onClick={(e) => handleClick(e)}
+            // style={{ backgroundColor: "blueviolet" }}
+          >
+            Submit
+          </button>
+          {/* <button type="reset" className="btn btn-outline-danger"> 
+            Cancel
+          </button>*/}
+        </div>
       </div>
     </div>
   );

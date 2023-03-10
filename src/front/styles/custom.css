@@ -1,0 +1,39 @@
+.custom-btn {
+  border: none;
+  background-color: blueviolet;
+  /* transition-duration: 0.4s; */
+}
+
+.custom-btn:hover {
+  background-color: #c392f1;
+  color: white;
+}
+
+/* $form-check-input-checked-bg-color: blueviolet; */
+
+.form-check-input:checked {
+  background-color: blueviolet;
+  border: 1px solid blueviolet;
+  box-shadow: none !important;
+}
+
+.form-check-input:hover {
+  box-shadow: #c392f1;
+  background-color: #c392f1;
+}
+
+.form-check-input:active {
+  box-shadow: none !important;
+}
+
+/*
+label.btn.focus {
+  box-shadow: #c392f1;
+}
+input[type="radio"]:focus {
+  outline: max(2px, 0.15em) solid #c392f1;
+  outline-offset: max(2px, 0.15em);
+}
+ .container:hover input ~ .form-check-input {
+  background-color: #ccc;
+} */

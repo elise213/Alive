@@ -62,7 +62,7 @@ export const Home = () => {
         <p>more text...</p>
       </div>
       <div className="row resourcesRow">
-        <div className="col-sm-4 mx-auto">
+        <div className="col-sm-3 mx-auto">
           <div className="card border-0 text-decoration-none">
             <div className="card-body text-center center">
               <Link to={"/search/food"} className="text-decoration-none">
@@ -75,7 +75,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-4 mx-auto">
+        <div className="col-sm-3 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link to={"/search/shelter"} className="text-decoration-none">
@@ -90,7 +90,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-4 mx-auto">
+        <div className="col-sm-3 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link to={"/search/health"} className="text-decoration-none">
@@ -102,6 +102,20 @@ export const Home = () => {
               <p className="card-text">
                 Find Health care resources in your area
               </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-3 mx-auto">
+          <div className="card border-0">
+            <div className="card-body text-center center">
+              <Link to={"/search/health"} className="text-decoration-none">
+                <div className="circle rounded-circle bg-pink text-white text-center">
+                  {/* <i class="fa-regular fa-hands-bubbles"></i> */}
+                  <i class="fa-solid fa-hands-bubbles"></i>
+                </div>
+              </Link>
+              <h5 className="card-title">Hygiene</h5>
+              <p className="card-text">Find Hygiene resources in your area</p>
             </div>
           </div>
         </div>
