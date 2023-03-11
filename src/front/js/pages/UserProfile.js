@@ -7,7 +7,9 @@ const userProfile = () => {
   let is_org = sessionStorage.getItem("is_org");
   let avatarIndex = parseInt(store.avatarID);
   let link = store.avatarImages[parseInt(store.avatarID)];
-  // let name = sessionStorage.getItem("name");
+  let name = store.name;
+  console.log("this is coming from user profile" + name);
+
   console.log(store.avatarID);
   let field = null;
   if (is_org == "true") {
@@ -16,7 +18,7 @@ const userProfile = () => {
     field = (
       <div>
         <div>
-          {/* <h2>Welcome {name}</h2> */}
+          <h2>Welcome {name}</h2>
           <div>
             <img src={link} />
           </div>

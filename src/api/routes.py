@@ -25,6 +25,7 @@ def handle_hello():
 def create_token():
         email = request.json.get("email", None)
         password = request.json.get("password", None)
+        name = request.json.get("name", None)
         if not email: 
             return jsonify({"message": "Email is required"}), 400
         if not password: 
@@ -38,7 +39,7 @@ def create_token():
         
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar)
+        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name)
 
 @api.route("/createUser", methods = ["POST"])
 def create_user():

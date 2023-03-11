@@ -6,8 +6,6 @@ import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  let latitude = "";
-  let longitude = "";
 
   function geoFindMe() {
     function success(position) {

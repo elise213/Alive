@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Searchbar = () => {
+export const Searchbar = (props) => {
   return (
     <div class="row mx-4 p-3">
       <div className="col-2"></div>

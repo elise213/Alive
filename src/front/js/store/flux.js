@@ -15,8 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       longitude: null, //to store user location
       token: null,
       is_org: null,
-
-      // name: null,
+      name: null,
       avatarID: null,
       avatarImages: [
         "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
@@ -28,10 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
-      // Use getActions to call a function within a fuction
       login: async (email, password) => {
         const current_back_url = getStore().current_back_url;
-        const current_front_url = getStore().current_front_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -54,17 +51,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(data);
           sessionStorage.setItem("token", data.access_token);
           sessionStorage.setItem("is_org", data.is_org);
-          // mara's test
-          // sessionStorage.setItem("name", data.name);
+          sessionStorage.setItem("name", data.name);
 
           setStore({
             token: data.access_token,
             is_org: data.is_org,
-            // // mara's test
-            // name: data.name,
             avatarID: data.avatar,
+            name: data.name,
           });
-          console.log(getStore().avatarID);
+          console.log("AVATAR ID", getStore().avatarID);
           return true;
         } catch (error) {
           console.error(error);
@@ -72,7 +67,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       createUser: async (is_org, name, email, password, userAvatar) => {
         const current_back_url = getStore().current_back_url;
-        const current_front_url = getStore().current_front_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -109,11 +103,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         const current_front_url = getStore().current_front_url;
         const token = sessionStorage.removeItem("token");
         const is_org = sessionStorage.removeItem("is_org");
-        setStore({ token: null, is_org: null });
-        // mara's test
-        // const name = sessionStorage.removeItem("name");
-        // setStore({ name: null });
-
+        const name = sessionStorage.removeItem("name");
+        setStore({ token: null, is_org: null, name: null });
         window.location.href = current_front_url + "/";
       },
       createResource: async (name, schedule, website, phone, address) => {
@@ -132,6 +123,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             website: website,
             phone: phone,
             address: address,
+            description: description,
           }),
         };
         try {

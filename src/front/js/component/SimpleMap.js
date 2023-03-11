@@ -6,7 +6,6 @@ export const SimpleMap = () => {
   const { store, actions } = useContext(Context);
   let latitude = parseFloat(sessionStorage.getItem("latitude"));
   let longitude = parseFloat(sessionStorage.getItem("longitude"));
-
   console.log(latitude, longitude, "from simple map");
 
   // Define the Marker component

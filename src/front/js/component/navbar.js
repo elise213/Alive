@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
@@ -7,6 +7,11 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const token = sessionStorage.getItem("token");
   let is_org = store.is_org;
+  console.log("LATITUDE", store.latitude);
+  console.log("is_org", is_org);
+  // console.log("is_org is", is_org);
+  // console.log("token is ", token);
+  console.log("avatar id", store.avatarID);
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="navbar">
       {/* Navbar Brand Logo - Link to Home - Always Visible*/}
@@ -52,7 +57,7 @@ export const Navbar = () => {
 
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {/* Link to Create Resource - Only visible when logged in as an Organization */}
-            {token && is_org ? (
+            {token && is_org == "true" ? (
               <span className="nav-item">
                 <Link to="/createResource">
                   <span className="btn nav-btn">Create Resource</span>
@@ -75,7 +80,7 @@ export const Navbar = () => {
               </li>
             )}
             {/* Link to profile page - Only visible when logged in as a regular user*/}
-            {token && !is_org ? (
+            {token && is_org == "false" ? (
               <span className="nav-item">
                 <Link to="/userProfile">
                   <span className="btn nav-btn">
