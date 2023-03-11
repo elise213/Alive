@@ -28,11 +28,12 @@ class Resource(db.Model):
         name = db.Column(db.String(256), unique=False, nullable=False)
         address = db.Column(db.String(256), unique=False, nullable=True)
         phone = db.Column(db.String(256), unique=True, nullable=True)
-        category = db.Column(db.String(256), unique=False, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
         schedule = db.Column(db.String(500), unique=False, nullable=True)
         organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
         resourceType = db.Column(db.String(256), unique=False, nullable=True)
+        picture = db.Column(db.String(256), unique=False, nullable=True)
+        description = db.Column(db.String(256), unique=False, nullable=True)
       
         def __repr__(self):
             return f'<Resource {self.name}>'
@@ -45,8 +46,8 @@ class Resource(db.Model):
                 "phone": self.phone,
                 "website": self.website,
                 "schedule": self.schedule,
-                "resourceType": self.resourceType,                            
-                # do not serialize the password, its a security breach
+                "resourceType": self.resourceType,   
+                "picture": self.picture,        
             }
             
 class Organization(db.Model):

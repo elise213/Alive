@@ -108,10 +108,10 @@ export const Home = () => {
         <div className="col-sm-3 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
-              <Link to={"/search/health"} className="text-decoration-none">
+              <Link to={"/search/hygiene"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-pink text-white text-center">
-                  {/* <i class="fa-regular fa-hands-bubbles"></i> */}
-                  <i class="fa-solid fa-hands-bubbles"></i>
+                  {/* <i className="fa-regular fa-hands-bubbles"></i> */}
+                  <i className="fa-solid fa-hands-bubbles"></i>
                 </div>
               </Link>
               <h5 className="card-title">Hygiene</h5>
@@ -168,7 +168,7 @@ export const Home = () => {
                 </a>
               </p>
               <p className="card-text text-white">
-                <i class="fa-solid fa-file-certificate"></i>
+                <i className="fa-solid fa-file-certificate"></i>
                 <a
                   href="https://www.axishelps.org/individuals/job-training-employment-support"
                   className="text-decoration-none text-white"

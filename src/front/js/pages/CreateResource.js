@@ -1,6 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import DatePickerCal from "../component/datePickerCal.js";
+// import DatePickerCal from "../component/datePickerCal.js";
+// import { Calendar } from "react-multi-date-picker";
+// import "../../styles/custom.css";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import { Calendar } from "react-multi-date-picker";
 import "../../styles/custom.css";
 
@@ -13,18 +18,33 @@ const CreateResource = () => {
   const [resourceType, setResourceType] = useState("");
   const [urlPic, setUrlPic] = useState("");
   const { store, actions } = useContext(Context);
+  const [description, setDescription] = useState("");
+  let dates = "";
+  // const [dateValues, setDateValues] = useState();
 
-  const [dateValues, setDateValues] = useState();
+  const CustomInput = ({ value, onClick, onChange }) => (
+    <input
+      className="form-control h-100"
+      name="schedule"
+      type="text"
+      value={value}
+      onChange={onChange}
+      onClick={onClick}
+    ></input>
+  );
 
   function handleClick(e) {
+    dates = schedule.toString();
     e.preventDefault();
     actions.createResource(
       name,
-      schedule,
+      dates,
       website,
       phone,
       address,
-      resourceType
+      resourceType,
+      urlPic,
+      description
     );
   }
 
@@ -32,6 +52,34 @@ const CreateResource = () => {
     <div className="row center mx-auto col-4 text-secondary mb-3">
       <div className="m-4">
         <form className="d-flex flex-column">
+          <label htmlFor="name"> Name of the place</label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text h-100" id="name">
+                {/* <i className="fa-solid fa-billboard text-secondary"></i> 
+                <i className="fa-solid fa-buildings text-secondary"></i>*/}
+                <i className="fa-solid fa-building text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></input>
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="description"> Description</label>
+            <textarea
+              className="form-control"
+              id="description"
+              rows="3"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </div>
+
           <label className="form-check-label" htmlFor="resourceType">
             What kind of Resource are you offering?
           </label>
@@ -115,25 +163,41 @@ const CreateResource = () => {
               value={schedule}
               onChange={(e) => setSchedule(e.target.value)}
             ></input> */}
-            <DatePickerCal />
+            {/* <DatePickerCal /> */}
+            <DatePicker
+              value={schedule}
+              customInput={<CustomInput />}
+              onChange={() => {
+                setSchedule();
+                dates = schedule.toString();
+                console.log(dates);
+              }}
+              format="MM/DD/YYYY HH:mm"
+              multiple
+              plugins={[
+                <TimePicker position="bottom" hideSeconds />,
+                <TimePicker position="bottom" />,
+                <DatePanel markFocused />,
+              ]}
+            />
             <div className="input-group-append">
-              <span className="input-group-text h-100" id="basic-addon2">
+              <span className="input-group-text h-100">
                 <i className="fa-solid fa-calendar-days text-secondary"> </i>
               </span>
             </div>
           </div>
 
           <label htmlFor="address">
-            {" "}
             What is the address where this being offered?{" "}
           </label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text h-100" id="address">
+              <span className="input-group-text h-100">
                 <i className="fa-solid fa-map-location-dot text-secondary"></i>
               </span>
             </div>
             <input
+              id="address"
               className="form-control"
               name="type"
               type="text"
@@ -156,7 +220,7 @@ const CreateResource = () => {
           <label htmlFor="website"> Is there a website? </label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text  h-100" id="address">
+              <span className="input-group-text  h-100" id="website">
                 {/* <i className="fa-regular fa-globe"></i> */}
                 <i className="fa-solid fa-globe text-secondary"></i>
               </span>
@@ -172,7 +236,7 @@ const CreateResource = () => {
           <label htmlFor="phone"> Is there a phone number? </label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text  h-100" id="address">
+              <span className="input-group-text  h-100" id="phone">
                 <i className="fa-solid fa-phone text-secondary"></i>
               </span>
             </div>
@@ -184,23 +248,7 @@ const CreateResource = () => {
               onChange={(e) => setPhone(e.target.value)}
             ></input>
           </div>
-          <label htmlFor="name"> Name of the place</label>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text h-100" id="address">
-                {/* <i className="fa-solid fa-billboard text-secondary"></i> 
-                <i className="fa-solid fa-buildings text-secondary"></i>*/}
-                <i className="fa-solid fa-building text-secondary"></i>
-              </span>
-            </div>
-            <input
-              className="form-control"
-              name="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></input>
-          </div>
+
           {/* <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
@@ -233,6 +281,8 @@ const CreateResource = () => {
                 name="picture"
                 type="text"
                 placeholder="Choose file"
+                // value={document.getElementById("file")}
+                readOnly
               ></input>
             </div>
           </label>
@@ -243,7 +293,7 @@ const CreateResource = () => {
             value={urlPic}
             id="file"
             style={{ visibility: "hidden" }}
-            onChange={(e) => setUrlPic(e.target.value)}
+            onChange={(e) => setUrlPic(e.target.value)} // onChange={(e) => setUrlPic(e.target.files[0].name)}
           ></input>
         </form>
         <div className="float-end">

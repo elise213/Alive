@@ -115,7 +115,8 @@ def create_resource():
             phone = request_body["phone"],
             website = request_body["website"],
             schedule = request_body["schedule"],
-            resourceType = request_body["resourceType"]      
+            resourceType = request_body["resourceType"],
+            description = request_body["description"],      
             )
         db.session.add(resource)
         db.session.commit()

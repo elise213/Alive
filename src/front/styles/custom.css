@@ -1,3 +1,4 @@
+/********************** Buttons************************************/
 .custom-btn {
   border: none;
   background-color: blueviolet;
@@ -9,6 +10,7 @@
   color: white;
 }
 
+/********************** RadioButtons************************************/
 /* $form-check-input-checked-bg-color: blueviolet; */
 
 .form-check-input:checked {
@@ -37,3 +39,9 @@ input[type="radio"]:focus {
  .container:hover input ~ .form-check-input {
   background-color: #ccc;
 } */
+
+/********************** Date picker************************************/
+.rmdp-input {
+  height: 100%;
+  /* width: 100%; */
+}

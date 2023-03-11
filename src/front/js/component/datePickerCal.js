@@ -3,6 +3,7 @@ import DatePicker, { DateObject } from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import { Calendar } from "react-multi-date-picker";
+import "../../styles/custom.css";
 
 const DatePickerCal = () => {
   const [values, setValues] = useState(
@@ -11,7 +12,7 @@ const DatePickerCal = () => {
         day: number,
         hour: number,
         minute: number,
-        second: number,
+        // second: number,
       })
     )
   );

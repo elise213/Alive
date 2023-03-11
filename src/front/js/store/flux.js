@@ -5,10 +5,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment,check to make sure this is the same URL
       // front URL is port 3000
       current_front_url:
-        "https://3001-lalafontaine-alive-bwtkmh0rghv.ws-us89b.gitpod.io",
+        "https://3000-lalafontaine-alive-bwtkmh0rghv.ws-us90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-bwtkmh0rghv.ws-us89b.gitpod.io",
+        "https://3001-lalafontaine-alive-bwtkmh0rghv.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -156,7 +156,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         website,
         phone,
         address,
-        resourceType
+        resourceType,
+        description
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -174,6 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             phone: phone,
             address: address,
             resourceType: resourceType,
+            description: description,
           }),
         };
         try {
