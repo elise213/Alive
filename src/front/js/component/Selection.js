@@ -54,7 +54,6 @@ export const Selection = (props) => {
               id="food"
               value="food"
               name="selection"
-              // onChange={(e) => setType(e.target.value)}
               onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="food">
@@ -68,7 +67,6 @@ export const Selection = (props) => {
               id="shelter"
               value="shelter"
               name="selection"
-              // onChange={(e) => setType(e.target.value)}
               onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="shelter">
@@ -82,7 +80,6 @@ export const Selection = (props) => {
               id="health"
               value="health"
               name="selection"
-              // onChange={(e) => setType(e.target.value)}
               onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="health">
@@ -96,7 +93,6 @@ export const Selection = (props) => {
               id="hygiene"
               value="hygiene"
               name="selection"
-              // onChange={(e) => setType(e.target.value)}
               onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="hygiene">

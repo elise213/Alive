@@ -20,7 +20,7 @@ const userProfile = () => {
         </div>
       </div>
       <div>
-        <p className="favorites-heading">Resources you've liked:</p>
+        <p className="favorites-heading">Here are your favorite resources:</p>
         <ul className="">
           {favorites.map((fav, i) => {
             return (

@@ -139,14 +139,14 @@ def getComments(id):
     else:
         return jsonify(data=commentList.serialize())
 
-# # get resources for map
-# @api.route('/getResources', methods=['POST', 'GET'])
-# def getResources():
-#     resourceList = Resource.query.get(id)
-#     if resourceList is None:
-#         return jsonify(msg="No resources found")
-#     else:
-#         return jsonify(data=resourceList.serialize())
+# get resources for map
+@api.route('/getResources', methods=['GET'])
+def getResources():
+    resourceList = Resource.query.all()
+    if resourceList is None:
+        return jsonify(msg="No resources found")
+    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+    return jsonify(data=all_resources)
 
 # # get favorite resources
 # @api.route('/getFavoriteResources/<int:userId>', methods=['POST', 'GET'])

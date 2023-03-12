@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const ResourceCard = (props) => {
   const { store, actions } = useContext(Context);
   const [liked, setLiked] = useState(false);
-  let title = props.resName;
+  let title = props.name;
   let category = props.category;
   let logo = props.logo;
   let profilePic = props.profilePic;

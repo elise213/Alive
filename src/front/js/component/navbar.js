@@ -7,11 +7,12 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const token = sessionStorage.getItem("token");
   let is_org = store.is_org;
-  console.log("LATITUDE", store.latitude);
-  console.log("is_org", is_org);
+
+  // console.log("LATITUDE", store.latitude);
   // console.log("is_org is", is_org);
   // console.log("token is ", token);
-  console.log("avatar id", store.avatarID);
+  // console.log("avatar id" is, store.avatarID);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="navbar">
       {/* Navbar Brand Logo - Link to Home - Always Visible*/}

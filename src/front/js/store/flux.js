@@ -26,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
       ],
       favorites: ["first", "second", "third", "fourth", "fifth"],
+      searchResults: [],
     },
     actions: {
       login: async (email, password) => {
@@ -148,15 +149,63 @@ const getState = ({ getStore, getActions, setStore }) => {
       updateLocation: (latitude, longitude) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
-      deleteFavorite: (resourceName) => {
-        const favorites = getStore().favorites;
-        let filtered = favorites.filter((f, i) => f !== resourceName);
-        setStore({ favorites: filtered });
+      // deleteFavorite: (resourceName) => {
+      //   const favorites = getStore().favorites;
+      //   let filtered = favorites.filter((f, i) => f !== resourceName);
+      //   setStore({ favorites: filtered });
+      // },
+      // addFavorite: (resourceName) => {
+      //   const favorite = getStore().favorites;
+      //   favorite.push(resourceName);
+      //   setStore({ favorites: favorite });
+      // },
+
+      setSearchResults: () => {
+        const searchResults = getStore().searchResults;
+        fetch(getStore().current_back_url + "/api/getResources")
+          .then((response) => response.json())
+          .then((response) => setStore({ searchResults: response.data }))
+          .catch((error) => console.log(error));
       },
-      addFavorite: (resourceName) => {
-        const favorite = getStore().favorites;
-        favorite.push(resourceName);
-        setStore({ favorites: favorite });
+
+      filterSearchResults: (searchInput, when, radius, categorySearch) => {
+        const searchResults = getStore().searchResults;
+        if (searchInput) {
+          let newResults = searchResults.filter((resource) =>
+            resource.name.includes(searchInput)
+          );
+          if (when) {
+            newResults = newResults.filter((resource) =>
+              resource.schedule.includes(when)
+            );
+          }
+          if (radius) {
+            newResults = newResults.filter((resource) =>
+              resource.radius.includes(radius)
+            );
+          }
+          if (categorySearch) {
+            newResults = newResults.filter((resource) =>
+              resource.categorySearch.includes(categorySearch)
+            );
+          }
+        } else {
+          if (when) {
+            newResults = newResults.filter((resource) =>
+              resource.schedule.includes(when)
+            );
+          }
+          if (radius) {
+            newResults = newResults.filter((resource) =>
+              resource.radius.includes(radius)
+            );
+          }
+          if (categorySearch) {
+            newResults = newResults.filter((resource) =>
+              resource.categorySearch.includes(categorySearch)
+            );
+          }
+        }
       },
     },
   };
