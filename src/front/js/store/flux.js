@@ -157,6 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         phone,
         address,
         resourceType,
+        picture,
         description
       ) => {
         const current_back_url = getStore().current_back_url;
@@ -175,6 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             phone: phone,
             address: address,
             resourceType: resourceType,
+            picture: picture,
             description: description,
           }),
         };

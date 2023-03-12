@@ -111,11 +111,12 @@ def create_resource():
             return jsonify({"message": "Resource already exists"}), 400
         resource = Resource(
             name = request_body["name"],
+            schedule = request_body["schedule"],
             address = request_body["address"],
             phone = request_body["phone"],
             website = request_body["website"],
-            schedule = request_body["schedule"],
             resourceType = request_body["resourceType"],
+            picture = request_body["picture"],
             description = request_body["description"],      
             )
         db.session.add(resource)

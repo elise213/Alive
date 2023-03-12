@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-// import DatePickerCal from "../component/datePickerCal.js";
-// import { Calendar } from "react-multi-date-picker";
-// import "../../styles/custom.css";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
@@ -20,7 +17,6 @@ const CreateResource = () => {
   const { store, actions } = useContext(Context);
   const [description, setDescription] = useState("");
   let dates = "";
-  // const [dateValues, setDateValues] = useState();
 
   const CustomInput = ({ value, onClick, onChange }) => (
     <input
@@ -34,11 +30,11 @@ const CreateResource = () => {
   );
 
   function handleClick(e) {
-    dates = schedule.toString();
+    // schedule = schedule.toString();
     e.preventDefault();
     actions.createResource(
       name,
-      dates,
+      schedule,
       website,
       phone,
       address,
@@ -139,12 +135,7 @@ const CreateResource = () => {
               id="resourceHy"
               value="hygiene"
               checked={resourceType === "hygiene"}
-              onChange={
-                (e) =>
-                  setResourceType(
-                    e.target.value
-                  ) /*, console.log(resourceType)*/
-              }
+              onChange={(e) => setResourceType(e.target.value)}
             />
             <label className="form-check-label" htmlFor="resourceHy">
               Hygiene
@@ -154,29 +145,23 @@ const CreateResource = () => {
           {/*<DatePickerCal />
            <Calendar fullYear /> */}
           <label htmlFor="type"> When is this being offered? </label>
-
+          <input
+            className="form-control"
+            name="date"
+            type="text"
+            value={schedule}
+            // onChange={(e) => setSchedule(e.target.value)}
+          ></input>
           <div className="input-group mb-3">
-            {/* <input
-              className="form-control"
-              name="schedule"
-              type="text"
-              value={schedule}
-              onChange={(e) => setSchedule(e.target.value)}
-            ></input> */}
             {/* <DatePickerCal /> */}
             <DatePicker
               value={schedule}
               customInput={<CustomInput />}
-              onChange={() => {
-                setSchedule();
-                dates = schedule.toString();
-                console.log(dates);
-              }}
-              format="MM/DD/YYYY HH:mm"
+              onChange={setSchedule}
+              format="MM/DD/YYYY HH:mm:ss"
               multiple
               plugins={[
                 <TimePicker position="bottom" hideSeconds />,
-                <TimePicker position="bottom" />,
                 <DatePanel markFocused />,
               ]}
             />

@@ -47,7 +47,8 @@ class Resource(db.Model):
                 "website": self.website,
                 "schedule": self.schedule,
                 "resourceType": self.resourceType,   
-                "picture": self.picture,        
+                "picture": self.picture,   
+                "description": self.description,     
             }
             
 class Organization(db.Model):
@@ -66,7 +67,6 @@ class Organization(db.Model):
             "id": self.id,
             "name": self.name,
             "email": self.email,
-            # do not serialize the password, its a security breach
         }
     
 class Comment(db.Model):
