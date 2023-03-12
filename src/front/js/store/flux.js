@@ -25,6 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
         "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
       ],
+      favorites: [],
     },
     actions: {
       login: async (email, password) => {
@@ -144,9 +145,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
-
       updateLocation: (latitude, longitude) => {
         setStore({ latitude: latitude, longitude: longitude });
+      },
+      deleteFavorite: (resourceName) => {
+        const favorites = getStore().favorites;
+        let filtered = favorites.filter((f, i) => i !== resourceName);
+        setStore({ favorites: filtered });
+      },
+      addFavorite: (resourceName) => {
+        const favorite = getStore().favorites;
+        favorite.push(resourceName);
+        setStore({ favorites: favorite });
       },
     },
   };

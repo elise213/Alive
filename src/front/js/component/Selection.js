@@ -1,24 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 export const Selection = (props) => {
+  const [categorySearch, setCategorySearch] = useState([]);
+  const [when, setWhen] = useState([]);
+  const [radius, setRadius] = useState(["25"]);
+
+  console.log(categorySearch);
+  console.log(when);
+  console.log(radius);
+
+  function handleCategorySearch(event) {
+    const element = event.target;
+    const value = element.value;
+    if (element.type === "checkbox" && element.checked) {
+      setCategorySearch([...categorySearch, value]);
+    }
+    if (element.type === "checkbox" && !element.checked) {
+      let filtered = categorySearch.filter((item) => item !== value);
+      setCategorySearch(filtered);
+    }
+  }
+
+  function handleWhen(event) {
+    const element = event.target;
+    const value = element.value;
+    if (element.type === "checkbox" && element.checked) {
+      setWhen([...when, value]);
+    }
+    if (element.type === "checkbox" && !element.checked) {
+      let filtered = when.filter((item) => item !== value);
+      setWhen(filtered);
+    }
+  }
+
+  function handleRadius(event) {
+    const element = event.target;
+    const value = element.value;
+    if (element.type === "radio" && element.checked) {
+      setRadius([value]);
+    }
+  }
+
   return (
     <div className="row mx-4 my-3">
-      <div className="col-2"></div>
-      <div className="col-8">
-        {/* <!-- What type of resource--> */}
-        <div className="d-flex justify-content-evenly" id="selection">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id=""
-              value=""
-              name="selection"
-            />
-            <label className="form-check-label" for="flexCheckChecked">
-              All resources
-            </label>
-          </div>
+      {/* <!-- What type of resource--> */}
+      <div className="col-4">
+        <p className="selection-headers">What kind of resource?</p>
+        <div className="" id="selection">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -26,6 +54,8 @@ export const Selection = (props) => {
               id="food"
               value="food"
               name="selection"
+              // onChange={(e) => setType(e.target.value)}
+              onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="food">
               Food
@@ -38,6 +68,8 @@ export const Selection = (props) => {
               id="shelter"
               value="shelter"
               name="selection"
+              // onChange={(e) => setType(e.target.value)}
+              onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="shelter">
               Shelter
@@ -50,6 +82,8 @@ export const Selection = (props) => {
               id="health"
               value="health"
               name="selection"
+              // onChange={(e) => setType(e.target.value)}
+              onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="health">
               Health
@@ -62,83 +96,27 @@ export const Selection = (props) => {
               id="hygiene"
               value="hygiene"
               name="selection"
+              // onChange={(e) => setType(e.target.value)}
+              onChange={handleCategorySearch}
             />
             <label className="form-check-label" for="hygiene">
               Hygiene
             </label>
           </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="children"
-              value="children"
-              name="selection"
-            />
-            <label className="form-check-label" for="children">
-              For children
-            </label>
-          </div>
-
-          {/* Radius? */}
-          {/* <div class="btn-group d-inline-flex">
-            <button
-              type="button"
-              class="btn btn-success dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Radius
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="#">
-                  1 Mile
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  5 Miles
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  20 Miles
-                </a>
-              </li>
-            </ul>
-          </div> */}
-
-          <select
-            className="btn btn-success"
-            defaultValue={props.radius}
-            onChange={(e) => props.setRadius(e.target.value)}
-          >
-            <option value={1}>1 miles</option>
-            <option value={5}>5 miles</option>
-            <option value={25}>25 miles</option>
-          </select>
         </div>
+      </div>
 
-        {/* <!-- When ? --> */}
-        <div className="d-flex justify-content-evenly my-3" id="selection">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="flexCheckChecked"
-              value=""
-            />
-            <label className="form-check-label" for="flexCheckChecked">
-              Anytime
-            </label>
-          </div>
+      {/* <!-- When ? --> */}
+      <div className="col-4">
+        <p className="selection-headers">When would you like to go?</p>
+        <div className="" id="selection">
           <div className="form-check">
             <input
               className="form-check-input"
               type="checkbox"
               id="monday"
               value="monday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="monday">
               Monday
@@ -150,6 +128,7 @@ export const Selection = (props) => {
               type="checkbox"
               id="tuesday"
               value="tuesday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="tuesday">
               Tuesday
@@ -161,6 +140,7 @@ export const Selection = (props) => {
               type="checkbox"
               id="wednesday"
               value="wednesday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="wednesday">
               Wednesday
@@ -172,6 +152,7 @@ export const Selection = (props) => {
               type="checkbox"
               id="thursday"
               value="thursday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="thursday">
               Thursday
@@ -183,6 +164,7 @@ export const Selection = (props) => {
               type="checkbox"
               id="friday"
               value="friday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="friday">
               Friday
@@ -194,6 +176,7 @@ export const Selection = (props) => {
               type="checkbox"
               id="saturday"
               value="saturday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="saturday">
               Saturday
@@ -205,6 +188,7 @@ export const Selection = (props) => {
               type="checkbox"
               id="sunday"
               value="sunday"
+              onChange={handleWhen}
             />
             <label className="form-check-label" for="sunday">
               Sunday
@@ -212,7 +196,52 @@ export const Selection = (props) => {
           </div>
         </div>
       </div>
-      <div className="col-2"></div>
+
+      {/* Radius */}
+      <div className="col-4">
+        <p className="selection-headers">How far can you travel?</p>
+        <div className="" id="selection">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              id="25 miles"
+              value="25 miles"
+              name="selection"
+              onChange={handleRadius}
+            />
+            <label className="form-check-label" htmlFor="25 miles">
+              25 miles
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              id="5 miles"
+              value="5 miles"
+              name="selection"
+              onChange={handleRadius}
+            />
+            <label className="form-check-label" htmlFor="5 miles">
+              5 miles
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              id="1 mile"
+              value="1 mile"
+              name="selection"
+              onChange={handleRadius}
+            />
+            <label className="form-check-label" htmlFor="1 mile">
+              1 mile
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

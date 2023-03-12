@@ -36,6 +36,8 @@ class Resource(db.Model):
         website = db.Column(db.String(256), unique=False, nullable=True)
         schedule = db.Column(db.String(500), unique=False, nullable=True)
         description = db.Column(db.String(250), unique=False, nullable=True)
+        latitude = db.Column(db.String(250), unique=False, nullable=True)
+        longitude = db.Column(db.String(250), unique=False, nullable=True)
         organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
       
         def __repr__(self):

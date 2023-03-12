@@ -9,41 +9,18 @@ import { Selection } from "../component/Selection";
 
 export const Search = () => {
   let params = useParams();
-  console.log(params);
-  const [radius, setRadius] = useState(1);
+  console.log("params", params);
+
   return (
     <div className="grand-container py-4">
-      <Searchbar radius={radius} />
-
-      <Selection radius={radius} setRadius={setRadius} />
-
+      <Searchbar />
+      <Selection />
       {/* <!-- Search Results --> */}
       <div className="search-results-full row">
         <div className="search-results-resources col-3">
-          <ResourceCard
-            resName="Resource1"
-            resDescription="Open Saturdays 9am-2pm"
-            resWebsite="555-5555"
-            rating="3"
-            profilePic="https://ibb.co/1Xjw9RS"
-            about="Lorem ipsum dolor sit
-            amet, consectetur adipisicing elit. Hic deleniti minus ducimus
-            illo, iure earum enim labore cum! Labore neque sapiente
-            temporibus praesentium! Velit, asperiores voluptatem possimus
-            nulla excepturi ipsa.."
-          />
-
-          <ResourceCard
-            resName="Resource2"
-            resDescription="Open Tuesday and Thursday 7am-6pm"
-            rating="2"
-          />
-
-          <ResourceCard
-            resName="Resource3"
-            resDescription="Open M-F 9am-5pm"
-            rating="1.5"
-          />
+          <ResourceCard />
+          <ResourceCard />
+          <ResourceCard />
         </div>
         <div className="col-9">
           <SimpleMap />

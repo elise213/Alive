@@ -6,16 +6,20 @@
     "category": "food",
     "website": "",
     "schedule": "",
-    "description": ""
+    "description": "",
+    "latitude": "34.05762167501406",
+    "longitude": "-118.2901160595026"
   },
   {
     "name": "Glendale Public Health Center",
-    "address": "501 N. Glendale Avenue Glendale CA 91206",
+    "address": "501 N. Glendale Avenue, Glendale CA 91206",
     "phone": "",
     "category": "health",
     "website": "www.com",
     "schedule": "",
-    "description": "bla bla bla"
+    "description": "bla bla bla",
+    "latitude": "34.15354480776716",
+    "longitude": "-118.24421153066476"
   },
   {
     "name": "LAHSA Hand Washing Station - Hollywood",
@@ -24,15 +28,19 @@
     "category": "hygiene",
     "website": "www.com",
     "schedule": "",
-    "description": "bla bla bla"
+    "description": "bla bla bla",
+    "latitude": "34.10185214330632",
+    "longitude": "-118.32233751532236"
   },
   {
     "name": "The Source: Free Health & Emergency Shelter Services",
-    "address": "7140 W. Sunset Boulevard Los Angeles, CA 90046",
+    "address": "7140 W. Sunset Boulevard, Los Angeles, CA 90046",
     "phone": "",
     "category": "shelter",
     "website": "www.com",
     "schedule": "",
-    "description": "bla bla"
+    "description": "bla bla",
+    "latitude": "34.09421597539273",
+    "longitude": "-118.37656743066601"
   }
 ]

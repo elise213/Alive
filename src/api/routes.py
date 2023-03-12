@@ -9,13 +9,11 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
-# import Organization
 
 api = Blueprint('api', __name__)
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
-
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     }
@@ -101,13 +99,14 @@ def create_resource():
             address = request_body["address"],
             phone = request_body["phone"],
             website = request_body["website"],
-            schedule = request_body["schedule"],       
+            schedule = request_body["schedule"],
+            description = request_body["description"],       
             )
         db.session.add(resource)
         db.session.commit()
         return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
     
-    # Create comments
+# Create comments
 @api.route('/createComment', methods=['POST'])
 def create_comment(id, user_id, resource_id, body, user, parentId):
     comment = Comment.query.get(id)
@@ -131,11 +130,29 @@ def create_comment(id, user_id, resource_id, body, user, parentId):
         db.session.commit()
         return jsonify({"created": "Thank you for your feedback", "status": "true"}), 200
 
-    # get comments
+# get comments
 @api.route('/getComments/<int:userId>', methods=['GET'])
 def getComments(id):
-  commentList = Comment.query.get(id)
-  if commentList is None:
-    return jsonify(msg="There are no comments yet")
-  else:
-    return jsonify(data=commentList.serialize())
+    commentList = Comment.query.get(id)
+    if commentList is None:
+        return jsonify(msg="There are no comments yet")
+    else:
+        return jsonify(data=commentList.serialize())
+
+# get resources for map
+@api.route('/getResources', methods=['POST', 'GET'])
+def getResources():
+    resourceList = Resource.query.get(id)
+    if resourceList is None:
+        return jsonify(msg="No resources found")
+    else:
+        return jsonify(data=resourceList.serialize())
+
+# get favorite resources
+@api.route('/getFavoriteResources/<int:userId>', methods=['POST', 'GET'])
+def getFavoriteResources(id):
+    favoriteResources = Resource.query.get(id)
+    if favoriteResources is None:
+        return jsonify(msg="No resources found")
+    else:
+        return jsonify(data=favoriteResources.serialize())
