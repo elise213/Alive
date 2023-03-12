@@ -16,7 +16,11 @@ const CreateResource = () => {
   const [urlPic, setUrlPic] = useState("");
   const { store, actions } = useContext(Context);
   const [description, setDescription] = useState("");
-  let dates = "";
+  const [day, setDay] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+
+  const addSchedule = (day, start, end) => console.log("");
 
   const CustomInput = ({ value, onClick, onChange }) => (
     <input
@@ -45,8 +49,9 @@ const CreateResource = () => {
   }
 
   return (
-    <div className="row center mx-auto col-4 text-secondary mb-3">
+    <div className="row center mx-auto col-6 text-secondary mb-3">
       <div className="m-4">
+        <p>Please provide the information to register your resource</p>
         <form className="d-flex flex-column">
           <label htmlFor="name"> Name of the place</label>
           <div className="input-group mb-3">
@@ -79,7 +84,8 @@ const CreateResource = () => {
           <label className="form-check-label" htmlFor="resourceType">
             What kind of Resource are you offering?
           </label>
-          <div className="form-check">
+          {/* <div className="form-check form-row"> */}
+          <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
@@ -95,7 +101,7 @@ const CreateResource = () => {
               Food
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
@@ -111,7 +117,8 @@ const CreateResource = () => {
               Shelter
             </label>
           </div>
-          <div className="form-check">
+
+          <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
@@ -127,7 +134,7 @@ const CreateResource = () => {
               Health
             </label>
           </div>
-          <div className="form-check mb-3">
+          <div className="form-check mb-3 form-check-inline">
             <input
               className="form-check-input"
               type="radio"
@@ -141,20 +148,82 @@ const CreateResource = () => {
               Hygiene
             </label>
           </div>
-
+          {/* </div> */}
           {/*<DatePickerCal />
            <Calendar fullYear /> */}
+
           <label htmlFor="type"> When is this being offered? </label>
-          <input
-            className="form-control"
-            name="date"
-            type="text"
-            value={schedule}
-            // onChange={(e) => setSchedule(e.target.value)}
-          ></input>
-          <div className="input-group mb-3">
+
+          <div
+            className="input-group form-row mb-3"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Please enter the schedule your service is offered"
+          >
+            <div className="col-6">
+              <label htmlFor="day" className="form-label">
+                Day
+              </label>
+              <input
+                className="form-control"
+                list="DayOptions"
+                id="day"
+                placeholder="Select days"
+                name="day"
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
+              />
+              <datalist id="DayOptions">
+                <option value="Monday" />
+                <option value="Tuesday" />
+                <option value="Wednesday" />
+                <option value="Thursday" />
+                <option value="Friday" />
+                <option value="Saturday" />
+                <option value="Sunday" />
+              </datalist>
+            </div>
+            <div
+              className="col-3"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Please enter start time"
+            >
+              <label htmlFor="startTime" className="form-label">
+                Start
+              </label>
+              <input
+                className="form-control"
+                name="timeSchedule"
+                type="time"
+                id="startTime"
+                value={startTime}
+                onFocus={(e) => e.target.showPicker()}
+                placeholder="start"
+                onChange={(e) => setStartTime(e.target.value)}
+              ></input>
+            </div>
+            <div
+              className="col-3"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Please enter end time"
+            >
+              <label htmlFor="endTime" className="form-label">
+                End
+              </label>
+              <input
+                type="time"
+                name="timeSchedule"
+                id="endTime"
+                value={endTime}
+                className="form-control text-secondary"
+                onFocus={(e) => e.target.showPicker()}
+                onChange={(e) => setEndTime(e.target.value)}
+              />
+            </div>
             {/* <DatePickerCal /> */}
-            <DatePicker
+            {/* <DatePicker
               value={schedule}
               customInput={<CustomInput />}
               onChange={setSchedule}
@@ -164,12 +233,12 @@ const CreateResource = () => {
                 <TimePicker position="bottom" hideSeconds />,
                 <DatePanel markFocused />,
               ]}
-            />
+            /> 
             <div className="input-group-append">
               <span className="input-group-text h-100">
                 <i className="fa-solid fa-calendar-days text-secondary"> </i>
               </span>
-            </div>
+            </div>*/}
           </div>
 
           <label htmlFor="address">
@@ -234,26 +303,24 @@ const CreateResource = () => {
             ></input>
           </div>
 
-          {/* <div className="input-group mb-3">
+          <label htmlFor="file">Picture</label>
+          <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text">
+              <span className="input-group-text  h-100" id="phone">
                 <i className="fa-solid fa-image text-secondary"></i>
               </span>
             </div>
-            <div className="custom-file">
-              <input
-                type="file"
-                className="custom-file-input"
-                value={urlPic}
-                id="urlPic"
-              />
-              <label className="custom-file-label" htmlFor="urlPic">
-                Choose file
-              </label>
-            </div>
-          </div> */}
+            <input
+              className="form-control"
+              name="phone"
+              type="file"
+              value={urlPic}
+              id="urlPic"
+              onChange={(e) => setUrlPic(e.target.value)}
+            ></input>
+          </div>
 
-          <label htmlFor="file">
+          {/* <label htmlFor="file">
             Picture
             <div className="input-group mb-3">
               <div className="input-group-prepend">
@@ -279,7 +346,7 @@ const CreateResource = () => {
             id="file"
             style={{ visibility: "hidden" }}
             onChange={(e) => setUrlPic(e.target.value)} // onChange={(e) => setUrlPic(e.target.files[0].name)}
-          ></input>
+          ></input> */}
         </form>
         <div className="float-end">
           <button
