@@ -33,6 +33,9 @@ export const Search = () => {
                       category={result.category}
                       key={result.id}
                       name={result.name}
+                      logo={result.logo}
+                      schedule={result.schedule}
+                      image={result.image}
                     />
                   </li>
                 );

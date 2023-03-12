@@ -38,6 +38,8 @@ class Resource(db.Model):
         description = db.Column(db.String(250), unique=False, nullable=True)
         latitude = db.Column(db.String(250), unique=False, nullable=True)
         longitude = db.Column(db.String(250), unique=False, nullable=True)
+        image = db.Column(db.String(250), unique=False, nullable=True)
+        logo = db.Column(db.String(250), unique=False, nullable=True)
         organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
       
         def __repr__(self):
@@ -52,7 +54,10 @@ class Resource(db.Model):
                 "website": self.website,
                 "schedule": self.schedule,
                 "description" : self.description,     
-                "category" : self.category,                       
+                "category" : self.category,
+                "website" : self.website,
+                "image" : self.image,
+                "logo" : self.logo,                       
                 # do not serialize the password, its a security breach
             }
             

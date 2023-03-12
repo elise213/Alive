@@ -5,10 +5,12 @@
     "phone": "213-401-1191",
     "category": "food",
     "website": "",
-    "schedule": "",
+    "schedule": "Monday-Friday: 9am-4pm",
     "description": "",
     "latitude": "34.05762167501406",
-    "longitude": "-118.2901160595026"
+    "longitude": "-118.2901160595026",
+    "image": "../src/front/images/urban_partners.png",
+    "logo": "../src/front/images/urban_partners_logo.png"
   },
   {
     "name": "Glendale Public Health Center",
@@ -16,10 +18,12 @@
     "phone": "",
     "category": "health",
     "website": "www.com",
-    "schedule": "",
+    "schedule": "Fridays: 8am-1pm",
     "description": "bla bla bla",
     "latitude": "34.15354480776716",
-    "longitude": "-118.24421153066476"
+    "longitude": "-118.24421153066476",
+    "image": "",
+    "logo": ""
   },
   {
     "name": "LAHSA Hand Washing Station - Hollywood",
@@ -27,10 +31,12 @@
     "phone": "",
     "category": "hygiene",
     "website": "www.com",
-    "schedule": "",
+    "schedule": "Tuesday and Thursday: 7am-12pm",
     "description": "bla bla bla",
     "latitude": "34.10185214330632",
-    "longitude": "-118.32233751532236"
+    "longitude": "-118.32233751532236",
+    "image": "",
+    "logo": ""
   },
   {
     "name": "The Source: Free Health & Emergency Shelter Services",
@@ -38,9 +44,11 @@
     "phone": "",
     "category": "shelter",
     "website": "www.com",
-    "schedule": "",
+    "schedule": "Monday-Friday: 9am-4pm",
     "description": "bla bla",
     "latitude": "34.09421597539273",
-    "longitude": "-118.37656743066601"
+    "longitude": "-118.37656743066601",
+    "image": "",
+    "logo": ""
   }
 ]

@@ -170,41 +170,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       filterSearchResults: (searchInput, when, radius, categorySearch) => {
         const searchResults = getStore().searchResults;
-        if (searchInput) {
-          let newResults = searchResults.filter((resource) =>
-            resource.name.includes(searchInput)
+
+        // Search-bar functionality:
+        // if (searchInput) {
+        //   let newResults = searchResults.filter((resource) =>
+        //     resource.name.includes(searchInput)
+        //   );
+        //   if (when) {
+        //     newResults = newResults.filter((resource) =>
+        //       resource.schedule.includes(when)
+        //     );
+        //   }
+        //   if (radius) {
+        //     newResults = newResults.filter((resource) =>
+        //       resource.radius.includes(radius)
+        //     );
+        //   }
+        //   if (categorySearch) {
+        //     newResults = newResults.filter((resource) =>
+        //       resource.categorySearch.includes(categorySearch)
+        //     );
+        //   }
+        // } else {
+        if (when) {
+          newResults = newResults.filter((resource) =>
+            resource.schedule.includes(when)
           );
-          if (when) {
-            newResults = newResults.filter((resource) =>
-              resource.schedule.includes(when)
-            );
-          }
-          if (radius) {
-            newResults = newResults.filter((resource) =>
-              resource.radius.includes(radius)
-            );
-          }
-          if (categorySearch) {
-            newResults = newResults.filter((resource) =>
-              resource.categorySearch.includes(categorySearch)
-            );
-          }
-        } else {
-          if (when) {
-            newResults = newResults.filter((resource) =>
-              resource.schedule.includes(when)
-            );
-          }
-          if (radius) {
-            newResults = newResults.filter((resource) =>
-              resource.radius.includes(radius)
-            );
-          }
-          if (categorySearch) {
-            newResults = newResults.filter((resource) =>
-              resource.categorySearch.includes(categorySearch)
-            );
-          }
+        }
+        // if (radius) {
+        //   newResults = newResults.filter((resource) =>
+        //     resource.radius.includes(radius)
+        //   );
+        // }
+        if (categorySearch) {
+          newResults = newResults.filter((resource) =>
+            resource.category.includes(categorySearch)
+          );
         }
       },
     },
