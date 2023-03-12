@@ -139,20 +139,20 @@ def getComments(id):
     else:
         return jsonify(data=commentList.serialize())
 
-# get resources for map
-@api.route('/getResources', methods=['POST', 'GET'])
-def getResources():
-    resourceList = Resource.query.get(id)
-    if resourceList is None:
-        return jsonify(msg="No resources found")
-    else:
-        return jsonify(data=resourceList.serialize())
+# # get resources for map
+# @api.route('/getResources', methods=['POST', 'GET'])
+# def getResources():
+#     resourceList = Resource.query.get(id)
+#     if resourceList is None:
+#         return jsonify(msg="No resources found")
+#     else:
+#         return jsonify(data=resourceList.serialize())
 
-# get favorite resources
-@api.route('/getFavoriteResources/<int:userId>', methods=['POST', 'GET'])
-def getFavoriteResources(id):
-    favoriteResources = Resource.query.get(id)
-    if favoriteResources is None:
-        return jsonify(msg="No resources found")
-    else:
-        return jsonify(data=favoriteResources.serialize())
+# # get favorite resources
+# @api.route('/getFavoriteResources/<int:userId>', methods=['POST', 'GET'])
+# def getFavoriteResources(id):
+#     favoriteResources = Resource.query.get(id)
+#     if favoriteResources is None:
+#         return jsonify(msg="No resources found")
+#     else:
+#         return jsonify(data=favoriteResources.serialize())

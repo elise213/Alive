@@ -8,9 +8,8 @@ const userProfile = () => {
   let avatarIndex = parseInt(store.avatarID);
   let link = store.avatarImages[parseInt(store.avatarID)];
   let name = store.name;
-  console.log("this is coming from user profile" + name);
+  console.log("name is coming from user profile:" + name);
 
-  console.log(store.avatarID);
   let field = null;
   if (is_org == "true") {
     field = <div>Organization</div>;
@@ -20,7 +19,7 @@ const userProfile = () => {
         <div>
           <h2>Welcome {name}</h2>
           <div>
-            <img src={link} />
+            <img className="userProfilePic" src={link} />
           </div>
         </div>
         {/* favorites */}
