@@ -9,21 +9,37 @@ const userProfile = () => {
   let link = store.avatarImages[parseInt(store.avatarID)];
   let name = store.name;
   console.log("name is coming from user profile:" + name);
+  let favorites = store.favorites;
 
-  let field = null;
-  if (is_org == "true") {
-    field = <div>Organization</div>;
-  } else if (is_org == "false") {
-    field = (
+  return (
+    <div className="userProfileCont">
       <div>
+        <p className="profile-greeting">Welcome, {name}!</p>
         <div>
-          <h2>Welcome {name}</h2>
-          <div>
-            <img className="userProfilePic" src={link} />
-          </div>
+          <img className="userProfilePic" src={link} />
         </div>
-        {/* favorites */}
-        {/* <div className="ml-auto">
+      </div>
+      <div>
+        <p className="favorites-heading">Resources you've liked:</p>
+        <ul className="">
+          {favorites.map((fav, i) => {
+            return (
+              <li>
+                <a className="favorite" key={i} href="">
+                  {fav}
+                  <i
+                    onClick={() => actions.deleteFavorite(fav)}
+                    className="fas fa-trash"
+                  ></i>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      {/* favorites */}
+      {/* <div className="ml-auto">
           <div className="dropdown">
             <button
               className="btn btn-primary dropdown-toggle"
@@ -52,16 +68,8 @@ const userProfile = () => {
             </ul>
           </div>
         </div> */}
-      </div>
-    );
-  } else {
-    field = (
-      <div>
-        <h1>You must be logged in to view this page</h1>
-      </div>
-    );
-  }
-  return <div className="userProfileCont">{field}</div>;
+    </div>
+  );
 };
 
 export default userProfile;

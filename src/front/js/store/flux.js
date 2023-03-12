@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-2s3x9zjuks0.ws-us90.gitpod.io",
+        "https://3000-lalafontaine-alive-yuuylk031ey.ws-eu90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-2s3x9zjuks0.ws-us90.gitpod.io",
+        "https://3001-lalafontaine-alive-yuuylk031ey.ws-eu90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
         "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
       ],
-      favorites: [],
+      favorites: ["first", "second", "third", "fourth", "fifth"],
     },
     actions: {
       login: async (email, password) => {
@@ -148,16 +148,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       updateLocation: (latitude, longitude) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
-      // deleteFavorite: (resourceName) => {
-      //   const favorites = getStore().favorites;
-      //   let filtered = favorites.filter((f, i) => i !== resourceName);
-      //   setStore({ favorites: filtered });
-      // },
-      // addFavorite: (resourceName) => {
-      //   const favorite = getStore().favorites;
-      //   favorite.push(resourceName);
-      //   setStore({ favorites: favorite });
-      // },
+      deleteFavorite: (resourceName) => {
+        const favorites = getStore().favorites;
+        let filtered = favorites.filter((f, i) => f !== resourceName);
+        setStore({ favorites: filtered });
+      },
+      addFavorite: (resourceName) => {
+        const favorite = getStore().favorites;
+        favorite.push(resourceName);
+        setStore({ favorites: favorite });
+      },
     },
   };
 };

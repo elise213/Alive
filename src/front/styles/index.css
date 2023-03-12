@@ -73,8 +73,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 50px;
 }
 
 .userProfilePic {
   width: 200px;
+  border-radius: 20%;
+}
+
+.profile-greeting,
+.favorites-heading {
+  font-family: "Courier New", Courier, monospace;
+  font-size: x-large;
+  font-weight: bold;
 }
