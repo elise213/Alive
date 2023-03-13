@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Organization, Resource
+from api.models import db, User, Organization, Resource, Favorites
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -34,10 +34,10 @@ def create_token():
             return jsonify({"message": "email is incorrect"}), 401
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
-        
+        favorites = getFavoritesByUserId(user.id)
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name)
+        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
 
 @api.route("/createUser", methods = ["POST"])
 def create_user():
@@ -148,11 +148,43 @@ def getResources():
     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
     return jsonify(data=all_resources)
 
-# # get favorite resources
-# @api.route('/getFavoriteResources/<int:userId>', methods=['POST', 'GET'])
-# def getFavoriteResources(id):
-#     favoriteResources = Resource.query.get(id)
-#     if favoriteResources is None:
-#         return jsonify(msg="No resources found")
-#     else:
-#         return jsonify(data=favoriteResources.serialize())
+# add favorite resource
+@api.route('/addFavorite', methods=['POST'])
+@jwt_required()
+def addFavorite():
+    userId = get_jwt_identity()
+    request_body = request.get_json()
+    fav = Favorites.query.filter_by(userId=userId, name=request_body["name"]).first()
+    if fav : 
+        return jsonify(message="favorite already exists")
+    favorite = Favorites(
+        userId=userId,
+        name=request_body["name"],
+    )
+    print(request_body["name"])
+    db.session.add(favorite)
+    db.session.commit()
+    return jsonify(message="okay")
+    
+# remove favorite resource
+@api.route('/removeFavorite', methods=['DELETE'])
+@jwt_required()
+def removeFavorite():
+    userId = get_jwt_identity()
+    request_body = request.get_json()
+    Favorites.query.filter_by(userId=userId, name=request_body["name"]).delete()
+    db.session.commit()
+    return jsonify(message="okay")
+    
+# get all favorites
+@api.route('/getFavorites', methods=['GET'])
+@jwt_required()
+def getFavorites():
+    userId = get_jwt_identity()
+    favorites = getFavoritesByUserId(userId)
+    return jsonify(favorites=favorites)
+def getFavoritesByUserId(userId):
+    getFavorites = Favorites.query.filter_by(userId=userId)
+    getFavorites = [getFavorites.serialize() for favorite in getFavorites]
+    print(getFavorites)
+    return getFavorites

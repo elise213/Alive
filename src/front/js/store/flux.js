@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-yuuylk031ey.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-b06ysafzbug.ws-eu90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-yuuylk031ey.ws-eu90.gitpod.io",
+        "https://3001-lalafontaine-alive-b06ysafzbug.ws-eu90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
         "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
       ],
-      favorites: ["first", "second", "third", "fourth", "fifth"],
+      favorites: [],
       searchResults: [],
     },
     actions: {
@@ -60,6 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             is_org: data.is_org,
             avatarID: data.avatar,
             name: data.name,
+            favorites: data.favorites,
           });
           console.log("AVATAR ID", getStore().avatarID);
           return true;
@@ -149,65 +150,117 @@ const getState = ({ getStore, getActions, setStore }) => {
       updateLocation: (latitude, longitude) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
+
       // deleteFavorite: (resourceName) => {
       //   const favorites = getStore().favorites;
       //   let filtered = favorites.filter((f, i) => f !== resourceName);
       //   setStore({ favorites: filtered });
       // },
-      // addFavorite: (resourceName) => {
-      //   const favorite = getStore().favorites;
-      //   favorite.push(resourceName);
-      //   setStore({ favorites: favorite });
-      // },
+
+      addFavorite: (resourceName) => {
+        const current_back_url = getStore().current_back_url;
+        const favorites = getStore().favorites;
+        const token = getStore().token;
+        if (sessionStorage.getItem("token")) {
+          const opts = {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+              name: resourceName,
+            }),
+          };
+          fetch(current_back_url + "/api/addFavorite", opts)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message == "okay") {
+                favorites.push(resourceName);
+                setStore({ favorites: favorites });
+              }
+            });
+        }
+      },
+      removeFavorite: (resourceName) => {
+        const current_back_url = getStore().current_back_url;
+        const favorites = getStore().favorites;
+        const token = getStore().token;
+        if (sessionStorage.getItem("token")) {
+          const opts = {
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+              name: resourceName,
+            }),
+          };
+          fetch(current_back_url + "/api/removeFavorite", opts)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message == "okay") {
+                favorites.forEach((element, index) => {
+                  if (element.name == resourceName) {
+                    favorites.splice(index, 1);
+                  }
+                });
+                setStore({ favorites: favorites });
+              }
+            })
+            .catch((error) => console.log(error));
+        }
+      },
 
       setSearchResults: () => {
         const searchResults = getStore().searchResults;
         fetch(getStore().current_back_url + "/api/getResources")
           .then((response) => response.json())
-          .then((response) => setStore({ searchResults: response.data }))
+          .then((data) => setStore({ searchResults: data.data }))
           .catch((error) => console.log(error));
       },
 
-      filterSearchResults: (searchInput, when, radius, categorySearch) => {
-        const searchResults = getStore().searchResults;
+      // filterSearchResults: (searchInput, when, radius, categorySearch) => {
+      //   const searchResults = getStore().searchResults;
 
-        // Search-bar functionality:
-        // if (searchInput) {
-        //   let newResults = searchResults.filter((resource) =>
-        //     resource.name.includes(searchInput)
-        //   );
-        //   if (when) {
-        //     newResults = newResults.filter((resource) =>
-        //       resource.schedule.includes(when)
-        //     );
-        //   }
-        //   if (radius) {
-        //     newResults = newResults.filter((resource) =>
-        //       resource.radius.includes(radius)
-        //     );
-        //   }
-        //   if (categorySearch) {
-        //     newResults = newResults.filter((resource) =>
-        //       resource.categorySearch.includes(categorySearch)
-        //     );
-        //   }
-        // } else {
-        if (when) {
-          newResults = newResults.filter((resource) =>
-            resource.schedule.includes(when)
-          );
-        }
-        // if (radius) {
-        //   newResults = newResults.filter((resource) =>
-        //     resource.radius.includes(radius)
-        //   );
-        // }
-        if (categorySearch) {
-          newResults = newResults.filter((resource) =>
-            resource.category.includes(categorySearch)
-          );
-        }
-      },
+      //   // Search-bar functionality:
+      //   // if (searchInput) {
+      //   //   let newResults = searchResults.filter((resource) =>
+      //   //     resource.name.includes(searchInput)
+      //   //   );
+      //   //   if (when) {
+      //   //     newResults = newResults.filter((resource) =>
+      //   //       resource.schedule.includes(when)
+      //   //     );
+      //   //   }
+      //   //   if (radius) {
+      //   //     newResults = newResults.filter((resource) =>
+      //   //       resource.radius.includes(radius)
+      //   //     );
+      //   //   }
+      //   //   if (categorySearch) {
+      //   //     newResults = newResults.filter((resource) =>
+      //   //       resource.categorySearch.includes(categorySearch)
+      //   //     );
+      //   //   }
+      //   // } else {
+      //   if (when) {
+      //     newResults = newResults.filter((resource) =>
+      //       resource.schedule.includes(when)
+      //     );
+      //   }
+      //   // if (radius) {
+      //   //   newResults = newResults.filter((resource) =>
+      //   //     resource.radius.includes(radius)
+      //   //   );
+      //   // }
+      //   if (categorySearch) {
+      //     newResults = newResults.filter((resource) =>
+      //       resource.category.includes(categorySearch)
+      //     );
+      //   }
+      // },
     },
   };
 };

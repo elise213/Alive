@@ -31,7 +31,7 @@ export const Search = () => {
                   <li>
                     <ResourceCard
                       category={result.category}
-                      key={result.id}
+                      // key={result.id}
                       name={result.name}
                       logo={result.logo}
                       schedule={result.schedule}

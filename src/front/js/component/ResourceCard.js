@@ -7,25 +7,27 @@ import { Context } from "../store/appContext";
 export const ResourceCard = (props) => {
   const { store, actions } = useContext(Context);
   const [liked, setLiked] = useState(false);
-  let title = props.name;
-  let category = props.category;
-  let logo = props.logo;
-  let profilePic = props.profilePic;
-  let description = props.description;
-
+  function handleClick(e) {
+    e.preventDefault();
+    console.log(props.name, typeof props.name);
+    actions.addFavorite(props.name);
+  }
   return (
     <div className="card mx-auto mb-3">
       <Link to="/resource">
         <div className="card-header d-flex">
-          <h4 className="card-title col-9">{title}</h4>
-          <img className="res-thumbnail col-3" src={logo} alt="logo" />
-          <h4 className="category">{category}</h4>
+          <h4 className="card-title col-9">{props.name}</h4>
+          <img className="res-thumbnail col-3" src={props.logo} alt="logo" />
+          <h4 className="category">{props.category}</h4>
         </div>
-        <img className="card-img" src={profilePic} alt="profile picture" />
+        <img className="card-img" src={props.image} alt="profile picture" />
         <div className="card-body">
-          <h5 className="card-text">{description}</h5>
+          <h5 className="card-text">{props.description}</h5>
         </div>
       </Link>
+      <button className="btn btn" onClick={(e) => handleClick(e)}>
+        Favorite
+      </button>
     </div>
   );
 };

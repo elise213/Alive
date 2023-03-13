@@ -100,4 +100,19 @@ class Comment(db.Model):
             comment_cont: self.body,
             parentId: self.parentId
         }   
+
+class Favorites(db.Model):
+    __tablename__ = 'Favorites'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(256))
+    userId = db.Column(db.Integer, nullable=False)
     
+    def __repr__(self):
+        return f'<Favorites {self.id}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "userId": self.userId,
+        }

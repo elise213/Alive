@@ -11,6 +11,11 @@ const userProfile = () => {
   console.log("name is coming from user profile:" + name);
   let favorites = store.favorites;
 
+  function handleClick(e, fav) {
+    e.preventDefault();
+    actions.deleteFavorite(fav);
+  }
+
   return (
     <div className="userProfileCont">
       <div>
@@ -28,7 +33,7 @@ const userProfile = () => {
                 <a className="favorite" key={i} href="">
                   {fav}
                   <i
-                    onClick={() => actions.deleteFavorite(fav)}
+                    onClick={(e) => handleClick(e, fav)}
                     className="fas fa-trash"
                   ></i>
                 </a>
