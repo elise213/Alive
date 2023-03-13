@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       favorites: [],
       searchResults: [],
+      filteredResults: [],
     },
     actions: {
       login: async (email, password) => {
@@ -154,12 +155,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
 
-      // deleteFavorite: (resourceName) => {
-      //   const favorites = getStore().favorites;
-      //   let filtered = favorites.filter((f, i) => f !== resourceName);
-      //   setStore({ favorites: filtered });
-      // },
-
       addFavorite: (resourceName) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
@@ -225,45 +220,37 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log(error));
       },
 
-      // filterSearchResults: (searchInput, when, radius, categorySearch) => {
+      // filterSearchResults: (when, radius, categorySearch) => {
       //   const searchResults = getStore().searchResults;
-
-      //   // Search-bar functionality:
-      //   // if (searchInput) {
-      //   //   let newResults = searchResults.filter((resource) =>
-      //   //     resource.name.includes(searchInput)
-      //   //   );
-      //   //   if (when) {
-      //   //     newResults = newResults.filter((resource) =>
-      //   //       resource.schedule.includes(when)
-      //   //     );
-      //   //   }
-      //   //   if (radius) {
-      //   //     newResults = newResults.filter((resource) =>
-      //   //       resource.radius.includes(radius)
-      //   //     );
-      //   //   }
-      //   //   if (categorySearch) {
-      //   //     newResults = newResults.filter((resource) =>
-      //   //       resource.categorySearch.includes(categorySearch)
-      //   //     );
-      //   //   }
-      //   // } else {
-      //   if (when) {
-      //     newResults = newResults.filter((resource) =>
-      //       resource.schedule.includes(when)
-      //     );
-      //   }
-      //   // if (radius) {
-      //   //   newResults = newResults.filter((resource) =>
-      //   //     resource.radius.includes(radius)
-      //   //   );
-      //   // }
-      //   if (categorySearch) {
-      //     newResults = newResults.filter((resource) =>
-      //       resource.category.includes(categorySearch)
-      //     );
-      //   }
+      //   const filteredResults = getStore().filteredResults;
+      //   searchResults.forEach((item, index) => {
+      //     console.log(categorySearch[0]);
+      //     if (
+      //       item.category == categorySearch[0]
+      //       // ||
+      //       // item.category.includes(categorySearch[1]) ||
+      //       // item.category.includes(categorySearch[2]) ||
+      //       // item.category.includes(categorySearch[3])
+      //     ) {
+      //       filteredResults.push(item);
+      //       setStore({ filteredResults: filteredResults });
+      //     }
+      //     // else if (categorySearch) {
+      //     //   newResults = newResults.filter((resource) =>
+      //     //     resource.category.includes(categorySearch)
+      //     //   );
+      //     // }
+      //     // else if (when) {
+      //     //   newResults = newResults.filter((resource) =>
+      //     //     resource.schedule.includes(when)
+      //     //   );
+      //     // } else if (radius) {
+      //     //   newResults = newResults.filter((resource) =>
+      //     //     resource.radius.includes(radius)
+      //     //   );
+      //     // }
+      //   });
+      //   console.log(filteredResults);
       // },
     },
   };

@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const Selection = (props) => {
+  const { store, actions } = useContext(Context);
   const [categorySearch, setCategorySearch] = useState([]);
   const [when, setWhen] = useState([]);
-  const [radius, setRadius] = useState(["25"]);
+  const [radius, setRadius] = useState([]);
 
   console.log(categorySearch);
   console.log(when);
@@ -237,6 +239,11 @@ export const Selection = (props) => {
             </label>
           </div>
         </div>
+        <button
+        // onClick={actions.filterSearchResults(when, radius, categorySearch)}
+        >
+          Filter Results
+        </button>
       </div>
     </div>
   );

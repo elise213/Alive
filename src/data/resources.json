@@ -22,11 +22,11 @@
     "description": "bla bla bla",
     "latitude": "34.15354480776716",
     "longitude": "-118.24421153066476",
-    "image": "",
-    "logo": ""
+    "image": "../../images/urban_partners.png",
+    "logo": "../../images/urban_partners_logo.png"
   },
   {
-    "name": "LAHSA Hand Washing Station - Hollywood",
+    "name": "LAHSA Hand Washing Station",
     "address": "Hollywood Blvd and North Gower, Los Angeles, CA 90028",
     "phone": "",
     "category": "hygiene",
@@ -39,7 +39,7 @@
     "logo": ""
   },
   {
-    "name": "The Source: Free Health & Emergency Shelter Services",
+    "name": "The Source: Health & Emergency Shelter Services",
     "address": "7140 W. Sunset Boulevard, Los Angeles, CA 90046",
     "phone": "",
     "category": "shelter",

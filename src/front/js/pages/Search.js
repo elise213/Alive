@@ -17,14 +17,15 @@ export const Search = () => {
 
   return (
     <div className="grand-container py-4">
-      <Searchbar />
+      {/* <Searchbar /> */}
+
       <Selection />
 
       {/* <!-- Full Search Results --> */}
       <div className="search-results-full row">
         {/* Search Result Cards */}
         <div className="search-results-resources col-3">
-          <ul className="">
+          <ul className="" style={{ listStyleType: "none" }}>
             {store.searchResults &&
               store.searchResults.map((result) => {
                 return (
