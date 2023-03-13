@@ -162,6 +162,7 @@ def addFavorite():
         name=request_body["name"],
     )
     print(request_body["name"])
+    print("Request body:", request_body)
     db.session.add(favorite)
     db.session.commit()
     return jsonify(message="okay")
@@ -184,7 +185,6 @@ def getFavorites():
     favorites = getFavoritesByUserId(userId)
     return jsonify(favorites=favorites)
 def getFavoritesByUserId(userId):
-    getFavorites = Favorites.query.filter_by(userId=userId)
-    getFavorites = [getFavorites.serialize() for favorite in getFavorites]
-    print(getFavorites)
-    return getFavorites
+    favorites = Favorites.query.filter_by(userId=userId).all()
+    serialized_favorites = [fav.serialize() for fav in favorites]
+    return serialized_favorites

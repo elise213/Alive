@@ -13,9 +13,8 @@ const userProfile = () => {
 
   function handleClick(e, fav) {
     e.preventDefault();
-    actions.deleteFavorite(fav);
+    actions.removeFavorite(fav);
   }
-
   return (
     <div className="userProfileCont">
       <div>
@@ -28,15 +27,16 @@ const userProfile = () => {
         <p className="favorites-heading">Here are your favorite resources:</p>
         <ul className="">
           {favorites.map((fav, i) => {
+            console.log("fav = ", fav);
             return (
-              <li>
-                <a className="favorite" key={i} href="">
+              <li key={i}>
+                <a className="favorite" href="">
                   {fav}
-                  <i
-                    onClick={(e) => handleClick(e, fav)}
-                    className="fas fa-trash"
-                  ></i>
                 </a>
+                <i
+                  onClick={(e) => handleClick(e, fav)}
+                  className="fas fa-trash"
+                ></i>
               </li>
             );
           })}

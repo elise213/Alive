@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-b06ysafzbug.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-r7jp9ilw5bx.ws-eu90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-b06ysafzbug.ws-eu90.gitpod.io",
+        "https://3001-lalafontaine-alive-r7jp9ilw5bx.ws-eu90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -50,17 +50,20 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          console.log(data);
+          console.log("data =", data);
           sessionStorage.setItem("token", data.access_token);
           sessionStorage.setItem("is_org", data.is_org);
           sessionStorage.setItem("name", data.name);
-
+          let favoriteNames = [];
+          data.favorites.forEach((favorite) => {
+            favoriteNames.push(favorite.name);
+          });
           setStore({
             token: data.access_token,
             is_org: data.is_org,
             avatarID: data.avatar,
             name: data.name,
-            favorites: data.favorites,
+            favorites: favoriteNames,
           });
           console.log("AVATAR ID", getStore().avatarID);
           return true;
@@ -161,6 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
         const token = getStore().token;
+        console.log(resourceName);
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
@@ -189,10 +193,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
-              Authorization: token,
+              Authorization: "Bearer " + token,
               "Content-Type": "application/json",
             },
-            method: "POST",
+            method: "DELETE",
             body: JSON.stringify({
               name: resourceName,
             }),
@@ -202,7 +206,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             .then((data) => {
               if (data.message == "okay") {
                 favorites.forEach((element, index) => {
-                  if (element.name == resourceName) {
+                  if (element == resourceName) {
                     favorites.splice(index, 1);
                   }
                 });
