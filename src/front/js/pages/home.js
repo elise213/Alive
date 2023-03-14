@@ -15,8 +15,8 @@ export const Home = () => {
       let longitude = position.coords.longitude;
       actions.updateLocation(latitude, longitude);
 
-      console.log("Aquí: " + latitude + " Long: " + longitude);
-      console.log("Allá: " + store.latitude + " Long: " + store.longitude);
+      // console.log("Aquí: " + latitude + " Long: " + longitude);
+      // console.log("Allá: " + store.latitude + " Long: " + store.longitude);
     }
 
     function error() {
@@ -62,7 +62,7 @@ export const Home = () => {
         <p>more text...</p>
       </div>
       <div className="row resourcesRow">
-        <div className="col-sm-4 mx-auto">
+        <div className="col-sm-3 mx-auto">
           <div className="card border-0 text-decoration-none">
             <div className="card-body text-center center">
               <Link to={"/search/food"} className="text-decoration-none">
@@ -75,7 +75,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-4 mx-auto">
+        <div className="col-sm-3 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link to={"/search/shelter"} className="text-decoration-none">
@@ -90,7 +90,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-4 mx-auto">
+        <div className="col-sm-3 mx-auto">
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link to={"/search/health"} className="text-decoration-none">
@@ -105,15 +105,29 @@ export const Home = () => {
             </div>
           </div>
         </div>
+        <div className="col-sm-3 mx-auto">
+          <div className="card border-0">
+            <div className="card-body text-center center">
+              <Link to={"/search/hygiene"} className="text-decoration-none">
+                <div className="circle rounded-circle bg-pink text-white text-center">
+                  {/* <i className="fa-regular fa-hands-bubbles"></i> */}
+                  <i className="fa-solid fa-hands-bubbles"></i>
+                </div>
+              </Link>
+              <h5 className="card-title">Hygiene</h5>
+              <p className="card-text">Find Hygiene resources in your area</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="row resourcesRow">
-        <div className="col-6 mt-3 mr-3">
+        <div className="col-4 mt-3 mr-3">
           <a
             href="https://www.fcc.gov/acp"
             className="text-decoration-none text-white"
             target="_blank"
           >
-            <div className="card limeGreen2 text-white border-0">
+            <div className="card darkViolet text-white border-0 h-100 w-100">
               <div className="card-body text-center center ">
                 <div className="circle rounded-circle text-white text-center">
                   <i className="fa-solid fa-mobile-screen-button"></i>
@@ -136,13 +150,14 @@ export const Home = () => {
           </a>
         </div>
 
-        <div className="col-6 mt-3">
-          <div className="card bg-secondary text-white border-0">
-            <div className="card-body text-center center">
-              <div className="circle rounded-circle text-white text-center">
-                <i className="fa-solid fa-circle-info"></i>
-              </div>
-              <h5 className="card-title text-white">Other resources</h5>
+        <div className="col-8 mt-3">
+          <div className="card bg-secondary text-white border-0 w-100">
+            <div className="card-body">
+              <i className="fa-solid fa-circle-info bigIcon"></i>
+              <span>
+                <h5 className="card-title text-white">Other resources</h5>
+              </span>
+
               <p className="card-text text-white">
                 <i className="fa-solid fa-scale-balanced m-1"></i>
                 <a
@@ -154,11 +169,24 @@ export const Home = () => {
                 </a>
               </p>
               <p className="card-text text-white">
-                <i class="fa-solid fa-head-side-heart m-1"></i> Free Mental
-                health
-                {/*<a ref="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm" className="text-decoration-none text-white" target="_blank">
+                <i className="fa-solid fa-file-certificate"></i>
+                <a
+                  href="https://www.axishelps.org/individuals/job-training-employment-support"
+                  className="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  Job Training & Employment Support
+                </a>
+              </p>
+              <p className="card-text text-white">
+                <i className="fa-solid fa-head-side-heart m-1"></i>
+                <a
+                  href="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm"
+                  className="text-decoration-none text-white"
+                  target="_blank"
+                >
                   Free Mental health
-                </a>*/}
+                </a>
               </p>
             </div>
           </div>

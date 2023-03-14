@@ -1,47 +1,66 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/search.css";
 import { SimpleMap } from "../component/SimpleMap";
-import { Link } from "react-router-dom";
-import { Searchbar } from "../component/Searchbar";
+import { Link, useParams } from "react-router-dom";
 import { ResourceCard } from "../component/ResourceCard";
 import { Selection } from "../component/Selection";
 
 export const Search = () => {
+  const { store, actions } = useContext(Context);
+
+  // let params = useParams();
+  // console.log("params", params);
+
+  useEffect(() => actions.setSearchResults(), []);
+
   return (
     <div className="grand-container py-4">
-      <Searchbar />
+      {/* <Searchbar /> */}
 
       <Selection />
 
-      {/* <!-- Search Results --> */}
+      {/* <!-- Full Search Results --> */}
       <div className="search-results-full row">
+        {/* Search Result Cards */}
         <div className="search-results-resources col-3">
-          <ResourceCard
-            resName="Resource1"
-            resDescription="Open Saturdays 9am-2pm"
-            resWebsite="555-5555"
-            rating="3"
-            profilePic="https://ibb.co/1Xjw9RS"
-            about="Lorem ipsum dolor sit
-            amet, consectetur adipisicing elit. Hic deleniti minus ducimus
-            illo, iure earum enim labore cum! Labore neque sapiente
-            temporibus praesentium! Velit, asperiores voluptatem possimus
-            nulla excepturi ipsa.."
-          />
-
-          <ResourceCard
-            resName="Resource2"
-            resDescription="Open Tuesday and Thursday 7am-6pm"
-            rating="2"
-          />
-
-          <ResourceCard
-            resName="Resource3"
-            resDescription="Open M-F 9am-5pm"
-            rating="1.5"
-          />
+          <ul className="" style={{ listStyleType: "none" }}>
+            {store.filteredResults[0]
+              ? store.filteredResults.map((result) => {
+                  return (
+                    <li>
+                      <ResourceCard
+                        category={result.category}
+                        key={result.id}
+                        name={result.name}
+                        logo={result.logo}
+                        schedule={result.schedule}
+                        image={result.image}
+                        icon={result.icon}
+                        description={result.description}
+                      />
+                    </li>
+                  );
+                })
+              : store.searchResults.map((result) => {
+                  return (
+                    <li>
+                      <ResourceCard
+                        category={result.category}
+                        key={result.id}
+                        name={result.name}
+                        logo={result.logo}
+                        schedule={result.schedule}
+                        image={result.image}
+                        icon={result.icon}
+                      />
+                    </li>
+                  );
+                })}
+          </ul>
         </div>
+
+        {/* Search Result Map */}
         <div className="col-9">
           <SimpleMap />
         </div>
