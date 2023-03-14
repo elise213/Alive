@@ -1,32 +1,43 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { useParams } from "react-router-dom";
 
 export const Selection = (props) => {
   const { store, actions } = useContext(Context);
   const [categorySearch, setCategorySearch] = useState([]);
   const [when, setWhen] = useState([]);
   const [radius, setRadius] = useState([]);
+  const params = useParams();
 
-  // console.log(categorySearch);
   // console.log(when);
   // console.log(radius);
+  console.log(categorySearch);
 
-  function handleUpdate(e) {
+  useEffect(() => {
+    setCategorySearch([params.resourceType.toLowerCase()]);
+  }, []);
+
+  // Call filterSearchResults and update the checked checkboxes
+  useEffect(() => {
+    actions.filterSearchResults(when, radius, categorySearch);
+    if (categorySearch.includes("food")) {
+      let food = document.querySelector("#food");
+      food.checked = true;
+    } else if (categorySearch.includes("hygiene")) {
+      let hygiene = document.querySelector("#hygiene");
+      hygiene.checked = true;
+    } else if (categorySearch.includes("shelter")) {
+      let shelter = document.querySelector("#shelter");
+      shelter.checked = true;
+    } else if (categorySearch.includes("health")) {
+      let health = document.querySelector("#health");
+      health.checked = true;
+    }
+  }, [categorySearch]);
+
+  function handleFilters(e) {
     e.preventDefault();
     actions.filterSearchResults(when, radius, categorySearch);
-  }
-
-  function handleReset(e) {
-    e.preventDefault();
-    actions.resetSearchResults();
-    let food = document.querySelector("#food");
-    food.checked = false;
-    let hygiene = document.querySelector("#hygiene");
-    hygiene.checked = false;
-    let shelter = document.querySelector("#shelter");
-    shelter.checked = false;
-    let health = document.querySelector("#health");
-    health.checked = false;
   }
 
   function handleCategorySearch(event) {
@@ -40,6 +51,31 @@ export const Selection = (props) => {
       setCategorySearch(filtered);
     }
   }
+
+  function handleResetFilters(e) {
+    e.preventDefault();
+    actions.resetSearchResults();
+    let food = document.querySelector("#food");
+    food.checked = false;
+    let hygiene = document.querySelector("#hygiene");
+    hygiene.checked = false;
+    let shelter = document.querySelector("#shelter");
+    shelter.checked = false;
+    let health = document.querySelector("#health");
+    health.checked = false;
+  }
+
+  // function handleCity(event) {
+  //   const element = event.target;
+  //   const value = element.value;
+  //   if (element.type === "checkbox" && element.checked) {
+  //     setCategorySearch([...city, value]);
+  //   }
+  //   if (element.type === "checkbox" && !element.checked) {
+  //     let filtered = city.filter((item) => item !== value);
+  //     setCategorySearch(filtered);
+  //   }
+  // }
 
   function handleWhen(event) {
     const element = event.target;
@@ -64,7 +100,7 @@ export const Selection = (props) => {
   return (
     <div className="row mx-4 my-3">
       {/* <!-- What type of resource--> */}
-      <div className="col-4">
+      <div className="col-3">
         <p className="selection-headers">What kind of resource?</p>
         <div className="" id="selection">
           <div className="form-check">
@@ -123,7 +159,7 @@ export const Selection = (props) => {
       </div>
 
       {/* <!-- When ? --> */}
-      <div className="col-4">
+      <div className="col-3">
         <p className="selection-headers">When would you like to go?</p>
         <div className="" id="selection">
           <div className="form-check">
@@ -214,7 +250,7 @@ export const Selection = (props) => {
       </div>
 
       {/* Radius */}
-      <div className="col-4">
+      <div className="col-3">
         <p className="selection-headers">How far can you travel?</p>
         <div className="" id="selection">
           <div className="form-check">
@@ -257,8 +293,53 @@ export const Selection = (props) => {
             </label>
           </div>
         </div>
-        <button onClick={(e) => handleUpdate(e)}>Filter Results</button>
-        <button onClick={(e) => handleReset(e)}>Reset</button>
+      </div>
+      {/* <!-- Which City? --> */}
+      <div className="col-3">
+        <p className="selection-headers">What City?</p>
+        <div className="" id="selection">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="los angeles"
+              value="los angeles"
+              name="selection"
+              // onChange={handleCity}
+            />
+            <label className="form-check-label" for="los angeles">
+              Los Angeles
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="miami"
+              value="miami"
+              name="selection"
+              // onChange={handleCity}
+            />
+            <label className="form-check-label" for="miami">
+              Miami
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="new york"
+              value="new york"
+              name="selection"
+              // onChange={handleCity}
+            />
+            <label className="form-check-label" for="new york">
+              New York
+            </label>
+          </div>
+          <button onClick={(e) => handleFilters(e)}>Filter Results</button>
+          <button onClick={(e) => handleResetFilters(e)}>Reset Filters</button>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/search.css";
 import { SimpleMap } from "../component/SimpleMap";
 import { Link, useParams } from "react-router-dom";
 import { Searchbar } from "../component/Searchbar";
@@ -38,6 +38,7 @@ export const Search = () => {
                         schedule={result.schedule}
                         image={result.image}
                         icon={result.icon}
+                        description={result.description}
                       />
                     </li>
                   );

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
+import AliveLogo from "../../images/AliveLogo51.png";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -24,8 +25,8 @@ export const Navbar = () => {
             fontWeight: "bold",
           }}
         >
-          <span className="navbar-brand" style={{ color: "white" }}>
-            AliveInLA.
+          <span className="navbar-brand">
+            <img className="navbar-logo" src={AliveLogo}></img>
           </span>
         </Link>
 

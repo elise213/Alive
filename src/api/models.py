@@ -60,7 +60,9 @@ class Resource(db.Model):
                 "image" : self.image,
                 "logo" : self.logo,   
                 "icon" : self.icon, 
-                "user_id" : self.user_id,                   
+                "user_id" : self.user_id,
+                "latitude" : self.latitude,
+                "longitude" : self.longitude                   
                 # do not serialize the password, its a security breach
             }
     
