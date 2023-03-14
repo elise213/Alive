@@ -19,7 +19,6 @@ class User(db.Model):
             "id": self.id,
             "name": self.name,
             "email": self.email,
-            # do not serialize the password, its a security breach
         }
         
 class Resource(db.Model):
@@ -30,7 +29,7 @@ class Resource(db.Model):
         phone = db.Column(db.String(256), unique=True, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
         schedule = db.Column(db.String(500), unique=False, nullable=True)
-        organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
+        user_id = db.Column(db.Integer, db.ForeignKey("User.id"), nullable=True)
         resourceType = db.Column(db.String(256), unique=False, nullable=True)
         picture = db.Column(db.String(256), unique=False, nullable=True)
         description = db.Column(db.String(256), unique=False, nullable=True)
@@ -48,26 +47,11 @@ class Resource(db.Model):
                 "schedule": self.schedule,
                 "resourceType": self.resourceType,   
                 "picture": self.picture,   
-                "description": self.description,     
+                "description": self.description,
+                "user_id": self.user_id,
             }
             
-class Organization(db.Model):
-    __tablename__ = "Organization"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256))
-    email = db.Column(db.String(256), unique=True, nullable=False)
-    password = db.Column(db.String(256), unique=False, nullable=False)
-    resource = db.relationship("Resource", backref="Organization", lazy=True)
-    
-    def __repr__(self):
-        return f'<Organization {self.email}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "email": self.email,
-        }
     
 class Comment(db.Model):
     __tablename__ = "Comment"
@@ -83,10 +67,10 @@ def __repr__(self):
 
 def serialize(self):
     return {
-        id: self.id,
-        user_id: self.user_id,
-        resource_id: self.resource_id,
-        comment_cont: self.body,
-        parentId: self.parentId
+        "id": self.id,
+        "user_id": self.user_id,
+        "resource_id": self.resource_id,
+        "comment_cont": self.body,
+        "parentId": self.parentId
     }
     

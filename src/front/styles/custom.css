@@ -28,103 +28,35 @@
   box-shadow: none !important;
 }
 
-/*
-label.btn.focus {
-  box-shadow: #c392f1;
-}
-input[type="radio"]:focus {
-  outline: max(2px, 0.15em) solid #c392f1;
-  outline-offset: max(2px, 0.15em);
-}
- .container:hover input ~ .form-check-input {
-  background-color: #ccc;
-} */
+/*********Time picker *********************/
 
-/********************** Date picker************************************/
-.rmdp-input {
-  height: 100%;
-  /* width: 100%; */
-}
-
-/********************** Time input ************************************/
-/* [type="date"] {
-  background: transparent url(/assets/images/calendar.png) 97% 50% no-repeat !important;
-} 
-[type="date"]::-webkit-inner-spin-button {
-  display: none;
-}
-[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-}
-[type="time"] {
-  background: transparent url(/assets/images/clock.png) 97% 50% no-repeat !important;
-}
-[type="time"]::-webkit-inner-spin-button {
-  display: none;
-}
-[type="time"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-}
-*/
-
-/*********Another version of the picker *********************/
-input[type="time"] {
-  position: relative;
-}
-
-/* create a new arrow, because we are going to mess up the native one
-see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+/* To use a new symbol adding a font-awesome icon.. */
 input[type="time"]:after {
-  content: "\1F551"; /*Unicode character*/
-  color: #555;
+  font-family: "Font Awesome 5 Free"; /*I have to use font awesome so it can read the unicode for this font*/
+  content: "\F017"; /* Fontawesome clock Unicode character*/
+  color: blueviolet;
   padding: 0 5px;
 }
 
 /* change color of symbol on hover */
 input[type="time"]:hover:after {
-  color: blueviolet;
+  color: #c392f1;
 }
 
-/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+/* make the black clock invisible*/
 input[type="time"]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: auto;
-  height: auto;
-  color: transparent;
-  background: transparent;
+  display: none;
 }
 
-/* adjust increase/decrease button */
-input[type="time"]::-webkit-inner-spin-button {
-  z-index: 1;
-}
-
-/* adjust clear button */
-input[type="time"]::-webkit-clear-button {
-  z-index: 1;
-}
-
-/********************** Border Shadow input ************************************/
+/********************** Delete Border Shadow input ************************************/
 
 .form-control:focus,
 select:focus {
-  border-color: blueviolet;
-  box-shadow: none; /*inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);*/
+  border-color: blueviolet !important;
+  box-shadow: none;
 }
-
-/* .form-control:focus,
-select:focus {
-  box-shadow: 0 4px 2px -2px grey; //add bottom shadow
-} */
 
 /********************** File input ************************************/
 ::file-selector-button {
-  display: none;
+  display: none; /*to hide the default "choose file" */
 }
-/* input[type="file" i] {
-  display: none;
-} */

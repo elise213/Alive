@@ -159,6 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         resourceType,
         picture,
         description
+        //, user_id
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -178,6 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             resourceType: resourceType,
             picture: picture,
             description: description,
+            // user_id: user_id,
           }),
         };
         try {

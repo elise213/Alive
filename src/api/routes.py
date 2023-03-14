@@ -103,6 +103,7 @@ def create_organization():
 @api.route("/createResource", methods = ["POST"])
 def create_resource():
     if request.method == "POST":
+        user_id = get_jwt_identity();
         request_body = request.get_json()
         if not request_body["name"]:
             return jsonify({"message": "Name is required"}), 400
@@ -117,7 +118,8 @@ def create_resource():
             website = request_body["website"],
             resourceType = request_body["resourceType"],
             picture = request_body["picture"],
-            description = request_body["description"],      
+            description = request_body["description"],   
+            user_id = user_id,
             )
         db.session.add(resource)
         db.session.commit()

@@ -83,6 +83,7 @@
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
 		"react-star-review": "^1.2.0",
+		"react-time-range": "^1.0.4",
 		"stars-rating-react-hooks": "^0.2.4"
 	}
 }

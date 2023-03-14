@@ -8,6 +8,7 @@
 
 .resourcesRow {
   margin: auto !important;
+  height: 30%;
 }
 
 .circle {
@@ -23,6 +24,9 @@
   text-align: center;
   margin: auto;
   text-decoration: none;
+}
+.bigIcon {
+  font-size: 80px;
 }
 
 .purple {
@@ -59,6 +63,9 @@
   background-color: #86df2d;
 }
 
+.darkViolet {
+  background-color: #581b91;
+}
 /* * {
   border: 1px solid black;
 } */
