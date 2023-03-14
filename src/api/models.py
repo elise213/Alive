@@ -34,12 +34,13 @@ class Resource(db.Model):
         phone = db.Column(db.String(256), unique=False, nullable=True)
         category = db.Column(db.String(256), unique=False, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
-        schedule = db.Column(db.String(500), unique=False, nullable=True)
+        schedule = db.Column(db.String(256), unique=False, nullable=True)
         description = db.Column(db.String(250), unique=False, nullable=True)
         latitude = db.Column(db.String(250), unique=False, nullable=True)
         longitude = db.Column(db.String(250), unique=False, nullable=True)
         image = db.Column(db.String(500), unique=False, nullable=True)
-        logo = db.Column(db.String(250), unique=False, nullable=True)
+        image2 = db.Column(db.String(500), unique=False, nullable=True)
+        logo = db.Column(db.String(500), unique=False, nullable=True)
         icon = db.Column(db.String(250), unique=False, nullable=True)
         user_id = db.Column(db.Integer, unique=False, nullable=True)
       
@@ -58,6 +59,7 @@ class Resource(db.Model):
                 "category" : self.category,
                 "website" : self.website,
                 "image" : self.image,
+                "image2" : self.image2,
                 "logo" : self.logo,   
                 "icon" : self.icon, 
                 "user_id" : self.user_id,
@@ -69,23 +71,23 @@ class Resource(db.Model):
 class Comment(db.Model):
     __tablename__ = "Comment"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
-    resource_id = db.Column(db.Integer, ForeignKey("Resource.id"))
+    user_id = db.Column(db.Integer, ForeignKey("User.id"))         
+    resource_id = db.Column(db.Integer, ForeignKey("Resource.id")) 
     comment_cont = db.Column(db.String(250), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     parentId = db.Column(db.Integer, ForeignKey("Comment.id"), nullable=True)
     
     def __repr__(self):
         return f'<Comment {self.id}>'
-    
+
     def serialize(self):
         return {
-            id: self.id,
-            user_id: self.user_id,
-            resource_id: self.resource_id,
-            comment_cont: self.body,
-            parentId: self.parentId
-        }   
+            "id": self.id,
+            "user_id": self.user_id,
+            "resource_id": self.resource_id,
+            "comment_cont": self.body,
+            "parentId": self.parentId
+        }
 
 class Favorites(db.Model):
     __tablename__ = 'Favorites'

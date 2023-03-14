@@ -6,11 +6,9 @@ export const Selection = (props) => {
   const { store, actions } = useContext(Context);
   const [categorySearch, setCategorySearch] = useState([]);
   const [when, setWhen] = useState([]);
-  const [radius, setRadius] = useState([]);
   const params = useParams();
 
   // console.log(when);
-  // console.log(radius);
   console.log(categorySearch);
 
   useEffect(() => {
@@ -19,7 +17,7 @@ export const Selection = (props) => {
 
   // Call filterSearchResults and update the checked checkboxes
   useEffect(() => {
-    actions.filterSearchResults(when, radius, categorySearch);
+    actions.filterSearchResults(when, categorySearch);
     if (categorySearch.includes("food")) {
       let food = document.querySelector("#food");
       food.checked = true;
@@ -32,12 +30,14 @@ export const Selection = (props) => {
     } else if (categorySearch.includes("health")) {
       let health = document.querySelector("#health");
       health.checked = true;
+    } else {
+      actions.resetSearchResults();
     }
   }, [categorySearch]);
 
   function handleFilters(e) {
     e.preventDefault();
-    actions.filterSearchResults(when, radius, categorySearch);
+    actions.filterSearchResults(when, categorySearch);
   }
 
   function handleCategorySearch(event) {
@@ -86,14 +86,6 @@ export const Selection = (props) => {
     if (element.type === "checkbox" && !element.checked) {
       let filtered = when.filter((item) => item !== value);
       setWhen(filtered);
-    }
-  }
-
-  function handleRadius(event) {
-    const element = event.target;
-    const value = element.value;
-    if (element.type === "radio" && element.checked) {
-      setRadius([value]);
     }
   }
 
@@ -247,99 +239,8 @@ export const Selection = (props) => {
             </label>
           </div>
         </div>
-      </div>
-
-      {/* Radius */}
-      <div className="col-3">
-        <p className="selection-headers">How far can you travel?</p>
-        <div className="" id="selection">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              id="25 miles"
-              value="25 miles"
-              name="selection"
-              onChange={handleRadius}
-            />
-            <label className="form-check-label" htmlFor="25 miles">
-              25 miles
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              id="5 miles"
-              value="5 miles"
-              name="selection"
-              onChange={handleRadius}
-            />
-            <label className="form-check-label" htmlFor="5 miles">
-              5 miles
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              id="1 mile"
-              value="1 mile"
-              name="selection"
-              onChange={handleRadius}
-            />
-            <label className="form-check-label" htmlFor="1 mile">
-              1 mile
-            </label>
-          </div>
-        </div>
-      </div>
-      {/* <!-- Which City? --> */}
-      <div className="col-3">
-        <p className="selection-headers">What City?</p>
-        <div className="" id="selection">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="los angeles"
-              value="los angeles"
-              name="selection"
-              // onChange={handleCity}
-            />
-            <label className="form-check-label" for="los angeles">
-              Los Angeles
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="miami"
-              value="miami"
-              name="selection"
-              // onChange={handleCity}
-            />
-            <label className="form-check-label" for="miami">
-              Miami
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="new york"
-              value="new york"
-              name="selection"
-              // onChange={handleCity}
-            />
-            <label className="form-check-label" for="new york">
-              New York
-            </label>
-          </div>
-          <button onClick={(e) => handleFilters(e)}>Filter Results</button>
-          <button onClick={(e) => handleResetFilters(e)}>Reset Filters</button>
-        </div>
+        {/* <button onClick={(e) => handleFilters(e)}>Filter Results</button> */}
+        <button onClick={(e) => handleResetFilters(e)}>Reset Filters</button>
       </div>
     </div>
   );

@@ -1,0 +1,62 @@
+/********************** Buttons************************************/
+.custom-btn {
+  border: none;
+  background-color: blueviolet;
+  /* transition-duration: 0.4s; */
+}
+
+.custom-btn:hover {
+  background-color: #c392f1;
+  color: white;
+}
+
+/********************** RadioButtons************************************/
+/* $form-check-input-checked-bg-color: blueviolet; */
+
+.form-check-input:checked {
+  background-color: blueviolet;
+  border: 1px solid blueviolet;
+  box-shadow: none !important;
+}
+
+.form-check-input:hover {
+  box-shadow: #c392f1;
+  background-color: #c392f1;
+}
+
+.form-check-input:active {
+  box-shadow: none !important;
+}
+
+/*********Time picker *********************/
+
+/* To use a new symbol adding a font-awesome icon.. */
+input[type="time"]:after {
+  font-family: "Font Awesome 5 Free"; /*I have to use font awesome so it can read the unicode for this font*/
+  content: "\F017"; /* Fontawesome clock Unicode character*/
+  color: blueviolet;
+  padding: 0 5px;
+}
+
+/* change color of symbol on hover */
+input[type="time"]:hover:after {
+  color: #c392f1;
+}
+
+/* make the black clock invisible*/
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/********************** Delete Border Shadow input ************************************/
+
+.form-control:focus,
+select:focus {
+  border-color: blueviolet !important;
+  box-shadow: none;
+}
+
+/********************** File input ************************************/
+::file-selector-button {
+  display: none; /*to hide the default "choose file" */
+}

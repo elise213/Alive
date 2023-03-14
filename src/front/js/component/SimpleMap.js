@@ -6,6 +6,12 @@ export const SimpleMap = () => {
   const { store, actions } = useContext(Context);
   let latitude = parseFloat(sessionStorage.getItem("latitude"));
   let longitude = parseFloat(sessionStorage.getItem("longitude"));
+
+  const [city, setCity] = useState({
+    center: { lat: latitude, lng: longitude },
+  });
+
+  console.log("city is", city);
   console.log(latitude, longitude, "from simple map");
 
   // Define the Marker component
@@ -15,85 +21,149 @@ export const SimpleMap = () => {
     </div>
   );
 
-  let initialPosition = {
-    // center: { lat: latitude, lng: longitude },
+  function setCenter() {
+    GoogleMapReact.setCenter({ lat: 34.0522, lng: -118.2437 });
+  }
 
-    // Los Angeles
-    center: { lat: 34.0522, lng: -118.2437 },
+  // let initialPosition = {};
+  // {
+  //   city == {}
+  //     ? (let initialPosition = {
+  //         center: { lat: latitude, lng: longitude },
+  //         zoom: 12,
+  //       })
+  //     : (let initialPosition = {
+  //         center: { lat: city.lat, lng: city.lng },
+  //         zoom: 12,
+  //       });
+  // }
+
+  let initialPosition = {
+    center: { lat: latitude, lng: longitude },
+    // // Los Angeles
+    // center: { lat: 34.0522, lng: -118.2437 },
     zoom: 12,
   };
 
-  return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <GoogleMapReact
-        // Put the google API key here!!
-        bootstrapURLKeys={{ key: "AIzaSyDOhqYOYIXvrk8lt2HQQLI8cS1O8FnZt9I" }}
-        defaultCenter={initialPosition.center}
-        defaultZoom={initialPosition.zoom}
-      >
-        {store.filteredResults[0]
-          ? store.filteredResults.map((result) => {
-              return (
-                <Marker
-                  lat={result.latitude}
-                  lng={result.longitude}
-                  color="blue"
-                  text={result.name}
-                />
-              );
-            })
-          : store.searchResults.map((result) => {
-              console.log(result);
-              return (
-                <Marker
-                  lat={result.latitude}
-                  lng={result.longitude}
-                  color="purple"
-                  text={result.name}
-                  // key={marker.place_id}
-                />
-              );
-            })}
+  console.log("city.center", city.center);
 
-        {/* {store.google_resources_list &&
-          store.google_resources_list.map((marker) => {
-            return (
-              <Marker
-                color="blue"
-                key={marker.place_id}
-                lat={marker.geometry.location.lat}
-                lng={marker.geometry.location.lng}
-                text={marker.name}
-              />
-            );
-          })} */}
-        {/* {markersType1
-          .filter((item) => item.zipcode == "32822")
-          .map((marker) => {
-            return (
-              <Marker
-                color="blue"
-                key={marker.id}
-                lat={marker.lat}
-                lng={marker.lng}
-                text={marker.text}
-              />
-            );
-          })}
-        {markersType2
-          .filter((item) => item.zipcode == "32822")
-          .map((marker) => {
-            return (
-              <Marker
-                color="red"
-                key={marker.id}
-                lat={marker.lat}
-                lng={marker.lng}
-                text={marker.text}
-              />
-            );
-          })} */}
-      </GoogleMapReact>
+  return (
+    <div>
+      {/* <!-- Which City? --> */}
+      <div className="map-city-buttons">
+        <button
+          onClick={() => setCity({ center: { lat: 61.2176, lng: -149.8997 } })}
+        >
+          Anchorage
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 44.0521, lng: -123.0868 } })}
+        >
+          Eugene
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 36.1716, lng: -115.1391 } })}
+        >
+          Las Vegas
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 34.0522, lng: -118.2437 } })}
+        >
+          Los Angeles
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 25.7617, lng: -80.1918 } })}
+        >
+          Miami
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 40.7128, lng: -74.006 } })}
+        >
+          New York
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 32.7157, lng: -117.1611 } })}
+        >
+          San Diego
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 37.7749, lng: -122.4194 } })}
+        >
+          San Francisco
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 37.3387, lng: -121.8853 } })}
+        >
+          San Jose
+        </button>
+
+        <button
+          onClick={() => setCity({ center: { lat: 32.0809, lng: -81.0912 } })}
+        >
+          Savannah
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 47.6062, lng: -122.3321 } })}
+        >
+          Seattle
+        </button>
+        {/* <button
+          onClick={() => setCity({ center: { lat: 52.52, lng: 13.405 } })}
+        >
+          Berlin
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 45.4642, lng: 9.19 } })}
+        >
+          Milan
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 51.5072, lng: -0.1276 } })}
+        >
+          London
+        </button>
+        <button
+          onClick={() => setCity({ center: { lat: 13.7563, lng: 100.5018 } })}
+        >
+          Bangkok
+        </button> */}
+      </div>
+
+      <div style={{ height: "100vh", width: "100%" }}>
+        <GoogleMapReact
+          // Put the google API key here!!
+          bootstrapURLKeys={{ key: "AIzaSyDOhqYOYIXvrk8lt2HQQLI8cS1O8FnZt9I" }}
+          // defaultCenter={initialPosition.center}
+          // defaultZoom={initialPosition.zoom}
+
+          center={city.center}
+          defaultZoom={12}
+        >
+          {store.filteredResults[0]
+            ? store.filteredResults.map((result) => {
+                return (
+                  <Marker
+                    lat={result.latitude}
+                    lng={result.longitude}
+                    color="blue"
+                    text={result.name}
+                  />
+                );
+              })
+            : store.searchResults.map((result) => {
+                console.log(result);
+                return (
+                  <Marker
+                    lat={result.latitude}
+                    lng={result.longitude}
+                    color="purple"
+                    text={result.name}
+                    // key={marker.place_id}
+                  />
+                );
+              })}
+        </GoogleMapReact>
+      </div>
     </div>
   );
 };

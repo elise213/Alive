@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../images/urban_partners_logo.png";
-import profilePic from "../../images/urban_partners.png";
 import { Context } from "../store/appContext";
 
 export const ResourceCard = (props) => {
@@ -28,16 +26,13 @@ export const ResourceCard = (props) => {
         <div className="card-header d-flex">
           <div className="col-9">
             <h4 className="card-title col-9">{props.name}</h4>
-            <span className="category">
-              {/* <i className={`${props.icon}`} /> */}
-            </span>
           </div>
           <div className="col-3">
-            <img className="res-thumbnail col-3" src={props.logo} alt="logo" />
+            <i className={`${props.icon}`} />
           </div>
         </div>
         <div classname="row">
-          {/* <img className="card-img" src={props.image} alt="profile picture" /> */}
+          <img className="card-img" src={props.image} alt="profile picture" />
           <div className="card-body">
             <h5 className="card-text">{props.description}</h5>
           </div>

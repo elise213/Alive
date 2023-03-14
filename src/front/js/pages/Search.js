@@ -3,7 +3,6 @@ import { Context } from "../store/appContext";
 import "../../styles/search.css";
 import { SimpleMap } from "../component/SimpleMap";
 import { Link, useParams } from "react-router-dom";
-import { Searchbar } from "../component/Searchbar";
 import { ResourceCard } from "../component/ResourceCard";
 import { Selection } from "../component/Selection";
 

@@ -79,8 +79,9 @@ def create_resource():
             address = request_body["address"],
             phone = request_body["phone"],
             website = request_body["website"],
-            schedule = request_body["schedule"],
-            description = request_body["description"],       
+            schedule = repr(request_body["schedule"]),
+            description = request_body["description"],
+            category = request_body["category"],        
             )
         db.session.add(resource)
         db.session.commit()

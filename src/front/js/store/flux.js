@@ -114,13 +114,25 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ token: null, is_org: null, name: null });
         window.location.href = current_front_url + "/";
       },
-      createResource: async (name, schedule, website, phone, address) => {
+      createResource: async (
+        name,
+        schedule,
+        website,
+        phone,
+        address,
+        resourceType,
+        picture,
+        description
+        //, user_id
+      ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
+        const token = getStore().token;
         const opts = {
           method: "POST",
           mode: "cors",
           headers: {
+            Authorization: "Bearer " + token,
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
           },
@@ -130,7 +142,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             website: website,
             phone: phone,
             address: address,
+            category: resourceType,
+            picture: picture,
             description: description,
+            // user_id: user_id,
           }),
         };
         try {
@@ -220,7 +235,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log(error));
       },
 
-      filterSearchResults: (when, radius, categorySearch) => {
+      filterSearchResults: (when, categorySearch) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
         searchResults.forEach((item, index) => {
