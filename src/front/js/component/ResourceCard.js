@@ -11,23 +11,14 @@ export const ResourceCard = (props) => {
     actions.addFavorite(props.name);
   }
 
-  // store.favorites.forEach((name) => {
-  //   if (name == props.name) {
-  //     document.querySelector(".favoriteButton").classList.add("fas fa-heart");
-  //   } else {
-  //     document.querySelector(".favoriteButton").classList.add("far fa-heart");
-  //   }
-  //   console.log(name, props.name);
-  // });
-
   return (
     <div className="card mx-auto mb-3 row">
       <Link to="/resource">
         <div className="card-header d-flex">
-          <div className="col-9">
+          <div className="col-10">
             <h4 className="card-title col-9">{props.name}</h4>
           </div>
-          <div className="col-3">
+          <div className="col-2">
             <i className={`${props.icon}`} />
           </div>
         </div>
@@ -38,13 +29,15 @@ export const ResourceCard = (props) => {
           </div>
         </div>
       </Link>
-      <button
-        type="button"
-        className="btn btn-outline-warning"
-        onClick={(e) => handleClick(e)}
-      >
-        <i className="favoriteButton "> Favorite </i>
-      </button>
+      <div className="d-flex col-9">
+        <button
+          type="button"
+          className="btn-sm btn-outline-warning"
+          onClick={(e) => handleClick(e)}
+        >
+          <i className="card-favorite-button "> Favorite </i>
+        </button>
+      </div>
     </div>
   );
 };

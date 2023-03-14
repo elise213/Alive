@@ -2,28 +2,6 @@
     General Styles used on every page (Don't Repeat Yourself)
 */
 
-.card {
-  max-width: 18rem;
-  max-height: 25rem;
-  padding: 4px;
-}
-
-.card-title {
-  color: black;
-  text-decoration: none;
-  font-size: small;
-}
-
-.card-text {
-  color: black;
-  text-decoration: none;
-  font-size: small;
-}
-
-.category {
-  font-size: x-small;
-}
-
 .navbar {
   background-color: blueviolet;
 }
@@ -74,24 +52,4 @@
   width: 55px;
   height: 55px;
   border: 2px solid blue;
-}
-/* user Profile =========================================================================*/
-.userProfileCont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
-}
-
-.userProfilePic {
-  width: 200px;
-  border-radius: 20%;
-}
-
-.profile-greeting,
-.favorites-heading {
-  font-family: "Courier New", Courier, monospace;
-  font-size: x-large;
-  font-weight: bold;
 }

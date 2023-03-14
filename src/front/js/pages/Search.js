@@ -23,7 +23,8 @@ export const Search = () => {
       {/* <!-- Full Search Results --> */}
       <div className="search-results-full row">
         {/* Search Result Cards */}
-        <div className="search-results-resources col-3">
+
+        <div className="scroll-search-results col-3">
           <ul className="" style={{ listStyleType: "none" }}>
             {store.filteredResults[0]
               ? store.filteredResults.map((result) => {

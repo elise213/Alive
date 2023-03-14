@@ -14,9 +14,10 @@ export const Home = () => {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
       actions.updateLocation(latitude, longitude);
-
-      // console.log("Aquí: " + latitude + " Long: " + longitude);
-      // console.log("Allá: " + store.latitude + " Long: " + store.longitude);
+      sessionStorage.setItem("latitude", latitude);
+      sessionStorage.setItem("longitude", longitude);
+      console.log("Aquí: " + latitude + " Long: " + longitude);
+      console.log("Allá: " + store.latitude + " Long: " + store.longitude);
     }
 
     function error() {
