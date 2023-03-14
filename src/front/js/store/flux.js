@@ -220,38 +220,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log(error));
       },
 
-      // filterSearchResults: (when, radius, categorySearch) => {
-      //   const searchResults = getStore().searchResults;
-      //   const filteredResults = getStore().filteredResults;
-      //   searchResults.forEach((item, index) => {
-      //     console.log(categorySearch[0]);
-      //     if (
-      //       item.category == categorySearch[0]
-      //       // ||
-      //       // item.category.includes(categorySearch[1]) ||
-      //       // item.category.includes(categorySearch[2]) ||
-      //       // item.category.includes(categorySearch[3])
-      //     ) {
-      //       filteredResults.push(item);
-      //       setStore({ filteredResults: filteredResults });
-      //     }
-      //     // else if (categorySearch) {
-      //     //   newResults = newResults.filter((resource) =>
-      //     //     resource.category.includes(categorySearch)
-      //     //   );
-      //     // }
-      //     // else if (when) {
-      //     //   newResults = newResults.filter((resource) =>
-      //     //     resource.schedule.includes(when)
-      //     //   );
-      //     // } else if (radius) {
-      //     //   newResults = newResults.filter((resource) =>
-      //     //     resource.radius.includes(radius)
-      //     //   );
-      //     // }
-      //   });
-      //   console.log(filteredResults);
-      // },
+      filterSearchResults: (when, radius, categorySearch) => {
+        const searchResults = getStore().searchResults;
+        const filteredResults = getStore().filteredResults;
+        searchResults.forEach((item, index) => {
+          console.log(categorySearch[0]);
+          if (
+            item.category == categorySearch[0] ||
+            item.category.includes(categorySearch[1]) ||
+            item.category.includes(categorySearch[2]) ||
+            item.category.includes(categorySearch[3])
+          ) {
+            filteredResults.push(item);
+            setStore({ filteredResults: filteredResults });
+          }
+        });
+        console.log(filteredResults);
+      },
+      resetSearchResults: () => {
+        const filteredResults = getStore().filteredResults;
+        let newArray = [];
+        setStore({ filteredResults: newArray });
+      },
     },
   };
 };

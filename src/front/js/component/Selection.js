@@ -7,9 +7,27 @@ export const Selection = (props) => {
   const [when, setWhen] = useState([]);
   const [radius, setRadius] = useState([]);
 
-  console.log(categorySearch);
-  console.log(when);
-  console.log(radius);
+  // console.log(categorySearch);
+  // console.log(when);
+  // console.log(radius);
+
+  function handleUpdate(e) {
+    e.preventDefault();
+    actions.filterSearchResults(when, radius, categorySearch);
+  }
+
+  function handleReset(e) {
+    e.preventDefault();
+    actions.resetSearchResults();
+    let food = document.querySelector("#food");
+    food.checked = false;
+    let hygiene = document.querySelector("#hygiene");
+    hygiene.checked = false;
+    let shelter = document.querySelector("#shelter");
+    shelter.checked = false;
+    let health = document.querySelector("#health");
+    health.checked = false;
+  }
 
   function handleCategorySearch(event) {
     const element = event.target;
@@ -239,11 +257,8 @@ export const Selection = (props) => {
             </label>
           </div>
         </div>
-        <button
-        // onClick={actions.filterSearchResults(when, radius, categorySearch)}
-        >
-          Filter Results
-        </button>
+        <button onClick={(e) => handleUpdate(e)}>Filter Results</button>
+        <button onClick={(e) => handleReset(e)}>Reset</button>
       </div>
     </div>
   );

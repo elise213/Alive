@@ -26,21 +26,37 @@ export const Search = () => {
         {/* Search Result Cards */}
         <div className="search-results-resources col-3">
           <ul className="" style={{ listStyleType: "none" }}>
-            {store.searchResults &&
-              store.searchResults.map((result) => {
-                return (
-                  <li>
-                    <ResourceCard
-                      category={result.category}
-                      // key={result.id}
-                      name={result.name}
-                      logo={result.logo}
-                      schedule={result.schedule}
-                      image={result.image}
-                    />
-                  </li>
-                );
-              })}
+            {store.filteredResults[0]
+              ? store.filteredResults.map((result) => {
+                  return (
+                    <li>
+                      <ResourceCard
+                        category={result.category}
+                        key={result.id}
+                        name={result.name}
+                        logo={result.logo}
+                        schedule={result.schedule}
+                        image={result.image}
+                        icon={result.icon}
+                      />
+                    </li>
+                  );
+                })
+              : store.searchResults.map((result) => {
+                  return (
+                    <li>
+                      <ResourceCard
+                        category={result.category}
+                        key={result.id}
+                        name={result.name}
+                        logo={result.logo}
+                        schedule={result.schedule}
+                        image={result.image}
+                        icon={result.icon}
+                      />
+                    </li>
+                  );
+                })}
           </ul>
         </div>
 

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Organization, Resource, Favorites
+from api.models import db, User, Resource, Favorites
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -60,26 +60,6 @@ def create_user():
             email = request_body["email"],
             password = generate_password_hash(request_body["password"]),
             avatar = request_body['userAvatar']
-            )
-        db.session.add(user)
-        db.session.commit()
-        return jsonify({"created": "Thank you for registering", "status": "true"}), 200
-
-    if request.method == "POST":
-        request_body = request.get_json()
-        if not request_body["name"]:
-            return jsonify({"message": "Name is required"}), 400
-        if not request_body["email"]:
-            return jsonify({"message": "Email is required"}), 400
-        if not request_body["password"]:
-            return jsonify({"message": "Password is required"}), 400
-        user = Organization.query.filter_by(email=request_body["email"]).first()
-        if user: 
-            return jsonify({"message": "email already exists"}), 400
-        user = Organization(
-            name = request_body["name"],
-            email = request_body["email"],
-            password = generate_password_hash(request_body["password"])       
             )
         db.session.add(user)
         db.session.commit()

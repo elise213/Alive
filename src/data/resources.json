@@ -9,8 +9,9 @@
     "description": "",
     "latitude": "34.05762167501406",
     "longitude": "-118.2901160595026",
-    "image": "../src/front/images/urban_partners.png",
-    "logo": "../src/front/images/urban_partners_logo.png"
+    "image": "https://scontent.fbcn7-2.fna.fbcdn.net/v/t39.30808-6/334114394_741749587562257_1860187673230966713_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=hsa72JsEPYsAX_tDi0r&_nc_ht=scontent.fbcn7-2.fna&oh=00_AfBMFSecokOhat2NX8rAT45vw-XKjKcnAbZ-tWlK0zelKA&oe=64158A74",
+    "logo": "../src/front/images/urban_partners_logo.png",
+    "icon": "fa-light fa-plate-utensils"
   },
   {
     "name": "Glendale Public Health Center",
@@ -23,7 +24,8 @@
     "latitude": "34.15354480776716",
     "longitude": "-118.24421153066476",
     "image": "../../images/urban_partners.png",
-    "logo": "../../images/urban_partners_logo.png"
+    "logo": "../../images/urban_partners_logo.png",
+    "icon": "fa-light fa-notes-medical"
   },
   {
     "name": "LAHSA Hand Washing Station",
@@ -36,7 +38,8 @@
     "latitude": "34.10185214330632",
     "longitude": "-118.32233751532236",
     "image": "",
-    "logo": ""
+    "logo": "",
+    "icon": "fa-light fa-soap"
   },
   {
     "name": "The Source: Health & Emergency Shelter Services",
@@ -49,6 +52,7 @@
     "latitude": "34.09421597539273",
     "longitude": "-118.37656743066601",
     "image": "",
-    "logo": ""
+    "logo": "",
+    "icon": "fa-light fa-person-shelter"
   }
 ]

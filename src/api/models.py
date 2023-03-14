@@ -38,9 +38,10 @@ class Resource(db.Model):
         description = db.Column(db.String(250), unique=False, nullable=True)
         latitude = db.Column(db.String(250), unique=False, nullable=True)
         longitude = db.Column(db.String(250), unique=False, nullable=True)
-        image = db.Column(db.String(250), unique=False, nullable=True)
+        image = db.Column(db.String(500), unique=False, nullable=True)
         logo = db.Column(db.String(250), unique=False, nullable=True)
-        organization_id = db.Column(db.Integer, db.ForeignKey("Organization.id"), nullable=True)
+        icon = db.Column(db.String(250), unique=False, nullable=True)
+        user_id = db.Column(db.Integer, unique=False, nullable=True)
       
         def __repr__(self):
             return f'<Resource {self.name}>'
@@ -57,28 +58,11 @@ class Resource(db.Model):
                 "category" : self.category,
                 "website" : self.website,
                 "image" : self.image,
-                "logo" : self.logo,                       
+                "logo" : self.logo,   
+                "icon" : self.icon, 
+                "user_id" : self.user_id,                   
                 # do not serialize the password, its a security breach
             }
-            
-class Organization(db.Model):
-    __tablename__ = "Organization"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256))
-    email = db.Column(db.String(256), unique=True, nullable=False)
-    password = db.Column(db.String(256), unique=False, nullable=False)
-    resource = db.relationship("Resource", backref="Organization", lazy=True)
-    
-    def __repr__(self):
-        return f'<Organization {self.email}>'
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "email": self.email,
-            # do not serialize the password, its a security breach
-        }
     
 class Comment(db.Model):
     __tablename__ = "Comment"
