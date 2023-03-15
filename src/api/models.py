@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.sql import func
+from sqlalchemy.dialects.postgresql import ARRAY
+import json
 
 db = SQLAlchemy()
 
@@ -34,7 +36,7 @@ class Resource(db.Model):
         phone = db.Column(db.String(256), unique=False, nullable=True)
         category = db.Column(db.String(256), unique=False, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
-        schedule = db.Column(db.String(256), unique=False, nullable=True)
+        schedule = db.Column(db.JSON(), nullable=True)
         description = db.Column(db.String(250), unique=False, nullable=True)
         latitude = db.Column(db.String(250), unique=False, nullable=True)
         longitude = db.Column(db.String(250), unique=False, nullable=True)
@@ -48,13 +50,15 @@ class Resource(db.Model):
             return f'<Resource {self.name}>'
         
         def serialize(self):
+            schedule = json.loads(self.schedule.replace("'", "\""))
+            schedule_string = json.dumps(schedule)
             return {
                 "id": self.id,
                 "name": self.name,
                 "address": self.address,
                 "phone": self.phone,
                 "website": self.website,
-                "schedule": self.schedule,
+                "schedule" : schedule,
                 "description" : self.description,     
                 "category" : self.category,
                 "website" : self.website,

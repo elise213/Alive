@@ -21,10 +21,6 @@ export const SimpleMap = () => {
     </div>
   );
 
-  function setCenter() {
-    GoogleMapReact.setCenter({ lat: 34.0522, lng: -118.2437 });
-  }
-
   let initialPosition = {
     center: { lat: latitude, lng: longitude },
     zoom: 12,
@@ -135,7 +131,7 @@ export const SimpleMap = () => {
           center={city.center}
           defaultZoom={12}
         >
-          {store.filteredResults[0]
+          {store.filteredResults[0] || store.checked == true
             ? store.filteredResults.map((result) => {
                 return (
                   <Marker

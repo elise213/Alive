@@ -1,26 +1,27 @@
-/* 
-    General Styles used on every page (Don't Repeat Yourself)
-*/
-
+/* ---navbar--- */
 .navbar {
-  background-color: blueviolet;
+  /* background-color: forestgreen; */
+  background-color: #455a64;
+  /* background-color: blueviolet; */
+  /* position: fixed; */
+  width: 100%;
+  /* z-index: 2; */
+  top: 0;
+  border-bottom: 1px solid darkgreen;
 }
-
 .nav-btn {
   color: white;
   font-weight: bold;
 }
-
 .nav-btn:hover {
   cursor: pointer;
-  color: lightgreen;
+  color: blueviolet;
 }
-
 .navbar-logo {
-  width: 100px;
+  width: 55px;
 }
 
-/* logRegBTNs============================================================================== */
+/* ---logReg--- */
 .logRegBtnModalCont {
   display: flex;
   justify-content: center;
@@ -36,7 +37,6 @@
   cursor: pointer;
   color: greenyellow;
 }
-/* ===== avatar css ======= */
 .avatarImages {
   width: 50px;
   height: 50px;

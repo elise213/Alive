@@ -4,20 +4,35 @@ import { useParams } from "react-router-dom";
 import "../../styles/search.css";
 
 export const Selection = (props) => {
+  const params = useParams();
   const { store, actions } = useContext(Context);
   const [categorySearch, setCategorySearch] = useState([]);
   const [when, setWhen] = useState([]);
-  const params = useParams();
 
-  // console.log(when);
-  console.log(categorySearch);
+  // console.log
+  console.log("categorySearch is", categorySearch);
+  console.log("when is ", when);
 
+  // sets category search by params
   useEffect(() => {
     setCategorySearch([params.resourceType.toLowerCase()]);
   }, []);
 
   // Call filterSearchResults and update the checked checkboxes
   useEffect(() => {
+    // trying something
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let checked = false;
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        checked = true;
+        actions.setChecked(checked);
+        break;
+      } else {
+        actions.resetSearchResults();
+      }
+    }
+
     actions.filterSearchResults(when, categorySearch);
     if (categorySearch.includes("food")) {
       let food = document.querySelector("#food");
@@ -31,15 +46,44 @@ export const Selection = (props) => {
     } else if (categorySearch.includes("health")) {
       let health = document.querySelector("#health");
       health.checked = true;
-    } else {
+    } else if (when.includes("monday")) {
+      let monday = document.querySelector("#monday");
+      monday.checked = true;
+    } else if (when.includes("monday")) {
+      let monday = document.querySelector("#monday");
+      monday.checked = true;
+    } else if (when.includes("tuesday")) {
+      let tuesday = document.querySelector("#tuesday");
+      tuesday.checked = true;
+    } else if (when.includes("wednesday")) {
+      let wednesday = document.querySelector("#wednesday");
+      wednesday.checked = true;
+    } else if (when.includes("thursday")) {
+      let thursday = document.querySelector("#thursday");
+      thursday.checked = true;
+    } else if (when.includes("friday")) {
+      let friday = document.querySelector("#friday");
+      friday.checked = true;
+    } else if (when.includes("satday")) {
+      let satday = document.querySelector("#satday");
+      satday.checked = true;
+    } else if (when.includes("sunday")) {
+      let sunday = document.querySelector("#sunday");
+      sunday.checked = true;
+    }
+    // else if (store.filteredResults == [] && checked) {
+    //   //
+    //   // here I want to return store.filteredResults as an empty array instead of store.searchResults.
+    // }
+    else {
       actions.resetSearchResults();
     }
-  }, [categorySearch]);
+  }, [categorySearch, when]);
 
-  function handleFilters(e) {
-    e.preventDefault();
-    actions.filterSearchResults(when, categorySearch);
-  }
+  // function handleFilters(e) {
+  //   e.preventDefault();
+  //   actions.filterSearchResults(when, categorySearch);
+  // }
 
   function handleCategorySearch(event) {
     const element = event.target;
@@ -53,23 +97,10 @@ export const Selection = (props) => {
     }
   }
 
-  function handleResetFilters(e) {
-    e.preventDefault();
-    actions.resetSearchResults();
-    let food = document.querySelector("#food");
-    food.checked = false;
-    let hygiene = document.querySelector("#hygiene");
-    hygiene.checked = false;
-    let shelter = document.querySelector("#shelter");
-    shelter.checked = false;
-    let health = document.querySelector("#health");
-    health.checked = false;
-  }
-
   function handleWhen(event) {
     const element = event.target;
     const value = element.value;
-    if (element.type === "checkbox" && element.checked) {
+    if (element.checked && !when.includes(value)) {
       setWhen([...when, value]);
     }
     if (element.type === "checkbox" && !element.checked) {
@@ -80,6 +111,7 @@ export const Selection = (props) => {
 
   return (
     <div className="mx-4 my-3">
+      <br />
       <div className="">
         {/* <!-- What type of resource--> */}
         <div className="selection">
@@ -235,12 +267,12 @@ export const Selection = (props) => {
       </div>
       <div className="selection">
         {/* <button onClick={(e) => handleFilters(e)}>Filter Results</button> */}
-        <button
+        {/* <button
           className="reset-filters"
           onClick={(e) => handleResetFilters(e)}
         >
           Reset Filters
-        </button>
+        </button> */}
       </div>
     </div>
   );

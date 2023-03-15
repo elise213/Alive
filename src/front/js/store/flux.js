@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-ias7k46lwfo.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-m4vqrrbzgur.ws-us90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-ias7k46lwfo.ws-eu90.gitpod.io",
+        "https://3001-lalafontaine-alive-m4vqrrbzgur.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResults: [],
       filteredResults: [],
+      checked: false,
     },
     actions: {
       login: async (email, password) => {
@@ -239,23 +240,31 @@ const getState = ({ getStore, getActions, setStore }) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
         searchResults.forEach((item, index) => {
-          console.log(categorySearch[0]);
+          // console.log(item.schedule);
+          console.log("type of ", typeof item.schedule);
           if (
             item.category == categorySearch[0] ||
             item.category.includes(categorySearch[1]) ||
             item.category.includes(categorySearch[2]) ||
-            item.category.includes(categorySearch[3])
+            item.category.includes(categorySearch[3]) ||
+            item.schedule.some((scheduleItem) =>
+              when.includes(scheduleItem.day.toLowerCase())
+            )
           ) {
             filteredResults.push(item);
             setStore({ filteredResults: filteredResults });
           }
         });
-        console.log(filteredResults);
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;
         let newArray = [];
-        setStore({ filteredResults: newArray });
+        setStore({ filteredResults: newArray, checked: false });
+      },
+      setChecked: (checked) => {
+        const storeChecked = getStore().checked;
+        let newChecked = checked;
+        setStore({ checked: newChecked });
       },
     },
   };
