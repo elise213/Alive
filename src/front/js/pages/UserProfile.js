@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import Building from "../../images/Buildtransp.png";
+import "../../styles/search.css";
 
 const userProfile = () => {
   const { store, actions } = useContext(Context);
@@ -16,15 +18,14 @@ const userProfile = () => {
     actions.removeFavorite(fav);
   }
   return (
-    <div className="userProfileCont">
-      <div>
+    <div className="userProfileCont row">
+      <div className="col-6">
         <p className="profile-greeting">Welcome, {name}!</p>
-        <div>
-          <img className="userProfilePic" src={link} />
-        </div>
+        <img className="userProfilePic" src={link} />
       </div>
-      <div>
-        <p className="favorites-heading">Here are your favorite resources:</p>
+      <div className="col-6 favorite-list">
+        <img className="building" src={Building}></img>
+        {/* <p className="favorites-heading">Here are your favorite resources:</p> */}
         <ul className="">
           {favorites.map((fav, i) => {
             console.log("fav = ", fav);
@@ -42,37 +43,6 @@ const userProfile = () => {
           })}
         </ul>
       </div>
-
-      {/* favorites */}
-      {/* <div className="ml-auto">
-          <div className="dropdown">
-            <button
-              className="btn btn-primary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Favorites
-            </button>
-            <ul
-              className="dropdown-menu dropdown-menu-end"
-              aria-labelledby="dropdownMenuButton1"
-            >
-              {store.favorites.map((fav, i) => {
-                return (
-                  <a className="dropdown-item" key={i}>
-                    {fav}{" "}
-                    <i
-                      onClick={() => actions.deleteFavorite(i)}
-                      className="fas fa-trash"
-                    ></i>
-                  </a>
-                );
-              })}
-            </ul>
-          </div>
-        </div> */}
     </div>
   );
 };

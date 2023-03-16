@@ -70,20 +70,10 @@ export const Selection = (props) => {
     } else if (when.includes("sunday")) {
       let sunday = document.querySelector("#sunday");
       sunday.checked = true;
-    }
-    // else if (store.filteredResults == [] && checked) {
-    //   //
-    //   // here I want to return store.filteredResults as an empty array instead of store.searchResults.
-    // }
-    else {
+    } else {
       actions.resetSearchResults();
     }
   }, [categorySearch, when]);
-
-  // function handleFilters(e) {
-  //   e.preventDefault();
-  //   actions.filterSearchResults(when, categorySearch);
-  // }
 
   function handleCategorySearch(event) {
     const element = event.target;
@@ -110,73 +100,73 @@ export const Selection = (props) => {
   }
 
   return (
-    <div className="mx-4 my-3">
-      <br />
-      <div className="">
-        {/* <!-- What type of resource--> */}
+    <div className="mt-3 mb-5 container">
+      {/* <!-- What type of resource--> */}
+      <div className="what-type my-2">
+        <div className="question">
+          <p className="">What kind of resource do you need?</p>
+        </div>
         <div className="selection">
-          <p className="selection-headers me-4">
-            What kind of resource do you need?
-          </p>
-          <div className="" id="selection">
-            <div className="form-check form-check-inline ">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="food"
-                value="food"
-                name="selection"
-                onChange={handleCategorySearch}
-              />
-              <label className="form-check-label" for="food">
-                Food
-              </label>
-            </div>
-            <div className="form-check form-check-inline ">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="shelter"
-                value="shelter"
-                name="selection"
-                onChange={handleCategorySearch}
-              />
-              <label className="form-check-label" for="shelter">
-                Shelter
-              </label>
-            </div>
-            <div className="form-check form-check-inline ">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="health"
-                value="health"
-                name="selection"
-                onChange={handleCategorySearch}
-              />
-              <label className="form-check-label" for="health">
-                Health
-              </label>
-            </div>
-            <div className="form-check form-check-inline ">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="hygiene"
-                value="hygiene"
-                name="selection"
-                onChange={handleCategorySearch}
-              />
-              <label className="form-check-label" for="hygiene">
-                Hygiene
-              </label>
-            </div>
+          <div className="form-check form-check-inline ">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="food"
+              value="food"
+              name="selection"
+              onChange={handleCategorySearch}
+            />
+            <label className="form-check-label" for="food">
+              Food
+            </label>
+          </div>
+          <div className="form-check form-check-inline ">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="shelter"
+              value="shelter"
+              name="selection"
+              onChange={handleCategorySearch}
+            />
+            <label className="form-check-label" for="shelter">
+              Shelter
+            </label>
+          </div>
+          <div className="form-check form-check-inline ">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="health"
+              value="health"
+              name="selection"
+              onChange={handleCategorySearch}
+            />
+            <label className="form-check-label" for="health">
+              Health
+            </label>
+          </div>
+          <div className="form-check form-check-inline ">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="hygiene"
+              value="hygiene"
+              name="selection"
+              onChange={handleCategorySearch}
+            />
+            <label className="form-check-label" for="hygiene">
+              Hygiene
+            </label>
           </div>
         </div>
-        <br />
-        {/* <!-- When ? --> */}
-        <div className="selection">
+      </div>
+      {/* <!-- When ? --> */}
+      <div className="when mt-5 mb-2">
+        <div className="question">
           <p className="selection-headers me-4">When would you like to go?</p>
+        </div>
+        <div className="selection">
           <div className="" id="selection">
             <div className="form-check form-check-inline ">
               <input
@@ -264,15 +254,6 @@ export const Selection = (props) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="selection">
-        {/* <button onClick={(e) => handleFilters(e)}>Filter Results</button> */}
-        {/* <button
-          className="reset-filters"
-          onClick={(e) => handleResetFilters(e)}
-        >
-          Reset Filters
-        </button> */}
       </div>
     </div>
   );

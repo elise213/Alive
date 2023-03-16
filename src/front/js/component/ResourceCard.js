@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/search.css";
 
 export const ResourceCard = (props) => {
   const { store, actions } = useContext(Context);
@@ -35,7 +36,7 @@ export const ResourceCard = (props) => {
           className="btn-sm card-favorite-button"
           onClick={(e) => handleClick(e)}
         >
-          <i className=" "> Favorite </i>
+          Favorite
         </button>
       </div>
     </div>

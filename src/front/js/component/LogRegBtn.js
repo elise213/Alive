@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, useNavigate } from "react-router-dom";
+
 const LogRegBtn = () => {
   const [log, setLog] = useState(true);
   const [email, setEmail] = useState("");
@@ -219,10 +219,9 @@ const LogRegBtn = () => {
     <div className="d-grid gap-2 d-md-flex justify-content-md-end">
       <span
         type="button"
-        className="btn"
+        className="btn nav-btn"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        style={{ color: "white" }}
       >
         Login
       </span>

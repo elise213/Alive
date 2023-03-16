@@ -1,13 +1,10 @@
 /* ---navbar--- */
 .navbar {
-  /* background-color: forestgreen; */
   background-color: #455a64;
   /* background-color: blueviolet; */
-  /* position: fixed; */
   width: 100%;
-  /* z-index: 2; */
   top: 0;
-  border-bottom: 1px solid darkgreen;
+  border-bottom: 2px solid blueviolet;
 }
 .nav-btn {
   color: white;
@@ -15,10 +12,15 @@
 }
 .nav-btn:hover {
   cursor: pointer;
-  color: blueviolet;
+  color: #d1c4e9;
 }
 .navbar-logo {
-  width: 55px;
+  width: 110px;
+}
+
+.nav-profile-icon {
+  font-size: x-large;
+  margin-left: 5px;
 }
 
 /* ---logReg--- */

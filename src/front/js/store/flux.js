@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-m4vqrrbzgur.ws-us90.gitpod.io",
+        "https://3000-lalafontaine-alive-4jooccygb90.ws-eu90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-m4vqrrbzgur.ws-us90.gitpod.io",
+        "https://3001-lalafontaine-alive-4jooccygb90.ws-eu90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -20,10 +20,14 @@ const getState = ({ getStore, getActions, setStore }) => {
       avatarImages: [
         "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
         "https://rlv.zcache.co.nz/beagle_puppy_dog_cartoon_love_beagles_stickers-r3e13c31e5cf44f388ad8e771530ada13_0ugmc_8byvr_736.jpg",
-        "https://cdn.shopify.com/s/files/1/0300/9124/7748/products/mockup-6fab90ef_1200x1200.jpg?v=1581906930",
-        "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
-        "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
-        "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
+        // "https://cdn.shopify.com/s/files/1/0300/9124/7748/products/mockup-6fab90ef_1200x1200.jpg?v=1581906930",
+        // "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
+        // "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
+        // "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
+        "https://scontent.xx.fbcdn.net/v/t39.30808-6/335450331_958974675262672_760475786018352766_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=730e14&_nc_ohc=WAiESXhQWgsAX_cW7kW&_nc_ht=scontent.xx&oh=00_AfA_t3FPLSMkbYH6QUElr_G4sNfBMGuZNcWBQqzdj3oSFg&oe=6418C092",
+        "https://scontent.xx.fbcdn.net/v/t39.30808-6/335232755_925036255510713_8943605416508150051_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=XIpTHsPhP5IAX85iX3G&_nc_ht=scontent.xx&oh=00_AfDSpMoV-oD6WdOXxt63NsGw_MoEUSuuJJaVxM55DLqNtQ&oe=64189CE3",
+        "https://scontent.xx.fbcdn.net/v/t39.30808-6/335487845_738771321086036_1848220266817976909_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=Lcixd55ObKcAX98lbCT&_nc_ht=scontent.xx&oh=00_AfAjuT0uG8ExLclqMxMGPjG5-KR1hi1Z7Y25jElh93Ak3A&oe=6418DA00",
+        "https://scontent.xx.fbcdn.net/v/t39.30808-6/335432621_1616814228743296_4152607689584507039_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=rjaBuPROyhAAX8tJxfh&_nc_ht=scontent.xx&oh=00_AfC3cyAxVACvK6KFoI_57UZ1Iq5osbQtDXzL_muFUnUV9g&oe=64179036",
       ],
       favorites: [],
       searchResults: [],

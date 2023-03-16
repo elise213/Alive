@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
-import AliveLogo from "../../images/AliveLogo51.png";
+import AliveLogo from "../../images/ALIVE3.png";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -18,19 +18,13 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light" id="navbar">
       {/* Navbar Brand Logo - Link to Home - Always Visible*/}
       <div className="container-fluid">
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none",
-            fontWeight: "bold",
-          }}
-        >
+        <Link to="/">
           <span className="navbar-brand">
             <img className="navbar-logo" src={AliveLogo}></img>
           </span>
         </Link>
 
-        {/* Dynamic functionality for Navbar collapse-expand */}
+        {/* Dynamic Navbar collapse-expand */}
         <button
           className="navbar-toggler"
           type="button"
@@ -52,7 +46,7 @@ export const Navbar = () => {
             <Link to="/search/all">
               <span className="btn nav-btn">
                 Search Free Resources In Your Area <span></span>
-                <i class="fa-solid fa-magnifying-glass-location "></i>
+                <i class="fa-solid fa-magnifying-glass-location ms-2"></i>
               </span>
             </Link>
           </span>
@@ -85,8 +79,8 @@ export const Navbar = () => {
             {token && is_org == "false" ? (
               <span className="nav-item">
                 <Link to="/userProfile">
-                  <span className="btn nav-btn">
-                    <i className="fa-solid fa-circle-user p-2 text-info"></i>
+                  <span className="nav-btn nav-profile-icon">
+                    <i className="fa-solid fa-circle-user"></i>
                   </span>
                 </Link>
               </span>

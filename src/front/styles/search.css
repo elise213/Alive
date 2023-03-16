@@ -1,8 +1,17 @@
+/* ----Resource Card---- */
 .card {
   max-width: 18rem;
   max-height: 25rem;
   align-items: center;
   border: 1px solid blueviolet;
+}
+
+.selection-headers {
+  display: block;
+}
+
+.selection-1 {
+  display: block;
 }
 
 .card-body {
@@ -38,44 +47,55 @@
   /* color: green; */
   border: 1px solid blueviolet;
 }
-/* .card-favorite-button:hover {
-  background-color: c5cae9;
-} */
-.favorite-container {
-  display: flex;
-  padding: 1rem;
-  justify-content: end;
-  align-items: center;
+
+.btn-sm:hover {
+  color: c5cae9;
 }
-/* ---Search---*/
-.reset-filters {
-  border-color: white;
-}
+
+/* ----Selection Component----*/
 .selection {
   display: flex;
   justify-content: center;
 }
-.scroll-search-results {
-  height: 109vh;
-  overflow-y: auto;
-  overflow: scroll;
-}
-.map-city-buttons {
+.question {
   display: flex;
   justify-content: center;
+  font-size: large;
+  font-weight: bold;
 }
 
+/* ----Resource-Card Component---- */
+.scroll-search-results {
+  height: 102vh;
+  overflow-y: auto;
+  overflow: scroll;
+  margin-top: 38px;
+}
+
+/* ----Simple-Map Component---- */
+.map-city-buttons {
+  display: flex;
+  justify-content: space-between;
+}
 .map-button {
   border: 1px solid #455a64;
 }
 
-/* ---user Profile--- */
+/* ----User Profile Page---- */
+.favorite-container {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+.building {
+  width: 300px;
+}
+
 .userProfileCont {
+  margin: auto;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
 }
 .userProfilePic {
   width: 200px;
