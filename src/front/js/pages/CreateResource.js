@@ -9,13 +9,17 @@ const CreateResource = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [resourceType, setResourceType] = useState("");
-  const [urlPic, setUrlPic] = useState("");
+  // const [urlPic, setUrlPic] = useState("");
   const { store, actions } = useContext(Context);
   const [description, setDescription] = useState("");
   const [day, setDay] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-
+  const [picture, setPicture] = useState("");
+  const [picture2, setPicture2] = useState("");
+  const [latitude, setlatitude] = useState("lat");
+  const [longitude, setlongitude] = useState("lon");
+  const [logo, setlogo] = useState("log");
   const [schedule, setSchedule] = useState([
     { day: "", startTime: "", endTime: "" },
   ]);
@@ -38,20 +42,24 @@ const CreateResource = () => {
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(schedule));
+    // alert(JSON.stringify(schedule));
   };
   function handleClick(e) {
     // schedule = schedule.toString();
     e.preventDefault();
     actions.createResource(
       name,
-      schedule,
-      website,
-      phone,
       address,
+      phone,
       resourceType,
-      urlPic,
-      description
+      website,
+      schedule,
+      description,
+      latitude,
+      longitude,
+      picture,
+      picture2,
+      logo
       // user_id
     );
   }
@@ -284,7 +292,7 @@ const CreateResource = () => {
             <input
               id="address"
               className="form-control"
-              name="type"
+              name="address"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -311,7 +319,7 @@ const CreateResource = () => {
             </div>
             <input
               className="form-control"
-              name="type"
+              name="website"
               type="text"
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
@@ -332,22 +340,53 @@ const CreateResource = () => {
               onChange={(e) => setPhone(e.target.value)}
             ></input>
           </div>
-          <label htmlFor="file">Picture</label>
+          <label htmlFor="picture">Pictures</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text  h-100" id="phone">
+              <span className="input-group-text  h-100" id="picture">
                 <i className="fa-solid fa-image text-secondary"></i>
               </span>
             </div>
             <input
               className="form-control"
-              name="phone"
+              name="picture"
+              type="text"
+              value={picture}
+              id="picture"
+              onChange={(e) => setPicture(e.target.value)}
+            ></input>
+          </div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="picture">
+                <i className="fa-solid fa-image text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="picture2"
+              type="text"
+              value={picture2}
+              id="picture2"
+              onChange={(e) => setPicture2(e.target.value)}
+            ></input>
+          </div>
+          {/* <label htmlFor="file">Picture</label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="picture">
+                <i className="fa-solid fa-image text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="urlPic"
               type="file"
               value={urlPic}
               id="urlPic"
               onChange={(e) => setUrlPic(e.target.files)}
             ></input>
-          </div>
+          </div> */}
         </form>
         <div className="float-end">
           <button

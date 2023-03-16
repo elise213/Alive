@@ -32,6 +32,7 @@ export const Search = () => {
                       <ResourceCard
                         category={result.category}
                         key={result.id}
+                        id={result.id}
                         name={result.name}
                         logo={result.logo}
                         schedule={result.schedule}
@@ -48,6 +49,7 @@ export const Search = () => {
                       <ResourceCard
                         category={result.category}
                         key={result.id}
+                        id={result.id}
                         name={result.name}
                         logo={result.logo}
                         schedule={result.schedule}

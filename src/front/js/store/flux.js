@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-kat1i5oi8p3.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-lixuy7adeyt.ws-us90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-kat1i5oi8p3.ws-eu90.gitpod.io",
+        "https://3001-lalafontaine-alive-lixuy7adeyt.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResults: [],
       filteredResults: [],
+      checked: false,
     },
     actions: {
       login: async (email, password) => {
@@ -116,14 +117,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       createResource: async (
         name,
-        schedule,
-        website,
-        phone,
         address,
+        phone,
         resourceType,
+        website,
+        schedule,
+        description,
+        latitude,
+        longitude,
         picture,
-        description
-        //, user_id
+        picture2,
+        logo
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -138,13 +142,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           body: JSON.stringify({
             name: name,
-            schedule: schedule,
-            website: website,
-            phone: phone,
             address: address,
+            phone: phone,
             category: resourceType,
-            picture: picture,
+            website: website,
+            schedule: schedule,
             description: description,
+            latitude: latitude,
+            longitude: longitude,
+            image: picture,
+            image2: picture2,
+            logo: logo,
             // user_id: user_id,
           }),
         };
@@ -239,23 +247,78 @@ const getState = ({ getStore, getActions, setStore }) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
         searchResults.forEach((item, index) => {
-          console.log(categorySearch[0]);
+          // console.log(item.schedule);
+          console.log("type of ", typeof item.schedule);
           if (
             item.category == categorySearch[0] ||
             item.category.includes(categorySearch[1]) ||
             item.category.includes(categorySearch[2]) ||
-            item.category.includes(categorySearch[3])
+            item.category.includes(categorySearch[3]) ||
+            item.schedule.some((scheduleItem) =>
+              when.includes(scheduleItem.day.toLowerCase())
+            )
           ) {
             filteredResults.push(item);
             setStore({ filteredResults: filteredResults });
           }
         });
-        console.log(filteredResults);
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;
         let newArray = [];
-        setStore({ filteredResults: newArray });
+        setStore({ filteredResults: newArray, checked: false });
+      },
+      setChecked: (checked) => {
+        const storeChecked = getStore().checked;
+        let newChecked = checked;
+        setStore({ checked: newChecked });
+      },
+
+      createComment: async (
+        id,
+        user_id,
+        resource_id,
+        comment_cont,
+        created_at,
+        parentId
+      ) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const token = getStore().token;
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            id: self.id,
+            user_id: user_id,
+            resource_id: resource_id,
+            comment_cont: body,
+            created_at: created_at,
+            parentId: parentId,
+          }),
+        };
+        try {
+          const response = await fetch(
+            current_back_url + "/api/createComment",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          if (data.status == "true") {
+            window.location.href = current_front_url + "/";
+          }
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
       },
     },
   };

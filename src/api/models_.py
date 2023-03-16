@@ -58,7 +58,7 @@ class Resource(db.Model):
                 "address": self.address,
                 "phone": self.phone,
                 "website": self.website,
-                "schedule" : schedule,
+                "schedule": self.schedule,
                 "description" : self.description,     
                 "category" : self.category,
                 "website" : self.website,
@@ -68,8 +68,7 @@ class Resource(db.Model):
                 "icon" : self.icon, 
                 "user_id" : self.user_id,
                 "latitude" : self.latitude,
-                "longitude" : self.longitude                   
-                # do not serialize the password, its a security breach
+                "longitude" : self.longitude      
             }
     
 class Comment(db.Model):

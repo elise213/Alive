@@ -89,7 +89,7 @@ def create_resource():
             image = request_body["image"],
             image2 = request_body["image2"],
             logo = request_body["logo"], 
-            user_id=user_id,     
+            user_id=user_id,
             )
         db.session.add(resource)
         db.session.commit()
@@ -97,6 +97,7 @@ def create_resource():
     
 # Create comments
 @api.route('/createComment', methods=['POST'])
+@jwt_required()
 def create_comment(id, user_id, resource_id, body, user, parentId):
     comment = Comment.query.get(id)
     if request.method == 'POST':
