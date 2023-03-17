@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import Building from "../../images/Buildtransp.png";
+import "../../styles/search.css";
 
 const userProfile = () => {
   const { store, actions } = useContext(Context);
@@ -16,63 +18,34 @@ const userProfile = () => {
     actions.removeFavorite(fav);
   }
   return (
-    <div className="userProfileCont">
-      <div>
-        <p className="profile-greeting">Welcome, {name}!</p>
-        <div>
-          <img className="userProfilePic" src={link} />
+    <div className="profile-container">
+      <p className="profile-greeting">Welcome, {name}!</p>
+      <div className="user-profile-container">
+        <div className="welcome">
+          <img className="user-profile-pic" src={link} />
+        </div>
+        <div className="favorites-col">
+          <img className="building" src={Building}></img>
+          <ul className="favorites-list" style={{ listStyleType: "none" }}>
+            {favorites.map((fav, i) => {
+              console.log("fav = ", fav);
+              return (
+                <li key={i} className="favorite-line-item">
+                  <Link className="favorite-a-tag" to={"/resource/" + fav}>
+                    {fav}
+                  </Link>
+                  <a
+                    onClick={(e) => handleClick(e, fav)}
+                    className="delete-favorite"
+                  >
+                    x
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
-      <div>
-        <p className="favorites-heading">Here are your favorite resources:</p>
-        <ul className="">
-          {favorites.map((fav, i) => {
-            console.log("fav = ", fav);
-            return (
-              <li key={i}>
-                <a className="favorite" href="">
-                  {fav}
-                </a>
-                <i
-                  onClick={(e) => handleClick(e, fav)}
-                  className="fas fa-trash"
-                ></i>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      {/* favorites */}
-      {/* <div className="ml-auto">
-          <div className="dropdown">
-            <button
-              className="btn btn-primary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Favorites
-            </button>
-            <ul
-              className="dropdown-menu dropdown-menu-end"
-              aria-labelledby="dropdownMenuButton1"
-            >
-              {store.favorites.map((fav, i) => {
-                return (
-                  <a className="dropdown-item" key={i}>
-                    {fav}{" "}
-                    <i
-                      onClick={() => actions.deleteFavorite(i)}
-                      className="fas fa-trash"
-                    ></i>
-                  </a>
-                );
-              })}
-            </ul>
-          </div>
-        </div> */}
     </div>
   );
 };

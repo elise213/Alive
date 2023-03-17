@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-kat1i5oi8p3.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-swsnxe3vmyi.ws-eu90.gitpod.io",
       // back URL is port 3001
-      current_back_url:
-        "https://3001-lalafontaine-alive-kat1i5oi8p3.ws-eu90.gitpod.io",
+      current_back_url: process.env.BACKEND_URL,
+      // "https://3001-lalafontaine-alive-d7b4ebv2hdj.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -28,6 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResults: [],
       filteredResults: [],
+      checked: false,
     },
     actions: {
       login: async (email, password) => {
@@ -174,7 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
         const token = getStore().token;
-        console.log(resourceName);
+        // console.log(resourceName);
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
@@ -239,23 +240,116 @@ const getState = ({ getStore, getActions, setStore }) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
         searchResults.forEach((item, index) => {
-          console.log(categorySearch[0]);
+          // console.log(item.schedule);
+          console.log("type of ", typeof item.schedule);
           if (
             item.category == categorySearch[0] ||
             item.category.includes(categorySearch[1]) ||
             item.category.includes(categorySearch[2]) ||
-            item.category.includes(categorySearch[3])
+            item.category.includes(categorySearch[3]) ||
+            item.schedule.some((scheduleItem) =>
+              when.includes(scheduleItem.day.toLowerCase())
+            )
           ) {
             filteredResults.push(item);
             setStore({ filteredResults: filteredResults });
           }
         });
-        console.log(filteredResults);
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;
         let newArray = [];
-        setStore({ filteredResults: newArray });
+        setStore({ filteredResults: newArray, checked: false });
+      },
+      setChecked: (checked) => {
+        const storeChecked = getStore().checked;
+        let newChecked = checked;
+        setStore({ checked: newChecked });
+      },
+      createComment: async (
+        resource_id,
+        comment_cont,
+        // created_at,
+        parentId
+      ) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const token = getStore().token;
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            resource_id: resource_id,
+            comment_cont: comment_cont,
+            // created_at: created_at,
+            parentId: parentId,
+          }),
+        };
+        try {
+          const response = await fetch(
+            current_back_url + "/api/createComment",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          // if (data.status == "true") {
+          //   window.location.href = current_front_url + "/";
+          // }
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      // getComments: (resource_id) => {
+      //   let commentList = [];
+      //   const current_back_url = getStore().current_back_url;
+      //   const current_front_url = getStore().current_front_url;
+      //   const opts = {
+      //     method: "POST",
+      //     body: { resource_id: resource_id },
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   };
+      //   fetch(current_back_url + "/api/getcomments", opts)
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //       console.log("this is from get_comments", data);
+      //       commentList = data;
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+      //   return commentList;
+      // },
+      getComments: (resource_id) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const opts = {
+          method: "POST",
+          body: JSON.stringify({ resource_id: resource_id }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        return fetch(current_back_url + "/api/getcomments", opts)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("this is from get_comments", data);
+            return data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       },
     },
   };

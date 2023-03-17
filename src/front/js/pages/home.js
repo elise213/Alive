@@ -14,9 +14,10 @@ export const Home = () => {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
       actions.updateLocation(latitude, longitude);
-
-      // console.log("Aquí: " + latitude + " Long: " + longitude);
-      // console.log("Allá: " + store.latitude + " Long: " + store.longitude);
+      sessionStorage.setItem("latitude", latitude);
+      sessionStorage.setItem("longitude", longitude);
+      console.log("Aquí: " + latitude + " Long: " + longitude);
+      console.log("Allá: " + store.latitude + " Long: " + store.longitude);
     }
 
     function error() {
@@ -38,21 +39,8 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5">
-      {/* <nav className="navbar fixed-top navbar-light bg-secondary">
-        <h3>
-          <a className="navbar-brand p-2" href="#">
-            AliveLogo
-          </a>
-        </h3>
-        <h3>
-          <Link to={"/search/" + store.location + "/all"}>
-            <i className="fa-solid fa-magnifying-glass-location text-warning right"></i>
-          </Link>
-        </h3>
-        <h3>
-          <i className="fa-solid fa-circle-user p-2 text-info"></i>
-        </h3>
-      </nav> */}
+      <br />
+      <br />
       <div className=" bg-light">
         <h1>Welcome to Alive!</h1>
         <h3>

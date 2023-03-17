@@ -23,9 +23,10 @@ export const Search = () => {
       {/* <!-- Full Search Results --> */}
       <div className="search-results-full row">
         {/* Search Result Cards */}
-        <div className="search-results-resources col-3">
+
+        <div className="scroll-search-results col-3">
           <ul className="" style={{ listStyleType: "none" }}>
-            {store.filteredResults[0]
+            {store.filteredResults[0] || store.checked == true
               ? store.filteredResults.map((result) => {
                   return (
                     <li>
@@ -38,6 +39,7 @@ export const Search = () => {
                         image={result.image}
                         icon={result.icon}
                         description={result.description}
+                        id={result.id}
                       />
                     </li>
                   );
@@ -53,6 +55,8 @@ export const Search = () => {
                         schedule={result.schedule}
                         image={result.image}
                         icon={result.icon}
+                        description={result.description}
+                        id={result.id}
                       />
                     </li>
                   );

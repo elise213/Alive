@@ -1,29 +1,52 @@
-import React from "react";
-
-import Comments from "../component/comments/Comments";
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../store/appContext.js";
+// import Comments from "../component/comments/Comments";
 import { ResourceInfo } from "../component/ResourceInfo";
-import "../../styles/comments.css";
-
+import SimpleCommentForm from "../component/SimpleCommentForm.js";
+import SimpleCommentList from "../component/SimpleCommentList.js";
+import "../../styles/custom.css";
 const resource = () => {
-  // Resource - Page;
+  const { store, actions } = useContext(Context);
+  const params = useParams();
+  console.log(params);
+  let filteredResults = store.searchResults;
+  let resourceName = params.name;
+
+  let resourceData = filteredResults.filter((elm) => {
+    if (elm.name == resourceName) {
+      return elm;
+    }
+  });
+  console.log("resourceData is", resourceData[0].id);
   return (
-    <div className="card mb-3 mt-3 resourceCard" Style="max-width: 540px;">
-      <ResourceInfo
-        id="1"
-        name="A nice place"
-        address="123 street nice blvd"
-        phone="(305)-123-4556"
-        type="Food"
-        email="email@myfood.com"
-        website="www.myfreefood.com"
-        rating="4.5"
-      />
-      <Comments
-        commentsUrl="http://localhost:3004/comments"
-        currentUserId="1"
-      />
+    <div className="mb-3 mt-6 resourcesRow h-100" style={{ maxWidth: 540 }}>
+      {resourceData.map((items) => (
+        // console.log("printing reource info...", items),
+        <div className="row" key={items.id}>
+          <ResourceInfo
+            id={items.id}
+            name={items.name}
+            description={items.description}
+            address={items.address}
+            phone={items.phone}
+            category={items.category}
+            website={items.website}
+            schedule={items.schedule}
+            picture={items.picture}
+            icon={items.icon}
+            image={items.image}
+            image2={items.image2}
+          />
+        </div>
+      ))}
+      <div className="row">
+        <SimpleCommentForm id={resourceData.id} />
+      </div>
+      <div className="row">
+        <SimpleCommentList id={resourceData.id} />
+      </div>
     </div>
   );
 };
-
 export default resource;

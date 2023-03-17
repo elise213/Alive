@@ -1,22 +1,38 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import "../../styles/search.css";
 
 export const Selection = (props) => {
+  const params = useParams();
   const { store, actions } = useContext(Context);
   const [categorySearch, setCategorySearch] = useState([]);
   const [when, setWhen] = useState([]);
-  const params = useParams();
 
-  // console.log(when);
-  console.log(categorySearch);
+  // console.log
+  console.log("categorySearch is", categorySearch);
+  console.log("when is ", when);
 
+  // sets category search by params
   useEffect(() => {
     setCategorySearch([params.resourceType.toLowerCase()]);
   }, []);
 
   // Call filterSearchResults and update the checked checkboxes
   useEffect(() => {
+    // trying something
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    let checked = false;
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        checked = true;
+        actions.setChecked(checked);
+        break;
+      } else {
+        actions.resetSearchResults();
+      }
+    }
+
     actions.filterSearchResults(when, categorySearch);
     if (categorySearch.includes("food")) {
       let food = document.querySelector("#food");
@@ -30,15 +46,34 @@ export const Selection = (props) => {
     } else if (categorySearch.includes("health")) {
       let health = document.querySelector("#health");
       health.checked = true;
+    } else if (when.includes("monday")) {
+      let monday = document.querySelector("#monday");
+      monday.checked = true;
+    } else if (when.includes("monday")) {
+      let monday = document.querySelector("#monday");
+      monday.checked = true;
+    } else if (when.includes("tuesday")) {
+      let tuesday = document.querySelector("#tuesday");
+      tuesday.checked = true;
+    } else if (when.includes("wednesday")) {
+      let wednesday = document.querySelector("#wednesday");
+      wednesday.checked = true;
+    } else if (when.includes("thursday")) {
+      let thursday = document.querySelector("#thursday");
+      thursday.checked = true;
+    } else if (when.includes("friday")) {
+      let friday = document.querySelector("#friday");
+      friday.checked = true;
+    } else if (when.includes("satday")) {
+      let satday = document.querySelector("#satday");
+      satday.checked = true;
+    } else if (when.includes("sunday")) {
+      let sunday = document.querySelector("#sunday");
+      sunday.checked = true;
     } else {
       actions.resetSearchResults();
     }
-  }, [categorySearch]);
-
-  function handleFilters(e) {
-    e.preventDefault();
-    actions.filterSearchResults(when, categorySearch);
-  }
+  }, [categorySearch, when]);
 
   function handleCategorySearch(event) {
     const element = event.target;
@@ -52,35 +87,10 @@ export const Selection = (props) => {
     }
   }
 
-  function handleResetFilters(e) {
-    e.preventDefault();
-    actions.resetSearchResults();
-    let food = document.querySelector("#food");
-    food.checked = false;
-    let hygiene = document.querySelector("#hygiene");
-    hygiene.checked = false;
-    let shelter = document.querySelector("#shelter");
-    shelter.checked = false;
-    let health = document.querySelector("#health");
-    health.checked = false;
-  }
-
-  // function handleCity(event) {
-  //   const element = event.target;
-  //   const value = element.value;
-  //   if (element.type === "checkbox" && element.checked) {
-  //     setCategorySearch([...city, value]);
-  //   }
-  //   if (element.type === "checkbox" && !element.checked) {
-  //     let filtered = city.filter((item) => item !== value);
-  //     setCategorySearch(filtered);
-  //   }
-  // }
-
   function handleWhen(event) {
     const element = event.target;
     const value = element.value;
-    if (element.type === "checkbox" && element.checked) {
+    if (element.checked && !when.includes(value)) {
       setWhen([...when, value]);
     }
     if (element.type === "checkbox" && !element.checked) {
@@ -90,12 +100,14 @@ export const Selection = (props) => {
   }
 
   return (
-    <div className="row mx-4 my-3">
+    <div className="container">
       {/* <!-- What type of resource--> */}
-      <div className="col-3">
-        <p className="selection-headers">What kind of resource?</p>
-        <div className="" id="selection">
-          <div className="form-check">
+      <div className="what-type">
+        <div className="question">
+          <p className="">What kind of resource do you need?</p>
+        </div>
+        <div className="selection">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -108,7 +120,7 @@ export const Selection = (props) => {
               Food
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -121,7 +133,7 @@ export const Selection = (props) => {
               Shelter
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -134,7 +146,7 @@ export const Selection = (props) => {
               Health
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -149,12 +161,13 @@ export const Selection = (props) => {
           </div>
         </div>
       </div>
-
       {/* <!-- When ? --> */}
-      <div className="col-3">
-        <p className="selection-headers">When would you like to go?</p>
-        <div className="" id="selection">
-          <div className="form-check">
+      <div className="when">
+        <div className="question">
+          <p className="">When do you need it?</p>
+        </div>
+        <div className="selection">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -166,7 +179,7 @@ export const Selection = (props) => {
               Monday
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="checkbox"
@@ -178,7 +191,7 @@ export const Selection = (props) => {
               Tuesday
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="checkbox"
@@ -190,7 +203,7 @@ export const Selection = (props) => {
               Wednesday
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -202,7 +215,7 @@ export const Selection = (props) => {
               Thursday
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -214,7 +227,7 @@ export const Selection = (props) => {
               Friday
             </label>
           </div>
-          <div className="form-check">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -226,7 +239,7 @@ export const Selection = (props) => {
               Saturday
             </label>
           </div>
-          <div className="form-check ">
+          <div className="form-check form-check-inline ">
             <input
               className="form-check-input"
               type="checkbox"
@@ -239,8 +252,6 @@ export const Selection = (props) => {
             </label>
           </div>
         </div>
-        {/* <button onClick={(e) => handleFilters(e)}>Filter Results</button> */}
-        <button onClick={(e) => handleResetFilters(e)}>Reset Filters</button>
       </div>
     </div>
   );
