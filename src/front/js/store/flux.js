@@ -6,10 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-4jooccygb90.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-d7b4ebv2hdj.ws-us90.gitpod.io",
       // back URL is port 3001
       current_back_url:
-        "https://3001-lalafontaine-alive-4jooccygb90.ws-eu90.gitpod.io",
+        "https://3001-lalafontaine-alive-d7b4ebv2hdj.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location

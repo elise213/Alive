@@ -18,30 +18,34 @@ const userProfile = () => {
     actions.removeFavorite(fav);
   }
   return (
-    <div className="userProfileCont row">
-      <div className="col-6">
-        <p className="profile-greeting">Welcome, {name}!</p>
-        <img className="userProfilePic" src={link} />
-      </div>
-      <div className="col-6 favorite-list">
-        <img className="building" src={Building}></img>
-        {/* <p className="favorites-heading">Here are your favorite resources:</p> */}
-        <ul className="">
-          {favorites.map((fav, i) => {
-            console.log("fav = ", fav);
-            return (
-              <li key={i}>
-                <a className="favorite" href="">
-                  {fav}
-                </a>
-                <i
-                  onClick={(e) => handleClick(e, fav)}
-                  className="fas fa-trash"
-                ></i>
-              </li>
-            );
-          })}
-        </ul>
+    <div className="profile-container">
+      <div className="user-profile-container row">
+        <div className="col-6 welcome">
+          <p className="profile-greeting">Welcome, {name}!</p>
+          <img className="user-profile-pic" src={link} />
+        </div>
+        <div className="col-6 favorites-list">
+          <img className="building" src={Building}></img>
+          {/* <p className="favorites-heading">Here are your favorite resources:</p> */}
+          <ul className="" style={{ listStyleType: "none" }}>
+            {favorites.map((fav, i) => {
+              console.log("fav = ", fav);
+              return (
+                <li key={i} className="fave">
+                  <a className="favorite" href="">
+                    {fav}
+                  </a>
+                  <a
+                    onClick={(e) => handleClick(e, fav)}
+                    className="delete-favorite"
+                  >
+                    x
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -19,15 +19,12 @@ export const ResourceCard = (props) => {
           <div className="col-10 head-2">
             <h4 className="card-title col-9">{props.name}</h4>
           </div>
-          <div className="col-2 icon">
+          <div className="col-2 card-icon">
             <i className={`${props.icon}`} />
           </div>
         </div>
-        <div classname="row">
+        <div classname="row card-body">
           <img className="card-img" src={props.image} alt="profile picture" />
-          <div className="card-body">
-            {/* <h5 className="card-text">{props.description}</h5> */}
-          </div>
         </div>
       </Link>
       <div className="d-flex favorite-container">

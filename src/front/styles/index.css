@@ -1,7 +1,6 @@
 /* ---navbar--- */
 .navbar {
   background-color: #455a64;
-  /* background-color: blueviolet; */
   width: 100%;
   top: 0;
   border-bottom: 2px solid blueviolet;
@@ -14,10 +13,13 @@
   cursor: pointer;
   color: #d1c4e9;
 }
+.navbar-logo:hover {
+  cursor: pointer;
+  width: 115px;
+}
 .navbar-logo {
   width: 110px;
 }
-
 .nav-profile-icon {
   font-size: x-large;
   margin-left: 5px;
