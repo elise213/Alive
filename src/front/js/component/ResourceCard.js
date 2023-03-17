@@ -14,7 +14,7 @@ export const ResourceCard = (props) => {
 
   return (
     <div className="resource-card mx-auto mb-3 row">
-      <Link to={"/resource/" + props.id} className="text-decoration-none">
+      <Link to={"/resource/" + props.name} className="text-decoration-none">
         <div className="card-header d-flex">
           <div className="col-10 card-title-div">
             <h4 className="card-title col-9">{props.name}</h4>

@@ -46,7 +46,7 @@ export const Navbar = () => {
             <Link to="/search/all">
               <span className="btn nav-btn">
                 Search Free Resources In Your Area <span></span>
-                <i class="fa-solid fa-magnifying-glass-location ms-2"></i>
+                <i className="fa-solid fa-magnifying-glass-location ms-2"></i>
               </span>
             </Link>
           </span>

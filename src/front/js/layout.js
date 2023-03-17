@@ -26,7 +26,7 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Search />} path="/search/:resourceType" />
-            <Route element={<Resource />} path="/resource" />
+            <Route element={<Resource />} path="/resource/:name" />
             {/* User Pages */}
             <Route element={<UserProfile />} path="/userProfile" />
             {/* Organization Pages */}

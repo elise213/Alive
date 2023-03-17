@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Resource, Favorites
+from api.models import db, User, Resource, Favorites, Comment
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -89,36 +89,31 @@ def create_resource():
     
 # Create comments
 @api.route('/createComment', methods=['POST'])
-def create_comment(id, user_id, resource_id, body, user, parentId):
-    comment = Comment.query.get(id)
-    if request.method == 'POST':
+@jwt_required()
+def create_comment():
+    if request.method == "POST":
+        user_id = get_jwt_identity()
         request_body = request.get_json()
-
         if not request_body["comment_cont"]:
             return jsonify({"message": "Please include a message"}), 400
-        parentId = Comment.query.filter_by(parentId=request_body["parentId"]).first()
-        resource = Comment(
-            id = request_body[id],
-            user_id = request_body[user_id],
-            resource_id = request_body[resource_id],
-            comment_cont = request_body[comment_cont],
-            # created_at = 
-            parentId = request_body[parentId]
-        )
-            
-        return jsonify(data=commentList.serialize())
+        comment = Comment(
+        user_id = user_id,
+        resource_id = request_body["resource_id"],
+        comment_cont = request_body["comment_cont"],
+        parentId = request_body["parentId"],
+            )
         db.session.add(comment)
         db.session.commit()
         return jsonify({"created": "Thank you for your feedback", "status": "true"}), 200
 
 # get comments
-@api.route('/getComments/<int:userId>', methods=['GET'])
-def getComments(id):
-    commentList = Comment.query.get(id)
-    if commentList is None:
-        return jsonify(msg="There are no comments yet")
-    else:
-        return jsonify(data=commentList.serialize())
+@api.route('/getcomments', methods=['POST'])
+def getcomments():
+    # resource_id = request.get_json("resource_id")
+    resource_id = request.get_json().get("resource_id")
+    print(resource_id)
+    comments = getCommentsByResourceId(resource_id)
+    return jsonify({"comments": comments})
 
 # get resources for map
 @api.route('/getResources', methods=['GET'])
@@ -169,3 +164,8 @@ def getFavoritesByUserId(userId):
     favorites = Favorites.query.filter_by(userId=userId).all()
     serialized_favorites = [fav.serialize() for fav in favorites]
     return serialized_favorites
+
+def getCommentsByResourceId(resourceId):
+    comments = Comment.query.filter_by(resource_id=resourceId).all()
+    serialized_comments = [comment.serialize() for comment in comments]
+    return serialized_comments

@@ -89,7 +89,7 @@ class Comment(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "resource_id": self.resource_id,
-            "comment_cont": self.body,
+            "comment_cont": self.comment_cont,
             "parentId": self.parentId
         }
 
