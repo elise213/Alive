@@ -1,19 +1,81 @@
-/* ----Resource Card---- */
-.card {
+/* ----Search Page----- */
+.scroll-search-results {
+  height: 102vh;
+  overflow-y: auto;
+  overflow: scroll;
+  margin-top: 38px;
+}
+/* ----User Profile Page---- */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.profile-greeting {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  font-weight: bold;
+}
+.user-profile-container {
+  margin-top: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.welcome {
+  margin-top: 35px;
+  display: flex;
+  justify-content: flex-end;
+}
+.user-profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 10%;
+  margin-right: 25px;
+}
+.favorites-col {
+  display: block;
+  margin-top: 20px;
+}
+.favorites-list {
+  /* display: flex;
+  justify-content: center; */
+}
+.building {
+  width: 450px;
+}
+.favorite-line-item {
+  margin-top: 20px;
+}
+.favorite-a-tag:hover {
+  color: blueviolet;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.delete-favorite {
+  text-decoration: none;
+  color: grey;
+  margin-left: 20px;
+  font-size: large;
+}
+.delete-favorite:hover {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+.favorite-a-tag {
+  color: black;
+  text-decoration: none;
+}
+
+/* ----Resource Card Component---- */
+.resource-card {
   max-width: 18rem;
   max-height: 25rem;
   align-items: center;
   border: 1px solid blueviolet;
-}
-.favorite-container {
+  justify-content: center;
   display: flex;
-  justify-content: end;
 }
-.card-body {
-  padding: 0;
-  margin: 0;
-}
-.head-2 {
+.card-title-div {
   display: flex;
   align-items: center;
 }
@@ -25,13 +87,14 @@
   color: blueviolet;
   font-size: x-large;
 }
-.card-text {
-  color: black;
-  text-decoration: none;
-  font-size: small;
-}
 .card-favorite-button {
   border: 1px solid blueviolet;
+}
+
+.favorite-button-container {
+  margin: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* ----Selection Component----*/
@@ -54,14 +117,6 @@
   margin-bottom: 40px;
 }
 
-/* ----Resource-Card Component---- */
-.scroll-search-results {
-  height: 102vh;
-  overflow-y: auto;
-  overflow: scroll;
-  margin-top: 38px;
-}
-
 /* ----Simple-Map Component---- */
 .map-city-buttons {
   display: flex;
@@ -69,58 +124,4 @@
 }
 .map-button {
   border: 1px solid #455a64;
-}
-
-/* ----User Profile Page---- */
-.profile-container {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-}
-.user-profile-container {
-  margin-top: 80px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-.welcome {
-  display: flex;
-  justify-content: flex-end;
-}
-.profile-greeting {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: x-large;
-  font-weight: bold;
-}
-.user-profile-pic {
-  width: 100px;
-  height: 150px;
-  border-radius: 10%;
-  margin-right: 25px;
-}
-.favorite {
-  color: black;
-  text-decoration: none;
-}
-.fave {
-  margin-top: 20px;
-}
-.favorite:hover {
-  color: blueviolet;
-}
-.favorites-list {
-  display: block;
-  margin-top: 20px;
-}
-.building {
-  width: 450px;
-}
-.delete-favorite {
-  text-decoration: none;
-  color: grey;
-  margin-left: 20px;
-  font-size: large;
-}
-.delete-favorite:hover {
-  color: red;
-  cursor: pointer;
 }

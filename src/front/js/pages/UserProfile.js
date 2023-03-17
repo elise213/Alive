@@ -19,20 +19,19 @@ const userProfile = () => {
   }
   return (
     <div className="profile-container">
+      <p className="profile-greeting">Welcome, {name}!</p>
       <div className="user-profile-container row">
         <div className="col-6 welcome">
-          <p className="profile-greeting">Welcome, {name}!</p>
           <img className="user-profile-pic" src={link} />
         </div>
-        <div className="col-6 favorites-list">
+        <div className="col-6 favorites-col">
           <img className="building" src={Building}></img>
-          {/* <p className="favorites-heading">Here are your favorite resources:</p> */}
-          <ul className="" style={{ listStyleType: "none" }}>
+          <ul className="favorites-list" style={{ listStyleType: "none" }}>
             {favorites.map((fav, i) => {
               console.log("fav = ", fav);
               return (
-                <li key={i} className="fave">
-                  <a className="favorite" href="">
+                <li key={i} className="favorite-line-item">
+                  <a className="favorite-a-tag" href="">
                     {fav}
                   </a>
                   <a
