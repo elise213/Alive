@@ -44,10 +44,20 @@ export const Home = () => {
       <div className=" bg-light">
         <h1>Welcome to Alive!</h1>
         <h3>
-          Alive <small className="text-muted">is a Website blablablabla</small>
+          Alive{" "}
+          <small className="text-muted">
+            ALIVE’s essential resource map is designed to help our most
+            vulnerable community members by connecting them with organizations
+            that meet their most vital, basic needs, including free food,
+            shelter, hygiene facilities, and health services. The interface
+            allows users to select a resource type and day of the week, helping
+            users to manage their time, and limit their need to travel long
+            distances. ALIVE's essential resource map allows users to submit
+            feedback about a resource in order to crowd-source the most accurate
+            and up-to-date information possible. In this way, the more people
+            use this website, the more complete the information becomes.
+          </small>
         </h3>
-        <p>more text</p>
-        <p>more text...</p>
       </div>
       <div className="row resourcesRow">
         <div className="col-sm-3 mx-auto">
