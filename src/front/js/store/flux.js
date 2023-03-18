@@ -24,6 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
         "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
         "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
+        // <i class="fas fa-robot"></i>,
       ],
       favorites: [],
       searchResults: [],
@@ -57,8 +58,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           sessionStorage.setItem("is_org", data.is_org);
           sessionStorage.setItem("name", data.name);
           let favoriteNames = [];
-          data.favorites.forEach((favorite) => {
-            favoriteNames.push(favorite.name);
+          data.favorites.forEach((favorite, index) => {
+            favoriteNames.push({
+              name: favorite.name,
+              icon: data.icons[index],
+            });
           });
           setStore({
             token: data.access_token,
@@ -171,11 +175,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
 
-      addFavorite: (resourceName) => {
+      addFavorite: (resource) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
-        const token = getStore().token;
-        // console.log(resourceName);
+        const token = sessionStorage.getItem("token");
+        // console.log(resource);
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
@@ -184,14 +188,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             method: "POST",
             body: JSON.stringify({
-              name: resourceName,
+              name: resource.name,
             }),
           };
           fetch(current_back_url + "/api/addFavorite", opts)
             .then((response) => response.json())
             .then((data) => {
               if (data.message == "okay") {
-                favorites.push(resourceName);
+                favorites.push(resource);
                 setStore({ favorites: favorites });
               }
             });

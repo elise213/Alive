@@ -12,7 +12,7 @@ const userProfile = () => {
   let name = store.name;
   console.log("name is coming from user profile:" + name);
   let favorites = store.favorites;
-
+  console.log(store.favorites);
   function handleClick(e, fav) {
     e.preventDefault();
     actions.removeFavorite(fav);
@@ -27,12 +27,13 @@ const userProfile = () => {
         <div className="favorites-col">
           <img className="building" src={Building}></img>
           <ul className="favorites-list" style={{ listStyleType: "none" }}>
-            {favorites.map((fav, i) => {
+            {store.favorites.map((fav, i) => {
               console.log("fav = ", fav);
               return (
                 <li key={i} className="favorite-line-item">
                   <Link className="favorite-a-tag" to={"/resource/" + fav}>
-                    {fav}
+                    <span className={fav.icon}> </span>
+                    {fav.name}
                   </Link>
                   <a
                     onClick={(e) => handleClick(e, fav)}

@@ -35,9 +35,13 @@ def create_token():
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
         favorites = getFavoritesByUserId(user.id)
+        icons = []
+        for favorite in favorites:
+            resource = Resource.query.filter_by(name = favorite["name"]).first()
+            icons.append(resource.icon)
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
+        return jsonify(icons=icons, access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
 
 @api.route("/createUser", methods = ["POST"])
 def create_user():
