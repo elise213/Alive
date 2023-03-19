@@ -9,51 +9,82 @@ const CreateResource = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [resourceType, setResourceType] = useState("");
-  const [urlPic, setUrlPic] = useState("");
   const { store, actions } = useContext(Context);
   const [description, setDescription] = useState("");
   const [day, setDay] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-
+  const [picture, setPicture] = useState("");
+  const [picture2, setPicture2] = useState("");
+  const [latitude, setlatitude] = useState("lat");
+  const [longitude, setlongitude] = useState("lon");
+  const [logo, setlogo] = useState("log");
   const [schedule, setSchedule] = useState([
     { day: "", startTime: "", endTime: "" },
   ]);
 
   let handleChange = (i, e) => {
+    // saving/updating schedule values
     let newFormValues = [...schedule];
     newFormValues[i][e.target.name] = e.target.value;
     setSchedule(newFormValues);
   };
 
   let addFormFields = () => {
+    // to add days/inputs to the schedule
     setSchedule([...schedule, { day: "", startTime: "", endTime: "" }]);
   };
 
   let removeFormFields = (i) => {
+    // to remove days/inputs from the schedule
     let newFormValues = [...schedule];
     newFormValues.splice(i, 1);
     setSchedule(newFormValues);
   };
 
   let handleSubmit = (event) => {
+    //to avoid page refresh while adding/deleting inputs/days
     event.preventDefault();
-    alert(JSON.stringify(schedule));
   };
+
+  const resetForm = () => {
+    setName("");
+    setAddress("");
+    setPhone("");
+    setResourceType("");
+    setWebsite("");
+    setSchedule("");
+    setDescription("");
+    setLatitude("");
+    setLongitude("");
+    setPicture("");
+    setPicture2("");
+    // setLogo("");
+  };
+
   function handleClick(e) {
-    // schedule = schedule.toString();
     e.preventDefault();
-    actions.createResource(
-      name,
-      schedule,
-      website,
-      phone,
-      address,
-      resourceType,
-      urlPic,
-      description
-      // user_id
-    );
+    if (
+      actions.createResource(
+        name,
+        address,
+        phone,
+        resourceType,
+        website,
+        schedule,
+        description,
+        latitude,
+        longitude,
+        picture,
+        picture2,
+        logo
+        // user_id
+      )
+    ) {
+      // showModal ModalResource
+      alert("Resource Created");
+      resetForm();
+    }
   }
 
   return (
@@ -65,8 +96,6 @@ const CreateResource = () => {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text h-100" id="name">
-                {/* <i className="fa-solid fa-billboard text-secondary"></i> 
-                <i className="fa-solid fa-buildings text-secondary"></i>*/}
                 <i className="fa-solid fa-building text-secondary"></i>
               </span>
             </div>
@@ -76,6 +105,9 @@ const CreateResource = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Provide the name of the place"
             ></input>
           </div>
           <div className="form-group mb-3">
@@ -176,7 +208,7 @@ const CreateResource = () => {
                       className="form-control"
                       list="DayOptions"
                       id="day"
-                      placeholder="Select days"
+                      placeholder="Select day"
                       name="day"
                       value={element.day || ""}
                       onChange={(e) => handleChange(index, e)}
@@ -284,10 +316,13 @@ const CreateResource = () => {
             <input
               id="address"
               className="form-control"
-              name="type"
+              name="address"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Provide the address of the place"
             ></input>
           </div>
           {/* <div className="form-row">
@@ -311,10 +346,13 @@ const CreateResource = () => {
             </div>
             <input
               className="form-control"
-              name="type"
+              name="website"
               type="text"
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Provide your website"
             ></input>
           </div>
           <label htmlFor="phone"> Is there a phone number? </label>
@@ -330,24 +368,61 @@ const CreateResource = () => {
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Provide a contact phone number"
             ></input>
           </div>
-          <label htmlFor="file">Picture</label>
+          <label htmlFor="picture">Pictures</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text  h-100" id="phone">
+              <span className="input-group-text  h-100" id="picture">
                 <i className="fa-solid fa-image text-secondary"></i>
               </span>
             </div>
             <input
               className="form-control"
-              name="phone"
+              name="picture"
+              type="text"
+              value={picture}
+              id="picture"
+              onChange={(e) => setPicture(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="You can upload up to two pictures of your place"
+            ></input>
+          </div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="picture">
+                <i className="fa-solid fa-image text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="picture2"
+              type="text"
+              value={picture2}
+              id="picture2"
+              onChange={(e) => setPicture2(e.target.value)}
+            ></input>
+          </div>
+          {/* <label htmlFor="file">Picture</label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="picture">
+                <i className="fa-solid fa-image text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="urlPic"
               type="file"
               value={urlPic}
               id="urlPic"
               onChange={(e) => setUrlPic(e.target.files)}
             ></input>
-          </div>
+          </div> */}
         </form>
         <div className="float-end">
           <button

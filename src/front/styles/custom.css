@@ -60,3 +60,15 @@ select:focus {
 ::file-selector-button {
   display: none; /*to hide the default "choose file" */
 }
+
+/********************** Input background ************************************/
+input:-internal-autofill-selected {
+  /* appearance: menulist-button;
+  background-image: none !important; 
+  background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+  color: fieldtext !important;*/
+  background-color: -internal-light-dark(
+    rgb(128, 128, 128),
+    rgba(239, 239, 240, 1)
+  ) !important;
+}

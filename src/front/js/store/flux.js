@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-swsnxe3vmyi.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-b2xv3mqae3l.ws-us90.gitpod.io",
       // back URL is port 3001
       current_back_url: process.env.BACKEND_URL,
       // "https://3001-lalafontaine-alive-d7b4ebv2hdj.ws-us90.gitpod.io",
@@ -29,6 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       searchResults: [],
       filteredResults: [],
       checked: false,
+      commentsList: [],
     },
     actions: {
       login: async (email, password) => {
@@ -117,14 +118,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       createResource: async (
         name,
-        schedule,
-        website,
-        phone,
         address,
+        phone,
         resourceType,
+        website,
+        schedule,
+        description,
+        latitude,
+        longitude,
         picture,
-        description
-        //, user_id
+        picture2,
+        logo
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -139,13 +143,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           body: JSON.stringify({
             name: name,
-            schedule: schedule,
-            website: website,
-            phone: phone,
             address: address,
+            phone: phone,
             category: resourceType,
-            picture: picture,
+            website: website,
+            schedule: schedule,
             description: description,
+            latitude: latitude,
+            longitude: longitude,
+            image: picture,
+            image2: picture2,
+            logo: logo,
             // user_id: user_id,
           }),
         };
@@ -160,7 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            window.location.href = current_front_url + "/";
+            // window.location.href = current_front_url + "/"; //go to home
           }
           return true;
         } catch (error) {
@@ -330,22 +338,22 @@ const getState = ({ getStore, getActions, setStore }) => {
       //     });
       //   return commentList;
       // },
+
       getComments: (resource_id) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
         const opts = {
-          method: "POST",
-          body: JSON.stringify({ resource_id: resource_id }),
           headers: {
             "Content-Type": "application/json",
           },
         };
 
-        return fetch(current_back_url + "/api/getcomments", opts)
+        fetch(current_back_url + "/api/getcomments/" + resource_id, opts)
           .then((res) => res.json())
           .then((data) => {
             console.log("this is from get_comments", data);
-            return data;
+            // return data;
+            setStore({ commentsList: data.comments });
           })
           .catch((error) => {
             console.log(error);

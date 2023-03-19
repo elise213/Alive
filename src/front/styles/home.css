@@ -25,6 +25,9 @@
   margin: auto;
   text-decoration: none;
 }
+.circle:hover {
+  opacity: 0.5;
+}
 .bigIcon {
   font-size: 80px;
 }
@@ -65,6 +68,25 @@
 
 .darkViolet {
   background-color: #581b91;
+}
+
+.fontIcon {
+  font-family: "Font Awesome 5 Free";
+}
+.PsyIcon {
+  font-family: "Font Awesome 5 Free";
+  content: "\F017";
+  color: white;
+
+  /* content: "\e1aa"; */
+}
+
+.blueViolet {
+  color: blueViolet !important;
+}
+.blueViolet-light {
+  color: blueViolet !important;
+  opacity: 0.5;
 }
 /* * {
   border: 1px solid black;

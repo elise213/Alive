@@ -13,6 +13,7 @@ export const SimpleMap = () => {
 
   console.log("city is", city);
   console.log(latitude, longitude, "from simple map");
+  console.log("filered results: ", store.filteredResults);
 
   // Define the Marker component
   const Marker = (props) => (
@@ -27,7 +28,11 @@ export const SimpleMap = () => {
   };
 
   console.log("city.center", city.center);
-
+  console.log(
+    "has filter: ",
+    store.filteredResults[0] && store.checked == true
+  );
+  console.log("search results: ", store.searchResults);
   return (
     <div>
       {/* <!-- Which City? --> */}
@@ -131,7 +136,7 @@ export const SimpleMap = () => {
           center={city.center}
           defaultZoom={12}
         >
-          {store.filteredResults[0] || store.checked == true
+          {store.filteredResults[0] && store.checked == true
             ? store.filteredResults.map((result) => {
                 return (
                   <Marker

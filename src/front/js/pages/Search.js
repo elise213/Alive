@@ -8,7 +8,8 @@ import { Selection } from "../component/Selection";
 
 export const Search = () => {
   const { store, actions } = useContext(Context);
-
+  console.log("Lat: ", store.latitude);
+  console.log("Lng: ", store.longitude);
   // let params = useParams();
   // console.log("params", params);
 
@@ -65,6 +66,7 @@ export const Search = () => {
         </div>
 
         {/* Search Result Map */}
+
         <div className="col-9">
           <SimpleMap />
         </div>

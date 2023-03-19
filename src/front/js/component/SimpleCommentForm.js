@@ -13,9 +13,9 @@ const SimpleCommentForm = (props) => {
   const user_name = store.name;
   const user_name2 = sessionStorage.getItem("name");
 
-  console.log("hay token? ", token);
-  console.log("user_name session: ", user_name2);
-  console.log("user_name store: ", user_name);
+  // console.log("hay token? ", token);
+  // console.log("user_name session: ", user_name2);
+  // console.log("user_name store: ", user_name);
 
   const params = useParams();
   let resource_id = parseInt(props.id);
@@ -23,14 +23,12 @@ const SimpleCommentForm = (props) => {
 
   function handleClick(e) {
     e.preventDefault();
-    actions.createComment(
-      resource_id,
-      commentCont,
-      // day, //created_at,
-      parentId
-    );
+    if (actions.createComment(resource_id, commentCont, parentId)) {
+      alert("Thank you for your feedback");
+      setCommentCont("");
+    }
   }
-  console.log(commentCont);
+  // console.log(commentCont);
   return (
     <div className="row center text-secondary mt-6">
       {token && (
@@ -53,8 +51,11 @@ const SimpleCommentForm = (props) => {
               type="submit"
               className="btn custom-btn text-white"
               onClick={(e) => handleClick(e)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Send your comment"
             >
-              Submit
+              <i class="fa-solid fa-arrow-right"></i>
             </button>
             {/* <button type="reset" className="btn btn-outline-danger"> 
             Cancel

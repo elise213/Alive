@@ -66,8 +66,10 @@ def create_user():
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
     
 @api.route("/createResource", methods = ["POST"])
+@jwt_required()
 def create_resource():
     if request.method == "POST":
+        user_id = get_jwt_identity();
         request_body = request.get_json()
         if not request_body["name"]:
             return jsonify({"message": "Name is required"}), 400
@@ -78,16 +80,23 @@ def create_resource():
             name = request_body["name"],
             address = request_body["address"],
             phone = request_body["phone"],
+            category = request_body["category"], 
             website = request_body["website"],
             schedule = repr(request_body["schedule"]),
             description = request_body["description"],
-            category = request_body["category"],        
+            latitude = request_body["latitude"], 
+            longitude = request_body["longitude"], 
+            image = request_body["image"],
+            image2 = request_body["image2"],
+            logo = request_body["logo"], 
+            user_id=user_id,     
             )
         db.session.add(resource)
         db.session.commit()
         return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
-    
-# Create comments
+      
+################ Create comments ##########################
+
 @api.route('/createComment', methods=['POST'])
 @jwt_required()
 def create_comment():
@@ -106,14 +115,18 @@ def create_comment():
         db.session.commit()
         return jsonify({"created": "Thank you for your feedback", "status": "true"}), 200
 
-# get comments
-@api.route('/getcomments', methods=['POST'])
-def getcomments():
-    # resource_id = request.get_json("resource_id")
-    resource_id = request.get_json().get("resource_id")
+############### get comments ##########################
+@api.route('/getcomments/<int:resource_id>', methods=['GET'])
+def getcomments(resource_id):
+    # resource_id = request.get_json("resource_id")    
     print(resource_id)
     comments = getCommentsByResourceId(resource_id)
     return jsonify({"comments": comments})
+
+def getCommentsByResourceId(resourceId):
+    comments = Comment.query.filter_by(resource_id=resourceId).all()
+    serialized_comments = [comment.serialize() for comment in comments]
+    return serialized_comments
 
 # get resources for map
 @api.route('/getResources', methods=['GET'])
@@ -165,7 +178,4 @@ def getFavoritesByUserId(userId):
     serialized_favorites = [fav.serialize() for fav in favorites]
     return serialized_favorites
 
-def getCommentsByResourceId(resourceId):
-    comments = Comment.query.filter_by(resource_id=resourceId).all()
-    serialized_comments = [comment.serialize() for comment in comments]
-    return serialized_comments
+

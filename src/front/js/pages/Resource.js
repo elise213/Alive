@@ -18,7 +18,8 @@ const resource = () => {
       return elm;
     }
   });
-  console.log("resourceData is", resourceData[0].id);
+  // console.log("resourceData is", resourceData[0].id);
+
   return (
     <div className="mb-3 mt-6 resourcesRow h-100" style={{ maxWidth: 540 }}>
       {resourceData.map((items) => (
@@ -41,10 +42,11 @@ const resource = () => {
         </div>
       ))}
       <div className="row">
-        <SimpleCommentForm id={resourceData.id} />
+        <SimpleCommentForm id={resourceData[0].id} />
       </div>
       <div className="row">
-        <SimpleCommentList id={resourceData.id} />
+        {/* {console.log("id: ", resourceData[0].id)} */}
+        <SimpleCommentList id={resourceData[0].id} />
       </div>
     </div>
   );

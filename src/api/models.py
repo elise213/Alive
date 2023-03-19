@@ -45,7 +45,7 @@ class Resource(db.Model):
         logo = db.Column(db.String(500), unique=False, nullable=True)
         icon = db.Column(db.String(250), unique=False, nullable=True)
         user_id = db.Column(db.Integer, unique=False, nullable=True)
-      
+        comment= db.relationship("Comment", backref="resource", lazy=True)
         def __repr__(self):
             return f'<Resource {self.name}>'
         
@@ -87,10 +87,11 @@ class Comment(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
+            "user_id": User.query.filter_by(id=self.user_id).first().name,
             "resource_id": self.resource_id,
             "comment_cont": self.comment_cont,
-            "parentId": self.parentId
+            "parentId": self.parentId,
+            "created_at": self.created_at,
         }
 
 class Favorites(db.Model):

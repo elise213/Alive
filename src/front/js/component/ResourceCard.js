@@ -23,7 +23,7 @@ export const ResourceCard = (props) => {
             <i className={`${props.icon}`} />
           </div>
         </div>
-        <div classname="row card-body">
+        <div className="row card-body">
           <img className="card-img" src={props.image} alt="profile picture" />
         </div>
       </Link>

@@ -41,13 +41,19 @@ export const Home = () => {
     <div className="text-center mt-5">
       <br />
       <br />
-      <div className=" bg-light">
+      <div className=" bg-light p-5">
         <h1>Welcome to Alive!</h1>
-        <h3>
-          Alive <small className="text-muted">is a Website blablablabla</small>
+        <h3 className="p-5">
+          Alive{" "}
+          <small className="text-muted">
+            is a website designed to help you connect with organizations that
+            offer free resources so you can meet the most vital, basic needs,
+            including food, shelter, hygiene, and health services.{" "}
+          </small>
         </h3>
-        <p>more text</p>
-        <p>more text...</p>
+        <p>
+          Click on one of the icons and discover what's available in your area
+        </p>
       </div>
       <div className="row resourcesRow">
         <div className="col-sm-3 mx-auto">
@@ -124,7 +130,8 @@ export const Home = () => {
                   Affordable Care Program
                 </h5>
                 <p className="card-text text-white">
-                  You can receive help to get a mobile device
+                  You can receive help to get a mobile device and cover your
+                  service bill
                 </p>
                 <p className="card-text">
                   {/* <small className="text-muted">
@@ -139,9 +146,11 @@ export const Home = () => {
         </div>
 
         <div className="col-8 mt-3">
-          <div className="card bg-secondary text-white border-0 w-100">
+          <div className="card bg-secondary text-white border-0 w-100 h-100">
             <div className="card-body">
-              <i className="fa-solid fa-circle-info bigIcon"></i>
+              <div className="circle rounded-circle text-white text-center">
+                <i className="fa-solid fa-circle-info bigIcon"></i>
+              </div>
               <span>
                 <h5 className="card-title text-white">Other resources</h5>
               </span>
@@ -157,7 +166,8 @@ export const Home = () => {
                 </a>
               </p>
               <p className="card-text text-white">
-                <i className="fa-solid fa-file-certificate"></i>
+                {/* <i className="fa-solid fa-file-certificate"></i> */}
+                <i className="fa-solid fa-briefcase  m-1"></i>
                 <a
                   href="https://www.axishelps.org/individuals/job-training-employment-support"
                   className="text-decoration-none text-white"
@@ -167,7 +177,10 @@ export const Home = () => {
                 </a>
               </p>
               <p className="card-text text-white">
-                <i className="fa-solid fa-head-side-heart m-1"></i>
+                <span className="PsyIcon">
+                  <i className="fa-solid fa-face-smile m-1"></i>
+                  {/* <i className="fa-solid fa-head-side-heart m-1"></i> */}
+                </span>
                 <a
                   href="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm"
                   className="text-decoration-none text-white"
