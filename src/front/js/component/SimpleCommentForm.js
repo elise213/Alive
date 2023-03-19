@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
-
+import Badge from "react";
 import "../../styles/custom.css";
 
 const SimpleCommentForm = (props) => {
@@ -20,6 +20,7 @@ const SimpleCommentForm = (props) => {
   const params = useParams();
   let resource_id = parseInt(props.id);
   let parentId = null;
+  const [characterLimit] = useState(250);
 
   function handleClick(e) {
     e.preventDefault();
@@ -39,27 +40,44 @@ const SimpleCommentForm = (props) => {
               <textarea
                 className="form-control"
                 id="comment_cont"
+                name={commentCont}
                 rows="3"
+                maxLength="250"
                 value={commentCont}
                 onChange={(e) => setCommentCont(e.target.value)}
+                isInvalid={commentCont.length > characterLimit}
                 placeholder="Enter your comment here..."
               ></textarea>
+
+              {/* <Badge
+                className="mt-3"
+                bg={`${
+                  commentCont.length > characterLimit ? "danger" : "primary"
+                }`}
+              >
+                {commentCont.length}/{characterLimit}
+              </Badge> */}
             </div>
           </form>
-          <div className="float-end">
-            <button
-              type="submit"
-              className="btn custom-btn text-white"
-              onClick={(e) => handleClick(e)}
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Send your comment"
-            >
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-            {/* <button type="reset" className="btn btn-outline-danger"> 
+          <div>
+            <small>
+              {commentCont.length}/{characterLimit}
+            </small>
+            <div className="float-end">
+              <button
+                type="submit"
+                className="btn custom-btn text-white"
+                onClick={(e) => handleClick(e)}
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Send your comment"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              {/* <button type="reset" className="btn btn-outline-danger"> 
             Cancel
           </button>*/}
+            </div>
           </div>
         </div>
       )}

@@ -1,7 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import { Context } from "../store/appContext";
-
+import AddressInput from "../component/AddressInput";
 import "../../styles/custom.css";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import PlacesAutocomplete from "../component/PlacesAutocomplete";
+import { Component } from "react/cjs/react.production.min";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
 
 const CreateResource = () => {
   const [address, setAddress] = useState("");
@@ -16,9 +32,9 @@ const CreateResource = () => {
   const [endTime, setEndTime] = useState("");
   const [picture, setPicture] = useState("");
   const [picture2, setPicture2] = useState("");
-  const [latitude, setlatitude] = useState("lat");
-  const [longitude, setlongitude] = useState("lon");
-  const [logo, setlogo] = useState("log");
+  const [latitude, setLatitude] = useState("25.7617");
+  const [longitude, setLongitude] = useState("-80.1918");
+  const [logo, setlogo] = useState("");
   const [schedule, setSchedule] = useState([
     { day: "", startTime: "", endTime: "" },
   ]);
@@ -47,6 +63,88 @@ const CreateResource = () => {
     event.preventDefault();
   };
 
+  // getGeocode(address).then((results) => {
+  //   const { lat, lng } = getLatLng(results[0]);
+  //   console.log("Coordinates: ", { lat, lng });
+  // });
+  // let coordinates = getLatLng(address);
+  // console.log("Coordinatesss: ", coordinates);
+
+  ////////////////////////////////////////////////////////////////////////////////////
+
+  function AddressInput() {
+    const { isLoaded } = useLoadScript({
+      // googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+      googleMapsApiKey: "AIzaSyDOhqYOYIXvrk8lt2HQQLI8cS1O8FnZt9I",
+      libraries: ["places"],
+    });
+
+    if (!isLoaded) return <div>Loading...</div>;
+    return <Map />;
+  }
+
+  function Map() {
+    const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
+    const [selected, setSelected] = useState(null);
+
+    return (
+      <>
+        <div className="places-container">
+          <PlacesAutocomplete setSelected={setSelected} />
+        </div>
+      </>
+    );
+  }
+
+  const PlacesAutocomplete = ({ setSelected }) => {
+    const {
+      ready,
+      value,
+      setValue,
+      suggestions: { status, data },
+      clearSuggestions,
+    } = usePlacesAutocomplete();
+
+    const handleSelect = async (address) => {
+      setValue(address, false);
+      clearSuggestions();
+
+      const results = await getGeocode({ address });
+      const { lat, lng } = await getLatLng(results[0]);
+      setSelected({ lat, lng });
+      setLatitude(lat);
+      setLongitude(lng);
+      console.log(" dirrrr Latitud & long: ", lat, " ", lng);
+      console.log(" useState Latitud & long: ", latitude, " ", longitude);
+    };
+    // Log error status and clear dropdown when Google Maps API returns an error.
+    const onError = (status, clearSuggestions) => {
+      console.log("Google Maps API returned error with status: ", status);
+      clearSuggestions();
+    };
+
+    return (
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          disabled={!ready}
+          className="form-control" //"combobox-input"
+          placeholder="enter the address"
+        />
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === "OK" &&
+              data.map(({ place_id, description }) => (
+                <ComboboxOption key={place_id} value={description} />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    );
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////
   const resetForm = () => {
     setName("");
     setAddress("");
@@ -307,13 +405,15 @@ const CreateResource = () => {
           <label htmlFor="address">
             What is the address where this being offered?
           </label>
+
+          {/* <PlacesAutocomplete /> */}
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text h-100">
                 <i className="fa-solid fa-map-location-dot text-secondary"></i>
               </span>
             </div>
-            <input
+            {/* <input
               id="address"
               className="form-control"
               name="address"
@@ -323,7 +423,11 @@ const CreateResource = () => {
               data-toggle="tooltip"
               data-placement="bottom"
               title="Provide the address of the place"
-            ></input>
+            ></input> */}
+            <AddressInput
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
           </div>
           {/* <div className="form-row">
             <div className="col">
