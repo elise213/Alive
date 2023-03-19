@@ -6,10 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-swsnxe3vmyi.ws-eu90.gitpod.io",
+        "https://3000-lalafontaine-alive-i68w9srmd07.ws-us90.gitpod.io",
       // back URL is port 3001
       current_back_url: process.env.BACKEND_URL,
-      // "https://3001-lalafontaine-alive-d7b4ebv2hdj.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -18,13 +17,18 @@ const getState = ({ getStore, getActions, setStore }) => {
       name: null,
       avatarID: null,
       avatarImages: [
-        "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
-        "https://rlv.zcache.co.nz/beagle_puppy_dog_cartoon_love_beagles_stickers-r3e13c31e5cf44f388ad8e771530ada13_0ugmc_8byvr_736.jpg",
-        "https://cdn.shopify.com/s/files/1/0300/9124/7748/products/mockup-6fab90ef_1200x1200.jpg?v=1581906930",
-        "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
-        "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
-        "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
-        // <i class="fas fa-robot"></i>,
+        // "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
+        // "https://rlv.zcache.co.nz/beagle_puppy_dog_cartoon_love_beagles_stickers-r3e13c31e5cf44f388ad8e771530ada13_0ugmc_8byvr_736.jpg",
+        // "https://cdn.shopify.com/s/files/1/0300/9124/7748/products/mockup-6fab90ef_1200x1200.jpg?v=1581906930",
+        // "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
+        // "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
+        // "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
+        "fas fa-robot",
+        "fas fa-robot",
+        "fas fa-robot",
+        "fas fa-robot",
+        "fas fa-robot",
+        "fas fa-robot",
       ],
       favorites: [],
       searchResults: [],

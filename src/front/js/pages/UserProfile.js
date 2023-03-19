@@ -7,7 +7,6 @@ import "../../styles/search.css";
 const userProfile = () => {
   const { store, actions } = useContext(Context);
   let is_org = sessionStorage.getItem("is_org");
-  let avatarIndex = parseInt(store.avatarID);
   let link = store.avatarImages[parseInt(store.avatarID)];
   let name = store.name;
   console.log("name is coming from user profile:" + name);
@@ -22,7 +21,7 @@ const userProfile = () => {
       <p className="profile-greeting">Welcome, {name}!</p>
       <div className="user-profile-container">
         <div className="welcome">
-          <img className="user-profile-pic" src={link} />
+          <span className={link}></span>
         </div>
         <div className="favorites-col">
           <img className="building" src={Building}></img>
@@ -31,7 +30,7 @@ const userProfile = () => {
               console.log("fav = ", fav);
               return (
                 <li key={i} className="favorite-line-item">
-                  <Link className="favorite-a-tag" to={"/resource/" + fav}>
+                  <Link className="favorite-a-tag" to={"/resource/" + fav.name}>
                     <span className={fav.icon}> </span>
                     {fav.name}
                   </Link>

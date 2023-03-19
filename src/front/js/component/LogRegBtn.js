@@ -120,12 +120,11 @@ const LogRegBtn = () => {
               ></input>
             </div>
             <div className="mb-3">
-              <p>pick you avatar</p>
+              <p>pick your avatar</p>
               {store.avatarImages.map((i, idx) => {
                 return (
-                  <img
-                    className="avatarImages"
-                    src={i}
+                  <span
+                    className={i}
                     id={"avatar" + idx}
                     onClick={() => handleSelectImage(idx)}
                   />
