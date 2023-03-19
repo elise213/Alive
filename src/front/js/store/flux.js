@@ -281,15 +281,15 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ filteredResults: filteredResults });
           const cleared = [];
           // setStore({ filteredResults: "123" });
-          console.log("filteredREsults is clear! I hope", filteredResults);
-          console.log(
-            "from when and category when length and categorySearch[1]",
-            when.length,
-            categorySearch[1]
-          );
+          // console.log("filteredREsults is clear! I hope", filteredResults);
+          // console.log(
+          //   "from when and category when length and categorySearch[1]",
+          //   when.length,
+          //   categorySearch[1]
+          // );
           searchResults.forEach((item, index) => {
             let day = item.schedule[0].day.toLowerCase();
-            console.log(day);
+            // console.log(day);
             let category = item.category;
             if (
               (day == when[0] ||
@@ -304,11 +304,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                 category == categorySearch[3] ||
                 category == categorySearch[4])
             ) {
-              console.log(item, category);
+              // console.log(item, category);
               let newArray = filteredResults;
               newArray.push(item);
               setStore({ filteredResults: newArray });
-              console.log("new array is", newArray);
+              // console.log("new array is", newArray);
             }
           });
         }
