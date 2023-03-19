@@ -49,9 +49,6 @@ export const Selection = (props) => {
     } else if (when.includes("monday")) {
       let monday = document.querySelector("#monday");
       monday.checked = true;
-    } else if (when.includes("monday")) {
-      let monday = document.querySelector("#monday");
-      monday.checked = true;
     } else if (when.includes("tuesday")) {
       let tuesday = document.querySelector("#tuesday");
       tuesday.checked = true;
@@ -64,9 +61,9 @@ export const Selection = (props) => {
     } else if (when.includes("friday")) {
       let friday = document.querySelector("#friday");
       friday.checked = true;
-    } else if (when.includes("satday")) {
-      let satday = document.querySelector("#satday");
-      satday.checked = true;
+    } else if (when.includes("saturday")) {
+      let saturday = document.querySelector("#saturday");
+      saturday.checked = true;
     } else if (when.includes("sunday")) {
       let sunday = document.querySelector("#sunday");
       sunday.checked = true;

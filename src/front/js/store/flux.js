@@ -17,12 +17,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       name: null,
       avatarID: null,
       avatarImages: [
-        // "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
-        // "https://rlv.zcache.co.nz/beagle_puppy_dog_cartoon_love_beagles_stickers-r3e13c31e5cf44f388ad8e771530ada13_0ugmc_8byvr_736.jpg",
-        // "https://cdn.shopify.com/s/files/1/0300/9124/7748/products/mockup-6fab90ef_1200x1200.jpg?v=1581906930",
-        // "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
-        // "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
-        // "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
         "fas fa-robot",
         "fas fa-robot",
         "fas fa-robot",
@@ -247,22 +241,77 @@ const getState = ({ getStore, getActions, setStore }) => {
       filterSearchResults: (when, categorySearch) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
+        // setStore({ filteredResults: [] });
         searchResults.forEach((item, index) => {
           // console.log(item.schedule);
           console.log("type of ", typeof item.schedule);
           if (
-            item.category == categorySearch[0] ||
-            item.category.includes(categorySearch[1]) ||
-            item.category.includes(categorySearch[2]) ||
-            item.category.includes(categorySearch[3]) ||
-            item.schedule.some((scheduleItem) =>
-              when.includes(scheduleItem.day.toLowerCase())
-            )
+            !when.length &&
+            (item.category == categorySearch[1] ||
+              item.category.includes(categorySearch[2]) ||
+              item.category.includes(categorySearch[3]) ||
+              item.category.includes(categorySearch[4]))
           ) {
+            setStore({ filteredResults: [] });
+            // console.log("%cOnly category", "color: green; font-size: 2rem;");
+
             filteredResults.push(item);
-            setStore({ filteredResults: filteredResults });
+            let newResults = [...new Set(filteredResults)];
+            setStore({ filteredResults: newResults });
+          } else if (
+            // console.log(item.schedule, !categorySearch[1]) &&
+            !categorySearch[1] &&
+            item.schedule.some((scheduleItem) => {
+              // console.log("this is when from if statement", when);
+              return when.includes(scheduleItem.day.toLowerCase());
+            })
+          ) {
+            setStore({ filteredResults: [] });
+            // console.log("%cOnly day", "color: green; font-size: 2rem;");
+            // console.log(filteredResults);
+            // console.log("item schedule from day only is", item.schedule);
+            filteredResults.push(item);
+            let newResults = [...new Set(filteredResults)];
+            setStore({ filteredResults: newResults });
           }
         });
+        if (when.length && categorySearch[1]) {
+          let filteredResults = getStore().filteredResults;
+          filteredResults = [];
+          setStore({ filteredResults: filteredResults });
+          const cleared = [];
+          // setStore({ filteredResults: "123" });
+          console.log("filteredREsults is clear! I hope", filteredResults);
+          console.log(
+            "from when and category when length and categorySearch[1]",
+            when.length,
+            categorySearch[1]
+          );
+          searchResults.forEach((item, index) => {
+            let day = item.schedule[0].day.toLowerCase();
+            console.log(day);
+            let category = item.category;
+            if (
+              (day == when[0] ||
+                day == when[1] ||
+                day == when[2] ||
+                day == when[3] ||
+                day == when[4] ||
+                day == when[5] ||
+                day == when[6]) &&
+              (category == categorySearch[1] ||
+                category == categorySearch[2] ||
+                category == categorySearch[3] ||
+                category == categorySearch[4])
+            ) {
+              console.log(item, category);
+              let newArray = filteredResults;
+              newArray.push(item);
+              setStore({ filteredResults: newArray });
+              console.log("new array is", newArray);
+            }
+          });
+        }
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;
@@ -316,28 +365,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
-      // getComments: (resource_id) => {
-      //   let commentList = [];
-      //   const current_back_url = getStore().current_back_url;
-      //   const current_front_url = getStore().current_front_url;
-      //   const opts = {
-      //     method: "POST",
-      //     body: { resource_id: resource_id },
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   };
-      //   fetch(current_back_url + "/api/getcomments", opts)
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       console.log("this is from get_comments", data);
-      //       commentList = data;
-      //     })
-      //     .catch((error) => {
-      //       console.log(error);
-      //     });
-      //   return commentList;
-      // },
+
       getComments: (resource_id) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;

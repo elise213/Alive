@@ -11,8 +11,8 @@ export const SimpleMap = () => {
     center: { lat: latitude, lng: longitude },
   });
 
-  console.log("city is", city);
-  console.log(latitude, longitude, "from simple map");
+  // console.log("city is", city);
+  // console.log(latitude, longitude, "from simple map");
 
   // Define the Marker component
   const Marker = (props) => (
@@ -26,7 +26,7 @@ export const SimpleMap = () => {
     zoom: 12,
   };
 
-  console.log("city.center", city.center);
+  // console.log("city.center", city.center);
 
   return (
     <div>
@@ -143,7 +143,7 @@ export const SimpleMap = () => {
                 );
               })
             : store.searchResults.map((result) => {
-                console.log(result);
+                // console.log(result);
                 return (
                   <Marker
                     lat={result.latitude}
