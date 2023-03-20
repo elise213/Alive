@@ -124,7 +124,7 @@ const LogRegBtn = () => {
               {store.avatarImages.map((i, idx) => {
                 return (
                   <span
-                    className={i}
+                    className={`${i} avatarImages`}
                     id={"avatar" + idx}
                     onClick={() => handleSelectImage(idx)}
                   />

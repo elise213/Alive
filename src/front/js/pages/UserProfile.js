@@ -19,10 +19,9 @@ const userProfile = () => {
   return (
     <div className="profile-container">
       <p className="profile-greeting">Welcome, {name}!</p>
+      <span className={`${link} user-profile-avatar`}></span>
       <div className="user-profile-container">
-        <div className="welcome">
-          <span className={link}></span>
-        </div>
+        <div className="welcome"></div>
         <div className="favorites-col">
           <img className="building" src={Building}></img>
           <ul className="favorites-list" style={{ listStyleType: "none" }}>
@@ -31,7 +30,9 @@ const userProfile = () => {
               return (
                 <li key={i} className="favorite-line-item">
                   <Link className="favorite-a-tag" to={"/resource/" + fav.name}>
-                    <span className={fav.icon}> </span>
+                    <span className={`${fav.icon} user-profile-fav-icon`}>
+                      {" "}
+                    </span>{" "}
                     {fav.name}
                   </Link>
                   <a

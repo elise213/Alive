@@ -7,8 +7,7 @@ import AliveLogo from "../../images/ALIVE3.png";
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const token = sessionStorage.getItem("token");
-  let is_org = store.is_org;
-
+  let is_org = sessionStorage.getItem("is_org");
   // console.log("LATITUDE", store.latitude);
   // console.log("is_org is", is_org);
   // console.log("token is ", token);
