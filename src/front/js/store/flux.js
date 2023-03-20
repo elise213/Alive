@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-i68w9srmd07.ws-us90.gitpod.io",
+        "https://3000-lalafontaine-alive-wtx4xbwz5ev.ws-eu90.gitpod.io",
       // back URL is port 3001
       current_back_url: process.env.BACKEND_URL,
 
