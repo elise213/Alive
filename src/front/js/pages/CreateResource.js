@@ -428,9 +428,9 @@ const CreateResource = () => {
               title="Provide the address of the place"
             ></input> */}
             <AddressInput
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              // style={{ Width: "100% !important" }}
+            // value={address}
+            // onChange={(e) => setAddress(e.target.value)}
+            // style={{ Width: "100% !important" }}
             />
           </div>
           {/* <div className="form-row">
