@@ -23,7 +23,8 @@ const userProfile = () => {
       <div className="user-profile-container">
         <div className="welcome"></div>
         <div className="favorites-col">
-          <img className="building" src={Building}></img>
+          {/* <img className="building" src={Building}></img> */}
+          <p className="your-favorite-resources">Your Favorite Resources</p>
           <ul className="favorites-list" style={{ listStyleType: "none" }}>
             {store.favorites.map((fav, i) => {
               console.log("fav = ", fav);

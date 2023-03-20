@@ -7,7 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       // front URL is port 3000
       current_front_url:
         "https://3000-lalafontaine-alive-znxnkkbx495.ws-eu90.gitpod.io",
-      // back URL is port 3001
       current_back_url: process.env.BACKEND_URL,
 
       latitude: null, //to store user location
@@ -28,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       searchResults: [],
       filteredResults: [],
       checked: false,
+      commentsList: [],
     },
     actions: {
       login: async (email, password) => {
@@ -119,14 +119,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       createResource: async (
         name,
-        schedule,
-        website,
-        phone,
         address,
+        phone,
         resourceType,
+        website,
+        schedule,
+        description,
+        latitude,
+        longitude,
         picture,
-        description
-        //, user_id
+        picture2,
+        logo
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -141,13 +144,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           body: JSON.stringify({
             name: name,
-            schedule: schedule,
-            website: website,
-            phone: phone,
             address: address,
+            phone: phone,
             category: resourceType,
-            picture: picture,
+            website: website,
+            schedule: schedule,
             description: description,
+            latitude: latitude,
+            longitude: longitude,
+            image: picture,
+            image2: picture2,
+            logo: logo,
             // user_id: user_id,
           }),
         };
@@ -161,9 +168,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          if (data.status == "true") {
-            window.location.href = current_front_url + "/";
-          }
+          // if (data.status == "true") {
+          //   window.location.href = current_front_url + "/search/all"; //go to home
+          // }
           return true;
         } catch (error) {
           console.error(error);
@@ -229,7 +236,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             .catch((error) => console.log(error));
         }
       },
-
       setSearchResults: () => {
         const searchResults = getStore().searchResults;
         fetch(getStore().current_back_url + "/api/getResources")
@@ -241,10 +247,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       filterSearchResults: (when, categorySearch) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
-        // setStore({ filteredResults: [] });
         searchResults.forEach((item, index) => {
-          // console.log(item.schedule);
           console.log("type of ", typeof item.schedule);
+
+          // if only a category is selected...
           if (
             !when.length &&
             (item.category == categorySearch[1] ||
@@ -254,42 +260,32 @@ const getState = ({ getStore, getActions, setStore }) => {
           ) {
             setStore({ filteredResults: [] });
             // console.log("%cOnly category", "color: green; font-size: 2rem;");
-
             filteredResults.push(item);
             let newResults = [...new Set(filteredResults)];
             setStore({ filteredResults: newResults });
-          } else if (
-            // console.log(item.schedule, !categorySearch[1]) &&
+          }
+
+          // if only a day of the week is selected...
+          else if (
             !categorySearch[1] &&
             item.schedule.some((scheduleItem) => {
-              // console.log("this is when from if statement", when);
               return when.includes(scheduleItem.day.toLowerCase());
             })
           ) {
             setStore({ filteredResults: [] });
-            // console.log("%cOnly day", "color: green; font-size: 2rem;");
-            // console.log(filteredResults);
-            // console.log("item schedule from day only is", item.schedule);
             filteredResults.push(item);
             let newResults = [...new Set(filteredResults)];
             setStore({ filteredResults: newResults });
           }
         });
+
+        //  if a category and a day of the week are selected...
         if (when.length && categorySearch[1]) {
           let filteredResults = getStore().filteredResults;
           filteredResults = [];
           setStore({ filteredResults: filteredResults });
-          const cleared = [];
-          // setStore({ filteredResults: "123" });
-          // console.log("filteredREsults is clear! I hope", filteredResults);
-          // console.log(
-          //   "from when and category when length and categorySearch[1]",
-          //   when.length,
-          //   categorySearch[1]
-          // );
           searchResults.forEach((item, index) => {
             let day = item.schedule[0].day.toLowerCase();
-            // console.log(day);
             let category = item.category;
             if (
               (day == when[0] ||
@@ -304,7 +300,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 category == categorySearch[3] ||
                 category == categorySearch[4])
             ) {
-              // console.log(item, category);
               let newArray = filteredResults;
               newArray.push(item);
               setStore({ filteredResults: newArray });
@@ -369,19 +364,18 @@ const getState = ({ getStore, getActions, setStore }) => {
       getComments: (resource_id) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
+        let id = parseInt(resource_id);
         const opts = {
-          method: "POST",
-          body: JSON.stringify({ resource_id: resource_id }),
           headers: {
             "Content-Type": "application/json",
           },
         };
-
-        return fetch(current_back_url + "/api/getcomments", opts)
+        fetch(current_back_url + "/api/getcomments/" + id, opts)
           .then((res) => res.json())
           .then((data) => {
             console.log("this is from get_comments", data);
-            return data;
+            // return data;
+            setStore({ commentsList: data.comments });
           })
           .catch((error) => {
             console.log(error);
