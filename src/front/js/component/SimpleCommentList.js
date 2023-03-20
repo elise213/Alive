@@ -13,7 +13,7 @@ const SimpleCommentList = (props) => {
   console.log("comments... ", commentList);
   return (
     <div className="row center text-secondary mt-6">
-      {commentList.length &&
+      {commentList.length > 0 &&
         commentList.map((items) => (
           <div className="mt-2" key={items.comment_id}>
             <label htmlFor="name">

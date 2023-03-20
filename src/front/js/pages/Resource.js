@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 // import Comments from "../component/comments/Comments";

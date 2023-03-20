@@ -45,7 +45,7 @@ const SimpleCommentForm = (props) => {
                 maxLength="250"
                 value={commentCont}
                 onChange={(e) => setCommentCont(e.target.value)}
-                isInvalid={commentCont.length > characterLimit}
+                // isInvalid={commentCont.length > characterLimit}
                 placeholder="Enter your comment here..."
               ></textarea>
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import imgFood from "../../images/imgRes/food2.png";
+import imgLogo from "../../images/HDLOGOTRANSP.png";
+
 export const ResourceInfo = (props) => {
   let schedule = props.schedule;
   // console.log("schedule: ", schedule);
@@ -79,11 +81,20 @@ export const ResourceInfo = (props) => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src={props.image} className="d-block w-100" />
+            <img
+              src={props.image == "" ? imgLogo : props.image}
+              className="d-block w-100"
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = { imgLogo };
+              }}
+            />
           </div>
-          <div className="carousel-item">
-            <img src={props.image2} className="d-block w-100" />
-          </div>
+          {props.image2 != "" && (
+            <div className="carousel-item">
+              <img src={props.image2} className="d-block w-100" />
+            </div>
+          )}
           {/* <div className="carousel-item">
             <img
               src="https://static01.nyt.com/images/2020/03/05/us/00virus-homeless01/00virus-homeless01-mobileMasterAt3x-v2.jpg"

@@ -72,3 +72,7 @@ input:-internal-autofill-selected {
     rgba(239, 239, 240, 1)
   ) !important;
 }
+
+.comboBox {
+  width: 100%;
+}

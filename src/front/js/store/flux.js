@@ -168,7 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            // window.location.href = current_front_url + "/"; //go to home
+            window.location.href = current_front_url + "/search/all"; //go to home
           }
           return true;
         } catch (error) {

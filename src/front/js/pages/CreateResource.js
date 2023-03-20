@@ -1,6 +1,6 @@
 import React, { useState, useContext, useMemo } from "react";
 import { Context } from "../store/appContext";
-import AddressInput from "../component/AddressInput";
+// import AddressInput from "../component/AddressInput";
 import "../../styles/custom.css";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -70,7 +70,7 @@ const CreateResource = () => {
   // let coordinates = getLatLng(address);
   // console.log("Coordinatesss: ", coordinates);
 
-  ////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////// Autocomplete address input///////////////////////////////////////////////
 
   function AddressInput() {
     const { isLoaded } = useLoadScript({
@@ -114,8 +114,10 @@ const CreateResource = () => {
       setSelected({ lat, lng });
       setLatitude(lat);
       setLongitude(lng);
+      setAddress(address);
       console.log(" dirrrr Latitud & long: ", lat, " ", lng);
       console.log(" useState Latitud & long: ", latitude, " ", longitude);
+      console.log("address: ", address);
     };
     // Log error status and clear dropdown when Google Maps API returns an error.
     const onError = (status, clearSuggestions) => {
@@ -124,13 +126,13 @@ const CreateResource = () => {
     };
 
     return (
-      <Combobox onSelect={handleSelect}>
+      <Combobox onSelect={handleSelect} className="w-100 comboBox">
         <ComboboxInput
           value={value}
           onChange={(e) => setValue(e.target.value)}
           disabled={!ready}
-          className="form-control" //"combobox-input"
-          placeholder="enter the address"
+          className="form-control w-100 comboBox" //"combobox-input"
+          placeholder="enter address"
         />
         <ComboboxPopover>
           <ComboboxList>
@@ -177,7 +179,7 @@ const CreateResource = () => {
         picture2,
         logo
         // user_id
-      )
+      ) == true
     ) {
       // showModal ModalResource
       alert("Resource Created");
@@ -425,8 +427,9 @@ const CreateResource = () => {
               title="Provide the address of the place"
             ></input> */}
             <AddressInput
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+            // value={address}
+            // onChange={(e) => setAddress(e.target.value)}
+            // style={{ Width: "100% !important" }}
             />
           </div>
           {/* <div className="form-row">
