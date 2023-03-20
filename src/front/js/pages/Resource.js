@@ -6,10 +6,11 @@ import { ResourceInfo } from "../component/ResourceInfo";
 import SimpleCommentForm from "../component/SimpleCommentForm.js";
 import SimpleCommentList from "../component/SimpleCommentList.js";
 import "../../styles/custom.css";
+
 const resource = () => {
   const { store, actions } = useContext(Context);
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   let filteredResults = store.searchResults;
   let resourceName = params.name;
 
