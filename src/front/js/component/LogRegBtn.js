@@ -177,9 +177,9 @@ const LogRegBtn = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
-              <div id="emailHelp" className="form-text">
+              {/* <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else.
-              </div>
+              </div> */}
             </div>
             <div className="mb-3">
               <label for="exampleInputPassword1" className="form-label">
@@ -192,13 +192,17 @@ const LogRegBtn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
+              <div className="forgot-password mt-3">
+                <span>Forgot your Password?</span>
+              </div>
             </div>
             <div className="logRegBtnModalCont">
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn custom-btn"
                 data-bs-dismiss="modal"
                 onClick={(e) => handleLogin(e)}
+                style={{ color: "white" }}
               >
                 Submit
               </button>

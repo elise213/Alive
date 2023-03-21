@@ -24,25 +24,10 @@
     "description": "bla bla bla",
     "latitude": "34.15354480776716",
     "longitude": "-118.24421153066476",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-2.fna.fbcdn.net/v/t39.30808-6/336991547_606750844637901_2823797462909674595_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=fTXk9B66JU4AX__XF4g&_nc_ht=scontent.fbcn7-2.fna&oh=00_AfAv96rkrph319sfNiPkyg2fIzba4m2DoXlzJVCTmPyyAQ&oe=641DB432",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-stethoscope"
-  },
-  {
-    "name": "LAHSA Hand Washing Station",
-    "address": "Hollywood Blvd and North Gower, Los Angeles, CA 90028",
-    "phone": "555-111-2222",
-    "category": "hygiene",
-    "website": "https://www.lahsa.org/documents?id=4340-handwashing-station-list",
-    "schedule": "[{'day': 'Tuesday', 'startTime': '07:00', 'endTime': '15:00'}]",
-    "description": "bla bla bla",
-    "latitude": "34.10185214330632",
-    "longitude": "-118.32233751532236",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
-    "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
-    "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
-    "icon": "fa-solid fa-soap"
   },
   {
     "name": "The Source: Emergency Shelter Services",
@@ -54,7 +39,7 @@
     "description": "bla bla",
     "latitude": "34.09421597539273",
     "longitude": "-118.37656743066601",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336891631_1257941758411198_2337066370652269035_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=WXIVy7f3uC0AX8_ews8&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfBtAE0smWOIpDh5QJ59NckFvFwpIj2IdKNCAR4t6ZGDrQ&oe=641E4F90",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-person-shelter"
@@ -69,7 +54,7 @@
     "description": "Offering take-away hot meals",
     "latitude": "34.102274945815694",
     "longitude": "-118.31914988850855",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-2.fna.fbcdn.net/v/t39.30808-6/336874843_125689107133711_6403328130776086215_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=730e14&_nc_ohc=djdtt6WEPNkAX_fy-nC&_nc_ht=scontent.fbcn7-2.fna&oh=00_AfAioYTpAnXgUtwUbAYB4fcDMqBMPe-QXbtIkZCqfuDUEg&oe=641E73A7",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-bowl-rice"
@@ -84,7 +69,7 @@
     "description": "County-operated, offering free and low-cost STD services. ",
     "latitude": "34.01070373746804",
     "longitude": "-118.48621208650503",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336891548_941938627219879_5711383611283162795_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=730e14&_nc_ohc=nl91XFAlU68AX-thvFj&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfBsgY6wC7GO1QOoY89M3e--pUF8b8S_V0OWZT7BK1qxKQ&oe=641EAD84",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-stethoscope"
@@ -99,7 +84,7 @@
     "description": "Interim Housing for women and children. No Walk-ins. Call for availability. Intake: 24 hours; as arranged. Shared Rooms. LAHSA Funded. ",
     "latitude": "34.06525654838558",
     "longitude": "-118.26431770384954",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336885015_760448382399573_4943036472724013857_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_ohc=5v_P02ZFVMoAX9giV1v&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfBtQT3NtOYJJbMVxAOVF4sAIHVeq1_mW7BoEj1CDl6r_w&oe=641E5A5C",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-person-shelter"
@@ -114,7 +99,7 @@
     "description": "Free showers.",
     "latitude": "34.0565620205152",
     "longitude": "-118.20759174433456",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336803492_1203745167171569_3296234833931491302_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_ohc=eEamHvxxP7UAX-a6K8M&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCjxplvm8Ib0eeUyMFUslQ071sn2jZHErqzklh3hDe5Rw&oe=641E856A",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-soap"
@@ -189,7 +174,7 @@
     "description": "Free showers",
     "latitude": "33.993761571876085",
     "longitude": "-118.31344108666573",
-    "image": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
+    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336810885_883929535985553_5441991423298613252_n.jpg?stp=cp6_dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=QTzKE_-XFLgAX_ERIG7&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfDTn215d4J852MMk1WrAITzzyB5LJK1OlxZqwWZ_P8x8A&oe=641D984F",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-soap"

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import AliveLogo from "../../images/HDLOGOTRANSP.png";
 
 import "../../styles/home.css";
 
@@ -38,25 +39,24 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center mt-2">
       <br />
       <br />
       <div className=" bg-light">
-        <h1>Welcome to Alive!</h1>
-        <h3>
-          <small className="text-muted">
-            ALIVE’s essential resource map is designed to help our most
-            vulnerable community members by connecting them with organizations
-            that meet their most vital, basic needs, including free food,
-            shelter, hygiene facilities, and health services. The interface
-            allows users to select a resource type and day of the week, helping
-            users to manage their time, and limit their need to travel long
-            distances. ALIVE's essential resource map allows users to submit
-            feedback about a resource in order to crowd-source the most accurate
-            and up-to-date information possible. In this way, the more people
-            use this website, the more complete the information becomes.
-          </small>
-        </h3>
+        {/* <p className="profile-greeting">Welcome to Alive!</p> */}
+        <img className="landing-logo" src={AliveLogo}></img>
+        <div className="landing-text">
+          <h3>
+            <small className="landing-text mx-5">
+              Welcome! ALIVE is a website designed to connect vulnerable people
+              to organizations that meet their most vital needs, including free
+              food, healthcare, shelter, hygiene facilities. It allows users to
+              submit feedback in order to crowd-source the most accurate and
+              up-to-date information possible. Click on the icons below to find
+              free resources in your area!
+            </small>
+          </h3>
+        </div>
       </div>
       <div className="row resourcesRow">
         <div className="col-sm-3 mx-auto">
@@ -68,13 +68,13 @@ export const Home = () => {
                 </div>
               </Link>
               <h5 className="card-title">Food</h5>
-              <p className="card-text">Find food resources in your area</p>
+              {/* <p className="card-text">Free Food In Your Area</p> */}
             </div>
           </div>
         </div>
         <div className="col-sm-3 mx-auto">
           <div className="card border-0">
-            <div className="card-body text-center center">
+            <div className="my-card-body text-center center">
               <Link to={"/search/shelter"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-shelter text-white text-center">
                   <i className="fa-solid fa-person-shelter"></i>
@@ -82,7 +82,7 @@ export const Home = () => {
               </Link>
               <div>
                 <h5 className="card-title">Shelter</h5>
-                <p className="card-text">Find shelter resources in your area</p>
+                {/* <p className="card-text">Free Shelter In Your Area</p> */}
               </div>
             </div>
           </div>
@@ -95,16 +95,14 @@ export const Home = () => {
                   <i className="fa-solid fa-stethoscope"></i>
                 </div>
               </Link>
-              <h5 className="card-title">Health care</h5>
-              <p className="card-text">
-                Find Health care resources in your area
-              </p>
+              <h5 className="card-title">Healthcare</h5>
+              {/* <p className="card-text">Free Healthcare In Your Area</p> */}
             </div>
           </div>
         </div>
         <div className="col-sm-3 mx-auto">
           <div className="card border-0">
-            <div className="card-body text-center center">
+            <div className="my-card-body text-center center">
               <Link to={"/search/hygiene"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-pink text-white text-center">
                   {/* <i className="fa-regular fa-hands-bubbles"></i> */}
@@ -112,77 +110,88 @@ export const Home = () => {
                 </div>
               </Link>
               <h5 className="card-title">Hygiene</h5>
-              <p className="card-text">Find Hygiene resources in your area</p>
+              {/* <p className="card-text">Free Hygiene Services In Your Area</p> */}
             </div>
           </div>
         </div>
       </div>
       <div className="row resourcesRow">
+        {/*         
         <div className="col-4 mt-3 mr-3">
           <a
             href="https://www.fcc.gov/acp"
             className="text-decoration-none text-white"
             target="_blank"
           >
-            <div className="card darkViolet text-white border-0 h-100 w-100">
-              <div className="card-body text-center center ">
-                <div className="circle rounded-circle text-white text-center">
+            <div className="my-card darkViolet text-white border-0 opacity">
+              <div className="circle rounded-circle text-white text-center">
+                <div>
                   <i className="fa-solid fa-mobile-screen-button"></i>
+                  <h5 className="card-title text-white">
+                    {/* Affordable Care Program */}
+        {/* A.C.P.
+                  </h5>
                 </div>
-                <h5 className="card-title text-white">
-                  Affordable Care Program
-                </h5>
+              </div>
+              <div className="my-card-body text-center center ">
                 <p className="card-text text-white">
                   You can receive help to get a mobile device
                 </p>
-                <p className="card-text">
-                  {/* <small className="text-muted">
-                  
-                    Affordable Care Program
-                  
-                </small> */}
-                </p>
+                <p className="card-text"></p>
               </div>
             </div>
           </a>
-        </div>
+        </div>  */}
 
-        <div className="col-8 mt-3">
-          <div className="card bg-secondary text-white border-0 w-100">
-            <div className="card-body">
-              <i className="fa-solid fa-circle-info bigIcon"></i>
+        <div className="mt-3">
+          <div className="my-card bg-secondary text-white">
+            <div className="new-div">
+              <i className="fa-solid fa-circle-info bigIcon mb-3"></i>
               <span>
                 <h5 className="card-title text-white">Other resources</h5>
               </span>
-
-              <p className="card-text text-white">
-                <i className="fa-solid fa-scale-balanced m-1"></i>
+            </div>
+            <div className="my-card-body">
+              <p className="card-text">
+                <i className="fa-solid fa-scale-balanced me-3"></i>
                 <a
                   href="https://www.americanbar.org/groups/legal_services/flh-home/flh-free-legal-help/"
-                  className="text-decoration-none text-white"
+                  className="text-decoration-none nav-btn"
                   target="_blank"
                 >
-                  Free legal help
+                  Get Free Legal Help
                 </a>
               </p>
-              <p className="card-text text-white">
-                <i className="fa-solid fa-file-certificate"></i>
+
+              <p className="card-text ">
+                <i className="fa-solid fa-mobile-screen-button me-3"></i>
+                <a
+                  href="https://www.fcc.gov/acp"
+                  className="text-decoration-none nav-btn"
+                  target="_blank"
+                >
+                  Get A Free Mobile Device
+                </a>
+              </p>
+
+              <p className="card-text">
+                <i className="fas fa-hammer me-2"></i>
                 <a
                   href="https://www.axishelps.org/individuals/job-training-employment-support"
-                  className="text-decoration-none text-white"
+                  className="text-decoration-none nav-btn"
                   target="_blank"
                 >
                   Job Training & Employment Support
                 </a>
               </p>
-              <p className="card-text text-white">
-                <i className="fa-solid fa-head-side-heart m-1"></i>
+              <p className="card-text">
+                <i className="fas fa-brain me-3"></i>
                 <a
                   href="https://www.cdc.gov/mentalhealth/tools-resources/individuals/index.htm"
-                  className="text-decoration-none text-white"
+                  className="text-decoration-none nav-btn"
                   target="_blank"
                 >
-                  Free Mental health
+                  Free Mental-Health Support
                 </a>
               </p>
             </div>

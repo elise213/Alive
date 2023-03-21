@@ -18,10 +18,9 @@ const userProfile = () => {
   }
   return (
     <div className="profile-container">
-      <p className="profile-greeting">Welcome, {name}!</p>
+      <p className="profile-greeting pt-5">Welcome, {name}!</p>
       <span className={`${link} user-profile-avatar`}></span>
       <div className="user-profile-container">
-        <div className="welcome"></div>
         <div className="favorites-col">
           {/* <img className="building" src={Building}></img> */}
           <p className="your-favorite-resources">Your Favorite Resources</p>

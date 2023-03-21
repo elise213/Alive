@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import imgFood from "../../images/imgRes/food2.png";
-import imgLogo from "../../images/ALIVE1.png";
+import imgLogo from "../../images/HDLOGOTRANSP.png";
 export const ResourceInfo = (props) => {
   let schedule = props.schedule;
   // console.log("schedule: ", schedule);
@@ -42,7 +42,7 @@ export const ResourceInfo = (props) => {
     return timeValue;
   };
   return (
-    <div className="card w-100 ">
+    <div className="card w-100 " style={{ border: "none" }}>
       {/*********************************** Carousel *********************************/}
       <div
         id="carouselExampleIndicators"
@@ -75,7 +75,7 @@ export const ResourceInfo = (props) => {
           <div className="carousel-item active">
             <img
               src={props.image == "" ? imgLogo : props.image}
-              className="d-block w-100"
+              className="d-block w-100 carousel-image"
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null;
                 currentTarget.src = { imgLogo };
@@ -84,7 +84,10 @@ export const ResourceInfo = (props) => {
           </div>
           {props.image2 != "" && (
             <div className="carousel-item">
-              <img src={props.image2} className="d-block w-100" />
+              <img
+                src={props.image2}
+                className="d-block w-100 carousel-image"
+              />
             </div>
           )}
           {/* <div className="carousel-item">
@@ -122,86 +125,34 @@ export const ResourceInfo = (props) => {
       </div>
       {/*********************************** CARD *************************************/}
       {/* <img src="..." className="card-img-top" alt="..." /> */}
-      <div className="card-body text-secondary ">
-        <h5 className="card-title blueViolet">{props.name}</h5>
-        <p className="card-text">
-          {/* <i className={`${props.icon}`}></i>*/} {props.category} place
-        </p>
-        <p className="card-text">{props.description}</p>
-        <i className="fa-solid fa-map-location-dot"></i>
-        <p className="card-text">{props.address}</p>
-        <p className="card-text">
-          <i className="fa-solid fa-phone"></i>
+      <div className="resource-card-body text-secondary ">
+        <div className="resource-name-description">
+          <h3
+            className="resource-card-title"
+            style={{ color: "darkslategray" }}
+          >
+            {props.name}
+          </h3>
+        </div>
+        <p className="resource-card-text">{props.description}</p>
+        <i className="fa-solid fa-map-location-dot me-2"></i>
+        <span className="resource-card-text">{props.address}</span>
+        <p className="resource-card-text">
+          <i className="fa-solid fa-phone me-2 mt-4"></i>
           {" " + props.phone}
         </p>
-        <div className="card-text">
-          <i className="fa-solid fa-calendar-days"></i> Schedule
-          <ul>
-            {schedule.map((items, i) => (
-              <li key={i}>
-                {items.day +
-                  " " +
-                  formatTime(items.startTime) +
-                  " " +
-                  formatTime(items.endTime)}
-              </li>
-            ))}
-          </ul>
+        <div className="resource-card-text mt-1">
+          <i className="fa-solid fa-calendar-days me-3"></i>
+          {schedule.map((items, i) => (
+            <span key={i}>
+              {items.day +
+                " " +
+                formatTime(items.startTime) +
+                " " +
+                formatTime(items.endTime)}
+            </span>
+          ))}
         </div>
-        {/* <p className="card-text">
-            {/* <i className="fa-solid fa-at"></i>
-            <i className="fa-solid fa-envelope"></i>
-            <a
-              className="text-decoration-none text-black"
-              href={"mailto:${props.email}"}
-            >
-              {" "}
-              {" " + props.email}
-            </a>
-          </p>
-          <p className="card-text">
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </p>*/}
-        {/*<div >
-    //     <ul className="social-link list-unstyled m-t-40 m-b-10">
-    //       <li>
-    //         <a
-    //           href="#!"
-    //           data-toggle="tooltip"
-    //           data-placement="bottom"
-    //           title=""
-    //           data-original-title="facebook"
-    //           data-abc="true"
-    //         >
-    //           <i className="fa-brands fa-facebook"></i>
-    //         </a>
-    //       </li>
-    //       <li>
-    //         <a
-    //           href="#!"
-    //           data-toggle="tooltip"
-    //           data-placement="bottom"
-    //           title=""
-    //           data-original-title="twitter"
-    //           data-abc="true"
-    //         >
-    //           <i className="fa-brands fa-twitter"></i>
-    //         </a>
-    //       </li>
-    //       <li>
-    //         <a
-    //           href="#!"
-    //           data-toggle="tooltip"
-    //           data-placement="bottom"
-    //           title=""
-    //           data-original-title="instagram"
-    //           data-abc="true"
-    //         >
-    //           <i className="fa-brands fa-instagram"></i>
-    //         </a>
-    //       </li>
-    //     </ul>
-    //     </div> */}
         <div className="float-end">
           <Link to={"/search/all"}>
             <button
@@ -212,7 +163,11 @@ export const ResourceInfo = (props) => {
               title="Back to
               Search"
             >
-              <i className="fa-solid fa-magnifying-glass-location "></i>
+              <i
+                className="fa-solid fa-magnifying-glass-location me-2"
+                style={{ opacity: ".6" }}
+              ></i>
+              Back to Search Results
             </button>
           </Link>
         </div>

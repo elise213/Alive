@@ -22,7 +22,7 @@ const resource = () => {
     <div className="mb-3 mt-6 resourcesRow h-100" style={{ maxWidth: 540 }}>
       {resourceData.map((items) => (
         // console.log("printing reource info...", items),
-        <div className="row" key={items.id}>
+        <div className="row mt-5" key={items.id}>
           <ResourceInfo
             id={items.id}
             name={items.name}

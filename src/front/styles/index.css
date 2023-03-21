@@ -1,13 +1,50 @@
+.body {
+  font-family: "Urbanist", sans-serif;
+}
+
+.carousel-image {
+  height: 400px;
+  object-fit: cover;
+  border-radius: 1.2%;
+}
+.resource-name-description {
+  display: flex;
+  justify-content: center;
+}
+.resource-card-body {
+  font-family: "Urbanist", sans-serif;
+}
+.resource-card-title {
+  font-family: "Urbanist", sans-serif;
+  /* color: black !important; */
+}
+.resource-name-description {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.resource-card-text {
+  font-family: "Urbanist", sans-serif;
+}
+
+.forgot-password:hover {
+  color: blueviolet;
+}
+
 /* ---navbar--- */
 .navbar {
   background-color: #455a64;
+  /* background-color: rgba(var(--bs-secondary-rgb)); */
   width: 100%;
   top: 0;
   border-bottom: 2px solid blueviolet;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-family: "Urbanist", sans-serif;
 }
 .nav-btn {
   color: white;
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-family: "Urbanist", sans-serif;
 }
 .nav-btn:hover {
   cursor: pointer;
