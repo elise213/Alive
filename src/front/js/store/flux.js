@@ -226,7 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             .then((data) => {
               if (data.message == "okay") {
                 favorites.forEach((element, index) => {
-                  if (element == resourceName) {
+                  if (element.name == resourceName) {
                     favorites.splice(index, 1);
                   }
                 });
@@ -248,8 +248,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
         searchResults.forEach((item, index) => {
-          console.log("type of ", typeof item.schedule);
-
           // if only a category is selected...
           if (
             !when.length &&
@@ -258,8 +256,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               item.category.includes(categorySearch[3]) ||
               item.category.includes(categorySearch[4]))
           ) {
-            setStore({ filteredResults: [] });
-            // console.log("%cOnly category", "color: green; font-size: 2rem;");
             filteredResults.push(item);
             let newResults = [...new Set(filteredResults)];
             setStore({ filteredResults: newResults });
@@ -272,7 +268,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               return when.includes(scheduleItem.day.toLowerCase());
             })
           ) {
-            setStore({ filteredResults: [] });
+            // setStore({ filteredResults: [] });
             filteredResults.push(item);
             let newResults = [...new Set(filteredResults)];
             setStore({ filteredResults: newResults });
@@ -303,7 +299,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               let newArray = filteredResults;
               newArray.push(item);
               setStore({ filteredResults: newArray });
-              // console.log("new array is", newArray);
             }
           });
         }

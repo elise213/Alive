@@ -1,7 +1,7 @@
-/* .resourcesRow {
+.resourcesRow {
   margin: auto !important;
   height: 30%;
-} */
+}
 
 .my-card-body {
   /* width: 300px; */
@@ -12,6 +12,9 @@
   padding: 20px;
   font-family: "Urbanist", sans-serif;
   color: darkslategray;
+  padding-right: 60px;
+  padding-left: 60px;
+  padding-bottom: 60px;
 }
 .landing-logo {
   width: 150px;

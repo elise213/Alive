@@ -23,7 +23,7 @@
 .profile-greeting {
   font-size: 2.5rem;
   font-family: "Urbanist", sans-serif;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
   color: darkslategray;
 }
 .user-profile-container {
@@ -150,4 +150,8 @@
 }
 .map-button {
   border: 1px solid #455a64;
+}
+
+.map-button:hover {
+  background-color: lightgray;
 }

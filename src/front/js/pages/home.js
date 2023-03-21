@@ -48,12 +48,12 @@ export const Home = () => {
         <div className="landing-text">
           <h3>
             <small className="landing-text mx-5">
-              Welcome! ALIVE is a website designed to connect vulnerable people
-              to organizations that meet their most vital needs, including free
-              food, healthcare, shelter, hygiene facilities. It allows users to
-              submit feedback in order to crowd-source the most accurate and
-              up-to-date information possible. Click on the icons below to find
-              free resources in your area!
+              Welcome! ALIVE is a web application designed to connect vulnerable
+              people to organizations that can meet their most vital needs,
+              including free food, shelter, healthcare, and hygiene facilities.
+              We allows users to submit feedback in order to crowd-source the
+              most accurate and up-to-date information possible. Click on the
+              icons below to find free resources in your area!
             </small>
           </h3>
         </div>

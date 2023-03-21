@@ -36,7 +36,7 @@ const userProfile = () => {
                     {fav.name}
                   </Link>
                   <a
-                    onClick={(e) => handleClick(e, fav)}
+                    onClick={(e) => handleClick(e, fav.name)}
                     className="delete-favorite"
                   >
                     x

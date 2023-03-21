@@ -17,7 +17,7 @@ export const SimpleMap = () => {
   // Define the Marker component
   const Marker = (props) => (
     <div style={{ color: props.color }}>
-      <i class="fa-solid fa-location-dot fa-2xl"></i>
+      <i className="fa-solid fa-location-dot fa-2xl"></i>
     </div>
   );
 
