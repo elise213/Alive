@@ -12,6 +12,17 @@ export const ResourceCard = (props) => {
     actions.addFavorite({ name: props.name, icon: props.icon });
   }
 
+  let icon = "";
+  if (props.category == "health") {
+    icon = "fa-solid fa-stethoscope";
+  } else if (props.category == "food") {
+    icon = "fa-solid fa-bowl-rice";
+  } else if (props.category == "hygiene") {
+    icon = "fa-solid fa-soap";
+  } else {
+    icon = "fa-solid fa-person-shelter";
+  }
+
   return (
     <div className="resource-card mx-auto mb-3 row">
       <Link to={"/resource/" + props.name} className="text-decoration-none">
@@ -20,7 +31,7 @@ export const ResourceCard = (props) => {
             <h4 className="card-title col-9">{props.name}</h4>
           </div>
           <div className="col-2 card-icon">
-            <i className={`${props.icon}`} />
+            <i className={icon} />
           </div>
         </div>
         <div classname="row card-body">

@@ -44,7 +44,6 @@ export const Home = () => {
       <div className=" bg-light">
         <h1>Welcome to Alive!</h1>
         <h3>
-          Alive{" "}
           <small className="text-muted">
             ALIVE’s essential resource map is designed to help our most
             vulnerable community members by connecting them with organizations
