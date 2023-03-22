@@ -107,6 +107,7 @@
 .resource-card-title-name {
   color: black;
   font-size: large;
+  font-weight: bold;
 }
 .card-icon {
   color: blueviolet;

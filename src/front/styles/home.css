@@ -1,7 +1,8 @@
 .resourcesRow {
   margin: auto;
   height: 30%;
-  margin-bottom: 70px;
+  /* this is the only way I could get the footer to stay at the bottom for full-screen mode */
+  margin-bottom: 142px;
 }
 
 .my-card-body {
