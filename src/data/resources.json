@@ -20,7 +20,7 @@
     "phone": "555-777-6666",
     "category": "health",
     "website": "www.com",
-    "schedule": "[{'day': 'Monday', 'startTime': '07:00', 'endTime': '21:00'}]",
+    "schedule": "[{'day': 'Sunday', 'startTime': '07:00', 'endTime': '21:00'}]",
     "description": "bla bla bla",
     "latitude": "34.15354480776716",
     "longitude": "-118.24421153066476",
@@ -39,7 +39,7 @@
     "description": "bla bla",
     "latitude": "34.09421597539273",
     "longitude": "-118.37656743066601",
-    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336891631_1257941758411198_2337066370652269035_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=WXIVy7f3uC0AX8_ews8&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfBtAE0smWOIpDh5QJ59NckFvFwpIj2IdKNCAR4t6ZGDrQ&oe=641E4F90",
+    "image": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/336998870_555157166709142_786147188009236961_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_ohc=qqv9GcDqYLUAX88bSsV&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfAFlB06JQByjNcNnrWQyof8YOLDJTqafHrqp4Xvu7JNsg&oe=641EE999",
     "image2": "https://scontent.xx.fbcdn.net/v/t39.30808-6/333572053_1606789609734823_57409042605646238_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_ohc=KTlE1uURafAAX_rWGaG&_nc_ht=scontent.xx&oh=00_AfC-C9yVIWMdArKW2muDvaW0M3riosBl5ZB4dtNy6Mhj9g&oe=641B5F54",
     "logo": "https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/335609015_536587201699253_6907215227417856075_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=Li5jA9WkX5gAX9Ubs3F&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfCTfuo26ozP5mTY8WoMR0kwyHpLF3NXm8-LfwhIXDFfqA&oe=641660CA",
     "icon": "fa-solid fa-person-shelter"

@@ -28,7 +28,7 @@ export const ResourceCard = (props) => {
       <Link to={"/resource/" + props.name} className="text-decoration-none">
         <div className="card-header d-flex">
           <div className="col-10 card-title-div">
-            <h4 className="card-title col-9">{props.name}</h4>
+            <h4 className="resource-card-title-name col-9">{props.name}</h4>
           </div>
           <div className="col-2 card-icon">
             <i className={icon} />

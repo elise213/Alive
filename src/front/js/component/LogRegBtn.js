@@ -48,7 +48,7 @@ const LogRegBtn = () => {
         </div>
         <div className="modal-body">
           <form>
-            <h6>Are you and Organization</h6>
+            <h6>Do you represent an Organization?</h6>
             <div className="d-flex">
               <div className="form-check m-2">
                 <input
@@ -193,7 +193,7 @@ const LogRegBtn = () => {
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
               <div className="forgot-password mt-3">
-                <span>Forgot your Password?</span>
+                <span>I Forgot My Password</span>
               </div>
             </div>
             <div className="logRegBtnModalCont">

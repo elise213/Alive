@@ -39,12 +39,13 @@ const resource = () => {
           />
         </div>
       ))}
-      <div className="row">
-        <SimpleCommentForm id={resourceData[0].id} />
-      </div>
-      <div className="row">
+
+      <div className="row mt-5">
         {/* {console.log("id: ", resourceData[0].id)} */}
         <SimpleCommentList id={resourceData[0].id} />
+      </div>
+      <div className="row">
+        <SimpleCommentForm id={resourceData[0].id} />
       </div>
     </div>
   );

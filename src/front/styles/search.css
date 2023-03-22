@@ -98,14 +98,15 @@
   justify-content: center;
   display: flex;
   border-radius: 0.256rem;
+  font-family: "Urbanist", sans-serif;
 }
 .card-title-div {
   display: flex;
   align-items: center;
 }
-.card-title {
+.resource-card-title-name {
   color: black;
-  font-size: medium;
+  font-size: large;
 }
 .card-icon {
   color: blueviolet;
@@ -129,15 +130,17 @@
   justify-content: center;
   align-items: center;
 }
+.form-check-label {
+  font-family: "Urbanist", sans-serif;
+}
 .question {
   display: flex;
   justify-content: center;
   font-size: large;
   font-weight: bold;
-}
-.question {
+  font-family: "Urbanist", sans-serif;
   margin-top: 30px;
-  color: #455a64;
+  /* color: #455a64; */
 }
 .container {
   margin-bottom: 40px;
@@ -150,6 +153,7 @@
 }
 .map-button {
   border: 1px solid #455a64;
+  font-family: "Urbanist", sans-serif;
 }
 
 .map-button:hover {

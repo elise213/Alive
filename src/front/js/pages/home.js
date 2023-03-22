@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import AliveLogo from "../../images/HDLOGOTRANSP.png";
+import AliveLogo from "../../images/HDLOGOTRANSP2.png";
 
 import "../../styles/home.css";
 
@@ -45,21 +45,28 @@ export const Home = () => {
       <div className=" bg-light">
         {/* <p className="profile-greeting">Welcome to Alive!</p> */}
         <img className="landing-logo" src={AliveLogo}></img>
-        <div className="landing-text">
+        <div className="landing-text mx-5">
           <h3>
-            <small className="landing-text mx-5">
-              Welcome! ALIVE is a web application designed to connect vulnerable
-              people to organizations that can meet their most vital needs,
-              including free food, shelter, healthcare, and hygiene facilities.
-              We allows users to submit feedback in order to crowd-source the
-              most accurate and up-to-date information possible. Click on the
-              icons below to find free resources in your area!
+            <small className="landing-text ">
+              Welcome! ALIVE is designed to connect vulnerable people to
+              organizations that can meet their most vital needs, including free
+              food, shelter, healthcare, and hygiene facilities. We allow users
+              to submit feedback in order to crowd-source the most accurate and
+              up-to-date information possible. Click on the icons below to find
+              free resources in your area!
             </small>
           </h3>
         </div>
       </div>
       <div className="row resourcesRow">
-        <div className="col-sm-3 mx-auto">
+        <div
+          className="col-sm-3 mx-auto"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="card border-0 text-decoration-none">
             <div className="card-body text-center center">
               <Link to={"/search/food"} className="text-decoration-none">
@@ -72,7 +79,14 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-3 mx-auto">
+        <div
+          className="col-sm-3 mx-auto"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="card border-0">
             <div className="my-card-body text-center center">
               <Link to={"/search/shelter"} className="text-decoration-none">
@@ -87,7 +101,14 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-3 mx-auto">
+        <div
+          className="col-sm-3 mx-auto"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="card border-0">
             <div className="card-body text-center center">
               <Link to={"/search/health"} className="text-decoration-none">
@@ -100,13 +121,20 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-3 mx-auto">
+        <div
+          className="col-sm-3 mx-auto"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="card border-0">
             <div className="my-card-body text-center center">
               <Link to={"/search/hygiene"} className="text-decoration-none">
                 <div className="circle rounded-circle bg-pink text-white text-center">
                   {/* <i className="fa-regular fa-hands-bubbles"></i> */}
-                  <i className="fa-solid fa-hands-bubbles"></i>
+                  <i className="fa-solid fa-soap"></i>
                 </div>
               </Link>
               <h5 className="card-title">Hygiene</h5>
@@ -143,7 +171,7 @@ export const Home = () => {
           </a>
         </div>  */}
 
-        <div className="mt-3">
+        {/* <div className="mt-3">
           <div className="my-card bg-secondary text-white">
             <div className="new-div">
               <i className="fa-solid fa-circle-info bigIcon mb-3"></i>
@@ -196,7 +224,7 @@ export const Home = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* <div className="card mt-3 limeGreen2 text-white">
         <div className="row g-0">

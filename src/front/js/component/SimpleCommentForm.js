@@ -26,10 +26,10 @@ const SimpleCommentForm = (props) => {
   }
   // console.log(commentCont);
   return (
-    <div className="row center text-secondary mt-6">
+    <div className="row center text-secondary mt-4">
       {token && (
-        <div className="m-4">
-          <p>Comment </p>
+        <div className="">
+          {/* <p>Comment </p> */}
           <form className="d-flex flex-column">
             <div className="form-group mb-3">
               <textarea
