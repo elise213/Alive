@@ -12,6 +12,25 @@ import datetime
 
 api = Blueprint('api', __name__)
 
+# get resources
+# @api.route('/getResources', methods=['GET'])
+# def getResources():
+#     resourceList = Resource.query
+#     if "category" in request.args: 
+#         resourceList = resourceList.filter_by(category = request.args["category"]) 
+#     if resourceList is None:
+#         return jsonify(msg="No resources found")
+#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+#     return jsonify(data=all_resources)
+
+@api.route('/getResources', methods=['GET'])
+def getResources():
+    resourceList = Resource.query.all()
+    if resourceList is None:
+        return jsonify(msg="No resources found")
+    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+    return jsonify(data=all_resources)
+
 # login / create token
 @api.route("/login", methods = ["POST"])
 def create_token():
@@ -28,13 +47,11 @@ def create_token():
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
         favorites = getFavoritesByUserId(user.id)
-        icons = []
         for favorite in favorites:
             resource = Resource.query.filter_by(name = favorite["name"]).first()
-            icons.append(resource.icon)
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(icons=icons, access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
+        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
 
 # create user
 @api.route("/createUser", methods = ["POST"])
@@ -171,24 +188,6 @@ def getCommentsByResourceId(resourceId):
     serialized_comments = [comment.serialize() for comment in comments]
     return serialized_comments
 
-# get resources
-# @api.route('/getResources', methods=['GET'])
-# def getResources():
-#     resourceList = Resource.query
-#     if "category" in request.args: 
-#         resourceList = resourceList.filter_by(category = request.args["category"]) 
-#     if resourceList is None:
-#         return jsonify(msg="No resources found")
-#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-#     return jsonify(data=all_resources)
-
-@api.route('/getResources', methods=['GET'])
-def getResources():
-    resourceList = Resource.query.all()
-    if resourceList is None:
-        return jsonify(msg="No resources found")
-    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-    return jsonify(data=all_resources)
 
 # get offerings
 @api.route('/getOfferings', methods=['GET'])
@@ -196,7 +195,7 @@ def getOfferings():
     offeringsList = Offering.query
     if "category" in request.args: 
         offeringList = offeringList.filter_by(category = request.args["category"]) 
-    if resourceList is None:
+    if offeringsList is None:
         return jsonify(msg="No resources found")
     all_offerings = list(map(lambda offering: offering.serialize(), offeringList))
     return jsonify(data=all_offerings)

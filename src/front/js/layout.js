@@ -7,6 +7,7 @@ import CreateResource from "./pages/CreateResource";
 import { Home } from "./pages/home";
 import { Search } from "./pages/Search";
 import Offerings from "./pages/Offerings";
+import OfferingPost from "./pages/OfferingPost";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -31,6 +32,7 @@ const Layout = () => {
             <Route element={<Resource />} path="/resource/:name" />
             {/* User Pages */}
             <Route element={<UserProfile />} path="/userProfile" />
+            <Route element={<OfferingPost />} path="/offeringPost" />
             {/* Organization Pages */}
             <Route element={<CreateResource />} path="/createResource" />
             {/* Can we delete these? */}

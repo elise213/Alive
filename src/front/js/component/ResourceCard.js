@@ -9,7 +9,7 @@ export const ResourceCard = (props) => {
   function handleClick(e) {
     e.preventDefault();
     // console.log(props.name, typeof props.name);
-    actions.addFavorite({ name: props.name, icon: props.icon });
+    actions.addFavorite({ name: props.name, icon: { icon } });
   }
 
   let icon = "";

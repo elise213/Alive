@@ -30,9 +30,7 @@ const userProfile = () => {
               return (
                 <li key={i} className="favorite-line-item">
                   <Link className="favorite-a-tag" to={"/resource/" + fav.name}>
-                    <span className={`${fav.icon} user-profile-fav-icon`}>
-                      {" "}
-                    </span>{" "}
+                    {/* <span className={`${fav.icon} user-profile-fav-icon`}></span> */}
                     {fav.name}
                   </Link>
                   <a

@@ -31,9 +31,7 @@ const resource = () => {
             phone={items.phone}
             category={items.category}
             website={items.website}
-            schedule={items.schedule}
             picture={items.picture}
-            icon={items.icon}
             image={items.image}
             image2={items.image2}
           />
@@ -42,10 +40,10 @@ const resource = () => {
 
       <div className="row mt-5">
         {/* {console.log("id: ", resourceData[0].id)} */}
-        <SimpleCommentList id={resourceData[0].id} />
+        {/* <SimpleCommentList id={resourceData[0].id} /> */}
       </div>
       <div className="row">
-        <SimpleCommentForm id={resourceData[0].id} />
+        {/* <SimpleCommentForm id={resourceData[0].id} /> */}
       </div>
     </div>
   );

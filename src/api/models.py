@@ -47,8 +47,6 @@ class Resource(db.Model):
         def __repr__(self):
             return f'<Resource {self.name}>'
         def serialize(self):
-            schedule = json.loads(self.schedule.replace("'", "\""))
-            schedule_string = json.dumps(schedule)
             return {
                 "id": self.id,
                 "name": self.name,

@@ -60,7 +60,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           data.favorites.forEach((favorite, index) => {
             favoriteNames.push({
               name: favorite.name,
-              icon: data.icons[index],
             });
           });
           setStore({

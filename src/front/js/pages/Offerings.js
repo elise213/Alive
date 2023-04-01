@@ -6,25 +6,42 @@ import { Offering } from "../component/Offering.js";
 const Offerings = () => {
   const { store, actions } = useContext(Context);
   return (
-    <div>
-      <ul>
-        {/* {store.offerings.map((result) => { */}
-        return (
-        <li>
-          <Offering
-            // category={result.category}
-            category="cooking"
-            // key={result.id}
-            // title={result.title}
-            title="can opener"
-            // image={result.image}
-            image="https://scontent.fbcn7-3.fna.fbcdn.net/v/t39.30808-6/337162258_1231158724462319_2591743272776242815_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=UpSVI-ivXTIAX9fsY-x&_nc_ht=scontent.fbcn7-3.fna&oh=00_AfDntB2v4WphWsWnYi9ONTto8fmVb2F75Q-9HL3P8LYewQ&oe=642BBCC3"
-            // description={result.description}
-          />
-        </li>
-        );
-        {/* })} */}
-      </ul>
+    <div className="row">
+      <div class="alert alert-success" role="alert">
+        Do you have something you'd like to give away to someone in need? Post
+        and offering <Link to="/offeringPost"> here.</Link>
+      </div>
+      <div className="col-6">
+        <ul style={{ listStyleType: "none" }}>
+          {/* {store.offerings.map((result) => { */}
+
+          <li>
+            <Offering
+              // category={result.category}
+              category="cooking"
+              // key={result.id}
+              // title={result.title}
+              title="propane stove"
+              // image={result.image}
+              image="https://cdn.thewirecutter.com/wp-content/media/2021/09/campingstove-2048px-19.jpg"
+              // description={result.description}
+            />
+            <Offering
+              // category={result.category}
+              category="sleeping"
+              // key={result.id}
+              // title={result.title}
+              title="tent and sleepingbag"
+              // image={result.image}
+              image="https://bearfoottheory.com/wp-content/uploads/2020/02/California_Trans-Catalina-Trail-Day-4-GoPro-15-Gear.jpg"
+              // description={result.description}
+            />
+          </li>
+
+          {/* })} */}
+        </ul>
+      </div>
+      <div className="col-6">Map</div>
     </div>
   );
 };
