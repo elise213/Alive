@@ -8,8 +8,8 @@ const Offerings = () => {
   return (
     <div className="row">
       <div class="alert alert-success" role="alert">
-        Do you have something you'd like to give away to someone in need? Post
-        and offering <Link to="/offeringPost"> here.</Link>
+        Do you have something you'd like to give to someone in need? Post an
+        offering <Link to="/offeringPost"> here.</Link>
       </div>
       <div className="col-6">
         <ul style={{ listStyleType: "none" }}>

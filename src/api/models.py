@@ -14,6 +14,7 @@ class User(db.Model):
     password = db.Column(db.String(256), unique=False, nullable=False)
     is_org = db.Column(db.String(80), nullable=False)
     avatar = db.Column(db.String(80))
+    picture = db.Column(db.String(80))
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -25,6 +26,7 @@ class User(db.Model):
             "email": self.email,
             "is_org": self.is_org,
             "avatar": self.avatar,
+            "picture": self.picture
             # do not serialize the password, its a security breach
         }
         
@@ -61,7 +63,6 @@ class Resource(db.Model):
                 "user_id" : self.user_id,
                 "latitude" : self.latitude,
                 "longitude" : self.longitude
-                # do not serialize the password, its a security breach
             }
     
 class Comment(db.Model):
@@ -83,6 +84,7 @@ class Comment(db.Model):
             "parentId": self.parentId,
             "created_at": self.created_at,
         }
+
 class Favorites(db.Model):
     __tablename__ = 'Favorites'
     id = db.Column(db.Integer, primary_key=True)
@@ -124,7 +126,7 @@ class Offering(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         title = db.Column(db.String(256), unique=False, nullable=False)
         approx_location = db.Column(db.String(256), unique=False, nullable=True)
-        category = db.Column(db.String(256), unique=False, nullable=True)
+        offering_type = db.Column(db.String(256), unique=False, nullable=True)
         description = db.Column(db.String(500), unique=False, nullable=True)
         image = db.Column(db.String(500), unique=False, nullable=True)
         image2 = db.Column(db.String(500), unique=False, nullable=True)
@@ -139,11 +141,8 @@ class Offering(db.Model):
                 "title": self.title,
                 "approx_location": self.approx_location,
                 "description" : self.description,
-                "category" : self.category,
+                "offering_type" : self.offering_type,
                 "image" : self.image,
                 "image2" : self.image2,
                 "user_id" : self.user_id,
-                # do not serialize the password, its a security breach
             }
-
-        # https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points

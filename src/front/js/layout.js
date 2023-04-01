@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import Resource from "./pages/Resource";
 import UserProfile from "./pages/UserProfile";
 import CreateResource from "./pages/CreateResource";
-import { Home } from "./pages/home";
+import Home from "./pages/home";
 import { Search } from "./pages/Search";
 import Offerings from "./pages/Offerings";
 import OfferingPost from "./pages/OfferingPost";

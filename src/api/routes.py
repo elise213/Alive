@@ -188,14 +188,14 @@ def getCommentsByResourceId(resourceId):
     serialized_comments = [comment.serialize() for comment in comments]
     return serialized_comments
 
-
 # get offerings
 @api.route('/getOfferings', methods=['GET'])
 def getOfferings():
     offeringsList = Offering.query
-    if "category" in request.args: 
-        offeringList = offeringList.filter_by(category = request.args["category"]) 
+    # offeringsList = Offering.query.all()
+    # if "category" in request.args: 
+    #     offeringList = offeringList.filter_by(category = request.args["category"]) 
     if offeringsList is None:
-        return jsonify(msg="No resources found")
+        return jsonify(msg="No offerings found")
     all_offerings = list(map(lambda offering: offering.serialize(), offeringList))
     return jsonify(data=all_offerings)

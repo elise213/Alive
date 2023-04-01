@@ -5,15 +5,14 @@ import { Context } from "../store/appContext";
 
 const OfferingPost = () => {
   const navigate = useNavigate();
-  const [address, setAddress] = useState("");
-  const [title, setTitle] = useState("");
-  const [resourceType, setResourceType] = useState("");
   const { store, actions } = useContext(Context);
+
+  const [title, setTitle] = useState("");
+  const [offeringType, setOfferingType] = useState("");
+
   const [description, setDescription] = useState("");
-  const [picture, setPicture] = useState("");
-  const [picture2, setPicture2] = useState("");
-  const [latitude, setLatitude] = useState("34.095520");
-  const [longitude, setLongitude] = useState("-118.309640");
+  const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
 
   let handleChange = (i, e) => {
     // saving/updating schedule values
@@ -49,33 +48,29 @@ const OfferingPost = () => {
   const resetForm = () => {
     setTitle("");
     setAddress("");
-    setResourceType("");
+    setOfferingType("");
     setDescription("");
     setLatitude("");
     setLongitude("");
-    setPicture("");
-    setPicture2("");
+    setImage("");
+    setImagee2("");
   };
 
   function handleClick(e) {
     e.preventDefault();
     if (
-      actions.createResource(
+      actions.createOffering(
         title,
-        address,
-        resourceType,
+        offeringType,
         description,
-        latitude,
-        longitude,
-        picture,
-        picture2,
+        image,
+        image2,
         user_id
       )
     ) {
-      // showModal ModalResource
-      alert("Resource Created");
+      alert("Offering Created");
       resetForm();
-      navigate("/search/all");
+      navigate("/");
     }
   }
 
@@ -107,7 +102,7 @@ const OfferingPost = () => {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
-          <label className="form-check-label" htmlFor="resourceType">
+          <label className="form-check-label" htmlFor="offeringType">
             What is the closest category that would describe your offering?
           </label>
           {/* <div className="form-check form-row"> */}
@@ -115,15 +110,14 @@ const OfferingPost = () => {
             <input
               className="form-check-input"
               type="radio"
-              name="resourceType"
-              id="resourceF"
+              name="offeringType"
               value="food"
-              checked={resourceType === "food"}
+              checked={offeringType === "food"}
               onChange={() => (
-                setResourceType("food"), console.log(resourceType)
+                setOfferingType("food"), console.log(offeringType)
               )}
             />
-            <label className="form-check-label" htmlFor="resourceF">
+            <label className="form-check-label" htmlFor="offeringF">
               Food
             </label>
           </div>
@@ -131,15 +125,15 @@ const OfferingPost = () => {
             <input
               className="form-check-input"
               type="radio"
-              name="resourceType"
-              id="resourceS"
+              name="offeringType"
+              id="offeringS"
               value="shelter"
-              checked={resourceType === "shelter"}
+              checked={offeringType === "shelter"}
               onChange={(e) => (
-                setResourceType(e.target.value), console.log(resourceType)
+                setofferingType(e.target.value), console.log(offeringType)
               )}
             />
-            <label className="form-check-label" htmlFor="resourceS">
+            <label className="form-check-label" htmlFor="offeringS">
               Shelter
             </label>
           </div>
@@ -147,15 +141,15 @@ const OfferingPost = () => {
             <input
               className="form-check-input"
               type="radio"
-              name="resourceType"
-              id="resourceH"
+              name="offeringType"
+              id="offeringH"
               value="health"
-              checked={resourceType === "health"}
+              checked={offeringType === "health"}
               onChange={(e) => (
-                setResourceType(e.target.value), console.log(resourceType)
+                setofferingType(e.target.value), console.log(offeringType)
               )}
             />
-            <label className="form-check-label" htmlFor="resourceH">
+            <label className="form-check-label" htmlFor="offeringH">
               Health
             </label>
           </div>
@@ -163,17 +157,17 @@ const OfferingPost = () => {
             <input
               className="form-check-input"
               type="radio"
-              name="resourceType"
-              id="resourceHy"
+              name="offeringType"
+              id="offeringHy"
               value="hygiene"
-              checked={resourceType === "hygiene"}
-              onChange={(e) => setResourceType(e.target.value)}
+              checked={offeringType === "hygiene"}
+              onChange={(e) => setofferingType(e.target.value)}
             />
-            <label className="form-check-label" htmlFor="resourceHy">
+            <label className="form-check-label" htmlFor="offeringHy">
               Hygiene
             </label>
           </div>
-          {/*<!-------------------- end of ResourceType --------------------> */}
+          {/*<!-------------------- end of offeringType --------------------> */}
 
           {/* <label htmlFor="address">
             What is the address where this being offered?
@@ -216,38 +210,38 @@ const OfferingPost = () => {
             </div>
           </div> */}
 
-          <label htmlFor="picture">Pictures</label>
+          <label htmlFor="image">images</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text  h-100" id="picture">
+              <span className="input-group-text  h-100" id="image">
                 <i className="fa-solid fa-image text-secondary"></i>
               </span>
             </div>
             <input
               className="form-control"
-              name="picture"
+              name="image"
               type="text"
-              value={picture}
-              id="picture"
-              onChange={(e) => setPicture(e.target.value)}
+              value={image}
+              id="image"
+              onChange={(e) => setImage(e.target.value)}
               data-toggle="tooltip"
               data-placement="bottom"
-              title="You can upload up to two pictures of your place"
+              title="You can upload up to two images of your place"
             ></input>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-              <span className="input-group-text  h-100" id="picture">
+              <span className="input-group-text  h-100" id="image">
                 <i className="fa-solid fa-image text-secondary"></i>
               </span>
             </div>
             <input
               className="form-control"
-              name="picture2"
+              name="image2"
               type="text"
-              value={picture2}
-              id="picture2"
-              onChange={(e) => setPicture2(e.target.value)}
+              value={image2}
+              id="image2"
+              onChange={(e) => setImage2(e.target.value)}
             ></input>
           </div>
         </form>

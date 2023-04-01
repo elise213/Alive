@@ -2,9 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
-      // each time you open a new environment,check to make sure this is the same URL
+      // each time you open a new environment, match this URL (port 3000)
       // do not include "/" at the end!
-      // front URL is port 3000
       current_front_url:
         "https://3000-lalafontaine-alive-aydt2oais34.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
@@ -26,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResults: [],
       filteredResults: [],
-      offering: [],
+      offerings: [],
       checked: false,
       commentsList: [],
     },
@@ -177,7 +176,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       updateLocation: (latitude, longitude) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
-
       addFavorite: (resource) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
@@ -241,69 +239,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ searchResults: data.data }))
           .catch((error) => console.log(error));
       },
-
-      // filterSearchResults: (when, categorySearch) => {
-      //   const searchResults = getStore().searchResults;
-      //   let newFilter = [];
-      //   if (!when.length) {
-      //     searchResults.forEach((item, index) => {
-      //       // if only a category is selected...
-      //       if (
-      //         item.category == categorySearch[1] ||
-      //         item.category == categorySearch[2] ||
-      //         item.category == categorySearch[3] ||
-      //         item.category == categorySearch[4]
-      //       ) {
-      //         newFilter.push(item);
-      //       }
-      //     });
-      //   }
-      //   if (when.length && !categorySearch[1]) {
-      //     searchResults.forEach((item, index) => {
-      //       let day = item.schedule[0].day.toLowerCase();
-      //       // if only a category is selected...
-      //       console.log(item.category);
-      //       if (
-      //         day == when[0] ||
-      //         day == when[1] ||
-      //         day == when[2] ||
-      //         day == when[3] ||
-      //         day == when[4] ||
-      //         day == when[5] ||
-      //         day == when[6]
-      //       ) {
-      //         newFilter.push(item);
-      //       }
-      //     });
-      //   }
-      //   //  if a category and a day of the week are selected...
-      //   if (when.length && categorySearch[1]) {
-      //     let filteredResults = getStore().filteredResults;
-      //     //setStore({ filteredResults: filteredResults });
-      //     filteredResults.forEach((item) => {
-      //       let day = item.schedule[0].day.toLowerCase();
-      //       let category = item.category;
-      //       if (
-      //         day == when[0] ||
-      //         day == when[1] ||
-      //         day == when[2] ||
-      //         day == when[3] ||
-      //         day == when[4] ||
-      //         day == when[5] ||
-      //         (day == when[6] && category == categorySearch[1]) ||
-      //         category == categorySearch[2] ||
-      //         category == categorySearch[3] ||
-      //         category == categorySearch[4]
-      //       ) {
-      //         //let newArray = filteredResults;
-      //         newFilter.push(item);
-      //         //setStore({ filteredResults: newArray });
-      //         // console.log("new array is", newArray);
-      //       }
-      //     });
-      //   }
-      //   setStore({ filteredResults: newFilter });
-      // },
+      setSOfferings: () => {
+        fetch(getStore().current_back_url + "/api/getOfferings")
+          .then((response) => response.json())
+          .then((data) => setStore({ offerings: data.data }))
+          .catch((error) => console.log(error));
+      },
       filterSearchResults: (when, categorySearch) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
@@ -408,9 +349,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          // if (data.status == "true") {
-          //   window.location.href = current_front_url + "/";
-          // }
           return true;
         } catch (error) {
           console.error(error);
@@ -419,7 +357,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       getComments: (resource_id) => {
         const current_back_url = getStore().current_back_url;
-        const current_front_url = getStore().current_front_url;
         let id = parseInt(resource_id);
         const opts = {
           headers: {

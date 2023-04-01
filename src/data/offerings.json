@@ -1,0 +1,18 @@
+[
+  {
+    "title": "tent and sleepingbag",
+    "approx_location": "555 Sunset blvd.",
+    "offering_type": "shelter",
+    "description": "sleeping bag and tent are five years old in great shape",
+    "image": "https://bearfoottheory.com/wp-content/uploads/2020/02/California_Trans-Catalina-Trail-Day-4-GoPro-15-Gear.jpg",
+    "image2": "https://cdn.thewirecutter.com/wp-content/media/2021/09/campingstove-2048px-19.jpg"
+  },
+  {
+    "title": "propane stove",
+    "approx_location": "555 Sunset blvd.",
+    "offering_type": "food",
+    "description": "propane stove is five years old in great shape",
+    "image": "https://cdn.thewirecutter.com/wp-content/media/2021/09/campingstove-2048px-19.jpg",
+    "image2": "https://bearfoottheory.com/wp-content/uploads/2020/02/California_Trans-Catalina-Trail-Day-4-GoPro-15-Gear.jpg"
+  }
+]

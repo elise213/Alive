@@ -14,14 +14,14 @@ export const Selection = (props) => {
   console.log("when is ", when);
 
   // sets category search by params
-  useEffect(() => {
-    if (params.resourceType.toLowerCase() == "all") {
-      setCategorySearch(["all"]);
-    } else {
-      setCategorySearch(["all", params.resourceType.toLowerCase()]);
-    }
-    console.log("useEffect params categorySearch", categorySearch);
-  }, []);
+  // useEffect(() => {
+  //   if (params.resourceType.toLowerCase() == "all") {
+  //     setCategorySearch(["all"]);
+  //   } else {
+  //     setCategorySearch(["all", params.resourceType.toLowerCase()]);
+  //   }
+  //   console.log("useEffect params categorySearch", categorySearch);
+  // }, []);
 
   // Call filterSearchResults and update the checked checkboxes
   useEffect(() => {
