@@ -31,14 +31,12 @@ def upgrade():
     sa.Column('phone', sa.String(length=256), nullable=True),
     sa.Column('category', sa.String(length=256), nullable=True),
     sa.Column('website', sa.String(length=256), nullable=True),
-    sa.Column('schedule', sa.JSON(), nullable=True),
     sa.Column('description', sa.String(length=250), nullable=True),
     sa.Column('latitude', sa.String(length=250), nullable=True),
     sa.Column('longitude', sa.String(length=250), nullable=True),
     sa.Column('image', sa.String(length=500), nullable=True),
     sa.Column('image2', sa.String(length=500), nullable=True),
     sa.Column('logo', sa.String(length=500), nullable=True),
-    sa.Column('icon', sa.String(length=250), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )

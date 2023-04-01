@@ -20,9 +20,6 @@ const CreateResource = () => {
   const [latitude, setLatitude] = useState("34.095520");
   const [longitude, setLongitude] = useState("-118.309640");
   const [logo, setlogo] = useState("");
-  const [schedule, setSchedule] = useState([
-    { day: "", startTime: "", endTime: "" },
-  ]);
 
   let handleChange = (i, e) => {
     // saving/updating schedule values
@@ -61,7 +58,6 @@ const CreateResource = () => {
     setPhone("");
     setResourceType("");
     setWebsite("");
-    setSchedule("");
     setDescription("");
     setLatitude("");
     setLongitude("");
@@ -79,7 +75,6 @@ const CreateResource = () => {
         phone,
         resourceType,
         website,
-        schedule,
         description,
         latitude,
         longitude,
@@ -198,7 +193,7 @@ const CreateResource = () => {
           {/*<!-------------------- end of ResourceType --------------------> */}
           {/* </div> */}
 
-          <label htmlFor="type"> When is this being offered? </label>
+          {/* <label htmlFor="type"> When is this being offered? </label>
           <div>
             {schedule.map((element, index) => (
               <div
@@ -311,7 +306,7 @@ const CreateResource = () => {
                 ) : null}
               </div>
             ))}
-          </div>
+          </div> */}
           {/*<!-------------------- end of schedule --------------------> */}
           <label htmlFor="address">
             What is the address where this being offered?

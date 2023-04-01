@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Resource, Favorites, Comment
+from api.models import db, User, Resource, Favorites, Comment, Schedule, Offering
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -12,13 +12,7 @@ import datetime
 
 api = Blueprint('api', __name__)
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-    return jsonify(response_body), 200
-
+# login / create token
 @api.route("/login", methods = ["POST"])
 def create_token():
         email = request.json.get("email", None)
@@ -29,7 +23,6 @@ def create_token():
         if not password: 
             return jsonify({"message": "Password is required"}), 400
         user = User.query.filter_by(email=email).first()
-        # print(user.password)
         if not user: 
             return jsonify({"message": "email is incorrect"}), 401
         if not check_password_hash(user.password, password):
@@ -43,6 +36,7 @@ def create_token():
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
         return jsonify(icons=icons, access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
 
+# create user
 @api.route("/createUser", methods = ["POST"])
 def create_user():
     if request.method == "POST":
@@ -69,6 +63,7 @@ def create_user():
         db.session.commit()
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
     
+# create resource
 @api.route("/createResource", methods = ["POST"])
 @jwt_required()
 def create_resource():
@@ -86,7 +81,6 @@ def create_resource():
             phone = request_body["phone"],
             category = request_body["category"],
             website = request_body["website"],
-            schedule = repr(request_body["schedule"]),
             description = request_body["description"],
             latitude = request_body["latitude"],
             longitude = request_body["longitude"],
@@ -130,14 +124,6 @@ def getCommentsByResourceId(resourceId):
     serialized_comments = [comment.serialize() for comment in comments]
     return serialized_comments
 
-# get resources for map
-@api.route('/getResources', methods=['GET'])
-def getResources():
-    resourceList = Resource.query.all()
-    if resourceList is None:
-        return jsonify(msg="No resources found")
-    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-    return jsonify(data=all_resources)
 
 # add favorite resource
 @api.route('/addFavorite', methods=['POST'])
@@ -184,3 +170,33 @@ def getCommentsByResourceId(resourceId):
     comments = Comment.query.filter_by(resource_id=resourceId).all()
     serialized_comments = [comment.serialize() for comment in comments]
     return serialized_comments
+
+# get resources
+# @api.route('/getResources', methods=['GET'])
+# def getResources():
+#     resourceList = Resource.query
+#     if "category" in request.args: 
+#         resourceList = resourceList.filter_by(category = request.args["category"]) 
+#     if resourceList is None:
+#         return jsonify(msg="No resources found")
+#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+#     return jsonify(data=all_resources)
+
+@api.route('/getResources', methods=['GET'])
+def getResources():
+    resourceList = Resource.query.all()
+    if resourceList is None:
+        return jsonify(msg="No resources found")
+    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+    return jsonify(data=all_resources)
+
+# get offerings
+@api.route('/getOfferings', methods=['GET'])
+def getOfferings():
+    offeringsList = Offering.query
+    if "category" in request.args: 
+        offeringList = offeringList.filter_by(category = request.args["category"]) 
+    if resourceList is None:
+        return jsonify(msg="No resources found")
+    all_offerings = list(map(lambda offering: offering.serialize(), offeringList))
+    return jsonify(data=all_offerings)

@@ -6,6 +6,7 @@ import UserProfile from "./pages/UserProfile";
 import CreateResource from "./pages/CreateResource";
 import { Home } from "./pages/home";
 import { Search } from "./pages/Search";
+import Offerings from "./pages/Offerings";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -26,6 +27,7 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Search />} path="/search/:resourceType" />
+            <Route element={<Offerings />} path="/offerings" />
             <Route element={<Resource />} path="/resource/:name" />
             {/* User Pages */}
             <Route element={<UserProfile />} path="/userProfile" />

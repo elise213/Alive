@@ -36,14 +36,12 @@ class Resource(db.Model):
         phone = db.Column(db.String(256), unique=False, nullable=True)
         category = db.Column(db.String(256), unique=False, nullable=True)
         website = db.Column(db.String(256), unique=False, nullable=True)
-        schedule = db.Column(db.JSON(), nullable=True)
         description = db.Column(db.String(500), unique=False, nullable=True)
         latitude = db.Column(db.String(250), unique=False, nullable=True)
         longitude = db.Column(db.String(250), unique=False, nullable=True)
         image = db.Column(db.String(500), unique=False, nullable=True)
         image2 = db.Column(db.String(500), unique=False, nullable=True)
         logo = db.Column(db.String(500), unique=False, nullable=True)
-        icon = db.Column(db.String(250), unique=False, nullable=True)
         user_id = db.Column(db.Integer, unique=False, nullable=True)
         comment= db.relationship("Comment", backref="resource", lazy=True)
         def __repr__(self):
@@ -57,14 +55,11 @@ class Resource(db.Model):
                 "address": self.address,
                 "phone": self.phone,
                 "website": self.website,
-                "schedule" : schedule,
                 "description" : self.description,
                 "category" : self.category,
-                "website" : self.website,
                 "image" : self.image,
                 "image2" : self.image2,
                 "logo" : self.logo,
-                "icon" : self.icon,
                 "user_id" : self.user_id,
                 "latitude" : self.latitude,
                 "longitude" : self.longitude
@@ -105,3 +100,52 @@ class Favorites(db.Model):
             "name": self.name,
             "userId": self.userId,
         }
+
+class Schedule(db.Model):
+    __tablename__ = 'Schedule'
+    id = db.Column(db.Integer, primary_key=True)
+    day = db.Column(db.String(256))
+    startTime = db.Column(db.String(256))
+    endTime = db.Column(db.String(256))
+    resourceId = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f'<Schedule {self.id}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "day": self.day,
+            "startTime": self.startTime,
+            "endTime": self.endTime,
+            "resourceId": self.resourceId,
+        }
+
+class Offering(db.Model):
+        __tablename__ = "Offering"
+        id = db.Column(db.Integer, primary_key=True)
+        title = db.Column(db.String(256), unique=False, nullable=False)
+        approx_location = db.Column(db.String(256), unique=False, nullable=True)
+        category = db.Column(db.String(256), unique=False, nullable=True)
+        description = db.Column(db.String(500), unique=False, nullable=True)
+        image = db.Column(db.String(500), unique=False, nullable=True)
+        image2 = db.Column(db.String(500), unique=False, nullable=True)
+        user_id = db.Column(db.Integer, unique=False, nullable=True)
+
+        def __repr__(self):
+            return f'<Offering {self.name}>'
+
+        def serialize(self):
+            return {
+                "id": self.id,
+                "title": self.title,
+                "approx_location": self.approx_location,
+                "description" : self.description,
+                "category" : self.category,
+                "image" : self.image,
+                "image2" : self.image2,
+                "user_id" : self.user_id,
+                # do not serialize the password, its a security breach
+            }
+
+        # https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points

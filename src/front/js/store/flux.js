@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-vuidd7g3c8f.ws-eu93.gitpod.io",
+        "https://3000-lalafontaine-alive-aydt2oais34.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
 
       latitude: null, //to store user location
@@ -26,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favorites: [],
       searchResults: [],
       filteredResults: [],
+      offering: [],
       checked: false,
       commentsList: [],
     },
@@ -123,7 +124,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         phone,
         resourceType,
         website,
-        schedule,
         description,
         latitude,
         longitude,
@@ -148,7 +148,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             phone: phone,
             category: resourceType,
             website: website,
-            schedule: schedule,
             description: description,
             latitude: latitude,
             longitude: longitude,
@@ -324,12 +323,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           // if only a day of the week is selected...
-          else if (
-            !categorySearch[1] &&
-            item.schedule.some((scheduleItem) => {
-              return when.includes(scheduleItem.day.toLowerCase());
-            })
-          ) {
+          // else if (
+          //   !categorySearch[1] &&
+          //   item.schedule.some((scheduleItem) => {
+          //     return when.includes(scheduleItem.day.toLowerCase());
+          //   })
+          // )
+          {
             // setStore({ filteredResults: [] });
             filteredResults.push(item);
             let newResults = [...new Set(filteredResults)];
@@ -338,32 +338,32 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
 
         //  if a category and a day of the week are selected...
-        if (when.length && categorySearch[1]) {
-          let filteredResults = getStore().filteredResults;
-          filteredResults = [];
-          setStore({ filteredResults: filteredResults });
-          searchResults.forEach((item, index) => {
-            let day = item.schedule[0].day.toLowerCase();
-            let category = item.category;
-            if (
-              (day == when[0] ||
-                day == when[1] ||
-                day == when[2] ||
-                day == when[3] ||
-                day == when[4] ||
-                day == when[5] ||
-                day == when[6]) &&
-              (category == categorySearch[1] ||
-                category == categorySearch[2] ||
-                category == categorySearch[3] ||
-                category == categorySearch[4])
-            ) {
-              let newArray = filteredResults;
-              newArray.push(item);
-              setStore({ filteredResults: newArray });
-            }
-          });
-        }
+        // if (when.length && categorySearch[1]) {
+        //   let filteredResults = getStore().filteredResults;
+        //   filteredResults = [];
+        //   setStore({ filteredResults: filteredResults });
+        //   searchResults.forEach((item, index) => {
+        //     let day = item.schedule[0].day.toLowerCase();
+        //     let category = item.category;
+        //     if (
+        //       (day == when[0] ||
+        //         day == when[1] ||
+        //         day == when[2] ||
+        //         day == when[3] ||
+        //         day == when[4] ||
+        //         day == when[5] ||
+        //         day == when[6]) &&
+        //       (category == categorySearch[1] ||
+        //         category == categorySearch[2] ||
+        //         category == categorySearch[3] ||
+        //         category == categorySearch[4])
+        //     ) {
+        //       let newArray = filteredResults;
+        //       newArray.push(item);
+        //       setStore({ filteredResults: newArray });
+        //     }
+        //   });
+        // }
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;
