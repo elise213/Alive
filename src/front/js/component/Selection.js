@@ -79,7 +79,8 @@ export const Selection = (props) => {
     const element = event.target;
     const value = element.value;
     if (element.type === "checkbox" && element.checked) {
-      setCategorySearch([...categorySearch, value]);
+      // setCategorySearch([...categorySearch, value]);
+      setCategorySearch([value]);
     }
     if (element.type === "checkbox" && !element.checked) {
       // let filtered = categorySearch.filter((item) => item !== value);

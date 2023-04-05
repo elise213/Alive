@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment, match this URL (port 3000)
       // do not include "/" at the end!
       current_front_url:
-        "https://3000-lalafontaine-alive-aydt2oais34.ws-eu93.gitpod.io",
+        "https://3000-lalafontaine-alive-upef5wwez7g.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
 
       latitude: null, //to store user location

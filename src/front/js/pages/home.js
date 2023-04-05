@@ -9,32 +9,6 @@ import { Selection } from "../component/Selection";
 const Home = () => {
   const { store, actions } = useContext(Context);
   useEffect(() => actions.setSearchResults(), []);
-  // let latitude = "";
-  // let longitude = "";
-
-  function geoFindMe() {
-    function success(position) {
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-      actions.updateLocation(latitude, longitude);
-      sessionStorage.setItem("latitude", latitude);
-      sessionStorage.setItem("longitude", longitude);
-      console.log("Aquí: " + latitude + " Long: " + longitude);
-      console.log("Allá: " + store.latitude + " Long: " + store.longitude);
-    }
-    function error() {
-      alert("Unable to retrieve your location");
-    }
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser");
-    } else {
-      console.log("Locating…");
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  }
-  useEffect(() => {
-    geoFindMe();
-  }, []);
 
   return (
     <div>

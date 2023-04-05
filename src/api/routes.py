@@ -13,23 +13,23 @@ import datetime
 api = Blueprint('api', __name__)
 
 # get resources
-# @api.route('/getResources', methods=['GET'])
-# def getResources():
-#     resourceList = Resource.query
-#     if "category" in request.args: 
-#         resourceList = resourceList.filter_by(category = request.args["category"]) 
-#     if resourceList is None:
-#         return jsonify(msg="No resources found")
-#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-#     return jsonify(data=all_resources)
-
 @api.route('/getResources', methods=['GET'])
 def getResources():
-    resourceList = Resource.query.all()
+    resourceList = Resource.query
+    if "category" in request.args: 
+        resourceList = resourceList.filter_by(category = request.args["category"]) 
     if resourceList is None:
         return jsonify(msg="No resources found")
     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
     return jsonify(data=all_resources)
+
+# @api.route('/getResources', methods=['GET'])
+# def getResources():
+#     resourceList = Resource.query.all()
+#     if resourceList is None:
+#         return jsonify(msg="No resources found")
+#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+#     return jsonify(data=all_resources)
 
 # login / create token
 @api.route("/login", methods = ["POST"])

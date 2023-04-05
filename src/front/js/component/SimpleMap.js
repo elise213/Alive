@@ -4,12 +4,35 @@ import GoogleMapReact from "google-map-react";
 
 export const SimpleMap = () => {
   const { store, actions } = useContext(Context);
-  let latitude = parseFloat(sessionStorage.getItem("latitude"));
-  let longitude = parseFloat(sessionStorage.getItem("longitude"));
+  // let latitude = parseFloat(sessionStorage.getItem("latitude"));
+  // let longitude = parseFloat(sessionStorage.getItem("longitude"));
+
+  let lat = 34.0522;
+  let lng = -118.2437;
 
   const [city, setCity] = useState({
-    center: { lat: latitude, lng: longitude },
+    center: { lat: lat, lng: lng },
   });
+
+  function geoFindMe() {
+    function success(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      setCity({ center: { lat: latitude, lng: longitude } });
+    }
+    function error() {
+      alert("Unable to retrieve your location");
+    }
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+    } else {
+      console.log("Locating…");
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  }
+  useEffect(() => {
+    geoFindMe();
+  }, []);
 
   // console.log("city is", city);
   // console.log(latitude, longitude, "from simple map");
@@ -21,12 +44,12 @@ export const SimpleMap = () => {
     </div>
   );
 
-  let initialPosition = {
-    center: { lat: latitude, lng: longitude },
-    zoom: 12,
-  };
+  // let initialPosition = {
+  //   center: { lat: lat, lng: lng },
+  //   zoom: 12,
+  // };
 
-  // console.log("city.center", city.center);
+  // console.log("lat and long from simple map", lat, lng);
 
   return (
     <div>

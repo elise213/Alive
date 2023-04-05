@@ -1,0 +1,14 @@
+[
+  {
+    "day": "monday",
+    "startTime": "1:00",
+    "endTime": "5:00",
+    "resourceId": 1
+  },
+  {
+    "day": "monday",
+    "startTime": "1:00",
+    "endTime": "5:00",
+    "resourceId": 2
+  }
+]

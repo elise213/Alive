@@ -107,7 +107,7 @@ class Schedule(db.Model):
     day = db.Column(db.String(256))
     startTime = db.Column(db.String(256))
     endTime = db.Column(db.String(256))
-    resourceId = db.Column(db.Integer, nullable=False)
+    resourceId = db.Column(db.Integer, ForeignKey("Resource.id"), nullable=True)
 
     def __repr__(self):
         return f'<Schedule {self.id}>'
