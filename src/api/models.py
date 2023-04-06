@@ -105,9 +105,9 @@ class Schedule(db.Model):
     __tablename__ = 'Schedule'
     id = db.Column(db.Integer, primary_key=True)
     day = db.Column(db.String(256))
-    startTime = db.Column(db.String(256))
-    endTime = db.Column(db.String(256))
-    resourceId = db.Column(db.Integer, ForeignKey("Resource.id"), nullable=True)
+    start_time = db.Column(db.String(256))
+    end_time = db.Column(db.String(256))
+    resource_id = db.Column(db.Integer, ForeignKey("Resource.id"), nullable=True)
 
     def __repr__(self):
         return f'<Schedule {self.id}>'
@@ -116,16 +116,15 @@ class Schedule(db.Model):
         return {
             "id": self.id,
             "day": self.day,
-            "startTime": self.startTime,
-            "endTime": self.endTime,
-            "resourceId": self.resourceId,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "resource_id": self.resource_id,
         }
 
 class Offering(db.Model):
         __tablename__ = "Offering"
         id = db.Column(db.Integer, primary_key=True)
         title = db.Column(db.String(256), unique=False, nullable=False)
-        approx_location = db.Column(db.String(256), unique=False, nullable=True)
         offering_type = db.Column(db.String(256), unique=False, nullable=True)
         description = db.Column(db.String(500), unique=False, nullable=True)
         image = db.Column(db.String(500), unique=False, nullable=True)
@@ -139,10 +138,25 @@ class Offering(db.Model):
             return {
                 "id": self.id,
                 "title": self.title,
-                "approx_location": self.approx_location,
                 "description" : self.description,
                 "offering_type" : self.offering_type,
                 "image" : self.image,
                 "image2" : self.image2,
                 "user_id" : self.user_id,
             }
+
+class Favorite_offerings(db.Model):
+    __tablename__ = 'Favorite_offerings'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(256))
+    userId = db.Column(db.Integer, nullable=False)
+    
+    def __repr__(self):
+        return f'<Favorite_offerings {self.id}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title": self.name,
+            "user_id": self.userId,
+        }

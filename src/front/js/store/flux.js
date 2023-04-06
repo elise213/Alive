@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment, match this URL (port 3000)
       // do not include "/" at the end!
       current_front_url:
-        "https://3000-lalafontaine-alive-upef5wwez7g.ws-eu93.gitpod.io",
+        "https://3000-lalafontaine-alive-k05q6ejs53w.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
 
       latitude: null, //to store user location
@@ -239,10 +239,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((data) => setStore({ searchResults: data.data }))
           .catch((error) => console.log(error));
       },
-      setSOfferings: () => {
+      setOfferings: () => {
         fetch(getStore().current_back_url + "/api/getOfferings")
           .then((response) => response.json())
-          .then((data) => setStore({ offerings: data.data }))
+          .then((data) => {
+            setStore({ offerings: data.data });
+            console.log("from setOfferings", getStore().offerings);
+            console.log("from setOfferings", data.data);
+          })
           .catch((error) => console.log(error));
       },
       filterSearchResults: (when, categorySearch) => {
@@ -373,6 +377,48 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => {
             console.log(error);
           });
+      },
+      createOffering: async (
+        title,
+        offeringType,
+        offeringDescription,
+        image,
+        image2
+      ) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const token = getStore().token;
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            title: title,
+            offering_type: offeringType,
+            description: offeringDescription,
+            image: image,
+            image2: image2,
+            // user_id: user_id,
+          }),
+        };
+        try {
+          const response = await fetch(
+            current_back_url + "/api/createOffering",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
       },
     },
   };

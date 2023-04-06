@@ -33,7 +33,7 @@ export const FavoriteCard = (props) => {
             <i className={icon} />
           </div>
         </div>
-        <div classname="row card-body">
+        <div className="row card-body">
           <img className="card-img" src={props.image} alt="profile picture" />
         </div>
       </Link>

@@ -59,7 +59,7 @@ const LogRegBtn = () => {
                   value={is_org}
                   onChange={() => setIs_org("true")}
                 />
-                <label className="form-check-label" for="exampleRadios1">
+                <label className="form-check-label" htmlFor="exampleRadios1">
                   Yes
                 </label>
               </div>
@@ -73,13 +73,13 @@ const LogRegBtn = () => {
                   value={is_org}
                   onChange={() => setIs_org("false")}
                 />
-                <label className="form-check-label" for="exampleRadios1">
+                <label className="form-check-label" htmlFor="exampleRadios1">
                   No
                 </label>
               </div>
             </div>
             <div className="mb-3">
-              <label for="exampleInputEmail1" className="form-label">
+              <label htmlFor="exampleInputEmail1" className="form-label">
                 Name
               </label>
               <input
@@ -92,7 +92,7 @@ const LogRegBtn = () => {
               ></input>
             </div>
             <div className="mb-3">
-              <label for="exampleInputEmail1" className="form-label">
+              <label htmlFor="exampleInputEmail1" className="form-label">
                 Email
               </label>
               <input
@@ -108,7 +108,7 @@ const LogRegBtn = () => {
                 </div> */}
             </div>
             <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
+              <label htmlFor="exampleInputPassword1" className="form-label">
                 Password
               </label>
               <input
@@ -166,7 +166,7 @@ const LogRegBtn = () => {
         <div className="modal-body">
           <form>
             <div className="mb-3">
-              <label for="exampleInputEmail1" className="form-label">
+              <label htmlFor="exampleInputEmail1" className="form-label">
                 Email address
               </label>
               <input
@@ -182,7 +182,7 @@ const LogRegBtn = () => {
               </div> */}
             </div>
             <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
+              <label htmlFor="exampleInputPassword1" className="form-label">
                 Password
               </label>
               <input

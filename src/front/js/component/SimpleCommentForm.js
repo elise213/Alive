@@ -66,7 +66,7 @@ const SimpleCommentForm = (props) => {
                 data-placement="bottom"
                 title="Send your comment"
               >
-                <i class="fa-solid fa-arrow-right"></i>
+                <i className="fa-solid fa-arrow-right"></i>
               </button>
               {/* <button type="reset" className="btn btn-outline-danger">
             Cancel

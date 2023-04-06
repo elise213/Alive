@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Resource, Favorites, Comment, Schedule, Offering
+from api.models import db, User, Resource, Favorites, Comment, Schedule, Offering, Favorite_offerings
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -11,25 +11,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 
 api = Blueprint('api', __name__)
-
-# get resources
-@api.route('/getResources', methods=['GET'])
-def getResources():
-    resourceList = Resource.query
-    if "category" in request.args: 
-        resourceList = resourceList.filter_by(category = request.args["category"]) 
-    if resourceList is None:
-        return jsonify(msg="No resources found")
-    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-    return jsonify(data=all_resources)
-
-# @api.route('/getResources', methods=['GET'])
-# def getResources():
-#     resourceList = Resource.query.all()
-#     if resourceList is None:
-#         return jsonify(msg="No resources found")
-#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-#     return jsonify(data=all_resources)
 
 # login / create token
 @api.route("/login", methods = ["POST"])
@@ -80,36 +61,9 @@ def create_user():
         db.session.commit()
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
     
-# create resource
-@api.route("/createResource", methods = ["POST"])
-@jwt_required()
-def create_resource():
-    if request.method == "POST":
-        user_id = get_jwt_identity();
-        request_body = request.get_json()
-        if not request_body["name"]:
-            return jsonify({"message": "Name is required"}), 400
-        resource = Resource.query.filter_by(name=request_body["name"]).first()
-        if resource:
-            return jsonify({"message": "Resource already exists"}), 400
-        resource = Resource(
-            name = request_body["name"],
-            address = request_body["address"],
-            phone = request_body["phone"],
-            category = request_body["category"],
-            website = request_body["website"],
-            description = request_body["description"],
-            latitude = request_body["latitude"],
-            longitude = request_body["longitude"],
-            image = request_body["image"],
-            image2 = request_body["image2"],
-            logo = request_body["logo"],
-            user_id=user_id,
-            )
-        db.session.add(resource)
-        db.session.commit()
-        return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
+
     
+# __________________________________________________COMMENTS
 # Create comments
 @api.route('/createComment', methods=['POST'])
 @jwt_required()
@@ -141,6 +95,56 @@ def getCommentsByResourceId(resourceId):
     serialized_comments = [comment.serialize() for comment in comments]
     return serialized_comments
 
+# __________________________________________________RESOURCES
+
+# get resources
+@api.route('/getResources', methods=['GET'])
+def getResources():
+    resourceList = Resource.query
+    if "category" in request.args: 
+        resourceList = resourceList.filter_by(category = request.args["category"]) 
+    if resourceList is None:
+        return jsonify(msg="No resources found")
+    all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+    return jsonify(data=all_resources)
+
+# @api.route('/getResources', methods=['GET'])
+# def getResources():
+#     resourceList = Resource.query.all()
+#     if resourceList is None:
+#         return jsonify(msg="No resources found")
+#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
+#     return jsonify(data=all_resources)
+
+# create resource
+@api.route("/createResource", methods = ["POST"])
+@jwt_required()
+def create_resource():
+    if request.method == "POST":
+        user_id = get_jwt_identity()
+        request_body = request.get_json()
+        if not request_body["name"]:
+            return jsonify({"message": "Name is required"}), 400
+        resource = Resource.query.filter_by(name=request_body["name"]).first()
+        if resource:
+            return jsonify({"message": "Resource already exists"}), 400
+        resource = Resource(
+            name = request_body["name"],
+            address = request_body["address"],
+            phone = request_body["phone"],
+            category = request_body["category"],
+            website = request_body["website"],
+            description = request_body["description"],
+            latitude = request_body["latitude"],
+            longitude = request_body["longitude"],
+            image = request_body["image"],
+            image2 = request_body["image2"],
+            logo = request_body["logo"],
+            user_id=user_id,
+            )
+        db.session.add(resource)
+        db.session.commit()
+        return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
 
 # add favorite resource
 @api.route('/addFavorite', methods=['POST'])
@@ -171,7 +175,7 @@ def removeFavorite():
     db.session.commit()
     return jsonify(message="okay")
     
-# get all favorites
+# get favorite resousrces
 @api.route('/getFavorites', methods=['GET'])
 @jwt_required()
 def getFavorites():
@@ -188,14 +192,52 @@ def getCommentsByResourceId(resourceId):
     serialized_comments = [comment.serialize() for comment in comments]
     return serialized_comments
 
+# __________________________________________________OFFERINGS
+
 # get offerings
 @api.route('/getOfferings', methods=['GET'])
 def getOfferings():
-    offeringsList = Offering.query
-    # offeringsList = Offering.query.all()
+    # offeringsList = Offering.query
+    offeringList = Offering.query.all()
     # if "category" in request.args: 
     #     offeringList = offeringList.filter_by(category = request.args["category"]) 
-    if offeringsList is None:
+    if offeringList is None:
         return jsonify(msg="No offerings found")
     all_offerings = list(map(lambda offering: offering.serialize(), offeringList))
     return jsonify(data=all_offerings)
+
+# create offering
+@api.route("/createOffering", methods = ["POST"])
+@jwt_required()
+def create_offering():
+    if request.method == "POST":
+        user_id = get_jwt_identity()
+        request_body = request.get_json()
+        if not request_body["title"]:
+            return jsonify({"message": "Title is required"}), 400
+        offering = Offering.query.filter_by(title=request_body["title"]).first()
+        if offering:
+            return jsonify({"message": "Resource already exists"}), 400
+        offering = Offering(
+            title = request_body["title"],
+            offering_type = request_body["offering_type"],
+            description = request_body["description"],
+            image = request_body["image"],
+            image2 = request_body["image2"],
+            user_id=user_id,
+            )
+        db.session.add(offering)
+        db.session.commit()
+        return jsonify({"created": "Thank you for creating an offering!", "status": "true"}), 200
+
+# get favorite offerings
+@api.route('/getFavoriteOfferings', methods=['GET'])
+@jwt_required()
+def getFavoriteOfferings():
+    userId = get_jwt_identity()
+    favorite_offerings = getFavoriteOfferingsByUserId(userId)
+    return jsonify(favorite_offerings=favorite_offerings)
+def getFavoriteOfferingsByUserId(userId):
+    favorite_offerings = Favorite_offerings.query.filter_by(userId=userId).all()
+    serialized_favorites = [fav.serialize() for fav in favorite_offerings]
+    return serialized_favorites
