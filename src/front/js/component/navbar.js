@@ -50,22 +50,6 @@ export const Navbar = () => {
             </Link>
           </span>
 
-          {/* Link to register as a drop-off pick-up location */}
-          <span className="nav-item">
-            <Link to="/">
-              <span className="btn nav-btn">
-                Register as a drop-off/pick-up location
-              </span>
-            </Link>
-          </span>
-          <span className="nav-item">
-            <Link to="/offerings">
-              <span className="btn nav-btn">
-                Offerings <span></span>
-              </span>
-            </Link>
-          </span>
-
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {/* Link to Create Resource - Only visible when logged in as an Organization */}
             {token && is_org == "true" ? (

@@ -5,12 +5,12 @@ import { Context } from "../store/appContext";
 
 const CreateResource = () => {
   const navigate = useNavigate();
+  const { store, actions } = useContext(Context);
   const [address, setAddress] = useState("");
   const [website, setWebsite] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [resourceType, setResourceType] = useState("");
-  const { store, actions } = useContext(Context);
   const [description, setDescription] = useState("");
   const [day, setDay] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -19,38 +19,29 @@ const CreateResource = () => {
   const [picture2, setPicture2] = useState("");
   const [latitude, setLatitude] = useState("34.095520");
   const [longitude, setLongitude] = useState("-118.309640");
-  const [logo, setlogo] = useState("");
+  // const [logo, setlogo] = useState("");
+  const [mondayStart, setMondayStart] = useState("");
+  const [mondayEnd, setMondayEnd] = useState("");
+  console.log("Monday Start/End", mondayStart, mondayEnd);
 
-  let handleChange = (i, e) => {
-    // saving/updating schedule values
-    let newFormValues = [...schedule];
-    newFormValues[i][e.target.name] = e.target.value;
-    setSchedule(newFormValues);
-  };
+  // let handleChange = (i, e) => {
+  //   // saving/updating schedule values
+  //   let newFormValues = [...schedule];
+  //   newFormValues[i][e.target.name] = e.target.value;
+  //   setSchedule(newFormValues);
+  // };
 
-  let addFormFields = () => {
-    // to add days/inputs to the schedule
-    setSchedule([...schedule, { day: "", startTime: "", endTime: "" }]);
-  };
+  // let addFormFields = () => {
+  //   // to add days/inputs to the schedule
+  //   setSchedule([...schedule, { day: "", startTime: "", endTime: "" }]);
+  // };
 
-  let removeFormFields = (i) => {
-    // to remove days/inputs from the schedule
-    let newFormValues = [...schedule];
-    newFormValues.splice(i, 1);
-    setSchedule(newFormValues);
-  };
-
-  let handleSubmit = (event) => {
-    //to avoid page refresh while adding/deleting inputs/days
-    event.preventDefault();
-  };
-
-  // getGeocode(address).then((results) => {
-  //   const { lat, lng } = getLatLng(results[0]);
-  //   console.log("Coordinates: ", { lat, lng });
-  // });
-  // let coordinates = getLatLng(address);
-  // console.log("Coordinatesss: ", coordinates);
+  // let removeFormFields = (i) => {
+  //   // to remove days/inputs from the schedule
+  //   let newFormValues = [...schedule];
+  //   newFormValues.splice(i, 1);
+  //   setSchedule(newFormValues);
+  // };
 
   const resetForm = () => {
     setName("");
@@ -68,35 +59,32 @@ const CreateResource = () => {
 
   function handleClick(e) {
     e.preventDefault();
-    if (
-      actions.createResource(
-        name,
-        address,
-        phone,
-        resourceType,
-        website,
-        description,
-        latitude,
-        longitude,
-        picture,
-        picture2,
-        logo
-        // user_id
-      )
-    ) {
-      // showModal ModalResource
-      alert("Resource Created");
-      resetForm();
-      navigate("/search/all");
-    }
+    actions.createResource(
+      name,
+      address,
+      phone,
+      resourceType,
+      website,
+      description,
+      latitude,
+      longitude,
+      picture,
+      picture2,
+      // logo,
+      mondayStart,
+      mondayEnd
+    );
+    // showModal ModalResource
+    // alert("Resource Created")
+    // resetForm()
+    // navigate("/search/all")
   }
 
   return (
     <div className="row center mx-auto col-6 text-secondary mb-3">
       <div className="m-4">
-        <p>Please provide the information to register your resource </p>
         <form className="d-flex flex-column">
-          <label htmlFor="name"> Name of the place</label>
+          <label htmlFor="name"> Title of the Resource being offered</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text h-100" id="name">
@@ -191,7 +179,6 @@ const CreateResource = () => {
             </label>
           </div>
           {/*<!-------------------- end of ResourceType --------------------> */}
-          {/* </div> */}
 
           {/* <label htmlFor="type"> When is this being offered? </label>
           <div>
@@ -307,29 +294,87 @@ const CreateResource = () => {
               </div>
             ))}
           </div> */}
-          {/*<!-------------------- end of schedule --------------------> */}
-          <label htmlFor="address">
-            What is the address where this being offered?
-          </label>
+          <div className="my-4">
+            <label htmlFor="type"> When is this being offered? </label>
+            <form>
+              <label for="appt">Monday</label>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={mondayStart}
+                onChange={(e) => setMondayStart(e.target.value)}
+              />
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={mondayEnd}
+                onChange={(e) => setMondayEnd(e.target.value)}
+              />
+            </form>
 
-          {/* <PlacesAutocomplete /> */}
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text h-100">
-                <i className="fa-solid fa-map-location-dot text-secondary"></i>
-              </span>
+            <form>
+              <label for="appt">Tuesday</label>
+              <input type="time" id="appt" name="appt" />
+              <input type="time" id="appt" name="appt" />
+            </form>
+
+            <form>
+              <label for="appt">Wednesday</label>
+              <input type="time" id="appt" name="appt" />
+              <input type="time" id="appt" name="appt" />
+            </form>
+
+            <form>
+              <label for="appt">Thursday</label>
+              <input type="time" id="appt" name="appt" />
+              <input type="time" id="appt" name="appt" />
+            </form>
+
+            <form>
+              <label for="appt">Friday</label>
+              <input type="time" id="appt" name="appt" />
+              <input type="time" id="appt" name="appt" />
+            </form>
+
+            <form>
+              <label for="appt">Saturday</label>
+              <input type="time" id="appt" name="appt" />
+              <input type="time" id="appt" name="appt" />
+            </form>
+
+            <form>
+              <label for="appt">Sunday</label>
+              <input type="time" id="appt" name="appt" />
+              <input type="time" id="appt" name="appt" />
+            </form>
+          </div>
+          {/*<!-------------------- end of schedule --------------------> */}
+          <div className="">
+            <label htmlFor="address">
+              What is the address where this being offered?
+            </label>
+
+            {/* <PlacesAutocomplete /> */}
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <span className="input-group-text h-100">
+                  <i className="fa-solid fa-map-location-dot text-secondary"></i>
+                </span>
+              </div>
+              <input
+                id="address"
+                className="form-control"
+                name="address"
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Provide the address of the place"
+              ></input>
             </div>
-            <input
-              id="address"
-              className="form-control"
-              name="address"
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Provide the address of the place"
-            ></input>
             {/* <AddressInput
             // setSelected={setSelected}
             // value={address}
@@ -352,7 +397,6 @@ const CreateResource = () => {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text  h-100" id="website">
-                {/* <i className="fa-regular fa-globe"></i> */}
                 <i className="fa-solid fa-globe text-secondary"></i>
               </span>
             </div>

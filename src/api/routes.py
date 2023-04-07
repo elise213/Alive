@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Resource, Favorites, Comment, Schedule, Offering, Favorite_offerings
+from api.models import db, User, Resource, Favorites, Comment, Drop, Schedule, Offering, Favorite_offerings
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -139,10 +139,14 @@ def create_resource():
             longitude = request_body["longitude"],
             image = request_body["image"],
             image2 = request_body["image2"],
-            logo = request_body["logo"],
             user_id=user_id,
             )
+        schedule = Schedule(
+            mondayStart = request_body["mondayStart"],
+            mondayEnd = request_body["mondayEnd"]
+            )
         db.session.add(resource)
+        db.session.add(schedule)
         db.session.commit()
         return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
 
@@ -241,3 +245,28 @@ def getFavoriteOfferingsByUserId(userId):
     favorite_offerings = Favorite_offerings.query.filter_by(userId=userId).all()
     serialized_favorites = [fav.serialize() for fav in favorite_offerings]
     return serialized_favorites
+
+ # create drop
+@api.route("/createDrop", methods = ["POST"])
+@jwt_required()
+def create_drop():
+    if request.method == "POST":
+        user_id = get_jwt_identity()
+        request_body = request.get_json()
+    if not request_body["name"]:
+        return jsonify({"message": "Name is required"}), 400
+    drop = Drop.query.filter_by(name=request_body["name"]).first()
+    if drop:
+        return jsonify({"message": "Drop already exists"}), 400
+        drop = Drop(
+            name = request_body["name"],
+            address = request_body["address"],
+            phone = request_body["phone"],
+            description = request_body["description"],
+            type = request_body["type"],
+            identification = request_body["identification"],
+            image = request_body["image"],
+        )
+        db.session.add(drop)
+        db.session.commit()
+        return jsonify({"created": "Thank you for creating a drop!", "status": "true"}), 200

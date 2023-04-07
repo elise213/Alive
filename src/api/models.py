@@ -104,9 +104,8 @@ class Favorites(db.Model):
 class Schedule(db.Model):
     __tablename__ = 'Schedule'
     id = db.Column(db.Integer, primary_key=True)
-    day = db.Column(db.String(256))
-    start_time = db.Column(db.String(256))
-    end_time = db.Column(db.String(256))
+    mondayStart = db.Column(db.String(256))
+    mondayEnd = db.Column(db.String(256))
     resource_id = db.Column(db.Integer, ForeignKey("Resource.id"), nullable=True)
 
     def __repr__(self):
@@ -115,9 +114,8 @@ class Schedule(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "day": self.day,
-            "start_time": self.start_time,
-            "end_time": self.end_time,
+            "mondayStart": self.mondayStart,
+            "mondayEnd": self.mondayEnd,
             "resource_id": self.resource_id,
         }
 
@@ -159,4 +157,28 @@ class Favorite_offerings(db.Model):
             "id": self.id,
             "title": self.name,
             "user_id": self.userId,
+        }
+
+class Drop(db.Model):
+    __tablename__ = "Drop"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(256), unique=False, nullable=False)
+    address = db.Column(db.String(256), unique=False, nullable=True)
+    phone = db.Column(db.String(256), unique=False, nullable=True)
+    type = db.Column(db.String(256), unique=False, nullable=True)
+    description = db.Column(db.String(500), unique=False, nullable=True)
+    identification = db.Column(db.String(500), unique=False, nullable=True)
+    image = db.Column(db.String(500), unique=False, nullable=True)
+    def __repr__(self):
+        return f'<Resource {self.name}>'
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "address": self.address,
+            "phone": self.phone,
+            "description" : self.description,
+            "type" : self.type,
+            "identification" : self.identification,
+            "image" : self.image,
         }

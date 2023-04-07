@@ -6,83 +6,64 @@ import { Context } from "../store/appContext";
 const RegisterAsDrop = () => {
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
-
-  const [title, setTitle] = useState("");
-  const [offeringType, setOfferingType] = useState("");
-  const [offeringDescription, setOfferingDescription] = useState("");
   const [image, setImage] = useState("");
-  const [image2, setImage2] = useState("");
-
-  const resetForm = () => {
-    setTitle("");
-    setOfferingType("");
-    setOfferingDescription("");
-    setImage("");
-    setImage2("");
-  };
+  const [identification, setIdentification] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   function handleClick(e) {
     e.preventDefault();
-    if (
-      actions.createOffering(
-        title,
-        offeringType,
-        offeringDescription,
-        image,
-        image2
-      )
-    ) {
-      alert("Offering Created");
-      resetForm();
-      navigate("/");
-    }
+    actions.createDrop(
+      name,
+      address,
+      phone,
+      description,
+      type,
+      identification,
+      image
+    );
   }
 
   return (
     <div className="row center mx-auto col-6 text-secondary mb-3">
       <div className="m-4">
-        <p>Please provide some information about what you are offering </p>
         <form className="d-flex flex-column">
-          <label htmlFor="name"> Title </label>
+          <label htmlFor="name"> Name </label>
+
+          {/* _____________________________________________NAME */}
           <div className="input-group mb-3">
             <input
               className="form-control"
               name="name"
               type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               data-toggle="tooltip"
               data-placement="bottom"
-              title="Provide the name of the place"
+              title="Name"
             ></input>
           </div>
-          <div className="form-group mb-3">
-            <label htmlFor="description"> Description</label>
-            <textarea
-              className="form-control"
-              id="description"
-              rows="3"
-              value={offeringDescription}
-              onChange={(e) => setOfferingDescription(e.target.value)}
-            ></textarea>
-          </div>
-          <label className="form-check-label" htmlFor="offeringType">
-            What is the closest category that would describe your offering?
+
+          {/* _____________________________________________LOCATION TYPE */}
+          <label className="form-check-label" htmlFor="type">
+            What is the closest category that would describe your location?
           </label>
           {/* <div className="form-check form-row"> */}
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
-              name="offeringType"
-              value="food"
-              checked={offeringType === "food"}
-              onChange={() => (
-                setOfferingType("food"), console.log(offeringType)
-              )}
+              name="type"
+              value="church"
+              checked={type === "church"}
+              onChange={() => (setType("church"), console.log(type))}
             />
             <label className="form-check-label" htmlFor="offeringF">
-              Food
+              church
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -91,14 +72,12 @@ const RegisterAsDrop = () => {
               type="radio"
               name="offeringType"
               id="offeringS"
-              value="shelter"
-              checked={offeringType === "shelter"}
-              onChange={(e) => (
-                setOfferingType(e.target.value), console.log(offeringType)
-              )}
+              value="business/non-profit"
+              checked={type === "business/non-profit"}
+              onChange={(e) => (setType(e.target.value), console.log(type))}
             />
             <label className="form-check-label" htmlFor="offeringS">
-              Shelter
+              business/non-profit
             </label>
           </div>
           <div className="form-check form-check-inline">
@@ -107,14 +86,12 @@ const RegisterAsDrop = () => {
               type="radio"
               name="offeringType"
               id="offeringH"
-              value="health"
-              checked={offeringType === "health"}
-              onChange={(e) => (
-                setOfferingType(e.target.value), console.log(offeringType)
-              )}
+              value="residence"
+              checked={type === "residence"}
+              onChange={(e) => (setType(e.target.value), console.log(type))}
             />
             <label className="form-check-label" htmlFor="offeringH">
-              Health
+              residence
             </label>
           </div>
           <div className="form-check mb-3 form-check-inline">
@@ -123,17 +100,66 @@ const RegisterAsDrop = () => {
               type="radio"
               name="offeringType"
               id="offeringHy"
-              value="hygiene"
-              checked={offeringType === "hygiene"}
-              onChange={(e) => setOfferingType(e.target.value)}
+              value="other"
+              checked={type === "other"}
+              onChange={(e) => setType(e.target.value)}
             />
             <label className="form-check-label" htmlFor="offeringHy">
-              Hygiene
+              other
             </label>
           </div>
-          {/*<!-------------------- end of offeringType --------------------> */}
 
-          <label htmlFor="image">images</label>
+          {/* _____________________________________________Address */}
+          <div className="input-group mb-3">
+            <input
+              className="form-control"
+              name="name"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Name"
+            ></input>
+          </div>
+          {/* _____________________________________________Email*/}
+          <div className="input-group mb-3">
+            <label htmlFor="email"> Email address </label>
+            <input
+              className="form-control"
+              name="email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="email"
+            ></input>
+          </div>
+
+          {/* _____________________________________________Phone */}
+          <label htmlFor="phone"> Phone number </label>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="phone">
+                <i className="fa-solid fa-phone text-secondary"></i>
+              </span>
+            </div>
+            <input
+              className="form-control"
+              name="phone"
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Provide a contact phone number"
+            ></input>
+          </div>
+
+          {/* _____________________________________________Identification */}
+
+          <label htmlFor="image">Identification</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text  h-100" id="image">
@@ -144,14 +170,15 @@ const RegisterAsDrop = () => {
               className="form-control"
               name="image"
               type="text"
-              value={image}
+              value={identification}
               id="image"
-              onChange={(e) => setImage(e.target.value)}
+              onChange={(e) => setIdentification(e.target.value)}
               data-toggle="tooltip"
               data-placement="bottom"
               title="You can upload up to two images of your place"
             ></input>
           </div>
+          {/* _____________________________________________Image of Location */}
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text  h-100" id="image">
@@ -162,10 +189,21 @@ const RegisterAsDrop = () => {
               className="form-control"
               name="image2"
               type="text"
-              value={image2}
+              value={image}
               id="image2"
-              onChange={(e) => setImage2(e.target.value)}
+              onChange={(e) => setImage(e.target.value)}
             ></input>
+          </div>
+          {/* _____________________________________________Description */}
+          <div className="form-group mb-3">
+            <label htmlFor="description"> Description</label>
+            <textarea
+              className="form-control"
+              id="description"
+              rows="3"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
           </div>
         </form>
         <div className="float-end">

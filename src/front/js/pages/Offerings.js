@@ -16,6 +16,13 @@ const Offerings = () => {
         Do you have something you'd like to give to someone in need? Post an
         offering <Link to="/offeringPost"> here.</Link>
       </div>
+
+      {/* Link to register as a drop-off pick-up location */}
+      <div className="alert alert-success" role="alert">
+        Register a drop-off/pick-up location{" "}
+        <Link to="/registerAsDrop"> here.</Link>
+      </div>
+
       <div className="col-6">
         <ul style={{ listStyleType: "none" }}>
           {store.offerings.map((result, index) => {

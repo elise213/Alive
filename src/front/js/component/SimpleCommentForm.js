@@ -10,9 +10,6 @@ const SimpleCommentForm = (props) => {
   const token = sessionStorage.getItem("token");
   const user_name = store.name;
   const user_name2 = sessionStorage.getItem("name");
-  // console.log("hay token? ", token);
-  // console.log("user_name session: ", user_name2);
-  // console.log("user_name store: ", user_name);
   const params = useParams();
   let resource_id = parseInt(props.id);
   let parentId = null;

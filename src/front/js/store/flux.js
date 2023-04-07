@@ -7,7 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       current_front_url:
         "https://3000-lalafontaine-alive-k05q6ejs53w.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
-
       latitude: null, //to store user location
       longitude: null, //to store user location
       token: null,
@@ -127,7 +126,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         longitude,
         picture,
         picture2,
-        logo
+        mondayStart,
+        mondayEnd
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -151,7 +151,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             longitude: longitude,
             image: picture,
             image2: picture2,
-            logo: logo,
+            mondayStart: mondayStart,
+            mondayEnd: mondayEnd,
             // user_id: user_id,
           }),
         };
@@ -173,8 +174,53 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
-      updateLocation: (latitude, longitude) => {
-        setStore({ latitude: latitude, longitude: longitude });
+      createDrop: async (
+        name,
+        address,
+        phone,
+        description,
+        type,
+        identification,
+        image
+      ) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const token = getStore().token;
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            name: name,
+            address: address,
+            phone: phone,
+            description: description,
+            type: type,
+            identification: identification,
+            image: image,
+          }),
+        };
+        try {
+          const response = await fetch(
+            current_back_url + "/api/createDrop",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          // if (data.status == "true") {
+          //   window.location.href = current_front_url + "/search/all"; //go to home
+          // }
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
       },
       addFavorite: (resource) => {
         const current_back_url = getStore().current_back_url;
@@ -236,7 +282,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         const searchResults = getStore().searchResults;
         fetch(getStore().current_back_url + "/api/getResources")
           .then((response) => response.json())
-          .then((data) => setStore({ searchResults: data.data }))
+
+          .then((data) => {
+            setStore({ searchResults: data.data });
+            console.log("search results", getStore().searchResults);
+          })
           .catch((error) => console.log(error));
       },
       setOfferings: () => {
