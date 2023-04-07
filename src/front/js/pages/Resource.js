@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 // import Comments from "../component/comments/Comments";
@@ -9,21 +9,20 @@ import "../../styles/custom.css";
 const resource = () => {
   const { store, actions } = useContext(Context);
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   let filteredResults = store.searchResults;
   let resourceName = params.name;
-
   let resourceData = filteredResults.filter((elm) => {
     if (elm.name == resourceName) {
       return elm;
     }
   });
-  console.log("resourceData is", resourceData[0].id);
+  // console.log("resourceData is", resourceData[0].id);
   return (
     <div className="mb-3 mt-6 resourcesRow h-100" style={{ maxWidth: 540 }}>
       {resourceData.map((items) => (
         // console.log("printing reource info...", items),
-        <div className="row" key={items.id}>
+        <div className="row mt-5" key={items.id}>
           <ResourceInfo
             id={items.id}
             name={items.name}
@@ -40,11 +39,13 @@ const resource = () => {
           />
         </div>
       ))}
-      <div className="row">
-        <SimpleCommentForm id={resourceData.id} />
+
+      <div className="row mt-5">
+        {/* {console.log("id: ", resourceData[0].id)} */}
+        <SimpleCommentList id={resourceData[0].id} />
       </div>
       <div className="row">
-        <SimpleCommentList id={resourceData.id} />
+        <SimpleCommentForm id={resourceData[0].id} />
       </div>
     </div>
   );

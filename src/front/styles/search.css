@@ -10,23 +10,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 10px;
+  /* background: rgb(196, 247, 223);
+  background: linear-gradient(
+    180deg,
+    rgba(196, 247, 223, 1) 0%,
+    rgba(70, 226, 149, 0.4808517156862745) 52%
+  ); */
+  /* background-color: lightgreen; */
+  padding: 10px;
+  height: 100vh;
 }
 .profile-greeting {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: x-large;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-family: "Urbanist", sans-serif;
+  margin-bottom: 40px;
+  color: darkslategray;
 }
 .user-profile-container {
-  margin-top: 80px;
+  /* margin-top: 10px; */
   margin-left: 20px;
   margin-right: 20px;
 }
-.welcome {
-  display: flex;
-  justify-content: center;
-}
+
 .user-profile-pic {
   width: 120px;
   height: 120px;
@@ -34,16 +39,31 @@
   margin-right: 25px;
 }
 .favorites-col {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Urbanist", sans-serif;
+}
+.your-favorite-resources {
+  font-size: 1.5rem;
+  /* font-weight: bold; */
+  text-decoration: underline;
+  margin-top: 20px;
+  /* margin-bottom: 5px; */
+  padding: 0px;
 }
 .favorites-list {
   text-align: center;
 }
+.user-profile-avatar {
+  font-size: 8rem;
+}
 .building {
   width: 350px;
+  margin-left: 80px;
 }
 .favorite-line-item {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .favorite-a-tag:hover {
   color: blueviolet;
@@ -64,23 +84,30 @@
   color: black;
   text-decoration: none;
 }
+.user-profile-fav-icon {
+  margin-right: 10px;
+  color: blueviolet;
+}
 
 /* ----Resource Card Component---- */
 .resource-card {
   max-width: 18rem;
-  max-height: 25rem;
+  /* max-height: 25rem; */
   align-items: center;
   border: 1px solid blueviolet;
   justify-content: center;
   display: flex;
+  border-radius: 0.256rem;
+  font-family: "Urbanist", sans-serif;
 }
 .card-title-div {
   display: flex;
   align-items: center;
 }
-.card-title {
+.resource-card-title-name {
   color: black;
-  font-size: medium;
+  font-size: large;
+  font-weight: bold;
 }
 .card-icon {
   color: blueviolet;
@@ -89,7 +116,9 @@
 .card-favorite-button {
   border: 1px solid blueviolet;
 }
-
+.card-favorite-button:hover {
+  background-color: #d1c4e9;
+}
 .favorite-button-container {
   margin: 10px;
   display: flex;
@@ -102,15 +131,17 @@
   justify-content: center;
   align-items: center;
 }
+.form-check-label {
+  font-family: "Urbanist", sans-serif;
+}
 .question {
   display: flex;
   justify-content: center;
   font-size: large;
   font-weight: bold;
-}
-.question {
+  font-family: "Urbanist", sans-serif;
   margin-top: 30px;
-  color: #455a64;
+  /* color: #455a64; */
 }
 .container {
   margin-bottom: 40px;
@@ -123,4 +154,9 @@
 }
 .map-button {
   border: 1px solid #455a64;
+  font-family: "Urbanist", sans-serif;
+}
+
+.map-button:hover {
+  background-color: lightgray;
 }

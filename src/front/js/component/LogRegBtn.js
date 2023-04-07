@@ -48,7 +48,7 @@ const LogRegBtn = () => {
         </div>
         <div className="modal-body">
           <form>
-            <h6>Are you and Organization</h6>
+            <h6>Do you represent an Organization?</h6>
             <div className="d-flex">
               <div className="form-check m-2">
                 <input
@@ -120,12 +120,11 @@ const LogRegBtn = () => {
               ></input>
             </div>
             <div className="mb-3">
-              <p>pick you avatar</p>
+              <p>pick your avatar</p>
               {store.avatarImages.map((i, idx) => {
                 return (
-                  <img
-                    className="avatarImages"
-                    src={i}
+                  <span
+                    className={`${i} avatarImages`}
                     id={"avatar" + idx}
                     onClick={() => handleSelectImage(idx)}
                   />
@@ -178,9 +177,9 @@ const LogRegBtn = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
-              <div id="emailHelp" className="form-text">
+              {/* <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else.
-              </div>
+              </div> */}
             </div>
             <div className="mb-3">
               <label for="exampleInputPassword1" className="form-label">
@@ -193,13 +192,17 @@ const LogRegBtn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
+              <div className="forgot-password mt-3">
+                <span>I Forgot My Password</span>
+              </div>
             </div>
             <div className="logRegBtnModalCont">
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn custom-btn"
                 data-bs-dismiss="modal"
                 onClick={(e) => handleLogin(e)}
+                style={{ color: "white" }}
               >
                 Submit
               </button>
@@ -229,7 +232,7 @@ const LogRegBtn = () => {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >

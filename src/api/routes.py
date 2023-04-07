@@ -35,9 +35,13 @@ def create_token():
         if not check_password_hash(user.password, password):
             return jsonify({"message": "password is incorrect"}), 401
         favorites = getFavoritesByUserId(user.id)
+        icons = []
+        for favorite in favorites:
+            resource = Resource.query.filter_by(name = favorite["name"]).first()
+            icons.append(resource.icon)
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
+        return jsonify(icons=icons, access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
 
 @api.route("/createUser", methods = ["POST"])
 def create_user():
@@ -66,22 +70,30 @@ def create_user():
         return jsonify({"created": "Thank you for registering", "status": "true"}), 200
     
 @api.route("/createResource", methods = ["POST"])
+@jwt_required()
 def create_resource():
     if request.method == "POST":
+        user_id = get_jwt_identity();
         request_body = request.get_json()
         if not request_body["name"]:
             return jsonify({"message": "Name is required"}), 400
         resource = Resource.query.filter_by(name=request_body["name"]).first()
-        if resource: 
+        if resource:
             return jsonify({"message": "Resource already exists"}), 400
         resource = Resource(
             name = request_body["name"],
             address = request_body["address"],
             phone = request_body["phone"],
+            category = request_body["category"],
             website = request_body["website"],
             schedule = repr(request_body["schedule"]),
             description = request_body["description"],
-            category = request_body["category"],        
+            latitude = request_body["latitude"],
+            longitude = request_body["longitude"],
+            image = request_body["image"],
+            image2 = request_body["image2"],
+            logo = request_body["logo"],
+            user_id=user_id,
             )
         db.session.add(resource)
         db.session.commit()
@@ -107,13 +119,16 @@ def create_comment():
         return jsonify({"created": "Thank you for your feedback", "status": "true"}), 200
 
 # get comments
-@api.route('/getcomments', methods=['POST'])
-def getcomments():
+@api.route('/getcomments/<int:resource_id>', methods=['GET'])
+def getcomments(resource_id):
     # resource_id = request.get_json("resource_id")
-    resource_id = request.get_json().get("resource_id")
     print(resource_id)
     comments = getCommentsByResourceId(resource_id)
     return jsonify({"comments": comments})
+def getCommentsByResourceId(resourceId):
+    comments = Comment.query.filter_by(resource_id=resourceId).all()
+    serialized_comments = [comment.serialize() for comment in comments]
+    return serialized_comments
 
 # get resources for map
 @api.route('/getResources', methods=['GET'])

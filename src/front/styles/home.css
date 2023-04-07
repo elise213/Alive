@@ -1,14 +1,45 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
-
 .resourcesRow {
-  margin: auto !important;
+  margin: auto;
   height: 30%;
+  /* this is the only way I could get the footer to stay at the bottom for full-screen mode */
+  margin-bottom: 142px;
+}
+
+.my-card-body {
+  /* width: 300px; */
+  flex: 1 0;
+}
+
+.landing-text {
+  padding: 20px;
+  font-family: "Urbanist", sans-serif;
+  color: darkslategray;
+  padding-right: 60px;
+  padding-left: 60px;
+  padding-bottom: 60px;
+}
+.landing-logo {
+  width: 150px;
+}
+
+.new-div {
+  margin-left: 30px;
+}
+
+.my-card {
+  display: flex;
+  /* margin-top: 100px; */
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  padding: 10px;
+  /* width: 100%; */
+  background-color: #455a64 !important;
+  border-top: 2px solid blueviolet;
+}
+
+.card-title {
+  font-family: "Urbanist", sans-serif;
 }
 
 .circle {
@@ -25,8 +56,13 @@
   margin: auto;
   text-decoration: none;
 }
+
+.circle:hover {
+  opacity: 0.5;
+}
+
 .bigIcon {
-  font-size: 80px;
+  font-size: 40px;
 }
 
 .purple {
@@ -35,6 +71,7 @@
 
 .bg-shelter {
   background-color: #ca5cdd;
+  background-color: blueviolet;
 }
 
 .bg-food {
@@ -64,7 +101,8 @@
 }
 
 .darkViolet {
-  background-color: #581b91;
+  /* background-color: #581b91; */
+  background-color: rgba(var(--bs-secondary-rgb));
 }
 /* * {
   border: 1px solid black;

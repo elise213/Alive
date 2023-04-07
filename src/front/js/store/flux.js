@@ -6,10 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       // do not include "/" at the end!
       // front URL is port 3000
       current_front_url:
-        "https://3000-lalafontaine-alive-swsnxe3vmyi.ws-eu90.gitpod.io",
-      // back URL is port 3001
+        "https://3000-lalafontaine-alive-3r4tj8yzc5v.ws-eu90.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
-      // "https://3001-lalafontaine-alive-d7b4ebv2hdj.ws-us90.gitpod.io",
 
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -18,17 +16,18 @@ const getState = ({ getStore, getActions, setStore }) => {
       name: null,
       avatarID: null,
       avatarImages: [
-        "https://static.vecteezy.com/system/resources/previews/006/940/182/original/simple-minimalist-cute-dog-cartoon-illustration-drawing-premium-vector.jpg",
-        "https://rlv.zcache.co.nz/beagle_puppy_dog_cartoon_love_beagles_stickers-r3e13c31e5cf44f388ad8e771530ada13_0ugmc_8byvr_736.jpg",
-        "https://cdn.shopify.com/s/files/1/0300/9124/7748/products/mockup-6fab90ef_1200x1200.jpg?v=1581906930",
-        "https://img.freepik.com/premium-vector/cute-beagle-puppies-cartoon-icon-illustration_665569-21.jpg",
-        "https://img.freepik.com/free-vector/cute-corgi-dog-eating-bone-cartoon_138676-2534.jpg?w=360",
-        "https://img.freepik.com/premium-vector/cute-corgi-dog-jumping-flat-cartoon-style_138676-2622.jpg",
+        "fas fa-robot",
+        "fas fa-user-astronaut",
+        "fas fa-user-ninja",
+        "fas fa-snowman",
+        "fas fa-user-secret",
+        "fas fa-hippo",
       ],
       favorites: [],
       searchResults: [],
       filteredResults: [],
       checked: false,
+      commentsList: [],
     },
     actions: {
       login: async (email, password) => {
@@ -57,8 +56,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           sessionStorage.setItem("is_org", data.is_org);
           sessionStorage.setItem("name", data.name);
           let favoriteNames = [];
-          data.favorites.forEach((favorite) => {
-            favoriteNames.push(favorite.name);
+          data.favorites.forEach((favorite, index) => {
+            favoriteNames.push({
+              name: favorite.name,
+              icon: data.icons[index],
+            });
           });
           setStore({
             token: data.access_token,
@@ -117,14 +119,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       createResource: async (
         name,
-        schedule,
-        website,
-        phone,
         address,
+        phone,
         resourceType,
+        website,
+        schedule,
+        description,
+        latitude,
+        longitude,
         picture,
-        description
-        //, user_id
+        picture2,
+        logo
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -139,13 +144,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
           body: JSON.stringify({
             name: name,
-            schedule: schedule,
-            website: website,
-            phone: phone,
             address: address,
+            phone: phone,
             category: resourceType,
-            picture: picture,
+            website: website,
+            schedule: schedule,
             description: description,
+            latitude: latitude,
+            longitude: longitude,
+            image: picture,
+            image2: picture2,
+            logo: logo,
             // user_id: user_id,
           }),
         };
@@ -159,9 +168,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          if (data.status == "true") {
-            window.location.href = current_front_url + "/";
-          }
+          // if (data.status == "true") {
+          //   window.location.href = current_front_url + "/search/all"; //go to home
+          // }
           return true;
         } catch (error) {
           console.error(error);
@@ -171,11 +180,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ latitude: latitude, longitude: longitude });
       },
 
-      addFavorite: (resourceName) => {
+      addFavorite: (resource) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
-        const token = getStore().token;
-        // console.log(resourceName);
+        const token = sessionStorage.getItem("token");
+        // console.log(resource);
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
@@ -184,14 +193,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             method: "POST",
             body: JSON.stringify({
-              name: resourceName,
+              name: resource.name,
             }),
           };
           fetch(current_back_url + "/api/addFavorite", opts)
             .then((response) => response.json())
             .then((data) => {
               if (data.message == "okay") {
-                favorites.push(resourceName);
+                favorites.push(resource);
                 setStore({ favorites: favorites });
               }
             });
@@ -217,7 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             .then((data) => {
               if (data.message == "okay") {
                 favorites.forEach((element, index) => {
-                  if (element == resourceName) {
+                  if (element.name == resourceName) {
                     favorites.splice(index, 1);
                   }
                 });
@@ -227,7 +236,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             .catch((error) => console.log(error));
         }
       },
-
       setSearchResults: () => {
         const searchResults = getStore().searchResults;
         fetch(getStore().current_back_url + "/api/getResources")
@@ -236,25 +244,126 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log(error));
       },
 
+      // filterSearchResults: (when, categorySearch) => {
+      //   const searchResults = getStore().searchResults;
+      //   let newFilter = [];
+      //   if (!when.length) {
+      //     searchResults.forEach((item, index) => {
+      //       // if only a category is selected...
+      //       if (
+      //         item.category == categorySearch[1] ||
+      //         item.category == categorySearch[2] ||
+      //         item.category == categorySearch[3] ||
+      //         item.category == categorySearch[4]
+      //       ) {
+      //         newFilter.push(item);
+      //       }
+      //     });
+      //   }
+      //   if (when.length && !categorySearch[1]) {
+      //     searchResults.forEach((item, index) => {
+      //       let day = item.schedule[0].day.toLowerCase();
+      //       // if only a category is selected...
+      //       console.log(item.category);
+      //       if (
+      //         day == when[0] ||
+      //         day == when[1] ||
+      //         day == when[2] ||
+      //         day == when[3] ||
+      //         day == when[4] ||
+      //         day == when[5] ||
+      //         day == when[6]
+      //       ) {
+      //         newFilter.push(item);
+      //       }
+      //     });
+      //   }
+      //   //  if a category and a day of the week are selected...
+      //   if (when.length && categorySearch[1]) {
+      //     let filteredResults = getStore().filteredResults;
+      //     //setStore({ filteredResults: filteredResults });
+      //     filteredResults.forEach((item) => {
+      //       let day = item.schedule[0].day.toLowerCase();
+      //       let category = item.category;
+      //       if (
+      //         day == when[0] ||
+      //         day == when[1] ||
+      //         day == when[2] ||
+      //         day == when[3] ||
+      //         day == when[4] ||
+      //         day == when[5] ||
+      //         (day == when[6] && category == categorySearch[1]) ||
+      //         category == categorySearch[2] ||
+      //         category == categorySearch[3] ||
+      //         category == categorySearch[4]
+      //       ) {
+      //         //let newArray = filteredResults;
+      //         newFilter.push(item);
+      //         //setStore({ filteredResults: newArray });
+      //         // console.log("new array is", newArray);
+      //       }
+      //     });
+      //   }
+      //   setStore({ filteredResults: newFilter });
+      // },
       filterSearchResults: (when, categorySearch) => {
         const searchResults = getStore().searchResults;
         const filteredResults = getStore().filteredResults;
         searchResults.forEach((item, index) => {
-          // console.log(item.schedule);
-          console.log("type of ", typeof item.schedule);
+          // if only a category is selected...
           if (
-            item.category == categorySearch[0] ||
-            item.category.includes(categorySearch[1]) ||
-            item.category.includes(categorySearch[2]) ||
-            item.category.includes(categorySearch[3]) ||
-            item.schedule.some((scheduleItem) =>
-              when.includes(scheduleItem.day.toLowerCase())
-            )
+            !when.length &&
+            (item.category == categorySearch[1] ||
+              item.category.includes(categorySearch[2]) ||
+              item.category.includes(categorySearch[3]) ||
+              item.category.includes(categorySearch[4]))
           ) {
             filteredResults.push(item);
-            setStore({ filteredResults: filteredResults });
+            let newResults = [...new Set(filteredResults)];
+            setStore({ filteredResults: newResults });
+          }
+
+          // if only a day of the week is selected...
+          else if (
+            !categorySearch[1] &&
+            item.schedule.some((scheduleItem) => {
+              return when.includes(scheduleItem.day.toLowerCase());
+            })
+          ) {
+            // setStore({ filteredResults: [] });
+            filteredResults.push(item);
+            let newResults = [...new Set(filteredResults)];
+            setStore({ filteredResults: newResults });
           }
         });
+
+        //  if a category and a day of the week are selected...
+        if (when.length && categorySearch[1]) {
+          let filteredResults = getStore().filteredResults;
+          filteredResults = [];
+          setStore({ filteredResults: filteredResults });
+          searchResults.forEach((item, index) => {
+            let day = item.schedule[0].day.toLowerCase();
+            let category = item.category;
+            if (
+              (day == when[0] ||
+                day == when[1] ||
+                day == when[2] ||
+                day == when[3] ||
+                day == when[4] ||
+                day == when[5] ||
+                day == when[6]) &&
+              (category == categorySearch[1] ||
+                category == categorySearch[2] ||
+                category == categorySearch[3] ||
+                category == categorySearch[4])
+            ) {
+              let newArray = filteredResults;
+              newArray.push(item);
+              setStore({ filteredResults: newArray });
+            }
+          });
+        }
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;
@@ -308,44 +417,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
-      // getComments: (resource_id) => {
-      //   let commentList = [];
-      //   const current_back_url = getStore().current_back_url;
-      //   const current_front_url = getStore().current_front_url;
-      //   const opts = {
-      //     method: "POST",
-      //     body: { resource_id: resource_id },
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   };
-      //   fetch(current_back_url + "/api/getcomments", opts)
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       console.log("this is from get_comments", data);
-      //       commentList = data;
-      //     })
-      //     .catch((error) => {
-      //       console.log(error);
-      //     });
-      //   return commentList;
-      // },
+
       getComments: (resource_id) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
+        let id = parseInt(resource_id);
         const opts = {
-          method: "POST",
-          body: JSON.stringify({ resource_id: resource_id }),
           headers: {
             "Content-Type": "application/json",
           },
         };
-
-        return fetch(current_back_url + "/api/getcomments", opts)
+        fetch(current_back_url + "/api/getcomments/" + id, opts)
           .then((res) => res.json())
           .then((data) => {
             console.log("this is from get_comments", data);
-            return data;
+            // return data;
+            setStore({ commentsList: data.comments });
           })
           .catch((error) => {
             console.log(error);

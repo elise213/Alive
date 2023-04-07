@@ -15,12 +15,16 @@ export const Selection = (props) => {
 
   // sets category search by params
   useEffect(() => {
-    setCategorySearch([params.resourceType.toLowerCase()]);
+    if (params.resourceType.toLowerCase() == "all") {
+      setCategorySearch(["all"]);
+    } else {
+      setCategorySearch(["all", params.resourceType.toLowerCase()]);
+    }
+    console.log("useEffect params categorySearch", categorySearch);
   }, []);
 
   // Call filterSearchResults and update the checked checkboxes
   useEffect(() => {
-    // trying something
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let checked = false;
     for (let i = 0; i < checkboxes.length; i++) {
@@ -32,8 +36,6 @@ export const Selection = (props) => {
         actions.resetSearchResults();
       }
     }
-
-    actions.filterSearchResults(when, categorySearch);
     if (categorySearch.includes("food")) {
       let food = document.querySelector("#food");
       food.checked = true;
@@ -49,9 +51,6 @@ export const Selection = (props) => {
     } else if (when.includes("monday")) {
       let monday = document.querySelector("#monday");
       monday.checked = true;
-    } else if (when.includes("monday")) {
-      let monday = document.querySelector("#monday");
-      monday.checked = true;
     } else if (when.includes("tuesday")) {
       let tuesday = document.querySelector("#tuesday");
       tuesday.checked = true;
@@ -64,15 +63,16 @@ export const Selection = (props) => {
     } else if (when.includes("friday")) {
       let friday = document.querySelector("#friday");
       friday.checked = true;
-    } else if (when.includes("satday")) {
-      let satday = document.querySelector("#satday");
-      satday.checked = true;
+    } else if (when.includes("saturday")) {
+      let saturday = document.querySelector("#saturday");
+      saturday.checked = true;
     } else if (when.includes("sunday")) {
       let sunday = document.querySelector("#sunday");
       sunday.checked = true;
     } else {
       actions.resetSearchResults();
     }
+    actions.filterSearchResults(when, categorySearch);
   }, [categorySearch, when]);
 
   function handleCategorySearch(event) {
@@ -82,8 +82,9 @@ export const Selection = (props) => {
       setCategorySearch([...categorySearch, value]);
     }
     if (element.type === "checkbox" && !element.checked) {
-      let filtered = categorySearch.filter((item) => item !== value);
-      setCategorySearch(filtered);
+      // let filtered = categorySearch.filter((item) => item !== value);
+      setCategorySearch(categorySearch.filter((item) => item !== value));
+      // setCategorySearch(filtered);
     }
   }
 

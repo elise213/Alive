@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/search.css";
 import { SimpleMap } from "../component/SimpleMap";
-import { Link, useParams } from "react-router-dom";
+// import { Link, useParams } from "react-router-dom";
 import { ResourceCard } from "../component/ResourceCard";
 import { Selection } from "../component/Selection";
 
@@ -19,7 +19,6 @@ export const Search = () => {
       {/* <Searchbar /> */}
 
       <Selection />
-
       {/* <!-- Full Search Results --> */}
       <div className="search-results-full row">
         {/* Search Result Cards */}
