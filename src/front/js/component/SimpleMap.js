@@ -4,8 +4,6 @@ import GoogleMapReact from "google-map-react";
 
 export const SimpleMap = () => {
   const { store, actions } = useContext(Context);
-  // let latitude = parseFloat(sessionStorage.getItem("latitude"));
-  // let longitude = parseFloat(sessionStorage.getItem("longitude"));
 
   let lat = 34.0522;
   let lng = -118.2437;
@@ -34,22 +32,12 @@ export const SimpleMap = () => {
     geoFindMe();
   }, []);
 
-  // console.log("city is", city);
-  // console.log(latitude, longitude, "from simple map");
-
   // Define the Marker component
   const Marker = (props) => (
     <div style={{ color: props.color }}>
       <i className="fa-solid fa-location-dot fa-2xl"></i>
     </div>
   );
-
-  // let initialPosition = {
-  //   center: { lat: lat, lng: lng },
-  //   zoom: 12,
-  // };
-
-  // console.log("lat and long from simple map", lat, lng);
 
   return (
     <div>
@@ -148,11 +136,8 @@ export const SimpleMap = () => {
         <GoogleMapReact
           // Put the google API key here!!
           bootstrapURLKeys={{ key: "AIzaSyDOhqYOYIXvrk8lt2HQQLI8cS1O8FnZt9I" }}
-          // defaultCenter={initialPosition.center}
-          // defaultZoom={initialPosition.zoom}
-
           center={city.center}
-          defaultZoom={12}
+          defaultZoom={13}
         >
           {store.filteredResults[0] || store.checked == true
             ? store.filteredResults.map((result) => {
@@ -166,14 +151,12 @@ export const SimpleMap = () => {
                 );
               })
             : store.searchResults.map((result) => {
-                // console.log(result);
                 return (
                   <Marker
                     lat={result.latitude}
                     lng={result.longitude}
                     color="purple"
                     text={result.name}
-                    // key={marker.place_id}
                   />
                 );
               })}

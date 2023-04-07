@@ -110,9 +110,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       logout: () => {
         const current_front_url = getStore().current_front_url;
-        const token = sessionStorage.removeItem("token");
-        const is_org = sessionStorage.removeItem("is_org");
-        const name = sessionStorage.removeItem("name");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("is_org");
+        sessionStorage.removeItem("name");
         setStore({ token: null, is_org: null, name: null });
         window.location.href = current_front_url + "/";
       },

@@ -8,6 +8,7 @@ import Home from "./pages/home";
 import { Search } from "./pages/Search";
 import Offerings from "./pages/Offerings";
 import OfferingPost from "./pages/OfferingPost";
+import RegisterAsDrop from "./pages/RegisterAsDrop";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -30,6 +31,7 @@ const Layout = () => {
             <Route element={<Search />} path="/search/:resourceType" />
             <Route element={<Offerings />} path="/offerings" />
             <Route element={<Resource />} path="/resource/:name" />
+            <Route element={<RegisterAsDrop />} path="/registerAsDrop" />
             {/* User Pages */}
             <Route element={<UserProfile />} path="/userProfile" />
             <Route element={<OfferingPost />} path="/offeringPost" />

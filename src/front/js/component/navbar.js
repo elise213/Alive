@@ -8,10 +8,6 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
   const token = sessionStorage.getItem("token");
   let is_org = sessionStorage.getItem("is_org");
-  // console.log("LATITUDE", store.latitude);
-  // console.log("is_org is", is_org);
-  // console.log("token is ", token);
-  // console.log("avatar id" is, store.avatarID);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="navbar">
@@ -43,9 +39,22 @@ export const Navbar = () => {
           {/* Link to general resource search - Always visible */}
           <span className="nav-item">
             <Link to="/">
+              <span className="btn nav-btn">Free Resource Map</span>
+            </Link>
+          </span>
+          <span className="nav-item">
+            <Link to="/offerings">
               <span className="btn nav-btn">
-                Search Free Resources In Your Area <span></span>
-                <i className="fa-solid fa-magnifying-glass-location ms-2"></i>
+                Offerings <span></span>
+              </span>
+            </Link>
+          </span>
+
+          {/* Link to register as a drop-off pick-up location */}
+          <span className="nav-item">
+            <Link to="/">
+              <span className="btn nav-btn">
+                Register as a drop-off/pick-up location
               </span>
             </Link>
           </span>
