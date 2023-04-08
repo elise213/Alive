@@ -1,3 +1,14 @@
+To test the code: 
+
+BACK END
+1. Populate the databases: `$ pipenv run popdb`
+2. Run the application: `$ pipenv run start`
+
+FRONT END
+3. Start the webpack dev server `$ npm run start`
+
+________________________________________________________________________________________________
+
 # WebApp boilerplate with React JS and Flask API
 
 Build web applications using React.js for the front end and python/flask for your backend API.
