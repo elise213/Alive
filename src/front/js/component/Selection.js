@@ -72,7 +72,7 @@ export const Selection = (props) => {
     } else {
       actions.resetSearchResults();
     }
-    actions.filterSearchResults(when, categorySearch);
+    // actions.filterSearchResults(when, categorySearch);
   }, [categorySearch, when]);
 
   function handleCategorySearch(event) {

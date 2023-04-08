@@ -110,7 +110,13 @@ const RegisterAsDrop = () => {
           </div>
 
           {/* _____________________________________________Address */}
+          <label htmlFor="phone"> Address </label>
           <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="phone">
+                <i class="fas fa-map-pin"></i>
+              </span>
+            </div>
             <input
               className="form-control"
               name="name"
@@ -123,8 +129,13 @@ const RegisterAsDrop = () => {
             ></input>
           </div>
           {/* _____________________________________________Email*/}
+          <label htmlFor="phone"> Email Address</label>
           <div className="input-group mb-3">
-            <label htmlFor="email"> Email address </label>
+            <div className="input-group-prepend">
+              <span className="input-group-text  h-100" id="phone">
+                <i class="fas fa-at"></i>
+              </span>
+            </div>
             <input
               className="form-control"
               name="email"
@@ -163,7 +174,7 @@ const RegisterAsDrop = () => {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text  h-100" id="image">
-                <i className="fa-solid fa-image text-secondary"></i>
+                <i class="far fa-address-card"></i>
               </span>
             </div>
             <input
@@ -179,6 +190,7 @@ const RegisterAsDrop = () => {
             ></input>
           </div>
           {/* _____________________________________________Image of Location */}
+          <label htmlFor="image">Image of Location</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text  h-100" id="image">
@@ -196,7 +208,11 @@ const RegisterAsDrop = () => {
           </div>
           {/* _____________________________________________Description */}
           <div className="form-group mb-3">
-            <label htmlFor="description"> Description</label>
+            <label htmlFor="description">
+              {" "}
+              Please provide a brief description of the pick-up/drop-off
+              location including schedule of availability
+            </label>
             <textarea
               className="form-control"
               id="description"

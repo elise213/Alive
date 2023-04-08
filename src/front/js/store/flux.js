@@ -166,9 +166,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          // if (data.status == "true") {
-          //   window.location.href = current_front_url + "/search/all"; //go to home
-          // }
+          if (data.status == "true") {
+            window.location.href = current_front_url + "/"; //go to home
+          }
           return true;
         } catch (error) {
           console.error(error);
@@ -214,9 +214,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          // if (data.status == "true") {
-          //   window.location.href = current_front_url + "/search/all"; //go to home
-          // }
+          if (data.status == "true") {
+            window.location.href = current_front_url + "/"; //go to home
+          }
           return true;
         } catch (error) {
           console.error(error);
@@ -298,66 +298,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("from setOfferings", data.data);
           })
           .catch((error) => console.log(error));
-      },
-      filterSearchResults: (when, categorySearch) => {
-        const searchResults = getStore().searchResults;
-        const filteredResults = getStore().filteredResults;
-        searchResults.forEach((item, index) => {
-          // if only a category is selected...
-          if (
-            !when.length &&
-            (item.category == categorySearch[1] ||
-              item.category.includes(categorySearch[2]) ||
-              item.category.includes(categorySearch[3]) ||
-              item.category.includes(categorySearch[4]))
-          ) {
-            filteredResults.push(item);
-            let newResults = [...new Set(filteredResults)];
-            setStore({ filteredResults: newResults });
-          }
-
-          // if only a day of the week is selected...
-          // else if (
-          //   !categorySearch[1] &&
-          //   item.schedule.some((scheduleItem) => {
-          //     return when.includes(scheduleItem.day.toLowerCase());
-          //   })
-          // )
-          {
-            // setStore({ filteredResults: [] });
-            filteredResults.push(item);
-            let newResults = [...new Set(filteredResults)];
-            setStore({ filteredResults: newResults });
-          }
-        });
-
-        //  if a category and a day of the week are selected...
-        // if (when.length && categorySearch[1]) {
-        //   let filteredResults = getStore().filteredResults;
-        //   filteredResults = [];
-        //   setStore({ filteredResults: filteredResults });
-        //   searchResults.forEach((item, index) => {
-        //     let day = item.schedule[0].day.toLowerCase();
-        //     let category = item.category;
-        //     if (
-        //       (day == when[0] ||
-        //         day == when[1] ||
-        //         day == when[2] ||
-        //         day == when[3] ||
-        //         day == when[4] ||
-        //         day == when[5] ||
-        //         day == when[6]) &&
-        //       (category == categorySearch[1] ||
-        //         category == categorySearch[2] ||
-        //         category == categorySearch[3] ||
-        //         category == categorySearch[4])
-        //     ) {
-        //       let newArray = filteredResults;
-        //       newArray.push(item);
-        //       setStore({ filteredResults: newArray });
-        //     }
-        //   });
-        // }
       },
       resetSearchResults: () => {
         const filteredResults = getStore().filteredResults;

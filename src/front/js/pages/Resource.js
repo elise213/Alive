@@ -5,7 +5,6 @@ import { Context } from "../store/appContext.js";
 import { ResourceInfo } from "../component/ResourceInfo";
 import SimpleCommentForm from "../component/SimpleCommentForm.js";
 import SimpleCommentList from "../component/SimpleCommentList.js";
-import "../../styles/custom.css";
 const resource = () => {
   const { store, actions } = useContext(Context);
   const params = useParams();
@@ -18,7 +17,7 @@ const resource = () => {
   });
   // console.log("resourceData is", resourceData[0].id);
   return (
-    <div className="mb-3 mt-6 resourcesRow h-100" style={{ maxWidth: 540 }}>
+    <div className="my-5 mx-auto resourcesRow h-100" style={{ maxWidth: 540 }}>
       {resourceData.map((items) => (
         // console.log("printing reource info...", items),
         <div className="row mt-5" key={items.id}>

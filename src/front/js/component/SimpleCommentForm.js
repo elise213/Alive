@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import Badge from "react";
-import "../../styles/custom.css";
 const SimpleCommentForm = (props) => {
   const [commentCont, setCommentCont] = useState("");
   const [day, setDay] = useState("");

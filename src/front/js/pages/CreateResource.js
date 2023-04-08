@@ -22,26 +22,18 @@ const CreateResource = () => {
   // const [logo, setlogo] = useState("");
   const [mondayStart, setMondayStart] = useState("");
   const [mondayEnd, setMondayEnd] = useState("");
-  console.log("Monday Start/End", mondayStart, mondayEnd);
-
-  // let handleChange = (i, e) => {
-  //   // saving/updating schedule values
-  //   let newFormValues = [...schedule];
-  //   newFormValues[i][e.target.name] = e.target.value;
-  //   setSchedule(newFormValues);
-  // };
-
-  // let addFormFields = () => {
-  //   // to add days/inputs to the schedule
-  //   setSchedule([...schedule, { day: "", startTime: "", endTime: "" }]);
-  // };
-
-  // let removeFormFields = (i) => {
-  //   // to remove days/inputs from the schedule
-  //   let newFormValues = [...schedule];
-  //   newFormValues.splice(i, 1);
-  //   setSchedule(newFormValues);
-  // };
+  const [tuesdayStart, setTuesdayStart] = useState("");
+  const [tuesdayEnd, setTuesdayEnd] = useState("");
+  const [wednesdayStart, setWednesdayStart] = useState("");
+  const [wednesdayEnd, setWednesdayEnd] = useState("");
+  const [thursdayStart, setThursdayStart] = useState("");
+  const [thursdayEnd, setThursdayEnd] = useState("");
+  const [fridayStart, setFridayStart] = useState("");
+  const [fridayEnd, setFridayEnd] = useState("");
+  const [saturdayStart, setSaturdayStart] = useState("");
+  const [saturdayEnd, setSaturdayEnd] = useState("");
+  const [sundayStart, setSundayStart] = useState("");
+  const [sundayEnd, setSundayEnd] = useState("");
 
   const resetForm = () => {
     setName("");
@@ -84,7 +76,7 @@ const CreateResource = () => {
     <div className="row center mx-auto col-6 text-secondary mb-3">
       <div className="m-4">
         <form className="d-flex flex-column">
-          <label htmlFor="name"> Title of the Resource being offered</label>
+          <label htmlFor="name"> Title of the resource being offered</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text h-100" id="name">
@@ -103,7 +95,11 @@ const CreateResource = () => {
             ></input>
           </div>
           <div className="form-group mb-3">
-            <label htmlFor="description"> Description</label>
+            <label htmlFor="description">
+              {" "}
+              Please provide a brief description of the service that is being
+              provided including all information needed to access it
+            </label>
             <textarea
               className="form-control"
               id="description"
@@ -113,7 +109,7 @@ const CreateResource = () => {
             ></textarea>
           </div>
           <label className="form-check-label" htmlFor="resourceType">
-            What kind of Resource are you offering?
+            What kind of resource is being offered?
           </label>
           {/* <div className="form-check form-row"> */}
           <div className="form-check form-check-inline">
@@ -179,125 +175,10 @@ const CreateResource = () => {
             </label>
           </div>
           {/*<!-------------------- end of ResourceType --------------------> */}
-
-          {/* <label htmlFor="type"> When is this being offered? </label>
-          <div>
-            {schedule.map((element, index) => (
-              <div
-                className="input-group form-row mb-3"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Please enter the schedule your service is offered"
-                key={index}
-              >
-                <div className="input-group form-row mb-3">
-                  <div className="col-4">
-                    <label htmlFor="day" className="form-label">
-                      Day
-                    </label>
-                    <input
-                      className="form-control"
-                      list="DayOptions"
-                      id="day"
-                      placeholder="Select day"
-                      name="day"
-                      value={element.day || ""}
-                      onChange={(e) => handleChange(index, e)}
-                    />
-                    <datalist id="DayOptions">
-                      <option value="Monday" />
-                      <option value="Tuesday" />
-                      <option value="Wednesday" />
-                      <option value="Thursday" />
-                      <option value="Friday" />
-                      <option value="Saturday" />
-                      <option value="Sunday" />
-                    </datalist>
-                  </div>
-                  <div
-                    className="col"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Please enter start time"
-                  >
-                    <label htmlFor="startTime" className="form-label">
-                      Start
-                    </label>
-                    <input
-                      className="form-control"
-                      name="startTime"
-                      type="time"
-                      id="startTime"
-                      value={element.startTime || ""}
-                      onFocus={(e) => e.target.showPicker()}
-                      placeholder="start"
-                      onChange={(e) => handleChange(index, e)}
-                    ></input>
-                  </div>
-                  <div
-                    className="col"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Please enter end time"
-                  >
-                    <label htmlFor="endTime" className="form-label">
-                      End
-                    </label>
-                    <input
-                      type="time"
-                      name="endTime"
-                      id="endTime"
-                      value={element.endTime || ""}
-                      min={startTime + 1}
-                      className="form-control text-secondary"
-                      onFocus={(e) => e.target.showPicker()}
-                      onChange={(e) => handleChange(index, e)}
-                    />
-                  </div>
-                  {schedule.length > 1
-                    ? (console.log(schedule),
-                      (
-                        <div
-                          className="col"
-                          data-toggle="tooltip"
-                          data-placement="bottom"
-                          title="Delete day schedule"
-                        >
-                          <label className="form-label"></label>
-                          <button
-                            type="button"
-                            className="btn custom-btn text-white"
-                            onClick={() => removeFormFields(index)}
-                          >
-                            -
-                          </button>
-                        </div>
-                      ))
-                    : null}
-                </div>
-                {index == schedule.length - 1 ? (
-                  <div
-                    className="form-row"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Add a new day to your shedule"
-                  >
-                    <button
-                      className="btn custom-btn text-white"
-                      type="button"
-                      onClick={() => addFormFields()}
-                    >
-                      +
-                    </button>
-                  </div>
-                ) : null}
-              </div>
-            ))}
-          </div> */}
-          <div className="my-4">
+          <div className="my-2">
             <label htmlFor="type"> When is this being offered? </label>
             <form>
-              <label for="appt">Monday</label>
+              <label for="appt">Monday from </label>
               <input
                 type="time"
                 id="appt"
@@ -305,6 +186,7 @@ const CreateResource = () => {
                 value={mondayStart}
                 onChange={(e) => setMondayStart(e.target.value)}
               />
+              <span> until </span>
               <input
                 type="time"
                 id="appt"
@@ -315,46 +197,122 @@ const CreateResource = () => {
             </form>
 
             <form>
-              <label for="appt">Tuesday</label>
-              <input type="time" id="appt" name="appt" />
-              <input type="time" id="appt" name="appt" />
+              <label for="appt">Tuesday from </label>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={tuesdayStart}
+                onChange={(e) => setTuesdayStart(e.target.value)}
+              />
+              <span> until </span>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={tuesdayEnd}
+                onChange={(e) => setTuesdayEnd(e.target.value)}
+              />
             </form>
 
             <form>
-              <label for="appt">Wednesday</label>
-              <input type="time" id="appt" name="appt" />
-              <input type="time" id="appt" name="appt" />
+              <label for="appt">Wednesday from</label>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={wednesdayStart}
+                onChange={(e) => setWednesdayStart(e.target.value)}
+              />
+              <span> until </span>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={wednesdayEnd}
+                onChange={(e) => setWednesdayEnd(e.target.value)}
+              />
             </form>
 
             <form>
-              <label for="appt">Thursday</label>
-              <input type="time" id="appt" name="appt" />
-              <input type="time" id="appt" name="appt" />
+              <label for="appt">Thursday from</label>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={thursdayStart}
+                onChange={(e) => setThursdayStart(e.target.value)}
+              />
+              <span> until </span>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={thursdayEnd}
+                onChange={(e) => setThursdayEnd(e.target.value)}
+              />
             </form>
 
             <form>
-              <label for="appt">Friday</label>
-              <input type="time" id="appt" name="appt" />
-              <input type="time" id="appt" name="appt" />
+              <label for="appt">Friday from</label>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={fridayStart}
+                onChange={(e) => setFridayStart(e.target.value)}
+              />
+              <span> until </span>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={fridayEnd}
+                onChange={(e) => setFridayEnd(e.target.value)}
+              />
             </form>
 
             <form>
               <label for="appt">Saturday</label>
-              <input type="time" id="appt" name="appt" />
-              <input type="time" id="appt" name="appt" />
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={saturdayStart}
+                onChange={(e) => setSaturdayStart(e.target.value)}
+              />
+              <span> until </span>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={saturdayEnd}
+                onChange={(e) => setSaturdayEnd(e.target.value)}
+              />
             </form>
 
             <form>
               <label for="appt">Sunday</label>
-              <input type="time" id="appt" name="appt" />
-              <input type="time" id="appt" name="appt" />
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={sundayStart}
+                onChange={(e) => setSundayStart(e.target.value)}
+              />
+              <span> until </span>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                value={sundayEnd}
+                onChange={(e) => setSundayEnd(e.target.value)}
+              />
             </form>
           </div>
           {/*<!-------------------- end of schedule --------------------> */}
-          <div className="">
-            <label htmlFor="address">
-              What is the address where this being offered?
-            </label>
+          <div className="mt-3">
+            <label htmlFor="address">What is the address?</label>
 
             {/* <PlacesAutocomplete /> */}
             <div className="input-group mb-3">
@@ -375,12 +333,6 @@ const CreateResource = () => {
                 title="Provide the address of the place"
               ></input>
             </div>
-            {/* <AddressInput
-            // setSelected={setSelected}
-            // value={address}
-            // onChange={(e) => setAddress(e.target.value)}
-            // style={{ Width: "100% !important" }}
-            /> */}
           </div>
           {/* <div className="form-row">
             <div className="col">
@@ -467,7 +419,7 @@ const CreateResource = () => {
         <div className="float-end">
           <button
             type="submit"
-            className="btn custom-btn text-white"
+            className="btn btn-primary"
             onClick={(e) => handleClick(e)}
           >
             Submit

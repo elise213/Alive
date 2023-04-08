@@ -94,7 +94,7 @@ export const ResourceInfo = (props) => {
           <i className="fa-solid fa-calendar-days me-3"></i>
         </div>
         <div className="float-end">
-          <Link to={"/search/all"}>
+          <Link to={"/"}>
             <button
               type="button"
               className="btn btn-secondary text-white"

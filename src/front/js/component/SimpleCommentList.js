@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 // import "./timeFunctions.js";
-import "../../styles/custom.css";
 const SimpleCommentList = (props) => {
   const { store, actions } = useContext(Context);
   let resource_id = parseInt(props.id);
