@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import { Offering } from "../component/Offering.js";
+import { OfferingCard } from "../component/OfferingCard.js";
 
 const Offerings = () => {
   const { store, actions } = useContext(Context);
@@ -28,16 +28,11 @@ const Offerings = () => {
           {store.offerings.map((result, index) => {
             return (
               <li key={index}>
-                <Offering
+                <OfferingCard
                   category={result.offering_type}
-                  // category="cooking"
-
                   id={index}
                   title={result.title}
-                  // title="propane stove"
                   image={result.image}
-                  // image="https://cdn.thewirecutter.com/wp-content/media/2021/09/campingstove-2048px-19.jpg"
-                  // description={result.description}
                 />
               </li>
             );

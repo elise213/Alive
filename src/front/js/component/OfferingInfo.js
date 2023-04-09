@@ -73,7 +73,6 @@ export const OfferingInfo = (props) => {
         </button>
       </div>
       {/*********************************** CARD *************************************/}
-      {/* <img src="..." className="card-img-top" alt="..." /> */}
       <div className="resource-card-body text-secondary ">
         <div className="resource-name-description">
           <h3

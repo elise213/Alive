@@ -30,6 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       commentsList: [],
     },
     actions: {
+      // ________________________________________________________________LOGIN/TOKEN
       login: async (email, password) => {
         const current_back_url = getStore().current_back_url;
         const opts = {
@@ -61,19 +62,19 @@ const getState = ({ getStore, getActions, setStore }) => {
               name: favorite.name,
             });
           });
-          // let favoriteOffers = [];
-          // data.offerings.forEach((offering, index) => {
-          //   favoriteOffers.push({
-          //     title: offering.title,
-          //   });
-          // });
+          let favoriteOffers = [];
+          data.offerings.forEach((offering, index) => {
+            favoriteOffers.push({
+              title: offering.title,
+            });
+          });
           setStore({
             token: data.access_token,
             is_org: data.is_org,
             avatarID: data.avatar,
             name: data.name,
             favorites: favoriteNames,
-            // favoriteOfferings: favoriteOffers,
+            favoriteOfferings: favoriteOffers,
           });
           console.log("AVATAR ID", getStore().avatarID);
           return true;
@@ -123,6 +124,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ token: null, is_org: null, name: null });
         window.location.href = current_front_url + "/";
       },
+
+      // ________________________________________________________________RESOURCES
       createResource: async (
         name,
         address,
@@ -182,59 +185,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.error(error);
         }
       },
-      createDrop: async (
-        name,
-        address,
-        phone,
-        description,
-        type,
-        identification,
-        image
-      ) => {
-        const current_back_url = getStore().current_back_url;
-        const current_front_url = getStore().current_front_url;
-        const token = getStore().token;
-        const opts = {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-          body: JSON.stringify({
-            name: name,
-            address: address,
-            phone: phone,
-            description: description,
-            type: type,
-            identification: identification,
-            image: image,
-          }),
-        };
-        try {
-          const response = await fetch(
-            current_back_url + "/api/createDrop",
-            opts
-          );
-          if (response.status >= 400) {
-            alert("There has been an error");
-            return false;
-          }
-          const data = await response.json();
-          if (data.status == "true") {
-            window.location.href = current_front_url + "/"; //go to home
-          }
-          return true;
-        } catch (error) {
-          console.error(error);
-        }
-      },
+
       addFavorite: (resource) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favorites;
         const token = sessionStorage.getItem("token");
-        // console.log(resource);
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
@@ -287,7 +242,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       setSearchResults: () => {
-        const searchResults = getStore().searchResults;
         fetch(getStore().current_back_url + "/api/getResources")
           .then((response) => response.json())
 
@@ -297,34 +251,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((error) => console.log(error));
       },
-      setOfferings: () => {
-        fetch(getStore().current_back_url + "/api/getOfferings")
-          .then((response) => response.json())
-          .then((data) => {
-            setStore({ offerings: data.data });
-            console.log("from setOfferings", getStore().offerings);
-            console.log("from setOfferings", data.data);
-          })
-          .catch((error) => console.log(error));
-      },
-      resetSearchResults: () => {
-        const filteredResults = getStore().filteredResults;
-        let newArray = [];
-        setStore({ filteredResults: newArray, checked: false });
-      },
-      setChecked: (checked) => {
-        const storeChecked = getStore().checked;
-        let newChecked = checked;
-        setStore({ checked: newChecked });
-      },
-      createComment: async (
-        resource_id,
-        comment_cont,
-        // created_at,
-        parentId
-      ) => {
+      createComment: async (resource_id, comment_cont, parentId) => {
         const current_back_url = getStore().current_back_url;
-        const current_front_url = getStore().current_front_url;
         const token = getStore().token;
         const opts = {
           method: "POST",
@@ -337,7 +265,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify({
             resource_id: resource_id,
             comment_cont: comment_cont,
-            // created_at: created_at,
             parentId: parentId,
           }),
         };
@@ -376,6 +303,51 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(error);
           });
       },
+      setChecked: (checked) => {
+        let newChecked = checked;
+        setStore({ checked: newChecked });
+      },
+      resetSearchResults: () => {
+        let newArray = [];
+        setStore({ filteredResults: newArray, checked: false });
+      },
+      // ________________________________________________________________OFFERINGS
+      addFavoriteOffering: (offering) => {
+        const current_back_url = getStore().current_back_url;
+        const favorites = getStore().favoriteOfferings;
+        const token = sessionStorage.getItem("token");
+        // console.log(resource);
+        if (sessionStorage.getItem("token")) {
+          const opts = {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+              title: offering.title,
+            }),
+          };
+          fetch(current_back_url + "/api/addFavoriteOffering", opts)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message == "okay") {
+                favoriteOfferings.push(title);
+                setStore({ favoriteOfferings: favoriteOfferings });
+              }
+            });
+        }
+      },
+      setOfferings: () => {
+        fetch(getStore().current_back_url + "/api/getOfferings")
+          .then((response) => response.json())
+          .then((data) => {
+            setStore({ offerings: data.data });
+            console.log("from setOfferings", getStore().offerings);
+            console.log("from setOfferings", data.data);
+          })
+          .catch((error) => console.log(error));
+      },
       createOffering: async (
         title,
         offeringType,
@@ -413,6 +385,54 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
+          return true;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      createDrop: async (
+        name,
+        address,
+        phone,
+        description,
+        type,
+        identification,
+        image
+      ) => {
+        const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
+        const token = getStore().token;
+        const opts = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            name: name,
+            address: address,
+            phone: phone,
+            description: description,
+            type: type,
+            identification: identification,
+            image: image,
+          }),
+        };
+        try {
+          const response = await fetch(
+            current_back_url + "/api/createDrop",
+            opts
+          );
+          if (response.status >= 400) {
+            alert("There has been an error");
+            return false;
+          }
+          const data = await response.json();
+          if (data.status == "true") {
+            window.location.href = current_front_url + "/"; //go to home
+          }
           return true;
         } catch (error) {
           console.error(error);

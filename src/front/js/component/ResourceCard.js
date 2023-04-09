@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/search.css";
+import AliveLogo from "../../images/HDLOGOTRANSP2.png";
 
 export const ResourceCard = (props) => {
   const { store, actions } = useContext(Context);
@@ -23,6 +24,13 @@ export const ResourceCard = (props) => {
     icon = "fa-solid fa-person-shelter";
   }
 
+  let image = "";
+  if (props.image == "") {
+    image = { AliveLogo };
+  } else {
+    image = props.image;
+  }
+
   return (
     <div className="resource-card mx-auto mb-3 row">
       <Link to={"/resource/" + props.name} className="text-decoration-none">
@@ -35,13 +43,13 @@ export const ResourceCard = (props) => {
           </div>
         </div>
         <div className="row card-body">
-          <img className="card-img" src={props.image} alt="profile picture" />
+          <img className="card-img" src={image} alt="profile picture" />
         </div>
       </Link>
       <div className="d-flex favorite-button-container">
         <button
           type="button"
-          className="btn-sm card-favorite-button"
+          className="btn-sm maras-button"
           onClick={(e) => handleClick(e)}
         >
           Favorite

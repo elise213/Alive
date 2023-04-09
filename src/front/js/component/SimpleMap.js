@@ -44,68 +44,68 @@ export const SimpleMap = () => {
       {/* <!-- Which City? --> */}
       <div className="map-city-buttons">
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 61.2176, lng: -149.8997 } })}
         >
           Anchorage
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 44.0521, lng: -123.0868 } })}
         >
           Eugene
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 36.1716, lng: -115.1391 } })}
         >
           Las Vegas
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 34.0522, lng: -118.2437 } })}
         >
           Los Angeles
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 25.7617, lng: -80.1918 } })}
         >
           Miami
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 40.7128, lng: -74.006 } })}
         >
           New York
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 32.7157, lng: -117.1611 } })}
         >
           San Diego
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 37.7749, lng: -122.4194 } })}
         >
           San Francisco
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 37.3387, lng: -121.8853 } })}
         >
           San Jose
         </button>
 
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 32.0809, lng: -81.0912 } })}
         >
           Savannah
         </button>
         <button
-          className="btn-sm map-button m-1"
+          className="btn-sm map-button maras-button m-1"
           onClick={() => setCity({ center: { lat: 47.6062, lng: -122.3321 } })}
         >
           Seattle

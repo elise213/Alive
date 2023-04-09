@@ -80,32 +80,44 @@
 .resource-card {
   max-width: 18rem;
   align-items: center;
-  border: 1px solid blueviolet;
+  border: 1px solid darkgreen;
   justify-content: center;
   display: flex;
   border-radius: 0.256rem;
   font-family: "Urbanist", sans-serif;
+  background-color: #eeeeee;
 }
+
+.card-header {
+  background-color: #eeeeee;
+}
+
 .card-title-div {
   display: flex;
   align-items: center;
 }
 .resource-card-title-name {
-  color: black;
+  color: darkgreen;
   font-size: large;
   font-weight: bold;
 }
+
+.resource-card-title {
+  font-family: "Urbanist", sans-serif;
+}
 .card-icon {
-  color: blueviolet;
+  color: darkgreen;
   font-size: x-large;
 }
-.card-favorite-button {
-  border: 1px solid blueviolet;
+.maras-button {
+  border: 1px solid lightgreen;
+  background-color: lightgrey;
+  color: darkgreen;
 }
-.card-favorite-button:hover {
+.maras-button:hover {
   background-color: lightgreen;
-  color: blue;
-  border: 1px solid blue;
+  color: darkgreen;
+  border: 1px solid darkgreen;
 }
 .favorite-button-container {
   margin: 10px;
@@ -139,12 +151,4 @@
 .map-city-buttons {
   display: flex;
   justify-content: space-between;
-}
-.map-button {
-  border: 1px solid #455a64;
-  font-family: "Urbanist", sans-serif;
-}
-
-.map-button:hover {
-  background-color: lightgreen;
 }

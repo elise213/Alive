@@ -1,6 +1,6 @@
 from app import app
 import json
-from api.models import Resource, Offering, Schedule, db, Drop
+from api.models import Resource, Offering, Schedule, db, Drop, FavoriteOfferings
 
 
 with app.app_context(): 

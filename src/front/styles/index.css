@@ -12,12 +12,6 @@ footer {
   display: flex;
   justify-content: center;
 }
-.resource-card-body {
-  font-family: "Urbanist", sans-serif;
-}
-.resource-card-title {
-  font-family: "Urbanist", sans-serif;
-}
 .resource-name-description {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -43,9 +37,15 @@ footer {
 .nav-btn {
   font-family: "Urbanist", sans-serif;
 }
+
+.navbar:hover {
+  background-color: darkgray;
+}
+
 .nav-btn:hover {
   cursor: pointer;
   color: lightgreen;
+  text-decoration: underline;
 }
 .navbar-logo:hover {
   cursor: pointer;

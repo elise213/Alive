@@ -143,19 +143,19 @@ class Offering(db.Model):
                 "user_id" : self.user_id,
             }
 
-class Favorite_offerings(db.Model):
-    __tablename__ = 'Favorite_offerings'
+class FavoriteOfferings(db.Model):
+    __tablename__ = 'FavoriteOfferings'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256))
     userId = db.Column(db.Integer, nullable=False)
     
     def __repr__(self):
-        return f'<Favorite_offerings {self.id}>'
+        return f'<FavoriteOfferings {self.id}>'
     
     def serialize(self):
         return {
             "id": self.id,
-            "title": self.name,
+            "title": self.title,
             "user_id": self.userId,
         }
 

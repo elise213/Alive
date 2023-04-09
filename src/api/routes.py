@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Resource, Favorites, Comment, Drop, Schedule, Offering, Favorite_offerings
+from api.models import db, User, Resource, Favorites, Comment, Drop, Schedule, Offering, FavoriteOfferings
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -237,16 +237,45 @@ def create_offering():
         db.session.commit()
         return jsonify({"created": "Thank you for creating an offering!", "status": "true"}), 200
 
+# add favorite offering
+@api.route('/addFavoriteOffering', methods=['POST'])
+@jwt_required()
+def addFavoriteOffering():
+    userId = get_jwt_identity()
+    request_body = request.get_json()
+    fav = FavoriteOfferings.query.filter_by(userId=userId, title=request_body["title"]).first()
+    if fav : 
+        return jsonify(message="favorite already exists")
+    favoriteOffering = FavoriteOfferings(
+        userId=userId,
+        title=request_body["title"],
+    )
+    print(request_body["title"])
+    print("Request body:", request_body)
+    db.session.add(favoriteOfferings)
+    db.session.commit()
+    return jsonify(message="okay")
+    
+# remove favorite offering
+@api.route('/removeFavoriteOffering', methods=['DELETE'])
+@jwt_required()
+def removeFavoriteOffering():
+    userId = get_jwt_identity()
+    request_body = request.get_json()
+    FavoriteOfferings.query.filter_by(userId=userId, title=request_body["title"]).delete()
+    db.session.commit()
+    return jsonify(message="okay")
+
 # get favorite offerings
 @api.route('/getFavoriteOfferings', methods=['GET'])
 @jwt_required()
 def getFavoriteOfferings():
     userId = get_jwt_identity()
-    favorite_offerings = getFavoriteOfferingsByUserId(userId)
-    return jsonify(favorite_offerings=favorite_offerings)
+    favoriteOfferings = getFavoriteOfferingsByUserId(userId)
+    return jsonify(favoriteOfferings=favoriteOfferings)
 def getFavoriteOfferingsByUserId(userId):
-    favorite_offerings = Favorite_offerings.query.filter_by(userId=userId).all()
-    serialized_favorites = [fav.serialize() for fav in favorite_offerings]
+    favoriteOfferings = FavoriteOfferings.query.filter_by(userId=userId).all()
+    serialized_favorites = [fav.serialize() for fav in favoriteOfferings]
     return serialized_favorites
 
 # __________________________________________________DROP OFF LOCATIONS

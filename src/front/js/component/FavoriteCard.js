@@ -45,7 +45,7 @@ export const FavoriteCard = (props) => {
       <div className="d-flex favorite-button-container">
         <button
           type="button"
-          className="btn-sm delete-favorite"
+          className="btn-sm maras-button"
           onClick={(e) => handleClick(e, props.title)}
         >
           Remove Favorite
