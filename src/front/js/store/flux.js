@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment, match this URL (port 3000)
       // do not include "/" at the end!
       current_front_url:
-        "https://3000-lalafontaine-alive-k05q6ejs53w.ws-eu93.gitpod.io",
+        "https://3000-lalafontaine-alive-fb2vgm4kakg.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         "fas fa-hippo",
       ],
       favorites: [],
+      favoriteOfferings: [],
       searchResults: [],
       filteredResults: [],
       offerings: [],
@@ -60,12 +61,19 @@ const getState = ({ getStore, getActions, setStore }) => {
               name: favorite.name,
             });
           });
+          // let favoriteOffers = [];
+          // data.offerings.forEach((offering, index) => {
+          //   favoriteOffers.push({
+          //     title: offering.title,
+          //   });
+          // });
           setStore({
             token: data.access_token,
             is_org: data.is_org,
             avatarID: data.avatar,
             name: data.name,
             favorites: favoriteNames,
+            // favoriteOfferings: favoriteOffers,
           });
           console.log("AVATAR ID", getStore().avatarID);
           return true;

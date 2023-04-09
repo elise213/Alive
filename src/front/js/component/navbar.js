@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import LogRegBtn from "./LogRegBtn";
-import AliveLogo from "../../images/HDLOGOTRANSP3.png";
+import AliveLogo from "../../images/HDLOGOTRANSP2.png";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -44,49 +44,53 @@ export const Navbar = () => {
           </span>
           <span className="nav-item">
             <Link to="/offerings">
-              <span className="btn nav-btn">
-                Offerings <span></span>
-              </span>
+              <span className="btn nav-btn">Free Stuff</span>
             </Link>
           </span>
 
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* Link to Create Resource - Only visible when logged in as an Organization */}
-            {token && is_org == "true" ? (
-              <span className="nav-item">
-                <Link to="/createResource">
-                  <span className="btn nav-btn">Create Resource</span>
-                </Link>
+          {/* DONATE - Always visible */}
+
+          <span className="nav-item">
+            <Link to="/donate">
+              <span className="btn nav-btn">Donate</span>
+            </Link>
+          </span>
+
+          {/* Link to Create Resource - Only visible when logged in as an Organization */}
+          {token && is_org == "true" ? (
+            <span className="nav-item">
+              <Link to="/createResource">
+                <span className="btn nav-btn">Create Resource</span>
+              </Link>
+            </span>
+          ) : (
+            ""
+          )}
+          {/* Logout- Only visible when logged in */}
+          {/* Login/ Register- Only visible when NOT logged in */}
+          {token ? (
+            <span className="nav-item">
+              <span className="btn nav-btn" onClick={() => actions.logout()}>
+                Logout
               </span>
-            ) : (
-              ""
-            )}
-            {/* Logout- Only visible when logged in */}
-            {/* Login/ Register- Only visible when NOT logged in */}
-            {token ? (
-              <span className="nav-item">
-                <span className="btn nav-btn" onClick={() => actions.logout()}>
-                  Logout
+            </span>
+          ) : (
+            <span className="nav-item">
+              <LogRegBtn />
+            </span>
+          )}
+          {/* Link to profile page - Only visible when logged in as a regular user*/}
+          {token && is_org == "false" ? (
+            <span className="nav-item">
+              <Link to="/userProfile">
+                <span className="nav-btn nav-profile-icon">
+                  <i className="fa-solid fa-circle-user"></i>
                 </span>
-              </span>
-            ) : (
-              <li className="nav-item">
-                <LogRegBtn />
-              </li>
-            )}
-            {/* Link to profile page - Only visible when logged in as a regular user*/}
-            {token && is_org == "false" ? (
-              <span className="nav-item">
-                <Link to="/userProfile">
-                  <span className="nav-btn nav-profile-icon">
-                    <i className="fa-solid fa-circle-user"></i>
-                  </span>
-                </Link>
-              </span>
-            ) : (
-              ""
-            )}
-          </ul>
+              </Link>
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </nav>

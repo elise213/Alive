@@ -22,9 +22,9 @@ const Home = () => {
           <div className="scroll-search-results col-3">
             <ul className="" style={{ listStyleType: "none" }}>
               {store.filteredResults[0] || store.checked == true
-                ? store.filteredResults.map((result) => {
+                ? store.filteredResults.map((result, i) => {
                     return (
-                      <li>
+                      <li key={i}>
                         <ResourceCard
                           category={result.category}
                           key={result.id}
@@ -38,9 +38,9 @@ const Home = () => {
                       </li>
                     );
                   })
-                : store.searchResults.map((result) => {
+                : store.searchResults.map((result, i) => {
                     return (
-                      <li>
+                      <li key={i}>
                         <ResourceCard
                           category={result.category}
                           key={result.id}

@@ -22,12 +22,17 @@ export const FavoriteCard = (props) => {
     icon = "fa-solid fa-person-shelter";
   }
 
+  function handleClick(e, fav) {
+    e.preventDefault();
+    actions.removeFavorite(fav);
+  }
+
   return (
     <div className="resource-card mx-auto mb-3 row">
-      <Link to={"/resource/" + props.name} className="text-decoration-none">
+      <Link to={props.link} className="text-decoration-none">
         <div className="card-header d-flex">
           <div className="col-10 card-title-div">
-            <h4 className="resource-card-title-name col-9">{props.name}</h4>
+            <h4 className="resource-card-title-name col-9">{props.title}</h4>
           </div>
           <div className="col-2 card-icon">
             <i className={icon} />
@@ -40,10 +45,10 @@ export const FavoriteCard = (props) => {
       <div className="d-flex favorite-button-container">
         <button
           type="button"
-          className="btn-sm card-favorite-button"
-          onClick={(e) => handleClick(e)}
+          className="btn-sm delete-favorite"
+          onClick={(e) => handleClick(e, props.title)}
         >
-          Favorite
+          Remove Favorite
         </button>
       </div>
     </div>

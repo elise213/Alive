@@ -30,6 +30,9 @@ def create_token():
         favorites = getFavoritesByUserId(user.id)
         for favorite in favorites:
             resource = Resource.query.filter_by(name = favorite["name"]).first()
+        # favoriteOfferings = getFavoriteOfferingsByUserId(user.id)
+        # for offering in offerings:
+        #     offering = Offering.query.filter_by(name = offering["title"]).first()
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
         return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)

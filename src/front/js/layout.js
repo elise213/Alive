@@ -41,7 +41,7 @@ const Layout = () => {
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<Demo />} path="/demo" />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </ScrollToTop>
       </BrowserRouter>
     </div>

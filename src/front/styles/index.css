@@ -17,7 +17,6 @@ footer {
 }
 .resource-card-title {
   font-family: "Urbanist", sans-serif;
-  /* color: black !important; */
 }
 .resource-name-description {
   margin-top: 20px;
@@ -28,34 +27,31 @@ footer {
 }
 
 .forgot-password:hover {
-  color: blueviolet;
+  color: lightgreen;
 }
 
 /* ---navbar--- */
 .navbar {
-  background-color: #455a64;
-  /* background-color: rgba(var(--bs-secondary-rgb)); */
   width: 100%;
   top: 0;
-  border-bottom: 2px solid blueviolet;
+  border-bottom: 1px solid lightgreen;
   padding-right: 15px;
   padding-left: 15px;
   font-family: "Urbanist", sans-serif;
+  background-color: lightgray;
 }
 .nav-btn {
-  color: white;
-  /* font-weight: bold; */
   font-family: "Urbanist", sans-serif;
 }
 .nav-btn:hover {
   cursor: pointer;
-  color: #d1c4e9;
+  color: lightgreen;
 }
 .navbar-logo:hover {
   cursor: pointer;
 }
 .navbar-logo {
-  width: 70px;
+  width: 50px;
 }
 .nav-profile-icon {
   font-size: x-large;
@@ -71,12 +67,11 @@ footer {
   width: 100%;
 }
 .logReggobackbtn {
-  color: darkslategray;
   text-decoration: none;
 }
 .logReggobackbtn:hover {
   cursor: pointer;
-  color: greenyellow;
+  color: lightgreen;
 }
 .avatarImages {
   font-size: 4rem;

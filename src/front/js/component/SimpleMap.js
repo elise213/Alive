@@ -140,23 +140,25 @@ export const SimpleMap = () => {
           defaultZoom={13}
         >
           {store.filteredResults[0] || store.checked == true
-            ? store.filteredResults.map((result) => {
+            ? store.filteredResults.map((result, i) => {
                 return (
                   <Marker
                     lat={result.latitude}
                     lng={result.longitude}
                     color="blue"
                     text={result.name}
+                    key={i}
                   />
                 );
               })
-            : store.searchResults.map((result) => {
+            : store.searchResults.map((result, i) => {
                 return (
                   <Marker
                     lat={result.latitude}
                     lng={result.longitude}
                     color="purple"
                     text={result.name}
+                    key={i}
                   />
                 );
               })}

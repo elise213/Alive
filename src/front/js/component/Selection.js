@@ -9,7 +9,6 @@ export const Selection = (props) => {
   const [categorySearch, setCategorySearch] = useState([]);
   const [when, setWhen] = useState([]);
 
-  // console.log
   console.log("categorySearch is", categorySearch);
   console.log("when is ", when);
 
@@ -72,20 +71,16 @@ export const Selection = (props) => {
     } else {
       actions.resetSearchResults();
     }
-    // actions.filterSearchResults(when, categorySearch);
   }, [categorySearch, when]);
 
   function handleCategorySearch(event) {
     const element = event.target;
     const value = element.value;
     if (element.type === "checkbox" && element.checked) {
-      // setCategorySearch([...categorySearch, value]);
       setCategorySearch([value]);
     }
     if (element.type === "checkbox" && !element.checked) {
-      // let filtered = categorySearch.filter((item) => item !== value);
       setCategorySearch(categorySearch.filter((item) => item !== value));
-      // setCategorySearch(filtered);
     }
   }
 
@@ -118,7 +113,7 @@ export const Selection = (props) => {
               name="selection"
               onChange={handleCategorySearch}
             />
-            <label className="form-check-label" for="food">
+            <label className="form-check-label" htmlFor="food">
               Food
             </label>
           </div>
@@ -131,7 +126,7 @@ export const Selection = (props) => {
               name="selection"
               onChange={handleCategorySearch}
             />
-            <label className="form-check-label" for="shelter">
+            <label className="form-check-label" htmlFor="shelter">
               Shelter
             </label>
           </div>
@@ -144,7 +139,7 @@ export const Selection = (props) => {
               name="selection"
               onChange={handleCategorySearch}
             />
-            <label className="form-check-label" for="health">
+            <label className="form-check-label" htmlFor="health">
               Health
             </label>
           </div>
@@ -157,7 +152,7 @@ export const Selection = (props) => {
               name="selection"
               onChange={handleCategorySearch}
             />
-            <label className="form-check-label" for="hygiene">
+            <label className="form-check-label" htmlFor="hygiene">
               Hygiene
             </label>
           </div>
@@ -177,7 +172,7 @@ export const Selection = (props) => {
               value="monday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="monday">
+            <label className="form-check-label" htmlFor="monday">
               Monday
             </label>
           </div>
@@ -189,7 +184,7 @@ export const Selection = (props) => {
               value="tuesday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="tuesday">
+            <label className="form-check-label" htmlFor="tuesday">
               Tuesday
             </label>
           </div>
@@ -201,7 +196,7 @@ export const Selection = (props) => {
               value="wednesday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="wednesday">
+            <label className="form-check-label" htmlFor="wednesday">
               Wednesday
             </label>
           </div>
@@ -213,7 +208,7 @@ export const Selection = (props) => {
               value="thursday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="thursday">
+            <label className="form-check-label" htmlFor="thursday">
               Thursday
             </label>
           </div>
@@ -225,7 +220,7 @@ export const Selection = (props) => {
               value="friday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="friday">
+            <label className="form-check-label" htmlFor="friday">
               Friday
             </label>
           </div>
@@ -237,7 +232,7 @@ export const Selection = (props) => {
               value="saturday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="saturday">
+            <label className="form-check-label" htmlFor="saturday">
               Saturday
             </label>
           </div>
@@ -249,7 +244,7 @@ export const Selection = (props) => {
               value="sunday"
               onChange={handleWhen}
             />
-            <label className="form-check-label" for="sunday">
+            <label className="form-check-label" htmlFor="sunday">
               Sunday
             </label>
           </div>
