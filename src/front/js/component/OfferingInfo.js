@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import imgLogo from "../../images/HDLOGOTRANSP.png";
 
 export const OfferingInfo = (props) => {
+  console.log("props:", props);
   return (
     <div className="card w-100 " style={{ border: "none" }}>
       {/*********************************** Carousel *********************************/}
@@ -79,15 +80,12 @@ export const OfferingInfo = (props) => {
             className="resource-card-title"
             style={{ color: "darkslategray" }}
           >
-            {props.name}
+            {props.title}
           </h3>
         </div>
         <p className="resource-card-text">{props.description}</p>
-        <div className="resource-card-text mt-1">
-          <i className="fa-solid fa-calendar-days me-3"></i>
-        </div>
         <div className="float-end">
-          <Link to={"/"}>
+          <Link to={"/offerings"}>
             <button
               type="button"
               className="btn btn-secondary text-white"
@@ -100,7 +98,7 @@ export const OfferingInfo = (props) => {
                 className="fa-solid fa-magnifying-glass-location me-2"
                 style={{ opacity: ".6" }}
               ></i>
-              Back to Search Results
+              Back to Free Stuff
             </button>
           </Link>
         </div>

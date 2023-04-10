@@ -225,7 +225,7 @@ const RegisterAsDrop = () => {
         <div className="float-end">
           <button
             type="submit"
-            className="btn custom-btn text-white"
+            className="btn maras-button"
             onClick={(e) => handleClick(e)}
           >
             Submit

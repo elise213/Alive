@@ -12,72 +12,11 @@ export const Selection = (props) => {
   console.log("categorySearch is", categorySearch);
   console.log("when is ", when);
 
-  // sets category search by params
-  // useEffect(() => {
-  //   if (params.resourceType.toLowerCase() == "all") {
-  //     setCategorySearch(["all"]);
-  //   } else {
-  //     setCategorySearch(["all", params.resourceType.toLowerCase()]);
-  //   }
-  //   console.log("useEffect params categorySearch", categorySearch);
-  // }, []);
-
-  // Call filterSearchResults and update the checked checkboxes
-  useEffect(() => {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    let checked = false;
-    for (let i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked) {
-        checked = true;
-        actions.setChecked(checked);
-        break;
-      } else {
-        actions.resetSearchResults();
-      }
-    }
-    if (categorySearch.includes("food")) {
-      let food = document.querySelector("#food");
-      food.checked = true;
-    } else if (categorySearch.includes("hygiene")) {
-      let hygiene = document.querySelector("#hygiene");
-      hygiene.checked = true;
-    } else if (categorySearch.includes("shelter")) {
-      let shelter = document.querySelector("#shelter");
-      shelter.checked = true;
-    } else if (categorySearch.includes("health")) {
-      let health = document.querySelector("#health");
-      health.checked = true;
-    } else if (when.includes("monday")) {
-      let monday = document.querySelector("#monday");
-      monday.checked = true;
-    } else if (when.includes("tuesday")) {
-      let tuesday = document.querySelector("#tuesday");
-      tuesday.checked = true;
-    } else if (when.includes("wednesday")) {
-      let wednesday = document.querySelector("#wednesday");
-      wednesday.checked = true;
-    } else if (when.includes("thursday")) {
-      let thursday = document.querySelector("#thursday");
-      thursday.checked = true;
-    } else if (when.includes("friday")) {
-      let friday = document.querySelector("#friday");
-      friday.checked = true;
-    } else if (when.includes("saturday")) {
-      let saturday = document.querySelector("#saturday");
-      saturday.checked = true;
-    } else if (when.includes("sunday")) {
-      let sunday = document.querySelector("#sunday");
-      sunday.checked = true;
-    } else {
-      actions.resetSearchResults();
-    }
-  }, [categorySearch, when]);
-
   function handleCategorySearch(event) {
     const element = event.target;
     const value = element.value;
     if (element.type === "checkbox" && element.checked) {
-      setCategorySearch([value]);
+      setCategorySearch([...categorySearch, value]);
     }
     if (element.type === "checkbox" && !element.checked) {
       setCategorySearch(categorySearch.filter((item) => item !== value));

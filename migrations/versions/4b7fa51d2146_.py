@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 30f2ef2ccfe1
+Revision ID: 4b7fa51d2146
 Revises: 
-Create Date: 2023-04-10 11:12:03.202675
+Create Date: 2023-04-10 14:24:24.936729
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '30f2ef2ccfe1'
+revision = '4b7fa51d2146'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -94,6 +94,18 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('mondayStart', sa.String(length=256), nullable=True),
     sa.Column('mondayEnd', sa.String(length=256), nullable=True),
+    sa.Column('tuesdayStart', sa.String(length=256), nullable=True),
+    sa.Column('tuesdayEnd', sa.String(length=256), nullable=True),
+    sa.Column('wednesdayStart', sa.String(length=256), nullable=True),
+    sa.Column('wednesdayEnd', sa.String(length=256), nullable=True),
+    sa.Column('thursdayStart', sa.String(length=256), nullable=True),
+    sa.Column('thursdayEnd', sa.String(length=256), nullable=True),
+    sa.Column('fridayStart', sa.String(length=256), nullable=True),
+    sa.Column('fridayEnd', sa.String(length=256), nullable=True),
+    sa.Column('saturdayStart', sa.String(length=256), nullable=True),
+    sa.Column('saturdayEnd', sa.String(length=256), nullable=True),
+    sa.Column('sundayStart', sa.String(length=256), nullable=True),
+    sa.Column('sundayEnd', sa.String(length=256), nullable=True),
     sa.Column('resource_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['resource_id'], ['Resource.id'], ),
     sa.PrimaryKeyConstraint('id')

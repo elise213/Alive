@@ -69,7 +69,6 @@ const OfferingPost = () => {
           <label className="form-check-label" htmlFor="offeringType">
             What is the closest category that would describe your offering?
           </label>
-          {/* <div className="form-check form-row"> */}
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"
@@ -101,7 +100,7 @@ const OfferingPost = () => {
               Shelter
             </label>
           </div>
-          <div className="form-check form-check-inline">
+          {/* <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
@@ -116,7 +115,7 @@ const OfferingPost = () => {
             <label className="form-check-label" htmlFor="offeringH">
               Health
             </label>
-          </div>
+          </div> */}
           <div className="form-check mb-3 form-check-inline">
             <input
               className="form-check-input"

@@ -104,20 +104,20 @@ class Favorites(db.Model):
 class Schedule(db.Model):
     __tablename__ = 'Schedule'
     id = db.Column(db.Integer, primary_key=True)
-    mondayStart = db.Column(db.String(256))
-    mondayEnd = db.Column(db.String(256))
-    tuesdayStart = db.Column(db.String(256))
-    tuesdayEnd = db.Column(db.String(256))
-    wednesdayStart = db.Column(db.String(256))
-    wednesdayEnd = db.Column(db.String(256))
-    thursdayStart = db.Column(db.String(256))
-    thursdayEnd = db.Column(db.String(256))
-    fridayStart = db.Column(db.String(256))
-    fridayEnd = db.Column(db.String(256))
-    saturdayStart = db.Column(db.String(256))
-    saturdayEnd = db.Column(db.String(256))
-    sundayStart = db.Column(db.String(256))
-    sundayEnd = db.Column(db.String(256))
+    mondayStart = db.Column(db.String(256), nullable=True)
+    mondayEnd = db.Column(db.String(256), nullable=True)
+    tuesdayStart = db.Column(db.String(256), nullable=True)
+    tuesdayEnd = db.Column(db.String(256), nullable=True)
+    wednesdayStart = db.Column(db.String(256), nullable=True)
+    wednesdayEnd = db.Column(db.String(256), nullable=True)
+    thursdayStart = db.Column(db.String(256), nullable=True)
+    thursdayEnd = db.Column(db.String(256), nullable=True)
+    fridayStart = db.Column(db.String(256), nullable=True)
+    fridayEnd = db.Column(db.String(256), nullable=True)
+    saturdayStart = db.Column(db.String(256), nullable=True)
+    saturdayEnd = db.Column(db.String(256), nullable=True)
+    sundayStart = db.Column(db.String(256), nullable=True)
+    sundayEnd = db.Column(db.String(256), nullable=True)
     resource_id = db.Column(db.Integer, ForeignKey("Resource.id"), nullable=True)
 
     def __repr__(self):
@@ -127,18 +127,19 @@ class Schedule(db.Model):
         return {
             "id": self.id,
             "mondayStart": self.mondayStart,
-            "tuesdayStart": self.mondayStart,
-            "tuesdayEnd": self.mondayEnd,
-            "wednesdayStart": self.mondayStart,
-            "wednesdayEnd": self.mondayEnd,
-            "thursdayStart": self.mondayStart,   
-            "thursdayEnd": self.mondayEnd,
-            "fridayStart": self.mondayStart,   
-            "fridayEnd": self.mondayEnd,
-            "saturdayStart": self.mondayStart, 
-            "saturdayEnd": self.mondayEnd,
-            "sundayStart": self.mondayStart,
-            "sundayEnd": self.mondayEnd,
+            "mondayStart": self.mondayEnd,
+            "tuesdayStart": self.tuesdayStart,
+            "tuesdayEnd": self.tuesdayEnd,
+            "wednesdayStart": self.wednesdayStart,   
+            "wednesdayEnd": self.wednesdayEnd,
+            "thursdayStart": self.thursdayStart,  
+            "thursdayEnd": self.thursdayEnd,
+            "fridayStart": self.fridayStart, 
+            "fridayEnd": self.fridayEnd,
+            "saturdayStart": self.saturdayStart,
+            "saturdayEnd": self.saturdayEnd,
+            "sundayStart": self.sundayStart,
+            "sundayEnd": self.sundayEnd,
             "resource_id": self.resource_id,
         }
 
@@ -153,7 +154,7 @@ class Offering(db.Model):
         user_id = db.Column(db.Integer, unique=False, nullable=True)
 
         def __repr__(self):
-            return f'<Offering {self.name}>'
+            return f'<Offering {self.title}>'
 
         def serialize(self):
             return {

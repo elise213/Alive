@@ -13,7 +13,7 @@ export const OfferingCard = (props) => {
   return (
     <div className="">
       <div className="offering-card" style={{ maxWidth: "18rem" }}>
-        <Link to={"/offering/" + props.title} className="text-decoration-none">
+        <Link to={"/offering/" + props.id} className="text-decoration-none">
           <div className="card-header d-flex">
             <div className="col-10 card-title-div">
               <h4 className="resource-card-title-name col-9">{props.title}</h4>

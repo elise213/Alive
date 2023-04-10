@@ -9,8 +9,7 @@ const LogRegBtn = () => {
   const [name, setName] = useState("");
   const [is_org, setIs_org] = useState("");
   const { store, actions } = useContext(Context);
-  // console.log(password);
-  // console.log(email);
+
   function handleLogin(e) {
     e.preventDefault();
     actions.login(email, password);
@@ -29,7 +28,7 @@ const LogRegBtn = () => {
     newselect.classList.add("avatarImageSelected");
     setUserAvatar(id);
   }
-  // console.log(userAvatar);
+
   let field = null;
   if (log == false) {
     field = (
@@ -138,7 +137,7 @@ const LogRegBtn = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary maras-button"
               data-bs-dismiss="modal"
               style={{ width: "100%" }}
               onClick={(e) => handleRegister(e)}
@@ -177,9 +176,6 @@ const LogRegBtn = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
-              <div id="emailHelp" className="form-text">
-                We'll never share your email with anyone else.
-              </div>
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
@@ -199,10 +195,9 @@ const LogRegBtn = () => {
             <div className="logRegBtnModalCont">
               <button
                 type="submit"
-                className="btn custom-btn"
+                className="btn maras-button"
                 data-bs-dismiss="modal"
                 onClick={(e) => handleLogin(e)}
-                style={{ color: "white" }}
               >
                 Submit
               </button>

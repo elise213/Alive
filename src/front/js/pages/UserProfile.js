@@ -7,7 +7,7 @@ const userProfile = () => {
   const { store, actions } = useContext(Context);
   let avatar = store.avatarImages[parseInt(store.avatarID)];
   console.log("all favorites", store.favorites);
-
+  console.log("store.favoriteOfferings =", store.favoriteOfferings);
   return (
     <div className="profile-container">
       <span className={`${avatar} user-profile-avatar`}></span>
@@ -33,15 +33,15 @@ const userProfile = () => {
       </div>
       <div className="user-profile-container">
         <div className="favorites-col">
-          <p className="your-favorite-resources">Your Favorite Offerings</p>
+          <p className="your-favorite-resources">Your Favorite Free Stuff</p>
           <ul className="favorites-list" style={{ listStyleType: "none" }}>
             {store.favoriteOfferings.map((offer, i) => {
-              console.log("fav = ", offer);
+              console.log("offer = ", offer);
               return (
                 <li key={i}>
                   <FavoriteCard
                     title={offer.title}
-                    link={"/resource/" + offer.title}
+                    link={"/offering/" + offer.id}
                     category={offer.category}
                     image={offer.image}
                   />

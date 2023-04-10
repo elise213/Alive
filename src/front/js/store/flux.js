@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment, match this URL (port 3000)
       // do not include "/" at the end!
       current_front_url:
-        "https://3000-lalafontaine-alive-fb2vgm4kakg.ws-eu93.gitpod.io",
+        "https://3000-lalafontaine-alive-jy1ebowf4l9.ws-eu93.gitpod.io",
       current_back_url: process.env.BACKEND_URL,
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -33,6 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // ________________________________________________________________LOGIN/TOKEN
       login: async (email, password) => {
         const current_back_url = getStore().current_back_url;
+        const current_front_url = getStore().current_front_url;
         const opts = {
           method: "POST",
           mode: "cors",
@@ -63,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
           });
           let favoriteOffers = [];
-          data.offerings.forEach((offering, index) => {
+          data.favoriteOfferings.forEach((offering, index) => {
             favoriteOffers.push({
               title: offering.title,
             });
@@ -76,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             favorites: favoriteNames,
             favoriteOfferings: favoriteOffers,
           });
-          console.log("AVATAR ID", getStore().avatarID);
+          window.location.href = current_front_url + "/";
           return true;
         } catch (error) {
           console.error(error);
@@ -138,7 +139,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         picture,
         picture2,
         mondayStart,
-        mondayEnd
+        mondayEnd,
+        tuesdayStart,
+        tuesdayEnd,
+        wednesdayStart,
+        wednesdayEnd,
+        thursdayStart,
+        thursdayEnd,
+        fridayStart,
+        fridayEnd,
+        saturdayStart,
+        saturdayEnd,
+        sundayStart,
+        sundayEnd
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
@@ -164,7 +177,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             image2: picture2,
             mondayStart: mondayStart,
             mondayEnd: mondayEnd,
-            // user_id: user_id,
+            tuesdayStart: tuesdayStart,
+            tuesdayEnd: tuesdayEnd,
+            wednesdayStart: wednesdayStart,
+            wednesdayEnd: wednesdayEnd,
+            thursdayStart: thursdayStart,
+            thursdayEnd: thursdayEnd,
+            fridayStart: fridayStart,
+            fridayEnd: fridayEnd,
+            saturdayStart: saturdayStart,
+            saturdayEnd: saturdayEnd,
+            sundayStart: sundayStart,
+            sundayEnd: sundayEnd,
           }),
         };
         try {
@@ -316,7 +340,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favoriteOfferings;
         const token = sessionStorage.getItem("token");
-        // console.log(resource);
+        console.log(offering);
         if (sessionStorage.getItem("token")) {
           const opts = {
             headers: {
@@ -325,15 +349,17 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             method: "POST",
             body: JSON.stringify({
-              title: offering.title,
+              title: offering,
             }),
           };
           fetch(current_back_url + "/api/addFavoriteOffering", opts)
             .then((response) => response.json())
             .then((data) => {
+              console.log("data:", data);
               if (data.message == "okay") {
-                favoriteOfferings.push(title);
-                setStore({ favoriteOfferings: favoriteOfferings });
+                favorites.push(offering);
+                setStore({ favoriteOfferings: favorites });
+                console.log("favoriteOfferings:", favorites);
               }
             });
         }
@@ -431,7 +457,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            window.location.href = current_front_url + "/"; //go to home
+            window.location.href = current_front_url + "/";
           }
           return true;
         } catch (error) {

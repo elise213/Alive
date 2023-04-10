@@ -30,12 +30,10 @@ def create_token():
         favorites = getFavoritesByUserId(user.id)
         for favorite in favorites:
             resource = Resource.query.filter_by(name = favorite["name"]).first()
-        # favoriteOfferings = getFavoriteOfferingsByUserId(user.id)
-        # for offering in offerings:
-        #     offering = Offering.query.filter_by(name = offering["title"]).first()
+        favoriteOfferings = getFavoriteOfferingsByUserId(user.id)
         expiration = datetime.timedelta(days=3)
         access_token = create_access_token(identity = user.id, expires_delta=expiration)
-        return jsonify(access_token=access_token, is_org=user.is_org, avatar=user.avatar, name=user.name, favorites=favorites)
+        return jsonify(access_token=access_token, is_org=user.is_org, favoriteOfferings=favoriteOfferings, avatar=user.avatar, name=user.name, favorites=favorites)
 
 # create user
 @api.route("/createUser", methods = ["POST"])
@@ -89,7 +87,6 @@ def create_comment():
 # get comments
 @api.route('/getcomments/<int:resource_id>', methods=['GET'])
 def getcomments(resource_id):
-    # resource_id = request.get_json("resource_id")
     print(resource_id)
     comments = getCommentsByResourceId(resource_id)
     return jsonify({"comments": comments})
@@ -111,47 +108,50 @@ def getResources():
     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
     return jsonify(data=all_resources)
 
-# @api.route('/getResources', methods=['GET'])
-# def getResources():
-#     resourceList = Resource.query.all()
-#     if resourceList is None:
-#         return jsonify(msg="No resources found")
-#     all_resources = list(map(lambda resource: resource.serialize(), resourceList))
-#     return jsonify(data=all_resources)
-
 # create resource
 @api.route("/createResource", methods = ["POST"])
 @jwt_required()
 def create_resource():
-    if request.method == "POST":
-        user_id = get_jwt_identity()
-        request_body = request.get_json()
-        if not request_body["name"]:
-            return jsonify({"message": "Name is required"}), 400
-        resource = Resource.query.filter_by(name=request_body["name"]).first()
-        if resource:
-            return jsonify({"message": "Resource already exists"}), 400
-        resource = Resource(
-            name = request_body["name"],
-            address = request_body["address"],
-            phone = request_body["phone"],
-            category = request_body["category"],
-            website = request_body["website"],
-            description = request_body["description"],
-            latitude = request_body["latitude"],
-            longitude = request_body["longitude"],
-            image = request_body["image"],
-            image2 = request_body["image2"],
-            user_id=user_id,
-            )
-        schedule = Schedule(
-            mondayStart = request_body["mondayStart"],
-            mondayEnd = request_body["mondayEnd"]
-            )
-        db.session.add(resource)
-        db.session.add(schedule)
-        db.session.commit()
-        return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
+    user_id = get_jwt_identity()
+    request_body = request.get_json()
+    if not request_body["name"]:
+        return jsonify({"message": "Name is required"}), 400
+    resource = Resource.query.filter_by(name=request_body["name"]).first()
+    if resource:
+        return jsonify({"message": "Resource already exists"}), 400
+    resource = Resource(
+        name = request_body["name"],
+        address = request_body["address"],
+        phone = request_body["phone"],
+        category = request_body["category"],
+        website = request_body["website"],
+        description = request_body["description"],
+        latitude = request_body["latitude"],
+        longitude = request_body["longitude"],
+        image = request_body["image"],
+        image2 = request_body["image2"],
+        user_id=user_id,
+        )
+    schedule = Schedule(
+        mondayStart = request_body["mondayStart"],
+        mondayEnd = request_body["mondayEnd"],
+        tuesdayStart = request_body["tuesdayStart"],
+        tuesdayEnd = request_body["tuesdayEnd"],
+        wednesdayStart = request_body["wednesdayStart"],
+        wednesdayEnd = request_body["wednesdayEnd"],
+        thursdayStart = request_body["thursdayStart"],
+        thursdayEnd = request_body["thursdayEnd"],
+        fridayStart = request_body["fridayStart"],
+        fridayEnd = request_body["fridayEnd"],
+        saturdayStart = request_body["saturdayStart"],
+        saturdayEnd = request_body["saturdayEnd"],
+        sundayStart = request_body["sundayStart"],
+        sundayEnd = request_body["sundayEnd"]
+        )
+    db.session.add(resource)
+    db.session.add(schedule)
+    db.session.commit()
+    return jsonify({"created": "Thank you for creating a resource!", "status": "true"}), 200
 
 # add favorite resource
 @api.route('/addFavorite', methods=['POST'])
@@ -252,7 +252,7 @@ def addFavoriteOffering():
     )
     print(request_body["title"])
     print("Request body:", request_body)
-    db.session.add(favoriteOfferings)
+    db.session.add(favoriteOffering)
     db.session.commit()
     return jsonify(message="okay")
     
@@ -278,13 +278,11 @@ def getFavoriteOfferingsByUserId(userId):
     serialized_favorites = [fav.serialize() for fav in favoriteOfferings]
     return serialized_favorites
 
-# __________________________________________________DROP OFF LOCATIONS
+# __________________________________________________DROP-OFF LOCATIONS
 # create drop
 @api.route("/createDrop", methods = ["POST"])
-@jwt_required()
 def create_drop():
     if request.method == "POST":
-        user_id = get_jwt_identity()
         request_body = request.get_json()
     if not request_body["name"]:
         return jsonify({"message": "Name is required"}), 400
