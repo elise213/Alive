@@ -31,18 +31,18 @@ const CreateResource = () => {
   const [sundayStart, setSundayStart] = useState("");
   const [sundayEnd, setSundayEnd] = useState("");
 
-  const resetForm = () => {
-    setName("");
-    setAddress("");
-    setPhone("");
-    setResourceType("");
-    setWebsite("");
-    setDescription("");
-    setLatitude("");
-    setLongitude("");
-    setPicture("");
-    setPicture2("");
-  };
+  // const resetForm = () => {
+  //   setName("");
+  //   setAddress("");
+  //   setPhone("");
+  //   setResourceType("");
+  //   setWebsite("");
+  //   setDescription("");
+  //   setLatitude("");
+  //   setLongitude("");
+  //   setPicture("");
+  //   setPicture2("");
+  // };
 
   function handleClick(e) {
     e.preventDefault();
@@ -73,7 +73,7 @@ const CreateResource = () => {
       sundayEnd
     );
     // alert("Resource Created");
-    resetForm();
+    // resetForm();
     navigate("/");
   }
 
@@ -341,17 +341,6 @@ const CreateResource = () => {
             ></input>
           </div>
         </div>
-        {/* <div className="form-row">
-            <div className="col">
-              <input type="text" className="form-control" placeholder="City" />
-            </div>
-            <div className="col">
-              <input type="text" className="form-control" placeholder="State" />
-            </div>
-            <div className="col">
-              <input type="text" className="form-control" placeholder="Zip" />
-            </div>
-          </div> */}
         <label htmlFor="website"> Is there a website? </label>
         <div className="input-group mb-3">
           <div className="input-group-prepend">

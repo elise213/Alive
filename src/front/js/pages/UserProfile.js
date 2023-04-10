@@ -8,6 +8,26 @@ const userProfile = () => {
   let avatar = store.avatarImages[parseInt(store.avatarID)];
   console.log("all favorites", store.favorites);
   console.log("store.favoriteOfferings =", store.favoriteOfferings);
+
+  let newArray = [];
+
+  store.favorites.forEach((fav, i) => {
+    store.searchResults.filter((elm) => {
+      if (elm.name == fav.name) {
+        newArray.push(elm);
+      }
+    });
+  });
+
+  let newArray2 = [];
+
+  store.favoriteOfferings.forEach((fav, i) => {
+    store.offerings.filter((elm) => {
+      if (elm.title == fav.title) {
+        newArray2.push(elm);
+      }
+    });
+  });
   return (
     <div className="profile-container">
       <span className={`${avatar} user-profile-avatar`}></span>
@@ -15,8 +35,7 @@ const userProfile = () => {
         <div className="favorites-col">
           <p className="your-favorite-resources">Your Favorite Resources</p>
           <ul className="favorites-list" style={{ listStyleType: "none" }}>
-            {store.favorites.map((fav, i) => {
-              console.log("fav = ", fav);
+            {newArray.map((fav, i) => {
               return (
                 <li key={i}>
                   <FavoriteCard
@@ -30,20 +49,17 @@ const userProfile = () => {
             })}
           </ul>
         </div>
-      </div>
-      <div className="user-profile-container">
         <div className="favorites-col">
           <p className="your-favorite-resources">Your Favorite Free Stuff</p>
           <ul className="favorites-list" style={{ listStyleType: "none" }}>
-            {store.favoriteOfferings.map((offer, i) => {
-              console.log("offer = ", offer);
+            {newArray2.map((fav, i) => {
               return (
                 <li key={i}>
                   <FavoriteCard
-                    title={offer.title}
-                    link={"/offering/" + offer.id}
-                    category={offer.category}
-                    image={offer.image}
+                    title={fav.title}
+                    link={"/offering/" + i}
+                    category={fav.category}
+                    image={fav.image}
                   />
                 </li>
               );

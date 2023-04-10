@@ -128,8 +128,8 @@ def create_resource():
         description = request_body["description"],
         latitude = request_body["latitude"],
         longitude = request_body["longitude"],
-        image = request_body["image"],
-        image2 = request_body["image2"],
+        image = request_body["picture"],
+        image2 = request_body["picture2"],
         user_id=user_id,
         )
     schedule = Schedule(

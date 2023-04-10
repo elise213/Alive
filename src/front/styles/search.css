@@ -21,6 +21,8 @@
 .user-profile-container {
   margin-left: 20px;
   margin-right: 20px;
+  display: flex;
+  gap: 2rem;
 }
 
 .user-profile-pic {

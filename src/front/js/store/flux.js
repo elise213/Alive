@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          console.log("data =", data);
+          console.log("Yooooooo data =", data);
           sessionStorage.setItem("token", data.access_token);
           sessionStorage.setItem("is_org", data.is_org);
           sessionStorage.setItem("name", data.name);
@@ -77,7 +77,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             favorites: favoriteNames,
             favoriteOfferings: favoriteOffers,
           });
-          window.location.href = current_front_url + "/";
           return true;
         } catch (error) {
           console.error(error);
@@ -155,7 +154,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ) => {
         const current_back_url = getStore().current_back_url;
         const current_front_url = getStore().current_front_url;
-        const token = getStore().token;
+        const token = sessionStorage.getItem("token");
         const opts = {
           method: "POST",
           mode: "cors",
@@ -173,8 +172,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             description: description,
             latitude: latitude,
             longitude: longitude,
-            image: picture,
-            image2: picture2,
+            picture: picture,
+            picture2: picture2,
             mondayStart: mondayStart,
             mondayEnd: mondayEnd,
             tuesdayStart: tuesdayStart,
@@ -202,7 +201,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           const data = await response.json();
           if (data.status == "true") {
-            window.location.href = current_front_url + "/"; //go to home
+            window.location.href = current_front_url + "/";
           }
           return true;
         } catch (error) {
