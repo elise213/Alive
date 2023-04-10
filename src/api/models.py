@@ -106,6 +106,18 @@ class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mondayStart = db.Column(db.String(256))
     mondayEnd = db.Column(db.String(256))
+    tuesdayStart = db.Column(db.String(256))
+    tuesdayEnd = db.Column(db.String(256))
+    wednesdayStart = db.Column(db.String(256))
+    wednesdayEnd = db.Column(db.String(256))
+    thursdayStart = db.Column(db.String(256))
+    thursdayEnd = db.Column(db.String(256))
+    fridayStart = db.Column(db.String(256))
+    fridayEnd = db.Column(db.String(256))
+    saturdayStart = db.Column(db.String(256))
+    saturdayEnd = db.Column(db.String(256))
+    sundayStart = db.Column(db.String(256))
+    sundayEnd = db.Column(db.String(256))
     resource_id = db.Column(db.Integer, ForeignKey("Resource.id"), nullable=True)
 
     def __repr__(self):
@@ -115,7 +127,18 @@ class Schedule(db.Model):
         return {
             "id": self.id,
             "mondayStart": self.mondayStart,
-            "mondayEnd": self.mondayEnd,
+            "tuesdayStart": self.mondayStart,
+            "tuesdayEnd": self.mondayEnd,
+            "wednesdayStart": self.mondayStart,
+            "wednesdayEnd": self.mondayEnd,
+            "thursdayStart": self.mondayStart,   
+            "thursdayEnd": self.mondayEnd,
+            "fridayStart": self.mondayStart,   
+            "fridayEnd": self.mondayEnd,
+            "saturdayStart": self.mondayStart, 
+            "saturdayEnd": self.mondayEnd,
+            "sundayStart": self.mondayStart,
+            "sundayEnd": self.mondayEnd,
             "resource_id": self.resource_id,
         }
 

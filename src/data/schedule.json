@@ -1,14 +1,16 @@
 [
   {
-    "day": "monday",
-    "start_time": "1:00",
-    "end_time": "5:00",
-    "resource_id": 1
+    "mondayStart": "1:00",
+    "tuesdayStart": "5:00",
+    "saturdayStart": "14:00",
+    "saturdayEnd": "20:00"
   },
   {
-    "day": "monday",
-    "start_time": "1:00",
-    "end_time": "5:00",
-    "resource_id": 2
+    "wednesdayStart": "13:00",
+    "wednesdayEnd": "16:00",
+    "fridayStart": "9:00",
+    "fridayEnd": "13:00",
+    "sundayStart": "7:00",
+    "sundayEnd": "21:00"
   }
 ]
