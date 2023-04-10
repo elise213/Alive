@@ -1,3 +1,5 @@
+ALIVE is a web application designed to connect low-income users to organizations in their area that provide free vital reources. It allows users to log in, save favorites, see local resources on a map, filter resources by category, and make comments.
+
 To test the code: 
 
 BACK END
@@ -7,9 +9,10 @@ BACK END
 FRONT END
 3. Start the webpack dev server `$ npm run start`
 
+
 ________________________________________________________________________________________________
 
-# WebApp boilerplate with React JS and Flask API
+WebApp boilerplate with React JS and Flask API
 
 Build web applications using React.js for the front end and python/flask for your backend API.
 
