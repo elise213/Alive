@@ -6,8 +6,6 @@ import { FavoriteCard } from "../component/FavoriteCard";
 const userProfile = () => {
   const { store, actions } = useContext(Context);
   let avatar = store.avatarImages[parseInt(store.avatarID)];
-  console.log("all favorites", store.favorites);
-  console.log("store.favoriteOfferings =", store.favoriteOfferings);
 
   let newArray = [];
 
@@ -43,6 +41,7 @@ const userProfile = () => {
                     link={"/resource/" + fav.name}
                     category={fav.category}
                     image={fav.image}
+                    type="resource"
                   />
                 </li>
               );
@@ -60,6 +59,7 @@ const userProfile = () => {
                     link={"/offering/" + i}
                     category={fav.category}
                     image={fav.image}
+                    type="offering"
                   />
                 </li>
               );

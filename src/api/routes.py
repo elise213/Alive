@@ -132,7 +132,10 @@ def create_resource():
         image2 = request_body["picture2"],
         user_id=user_id,
         )
+    db.session.add(resource)
+    db.session.commit()
     schedule = Schedule(
+        resource_id = resource.id,
         mondayStart = request_body["mondayStart"],
         mondayEnd = request_body["mondayEnd"],
         tuesdayStart = request_body["tuesdayStart"],

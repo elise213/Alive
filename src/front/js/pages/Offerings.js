@@ -5,11 +5,11 @@ import { OfferingCard } from "../component/OfferingCard.js";
 
 const Offerings = () => {
   const { store, actions } = useContext(Context);
+
   useEffect(() => {
     actions.setOfferings();
   }, []);
 
-  console.log(store.offerings);
   return (
     <div className="row">
       <div className="alert alert-success" role="alert">

@@ -5,12 +5,6 @@ import { Context } from "../store/appContext";
 export const FavoriteCard = (props) => {
   const { store, actions } = useContext(Context);
 
-  function handleClick(e) {
-    e.preventDefault();
-    // console.log(props.name, typeof props.name);
-    actions.addFavorite({ title: props.name, icon: { icon } });
-  }
-
   let icon = "";
   if (props.category == "health") {
     icon = "fa-solid fa-stethoscope";
@@ -25,6 +19,11 @@ export const FavoriteCard = (props) => {
   function handleClick(e, fav) {
     e.preventDefault();
     actions.removeFavorite(fav);
+  }
+
+  function handleClick2(e, fav) {
+    e.preventDefault();
+    actions.removeFavoriteOffering(fav);
   }
 
   return (
@@ -43,13 +42,23 @@ export const FavoriteCard = (props) => {
         </div>
       </Link>
       <div className="d-flex favorite-button-container">
-        <button
-          type="button"
-          className="btn-sm maras-button"
-          onClick={(e) => handleClick(e, props.title)}
-        >
-          Remove Favorite
-        </button>
+        {props.type == "resource" ? (
+          <button
+            type="button"
+            className="btn-sm maras-button"
+            onClick={(e) => handleClick(e, props.title)}
+          >
+            Remove Favorite
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn-sm maras-button"
+            onClick={(e) => handleClick2(e, props.title)}
+          >
+            Remove Favorite Offering
+          </button>
+        )}
       </div>
     </div>
   );

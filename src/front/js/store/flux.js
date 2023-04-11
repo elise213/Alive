@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       // each time you open a new environment, match this URL (port 3000)
       // do not include "/" at the end!
       current_front_url:
-        "https://3000-lalafontaine-alive-jy1ebowf4l9.ws-eu93.gitpod.io",
+        "https://3000-lalafontaine-alive-rf330w2gh18.ws-eu93.gitpod.io",
+
       current_back_url: process.env.BACKEND_URL,
       latitude: null, //to store user location
       longitude: null, //to store user location
@@ -230,6 +231,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               if (data.message == "okay") {
                 favorites.push(resource);
                 setStore({ favorites: favorites });
+                console.log("favorites from addfavorite", favorites);
               }
             });
         }
@@ -259,6 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                   }
                 });
                 setStore({ favorites: favorites });
+                console.log("favorites from removefavorite", favorites);
               }
             })
             .catch((error) => console.log(error));
@@ -336,11 +339,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       // ________________________________________________________________OFFERINGS
       addFavoriteOffering: (offering) => {
+        console.log(offering);
         const current_back_url = getStore().current_back_url;
         const favorites = getStore().favoriteOfferings;
         const token = sessionStorage.getItem("token");
-        console.log(offering);
-        if (sessionStorage.getItem("token")) {
+        if (token) {
           const opts = {
             headers: {
               Authorization: "Bearer " + token,
@@ -354,13 +357,44 @@ const getState = ({ getStore, getActions, setStore }) => {
           fetch(current_back_url + "/api/addFavoriteOffering", opts)
             .then((response) => response.json())
             .then((data) => {
-              console.log("data:", data);
               if (data.message == "okay") {
+                console.log("okay");
                 favorites.push(offering);
                 setStore({ favoriteOfferings: favorites });
-                console.log("favoriteOfferings:", favorites);
               }
             });
+        }
+      },
+      removeFavoriteOffering: (offering) => {
+        const current_back_url = getStore().current_back_url;
+        const favorites = getStore().favoriteOfferings;
+        const token = getStore().token;
+        console.log("favoriteOfferings from remove favorite:", favorites);
+        if (sessionStorage.getItem("token")) {
+          const opts = {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+            method: "DELETE",
+            body: JSON.stringify({
+              title: offering,
+            }),
+          };
+          fetch(current_back_url + "/api/removeFavoriteOffering", opts)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message == "okay") {
+                favorites.forEach((element, index) => {
+                  if (element.title == offering) {
+                    favorites.splice(index, 1);
+                  }
+                });
+                setStore({ favoriteOfferings: favorites });
+                console.log("favoriteOs from removefavorite", favorites);
+              }
+            })
+            .catch((error) => console.log(error));
         }
       },
       setOfferings: () => {

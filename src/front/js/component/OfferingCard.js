@@ -10,6 +10,8 @@ export const OfferingCard = (props) => {
     actions.addFavoriteOffering(props.title);
   }
 
+  // isn't getting uodated favorite offerings
+
   return (
     <div className="">
       <div className="offering-card" style={{ maxWidth: "18rem" }}>
